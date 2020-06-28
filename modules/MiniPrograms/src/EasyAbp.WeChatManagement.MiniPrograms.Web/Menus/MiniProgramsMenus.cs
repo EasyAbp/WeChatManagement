@@ -2,7 +2,7 @@
 {
     public class MiniProgramsMenus
     {
-        private const string Prefix = "MiniPrograms";
+        private const string Prefix = "EasyAbp.WeChatManagement.MiniPrograms";
 
         //Add your menu items here...
         //public const string Home = Prefix + ".MyNewMenuItem";

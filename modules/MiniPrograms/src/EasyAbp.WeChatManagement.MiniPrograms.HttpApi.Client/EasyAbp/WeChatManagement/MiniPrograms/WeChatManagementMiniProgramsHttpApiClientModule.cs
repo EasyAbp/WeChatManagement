@@ -9,7 +9,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         typeof(AbpHttpClientModule))]
     public class WeChatManagementMiniProgramsHttpApiClientModule : AbpModule
     {
-        public const string RemoteServiceName = "MiniPrograms";
+        public const string RemoteServiceName = "EasyAbpWeChatManagementMiniPrograms";
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
