@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Modularity;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.Modularity;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
@@ -7,6 +8,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         )]
     public class WeChatManagementMiniProgramsDomainModule : AbpModule
     {
-
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            context.Services.PreConfigure<IIdentityServerBuilder>(builder =>
+            {
+                builder.AddExtensionGrantValidator<WeChatMiniProgramGrantValidator>();
+            });
+        }
     }
 }
