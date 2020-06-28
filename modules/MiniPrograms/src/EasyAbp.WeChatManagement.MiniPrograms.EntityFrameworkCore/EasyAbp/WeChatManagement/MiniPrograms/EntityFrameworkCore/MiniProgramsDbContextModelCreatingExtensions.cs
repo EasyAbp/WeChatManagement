@@ -1,6 +1,10 @@
-﻿using System;
+using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
+using EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers;
+using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
+using System;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
 {
@@ -38,6 +42,36 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
                 b.HasIndex(q => q.CreationTime);
             });
             */
+
+
+            builder.Entity<MiniProgram>(b =>
+            {
+                b.ToTable(options.TablePrefix + "MiniPrograms", options.Schema);
+                b.ConfigureByConvention(); 
+                
+
+                /* Configure more properties here */
+            });
+
+
+            builder.Entity<MiniProgramUser>(b =>
+            {
+                b.ToTable(options.TablePrefix + "MiniProgramUsers", options.Schema);
+                b.ConfigureByConvention(); 
+                
+
+                /* Configure more properties here */
+            });
+
+
+            builder.Entity<UserInfo>(b =>
+            {
+                b.ToTable(options.TablePrefix + "UserInfos", options.Schema);
+                b.ConfigureByConvention(); 
+                
+
+                /* Configure more properties here */
+            });
         }
     }
 }

@@ -6,7 +6,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages
 {
     /* Inherit your UI Pages from this class. To do that, add this line to your Pages (.cshtml files under the Page folder):
-     * @inherits EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.MiniProgramsPage
+     * @inherits EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniProgramsPage
      */
     public abstract class MiniProgramsPage : AbpPage
     {

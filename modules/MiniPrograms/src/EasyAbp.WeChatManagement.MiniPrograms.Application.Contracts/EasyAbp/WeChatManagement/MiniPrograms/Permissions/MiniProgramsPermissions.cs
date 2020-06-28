@@ -1,4 +1,4 @@
-﻿using Volo.Abp.Reflection;
+using Volo.Abp.Reflection;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Permissions
 {
@@ -9,6 +9,24 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Permissions
         public static string[] GetAll()
         {
             return ReflectionHelper.GetPublicConstantsRecursively(typeof(MiniProgramsPermissions));
+        }
+
+        public class MiniProgram
+        {
+            public const string Default = GroupName + ".MiniProgram";
+            public const string Update = Default + ".Update";
+            public const string Create = Default + ".Create";
+            public const string Delete = Default + ".Delete";
+        }
+
+        public class MiniProgramUser
+        {
+            public const string Default = GroupName + ".MiniProgramUser";
+        }
+
+        public class UserInfo
+        {
+            public const string Default = GroupName + ".UserInfo";
         }
     }
 }
