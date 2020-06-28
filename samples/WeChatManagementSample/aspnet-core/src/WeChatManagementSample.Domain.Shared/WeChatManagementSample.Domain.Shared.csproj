@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>WeChatManagementSample</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.IdentityServer.Domain.Shared" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.BackgroundJobs.Domain.Shared" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Domain.Shared" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="2.9.0" />
+    <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\WeChatManagementSample\*.json" />
+    <Content Remove="Localization\WeChatManagementSample\*.json" />
+  </ItemGroup>
+
+</Project>
