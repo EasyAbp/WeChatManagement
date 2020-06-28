@@ -20,7 +20,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Menus
         {
             var l = context.GetLocalizer<MiniProgramsResource>(); //Add main menu items.
 
-            var miniProgramManagementMenuItem = new ApplicationMenuItem("EasyAbp.WeChatManagement.MiniPrograms", l["Menu:MiniProgramManagement"]);
+            var miniProgramManagementMenuItem = new ApplicationMenuItem(MiniProgramsMenus.Prefix, l["Menu:MiniProgramManagement"]);
 
             if (await context.IsGrantedAsync(MiniProgramsPermissions.MiniProgram.Default))
             {

@@ -4,7 +4,7 @@
     {
         public const string ModuleGroupPrefix = "EasyAbp.WeChatManagement";
         
-        private const string Prefix = ModuleGroupPrefix + ".MiniPrograms";
+        public const string Prefix = ModuleGroupPrefix + ".MiniPrograms";
 
         //Add your menu items here...
         //public const string Home = Prefix + ".MyNewMenuItem";
