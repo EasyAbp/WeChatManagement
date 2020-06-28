@@ -5,7 +5,8 @@ using Volo.Abp.MultiTenancy;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
 {
-    public class UserInfo : FullAuditedAggregateRoot<Guid>, IMultiTenant
+    public class UserInfo : FullAuditedAggregateRoot<Guid>,
+IMultiTenant
     {
         public virtual Guid? TenantId { get; protected set; }
         
@@ -32,7 +33,15 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
         {
         }
 
-        public UserInfo(Guid id, Guid? tenantId, Guid userId, string nickName, byte gender, string city, string province, string country, string avatarUrl) : base(id)
+        public UserInfo(Guid id,
+            Guid? tenantId,
+            Guid userId,
+            [CanBeNull] string nickName,
+            byte gender,
+            [CanBeNull] string city,
+            [CanBeNull] string province,
+            [CanBeNull] string country,
+            [CanBeNull] string avatarUrl) : base(id)
         {
             TenantId = tenantId;
             UserId = userId;

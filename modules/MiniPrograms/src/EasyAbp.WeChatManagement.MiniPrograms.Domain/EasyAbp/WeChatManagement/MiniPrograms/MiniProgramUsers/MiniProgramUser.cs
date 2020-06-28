@@ -5,13 +5,17 @@ using Volo.Abp.MultiTenancy;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
 {
-    public class MiniProgramUser : FullAuditedAggregateRoot<Guid>, IMultiTenant
+    public class MiniProgramUser : FullAuditedAggregateRoot<Guid>,
+IMultiTenant
     {
         public virtual Guid? TenantId { get; protected set; }
         
         public virtual Guid MiniProgramId { get; protected set; }
         
         public virtual Guid UserId { get; protected set; }
+        
+        [CanBeNull]
+        public virtual string UnionId { get; protected set; }
         
         [NotNull]
         public virtual string OpenId { get; protected set; }
@@ -25,11 +29,19 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
         {
         }
 
-        public MiniProgramUser(Guid id, Guid? tenantId, Guid miniProgramId, Guid userId, string openId, string sessionKey, DateTime? sessionKeyModificationTime) : base(id)
+        public MiniProgramUser(Guid id,
+            Guid? tenantId,
+            Guid miniProgramId,
+            Guid userId,
+            [CanBeNull] string unionId,
+            [NotNull] string openId,
+            [CanBeNull] string sessionKey,
+            DateTime? sessionKeyModificationTime) : base(id)
         {
             TenantId = tenantId;
             MiniProgramId = miniProgramId;
             UserId = userId;
+            UnionId = unionId;
             OpenId = openId;
             SessionKey = sessionKey;
             SessionKeyModificationTime = sessionKeyModificationTime;

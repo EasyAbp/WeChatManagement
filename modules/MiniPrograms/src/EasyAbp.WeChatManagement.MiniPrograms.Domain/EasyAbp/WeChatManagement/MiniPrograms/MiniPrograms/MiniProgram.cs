@@ -5,20 +5,29 @@ using Volo.Abp.MultiTenancy;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms
 {
-    public class MiniProgram : FullAuditedAggregateRoot<Guid>, IMultiTenant
+    public class MiniProgram : FullAuditedAggregateRoot<Guid>,
+IMultiTenant
     {
         public virtual Guid? TenantId { get; protected set; }
+        
+        public virtual Guid? WeChatComponentId { get; protected set; }
         
         [NotNull]
         public virtual string Name { get; protected set; }
         
         [NotNull]
         public virtual string DisplayName { get; protected set; }
-        
+
+        [CanBeNull]
+        public virtual string OpenAppId { get; protected set; }
+
         [NotNull]
         public virtual string AppId { get; protected set; }
 
-        [NotNull]
+        /// <summary>
+        /// AppSecret 为空时，需提供开放平台 WeChatComponentId
+        /// </summary>
+        [CanBeNull]
         public virtual string AppSecret { get; protected set; }
         
         [CanBeNull]
@@ -33,11 +42,24 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms
         {
         }
 
-        public MiniProgram(Guid id, Guid? tenantId, string name, string displayName, string appId, string appSecret, string token, string encodingAesKey, bool isStatic) : base(id)
+        public MiniProgram(
+            Guid id,
+            Guid? tenantId,
+            Guid? weChatComponentId,
+            [NotNull] string name,
+            [NotNull] string displayName,
+            [CanBeNull] string openAppId,
+            [NotNull] string appId,
+            [CanBeNull] string appSecret,
+            [CanBeNull] string token,
+            [CanBeNull] string encodingAesKey,
+            bool isStatic) : base(id)
         {
             TenantId = tenantId;
+            WeChatComponentId = weChatComponentId;
             Name = name;
             DisplayName = displayName;
+            OpenAppId = openAppId;
             AppId = appId;
             AppSecret = appSecret;
             Token = token;
