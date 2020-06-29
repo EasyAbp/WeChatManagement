@@ -4,15 +4,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers;
-using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Guids;
 using Volo.Abp.Identity;
-using Volo.Abp.MultiTenancy;
-using Volo.Abp.Security.Claims;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
@@ -20,31 +15,16 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
     {
         public string GrantType => MiniProgramConsts.GrantType;
 
-        private readonly IGuidGenerator _guidGenerator;
-        private readonly ICurrentTenant _currentTenant;
-        private readonly IMiniProgramUserRepository _miniProgramUserRepository;
-        private readonly IUserInfoRepository _userInfoRepository;
         private readonly IMiniProgramLoginProviderProvider _miniProgramLoginProviderProvider;
-        private readonly IMiniProgramLoginNewUserCreator _miniProgramLoginNewUserCreator;
         private readonly IMiniProgramRepository _miniProgramRepository;
         private readonly IdentityUserManager _identityUserManager;
 
         public WeChatMiniProgramGrantValidator(
-            IGuidGenerator guidGenerator,
-            ICurrentTenant currentTenant,
-            IMiniProgramUserRepository miniProgramUserRepository,
-            IUserInfoRepository userInfoRepository,
             IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
-            IMiniProgramLoginNewUserCreator miniProgramLoginNewUserCreator,
             IMiniProgramRepository miniProgramRepository,
             IdentityUserManager identityUserManager)
         {
-            _guidGenerator = guidGenerator;
-            _currentTenant = currentTenant;
-            _miniProgramUserRepository = miniProgramUserRepository;
-            _userInfoRepository = userInfoRepository;
             _miniProgramLoginProviderProvider = miniProgramLoginProviderProvider;
-            _miniProgramLoginNewUserCreator = miniProgramLoginNewUserCreator;
             _miniProgramRepository = miniProgramRepository;
             _identityUserManager = identityUserManager;
         }

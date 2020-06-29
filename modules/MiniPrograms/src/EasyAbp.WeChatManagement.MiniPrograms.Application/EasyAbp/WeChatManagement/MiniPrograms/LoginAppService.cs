@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.Dtos;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Identity;
 using Volo.Abp.IdentityModel;
+using Volo.Abp.Json;
 using Volo.Abp.MultiTenancy;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
@@ -21,6 +23,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         private readonly IConfiguration _configuration;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IUserInfoRepository _userInfoRepository;
+        private readonly IJsonSerializer _jsonSerializer;
         private readonly IMiniProgramUserRepository _miniProgramUserRepository;
         private readonly IMiniProgramLoginNewUserCreator _miniProgramLoginNewUserCreator;
         private readonly IMiniProgramLoginProviderProvider _miniProgramLoginProviderProvider;
@@ -33,6 +36,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             IConfiguration configuration,
             IHttpClientFactory httpClientFactory,
             IUserInfoRepository userInfoRepository,
+            IJsonSerializer jsonSerializer,
             IMiniProgramUserRepository miniProgramUserRepository,
             IMiniProgramLoginNewUserCreator miniProgramLoginNewUserCreator,
             IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
@@ -44,6 +48,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             _configuration = configuration;
             _httpClientFactory = httpClientFactory;
             _userInfoRepository = userInfoRepository;
+            _jsonSerializer = jsonSerializer;
             _miniProgramUserRepository = miniProgramUserRepository;
             _miniProgramLoginNewUserCreator = miniProgramLoginNewUserCreator;
             _miniProgramLoginProviderProvider = miniProgramLoginProviderProvider;
@@ -72,11 +77,15 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 if (!input.EncryptedData.IsNullOrWhiteSpace() && !input.Iv.IsNullOrWhiteSpace())
                 {
                     // 方法1：通过 EncryptedData 和 Iv 解密获得用户的 UnionId
-                    // Todo: 调用 EasyAbp.Abp.WeChat 的解密方法
+                    var decryptedData = _jsonSerializer.Deserialize<Dictionary<string, object>>(
+                        AesHelper.AesDecrypt(input.EncryptedData, input.Iv, code2SessionResponse.SessionKey));
+
+                    unionId = decryptedData.GetOrDefault("unionId");
                 }
                 else if (miniProgram.OpenAppId.IsNullOrWhiteSpace())
                 {
                     // 方法2：尝试通过 OpenId 在 MiniProgramUser 实体中查找用户的 UnionId
+                    // Todo: should use IMiniProgramUserStore
                     unionId = await _miniProgramUserRepository.FindUnionIdByOpenIdAsync(miniProgram.Id, openId);
                 }
             }
@@ -123,7 +132,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 mpUserMapping.SetOpenId(response.OpenId);
                 mpUserMapping.SetUnionId(response.UnionId);
                 
-                // Todo: 更新 SessionKey
+                mpUserMapping.SetSessionKey(response.SessionKey, Clock);
 
                 await _miniProgramUserRepository.UpdateAsync(mpUserMapping, true);
             }
