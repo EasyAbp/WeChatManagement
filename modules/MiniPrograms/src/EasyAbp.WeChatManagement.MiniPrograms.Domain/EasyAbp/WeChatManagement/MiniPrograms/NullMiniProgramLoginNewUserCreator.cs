@@ -7,7 +7,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     public class NullMiniProgramLoginNewUserCreator : IMiniProgramLoginNewUserCreator
     {
-        public virtual Task<IdentityUser> CreateAsync(ExtensionGrantValidationContext context)
+        public virtual Task<IdentityUser> CreateAsync(ExtensionGrantValidationContext context, string loginProvider, string providerKey)
         {
             throw new MiniProgramLoginMatchNoUserException();
         }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using IdentityServer4.Validation;
+using Microsoft.AspNetCore.Identity;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
 using Volo.Abp.Identity;
 using Volo.Abp.MultiTenancy;
+using IdentityUser = Volo.Abp.Identity.IdentityUser;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
@@ -25,19 +27,22 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             _identityUserManager = identityUserManager;
         }
         
-        public virtual async Task<IdentityUser> CreateAsync(ExtensionGrantValidationContext context)
+        public virtual async Task<IdentityUser> CreateAsync(ExtensionGrantValidationContext context, string loginProvider, string providerKey)
         {
-            var user = new IdentityUser(_guidGenerator.Create(), await GenerateUserNameAsync(context),
+            var identityUser = new IdentityUser(_guidGenerator.Create(), await GenerateUserNameAsync(context),
                 await GenerateEmailAsync(context), _currentTenant.Id);
             
-            var result = await _identityUserManager.CreateAsync(user);
+            var result = await _identityUserManager.CreateAsync(identityUser);
 
             if (!result.Succeeded)
             {
                 throw new AbpIdentityResultException(result);
             }
+
+            await _identityUserManager.AddLoginAsync(identityUser,
+                new UserLoginInfo(loginProvider, providerKey, "微信用户"));
             
-            return user;
+            return identityUser;
         }
         
         protected virtual Task<string> GenerateUserNameAsync(ExtensionGrantValidationContext context)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -76,7 +76,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             }
 
             var identityUser = await _identityUserManager.FindByLoginAsync(loginProvider, providerKey) ??
-                               await _miniProgramLoginNewUserCreator.CreateAsync(context);
+                               await _miniProgramLoginNewUserCreator.CreateAsync(context, loginProvider, providerKey);
 
             var claims = new List<Claim>
             {
