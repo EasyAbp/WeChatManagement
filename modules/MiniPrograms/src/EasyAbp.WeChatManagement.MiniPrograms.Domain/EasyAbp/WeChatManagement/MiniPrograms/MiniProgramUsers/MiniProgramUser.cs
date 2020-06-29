@@ -2,6 +2,7 @@ using System;
 using JetBrains.Annotations;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.Timing;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
 {
@@ -33,17 +34,29 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
             Guid miniProgramId,
             Guid userId,
             [CanBeNull] string unionId,
-            [NotNull] string openId,
-            [CanBeNull] string sessionKey,
-            DateTime? sessionKeyModificationTime) : base(id)
+            [NotNull] string openId) : base(id)
         {
             TenantId = tenantId;
             MiniProgramId = miniProgramId;
             UserId = userId;
             UnionId = unionId;
             OpenId = openId;
+        }
+
+        public void SetUnionId(string unionId)
+        {
+            UnionId = unionId;
+        }
+
+        public void SetOpenId(string openId)
+        {
+            OpenId = openId;
+        }
+        
+        public void SetSessionKey([CanBeNull] string sessionKey, IClock clock)
+        {
             SessionKey = sessionKey;
-            SessionKeyModificationTime = sessionKeyModificationTime;
+            SessionKeyModificationTime = clock.Now;
         }
     }
 }

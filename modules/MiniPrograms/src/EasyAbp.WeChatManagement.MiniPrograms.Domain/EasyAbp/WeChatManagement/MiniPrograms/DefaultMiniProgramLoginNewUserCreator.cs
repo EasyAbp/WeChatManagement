@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Identity;
 using Volo.Abp.DependencyInjection;
@@ -27,10 +28,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             _identityUserManager = identityUserManager;
         }
         
-        public virtual async Task<IdentityUser> CreateAsync(ExtensionGrantValidationContext context, string loginProvider, string providerKey)
+        public virtual async Task<IdentityUser> CreateAsync(UserInfoModel userInfoModel, string loginProvider, string providerKey)
         {
-            var identityUser = new IdentityUser(_guidGenerator.Create(), await GenerateUserNameAsync(context),
-                await GenerateEmailAsync(context), _currentTenant.Id);
+            var identityUser = new IdentityUser(_guidGenerator.Create(), await GenerateUserNameAsync(userInfoModel),
+                await GenerateEmailAsync(userInfoModel), _currentTenant.Id);
             
             var result = await _identityUserManager.CreateAsync(identityUser);
 
@@ -45,12 +46,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             return identityUser;
         }
         
-        protected virtual Task<string> GenerateUserNameAsync(ExtensionGrantValidationContext context)
+        protected virtual Task<string> GenerateUserNameAsync(UserInfoModel userInfoModel)
         {
             return Task.FromResult("WeChat_" + Guid.NewGuid());
         }
         
-        protected virtual Task<string> GenerateEmailAsync(ExtensionGrantValidationContext context)
+        protected virtual Task<string> GenerateEmailAsync(UserInfoModel userInfoModel)
         {
             return Task.FromResult(Guid.NewGuid() + "@fake-email.com");
         }

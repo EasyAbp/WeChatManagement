@@ -44,8 +44,10 @@ $(function () {
                         ]
                 }
             },
+            { data: "weChatComponentId" },
             { data: "name" },
             { data: "displayName" },
+            { data: "openAppId" },
             { data: "appId" },
             { data: "appSecret" },
             { data: "token" },

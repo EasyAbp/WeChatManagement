@@ -19,7 +19,7 @@ $(function () {
                     items:
                         [
                             {
-                                text: l('Edit'),
+                                text: l('Detail'),
                                 action: function (data) {
                                 }
                             }
@@ -29,6 +29,7 @@ $(function () {
             { data: "userId" },
             { data: "nickName" },
             { data: "gender" },
+            { data: "language" },
             { data: "city" },
             { data: "province" },
             { data: "country" },

@@ -1,13 +1,7 @@
-using System;
-using Volo.Abp.Application.Dtos;
-
-namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos.Dtos
+﻿namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
 {
-    [Serializable]
-    public class UserInfoDto : FullAuditedEntityDto<Guid>, IUserInfo
+    public class UserInfoModel : IUserInfo
     {
-        public Guid UserId { get; set; }
-
         public string NickName { get; set; }
 
         public byte Gender { get; set; }

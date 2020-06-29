@@ -1,33 +1,49 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
+using EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers;
+using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Guids;
 using Volo.Abp.Identity;
+using Volo.Abp.MultiTenancy;
 using Volo.Abp.Security.Claims;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     public class WeChatMiniProgramGrantValidator : IExtensionGrantValidator, ITransientDependency
     {
-        public string GrantType => "WeChatMiniProgram_credentials";
-        
-        private const string WeChatAppLoginProviderPrefix = "WeChatApp_";
-        private const string WeChatOpenLoginProviderPrefix = "WeChatOpen_";
+        public string GrantType => MiniProgramConsts.GrantType;
 
+        private readonly IGuidGenerator _guidGenerator;
+        private readonly ICurrentTenant _currentTenant;
+        private readonly IMiniProgramUserRepository _miniProgramUserRepository;
+        private readonly IUserInfoRepository _userInfoRepository;
+        private readonly IMiniProgramLoginProviderProvider _miniProgramLoginProviderProvider;
         private readonly IMiniProgramLoginNewUserCreator _miniProgramLoginNewUserCreator;
         private readonly IMiniProgramRepository _miniProgramRepository;
         private readonly IdentityUserManager _identityUserManager;
 
         public WeChatMiniProgramGrantValidator(
+            IGuidGenerator guidGenerator,
+            ICurrentTenant currentTenant,
+            IMiniProgramUserRepository miniProgramUserRepository,
+            IUserInfoRepository userInfoRepository,
+            IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
             IMiniProgramLoginNewUserCreator miniProgramLoginNewUserCreator,
             IMiniProgramRepository miniProgramRepository,
             IdentityUserManager identityUserManager)
         {
+            _guidGenerator = guidGenerator;
+            _currentTenant = currentTenant;
+            _miniProgramUserRepository = miniProgramUserRepository;
+            _userInfoRepository = userInfoRepository;
+            _miniProgramLoginProviderProvider = miniProgramLoginProviderProvider;
             _miniProgramLoginNewUserCreator = miniProgramLoginNewUserCreator;
             _miniProgramRepository = miniProgramRepository;
             _identityUserManager = identityUserManager;
@@ -64,20 +80,19 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             string loginProvider;
             string providerKey;
 
-            if (miniProgram.OpenAppId.IsNullOrWhiteSpace())
+            if (unionId.IsNullOrWhiteSpace())
             {
-                loginProvider = WeChatAppLoginProviderPrefix + miniProgram.AppId;
+                loginProvider = await _miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
                 providerKey = openId;
             }
             else
             {
-                loginProvider = WeChatOpenLoginProviderPrefix + miniProgram.OpenAppId;
+                loginProvider = await _miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
                 providerKey = unionId;
             }
 
-            var identityUser = await _identityUserManager.FindByLoginAsync(loginProvider, providerKey) ??
-                               await _miniProgramLoginNewUserCreator.CreateAsync(context, loginProvider, providerKey);
-
+            var identityUser = await _identityUserManager.FindByLoginAsync(loginProvider, providerKey);
+            
             var claims = new List<Claim>
             {
                 // 记录 appid

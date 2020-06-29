@@ -6,6 +6,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
 {
     public class CreateEditMiniProgramViewModel
     {
+        [Display(Name = "MiniProgramWeChatComponentId")]
+        public Guid? WeChatComponentId { get; set; }
+        
         [Required]
         [Display(Name = "MiniProgramName")]
         public string Name { get; set; }
@@ -14,6 +17,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
         [Display(Name = "MiniProgramDisplayName")]
         public string DisplayName { get; set; }
 
+        [Display(Name = "MiniProgramOpenAppId")]
+        public string OpenAppId { get; set; }
+        
         [Required]
         [Display(Name = "MiniProgramAppId")]
         public string AppId { get; set; }
