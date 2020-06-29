@@ -5,8 +5,7 @@ using Volo.Abp.MultiTenancy;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
 {
-    public class UserInfo : FullAuditedAggregateRoot<Guid>,
-IMultiTenant
+    public class UserInfo : FullAuditedAggregateRoot<Guid>, IMultiTenant
     {
         public virtual Guid? TenantId { get; protected set; }
         
