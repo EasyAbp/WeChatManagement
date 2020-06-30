@@ -16,6 +16,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers.Dtos
 
         public string SessionKey { get; set; }
 
-        public DateTime? SessionKeyModificationTime { get; set; }
+        public DateTime? SessionKeyChangedTime { get; set; }
     }
 }

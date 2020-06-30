@@ -28,7 +28,7 @@
     "MiniProgramUserUnionId": "MiniProgramUserUnionId",
     "MiniProgramUserOpenId": "MiniProgramUserOpenId",
     "MiniProgramUserSessionKey": "MiniProgramUserSessionKey",
-    "MiniProgramUserSessionKeyModificationTime": "MiniProgramUserSessionKeyModificationTime",
+    "MiniProgramUserSessionKeyChangedTime": "MiniProgramUserSessionKeyChangedTime",
     "CreateMiniProgramUser": "CreateMiniProgramUser",
     "EditMiniProgramUser": "EditMiniProgramUser",
     "MiniProgramUserDeletionConfirmationMessage": "Are you sure to delete the miniProgramUser {0}?",

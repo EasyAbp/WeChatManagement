@@ -31,7 +31,7 @@ $(function () {
             { data: "unionId" },
             { data: "openId" },
             { data: "sessionKey" },
-            { data: "sessionKeyModificationTime" },
+            { data: "sessionKeyChangedTime" },
         ]
     }));
 });
