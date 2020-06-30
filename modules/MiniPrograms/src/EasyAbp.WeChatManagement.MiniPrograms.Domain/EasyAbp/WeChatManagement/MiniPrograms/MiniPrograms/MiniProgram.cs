@@ -17,8 +17,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms
         [NotNull]
         public virtual string DisplayName { get; protected set; }
 
-        [CanBeNull]
-        public virtual string OpenAppId { get; protected set; }
+        [NotNull]
+        public virtual string OpenAppIdOrName { get; protected set; }
 
         [NotNull]
         public virtual string AppId { get; protected set; }
@@ -47,7 +47,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms
             Guid? weChatComponentId,
             [NotNull] string name,
             [NotNull] string displayName,
-            [CanBeNull] string openAppId,
+            [NotNull] string openAppIdOrName,
             [NotNull] string appId,
             [CanBeNull] string appSecret,
             [CanBeNull] string token,
@@ -58,7 +58,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms
             WeChatComponentId = weChatComponentId;
             Name = name;
             DisplayName = displayName;
-            OpenAppId = openAppId;
+            OpenAppIdOrName = openAppIdOrName;
             AppId = appId;
             AppSecret = appSecret;
             Token = token;

@@ -19,9 +19,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 
         public virtual Task<string> GetOpenLoginProviderAsync(MiniProgram miniProgram)
         {
-            Check.NotNullOrWhiteSpace(miniProgram.OpenAppId, nameof(miniProgram.OpenAppId));
+            Check.NotNullOrWhiteSpace(miniProgram.OpenAppIdOrName, nameof(miniProgram.OpenAppIdOrName));
             
-            return Task.FromResult(WeChatOpenLoginProviderPrefix + miniProgram.OpenAppId);
+            return Task.FromResult(WeChatOpenLoginProviderPrefix + miniProgram.OpenAppIdOrName);
         }
     }
 }

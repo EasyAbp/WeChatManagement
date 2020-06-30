@@ -1,5 +1,5 @@
 using System;
-
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.MiniPrograms.MiniProgram.ViewModels
@@ -17,8 +17,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
         [Display(Name = "MiniProgramDisplayName")]
         public string DisplayName { get; set; }
 
-        [Display(Name = "MiniProgramOpenAppId")]
-        public string OpenAppId { get; set; }
+        [Required]
+        [DefaultValue("Default")]
+        [Display(Name = "MiniProgramOpenAppIdOrName")]
+        public string OpenAppIdOrName { get; set; }
         
         [Required]
         [Display(Name = "MiniProgramAppId")]

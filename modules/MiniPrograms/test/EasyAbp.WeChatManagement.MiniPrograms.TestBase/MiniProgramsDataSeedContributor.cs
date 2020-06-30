@@ -31,7 +31,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 null,
                 "TestMiniProgram",
                 "TestMiniProgram",
-                MiniProgramsTestConsts.OpenAppId,
+                MiniProgramsTestConsts.OpenAppIdOrName,
                 MiniProgramsTestConsts.AppId,
                 MiniProgramsTestConsts.AppSecret,
                 MiniProgramsTestConsts.Token,

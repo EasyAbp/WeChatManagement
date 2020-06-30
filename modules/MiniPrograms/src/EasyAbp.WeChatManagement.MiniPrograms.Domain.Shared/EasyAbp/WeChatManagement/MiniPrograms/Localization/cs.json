@@ -11,7 +11,7 @@
     "MiniProgramWeChatComponentId": "MiniProgramWeChatComponentId",
     "MiniProgramName": "MiniProgramName",
     "MiniProgramDisplayName": "MiniProgramDisplayName",
-    "MiniProgramOpenAppId": "MiniProgramOpenAppId",
+    "MiniProgramOpenAppIdOrName": "MiniProgramOpenAppIdOrName",
     "MiniProgramAppId": "MiniProgramAppId",
     "MiniProgramAppSecret": "MiniProgramAppSecret",
     "MiniProgramToken": "MiniProgramToken",

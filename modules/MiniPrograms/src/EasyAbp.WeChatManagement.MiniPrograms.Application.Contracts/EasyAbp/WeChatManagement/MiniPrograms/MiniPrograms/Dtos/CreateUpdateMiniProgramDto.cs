@@ -11,7 +11,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms.Dtos
 
         public string DisplayName { get; set; }
 
-        public string OpenAppId { get; set; }
+        public string OpenAppIdOrName { get; set; }
         
         public string AppId { get; set; }
 
