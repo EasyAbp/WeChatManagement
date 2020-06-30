@@ -104,7 +104,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 
                     unionId = decryptedData.GetOrDefault("unionId") as string;
                 }
-                else if (miniProgram.OpenAppIdOrName.IsNullOrWhiteSpace())
+                else
                 {
                     // 方法2：尝试通过 OpenId 在 MiniProgramUser 实体中查找用户的 UnionId
                     // Todo: should use IMiniProgramUserStore
