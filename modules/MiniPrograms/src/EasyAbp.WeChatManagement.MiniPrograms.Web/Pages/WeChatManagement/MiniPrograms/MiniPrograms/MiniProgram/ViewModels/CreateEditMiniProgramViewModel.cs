@@ -1,11 +1,13 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.MiniPrograms.MiniProgram.ViewModels
 {
     public class CreateEditMiniProgramViewModel
     {
+        [Placeholder("通过微信第三方平台管理则必填")]
         [Display(Name = "MiniProgramWeChatComponentId")]
         public Guid? WeChatComponentId { get; set; }
         
@@ -26,7 +28,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
         [Display(Name = "MiniProgramAppId")]
         public string AppId { get; set; }
 
-        [Required]
+        [Placeholder("留空则通过第三方平台管理")]
         [Display(Name = "MiniProgramAppSecret")]
         public string AppSecret { get; set; }
 
