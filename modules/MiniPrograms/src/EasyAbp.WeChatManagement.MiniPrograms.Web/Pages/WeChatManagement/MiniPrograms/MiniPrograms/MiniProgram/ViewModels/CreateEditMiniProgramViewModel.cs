@@ -7,7 +7,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
 {
     public class CreateEditMiniProgramViewModel
     {
-        [Placeholder("通过微信第三方平台管理则必填")]
+        [Placeholder("MiniProgramWeChatComponentIdPlaceHolder")]
         [Display(Name = "MiniProgramWeChatComponentId")]
         public Guid? WeChatComponentId { get; set; }
         
@@ -28,7 +28,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
         [Display(Name = "MiniProgramAppId")]
         public string AppId { get; set; }
 
-        [Placeholder("留空则通过第三方平台管理")]
+        [Placeholder("MiniProgramAppSecretPlaceHolder")]
         [Display(Name = "MiniProgramAppSecret")]
         public string AppSecret { get; set; }
 

@@ -25,7 +25,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 options.Resources
                     .Add<MiniProgramsResource>("en")
                     .AddBaseTypes(typeof(AbpValidationResource))
-                    .AddVirtualJson("/Localization");
+                    .AddVirtualJson("/EasyAbp/WeChatManagement/MiniPrograms/Localization");
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>
