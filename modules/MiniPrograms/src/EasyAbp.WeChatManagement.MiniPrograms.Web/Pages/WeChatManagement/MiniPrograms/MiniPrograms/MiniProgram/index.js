@@ -22,14 +22,14 @@ $(function () {
                         [
                             {
                                 text: l('Edit'),
-                                visible: abp.auth.isGranted('MiniPrograms.MiniProgram.Update'),
+                                visible: abp.auth.isGranted('EasyAbp.WeChatManagement.MiniPrograms.MiniProgram.Update'),
                                 action: function (data) {
                                     editModal.open({ id: data.record.id });
                                 }
                             },
                             {
                                 text: l('Delete'),
-                                visible: abp.auth.isGranted('MiniPrograms.MiniProgram.Delete'),
+                                visible: abp.auth.isGranted('EasyAbp.WeChatManagement.MiniPrograms.MiniProgram.Delete'),
                                 confirmMessage: function (data) {
                                     return l('MiniProgramDeletionConfirmationMessage', data.record.id);
                                 },
