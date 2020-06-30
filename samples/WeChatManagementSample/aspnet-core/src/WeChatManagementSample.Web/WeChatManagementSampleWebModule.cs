@@ -171,7 +171,7 @@ namespace WeChatManagementSample.Web
                 options.ConventionalControllers.Create(typeof(WeChatManagementSampleApplicationModule).Assembly);
                 options.ConventionalControllers.Create(typeof(WeChatManagementMiniProgramsApplicationModule).Assembly, opt =>
                 {
-                    opt.RootPath = "weChatManagement";
+                    opt.RootPath = "weChatManagement/miniPrograms";
                 });
             });
         }

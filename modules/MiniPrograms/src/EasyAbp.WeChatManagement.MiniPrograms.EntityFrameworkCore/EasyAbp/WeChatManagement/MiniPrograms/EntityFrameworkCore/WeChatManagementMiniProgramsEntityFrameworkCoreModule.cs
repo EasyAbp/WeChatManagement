@@ -3,13 +3,15 @@ using EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
 {
     [DependsOn(
         typeof(WeChatManagementMiniProgramsDomainModule),
-        typeof(AbpEntityFrameworkCoreModule)
+        typeof(AbpEntityFrameworkCoreModule),
+        typeof(AbpIdentityEntityFrameworkCoreModule)
     )]
     public class WeChatManagementMiniProgramsEntityFrameworkCoreModule : AbpModule
     {

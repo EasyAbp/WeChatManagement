@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.IdentityServer;
 using Volo.Abp.Modularity;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     [DependsOn(
+        typeof(AbpIdentityServerDomainModule),
         typeof(WeChatManagementMiniProgramsDomainSharedModule)
         )]
     public class WeChatManagementMiniProgramsDomainModule : AbpModule

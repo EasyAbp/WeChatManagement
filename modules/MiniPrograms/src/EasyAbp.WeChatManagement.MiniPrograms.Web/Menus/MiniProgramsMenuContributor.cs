@@ -24,19 +24,19 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Menus
 
             if (await context.IsGrantedAsync(MiniProgramsPermissions.MiniProgram.Default))
             {
-                context.Menu.AddItem(
+                miniProgramManagementMenuItem.AddItem(
                     new ApplicationMenuItem(MiniProgramsMenus.MiniProgram, l["Menu:MiniProgram"], "/WeChatManagement/MiniPrograms/MiniPrograms/MiniProgram")
                 );
             }
             if (await context.IsGrantedAsync(MiniProgramsPermissions.MiniProgramUser.Default))
             {
-                context.Menu.AddItem(
+                miniProgramManagementMenuItem.AddItem(
                     new ApplicationMenuItem(MiniProgramsMenus.MiniProgramUser, l["Menu:MiniProgramUser"], "/WeChatManagement/MiniPrograms/MiniProgramUsers/MiniProgramUser")
                 );
             }
             if (await context.IsGrantedAsync(MiniProgramsPermissions.UserInfo.Default))
             {
-                context.Menu.AddItem(
+                miniProgramManagementMenuItem.AddItem(
                     new ApplicationMenuItem(MiniProgramsMenus.UserInfo, l["Menu:UserInfo"], "/WeChatManagement/MiniPrograms/UserInfos/UserInfo")
                 );
             }

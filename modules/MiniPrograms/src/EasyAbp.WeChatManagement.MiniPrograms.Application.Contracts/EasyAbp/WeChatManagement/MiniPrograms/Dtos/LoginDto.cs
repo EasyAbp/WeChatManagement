@@ -3,7 +3,7 @@ using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Dtos
 {
-    public class RequestTokensDto
+    public class LoginDto
     {
         /// <summary>
         /// 小程序的 appid

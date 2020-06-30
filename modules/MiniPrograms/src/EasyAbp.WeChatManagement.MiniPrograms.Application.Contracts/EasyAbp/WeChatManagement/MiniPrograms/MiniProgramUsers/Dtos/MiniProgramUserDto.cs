@@ -10,6 +10,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers.Dtos
 
         public Guid UserId { get; set; }
 
+        public string UnionId { get; set; }
+        
         public string OpenId { get; set; }
 
         public string SessionKey { get; set; }
