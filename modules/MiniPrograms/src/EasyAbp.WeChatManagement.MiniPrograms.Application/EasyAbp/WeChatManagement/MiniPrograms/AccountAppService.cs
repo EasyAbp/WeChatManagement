@@ -14,6 +14,7 @@ using IdentityModel;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Data;
 using Volo.Abp.Identity;
 using Volo.Abp.IdentityModel;
 using Volo.Abp.Json;
@@ -25,6 +26,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
     {
         private readonly LoginService _loginService;
         private readonly SignatureChecker _signatureChecker;
+        private readonly IDataFilter _dataFilter;
         private readonly IConfiguration _configuration;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IUserInfoRepository _userInfoRepository;
@@ -38,6 +40,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         public AccountAppService(
             LoginService loginService,
             SignatureChecker signatureChecker,
+            IDataFilter dataFilter,
             IConfiguration configuration,
             IHttpClientFactory httpClientFactory,
             IUserInfoRepository userInfoRepository,
@@ -50,6 +53,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         {
             _loginService = loginService;
             _signatureChecker = signatureChecker;
+            _dataFilter = dataFilter;
             _configuration = configuration;
             _httpClientFactory = httpClientFactory;
             _userInfoRepository = userInfoRepository;
@@ -72,6 +76,18 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 
             var openId = code2SessionResponse.OpenId;
             var unionId = code2SessionResponse.UnionId;
+            
+            if (input.LookupUseRecentlyTenant)
+            {
+                Guid? tenantId;
+                
+                using (_dataFilter.Disable<IMultiTenant>())
+                {
+                    tenantId = await _miniProgramUserRepository.FindRecentlyTenantIdAsync(miniProgram.Id, openId);
+                }
+
+                using var tenantChange = CurrentTenant.Change(tenantId);
+            }
 
             string loginProvider;
             string providerKey;
@@ -121,11 +137,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             return await RequestIds4RefreshAsync(input.RefreshToken);
         }
 
-        public virtual Task<ListResultDto<BasicTenantInfo>> GetTenantsAsync(string appId, string code)
-        {
-            throw new System.NotImplementedException();
-        }
-        
         protected virtual async Task UpdateMiniProgramUserAsync(IdentityUser identityUser, MiniProgram miniProgram, string unionId, string openId, string sessionKey)
         {
             var mpUserMapping = await _miniProgramUserRepository.FindAsync(x =>

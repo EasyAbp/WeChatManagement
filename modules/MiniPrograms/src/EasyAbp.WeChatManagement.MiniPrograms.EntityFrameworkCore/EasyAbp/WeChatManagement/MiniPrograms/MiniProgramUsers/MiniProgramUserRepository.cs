@@ -20,5 +20,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
             return await GetQueryable().Where(x => x.OpenId == openId && x.MiniProgramId == miniProgramId)
                 .Select(x => x.UnionId).FirstOrDefaultAsync(cancellationToken: cancellationToken);
         }
+
+        public async Task<Guid?> FindRecentlyTenantIdAsync(Guid miniProgramId, string openId, CancellationToken cancellationToken = default)
+        {
+            return await GetQueryable().Where(x => x.OpenId == openId && x.MiniProgramId == miniProgramId)
+                .OrderByDescending(x => x.LastModificationTime).Select(x => x.TenantId)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

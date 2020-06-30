@@ -58,5 +58,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Dtos
         /// 更多信息：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html
         /// </remark>
         public string Iv { get; set; }
+        
+        /// <summary>
+        /// 查找并使用最近一次登录的租户登录（忽略当前租户环境）
+        /// </summary>
+        public bool LookupUseRecentlyTenant { get; set; }
     }
 }

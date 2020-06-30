@@ -8,5 +8,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
     public interface IMiniProgramUserRepository : IRepository<MiniProgramUser, Guid>
     {
         Task<string> FindUnionIdByOpenIdAsync(Guid miniProgramId, string openId, CancellationToken cancellationToken = default);
+        
+        Task<Guid?> FindRecentlyTenantIdAsync(Guid miniProgramId, string openId, CancellationToken cancellationToken = default);
     }
 }
