@@ -154,7 +154,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 mpUserMapping.SetOpenId(openId);
                 mpUserMapping.SetUnionId(unionId);
                 
-                mpUserMapping.SetSessionKey(sessionKey, Clock);
+                mpUserMapping.UpdateSessionKey(sessionKey, Clock);
 
                 await _miniProgramUserRepository.UpdateAsync(mpUserMapping, true);
             }

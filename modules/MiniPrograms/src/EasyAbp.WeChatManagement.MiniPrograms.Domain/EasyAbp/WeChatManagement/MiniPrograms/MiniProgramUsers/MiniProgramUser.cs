@@ -23,7 +23,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
         [CanBeNull]
         public virtual string SessionKey { get; protected set; }
         
-        public virtual DateTime? SessionKeyModificationTime { get; protected set; }
+        public virtual DateTime? SessionKeyChangedTime { get; protected set; }
 
         protected MiniProgramUser()
         {
@@ -53,10 +53,15 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
             OpenId = openId;
         }
         
-        public void SetSessionKey([CanBeNull] string sessionKey, IClock clock)
+        public void UpdateSessionKey([CanBeNull] string sessionKey, IClock clock)
         {
+            if (SessionKey == sessionKey)
+            {
+                return;
+            }
+
             SessionKey = sessionKey;
-            SessionKeyModificationTime = clock.Now;
+            SessionKeyChangedTime = clock.Now;
         }
     }
 }
