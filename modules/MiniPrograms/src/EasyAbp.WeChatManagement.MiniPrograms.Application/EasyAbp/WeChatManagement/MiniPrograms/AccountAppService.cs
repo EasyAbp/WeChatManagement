@@ -22,7 +22,7 @@ using Volo.Abp.MultiTenancy;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
-    public class LoginAppService : MiniProgramsAppService, ILoginAppService
+    public class AccountAppService : MiniProgramsAppService, ILoginAppService
     {
         private readonly LoginService _loginService;
         private readonly SignatureChecker _signatureChecker;
@@ -37,7 +37,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         private readonly IdentityUserManager _identityUserManager;
         private readonly IMiniProgramRepository _miniProgramRepository;
 
-        public LoginAppService(
+        public AccountAppService(
             LoginService loginService,
             SignatureChecker signatureChecker,
             IDataFilter dataFilter,
