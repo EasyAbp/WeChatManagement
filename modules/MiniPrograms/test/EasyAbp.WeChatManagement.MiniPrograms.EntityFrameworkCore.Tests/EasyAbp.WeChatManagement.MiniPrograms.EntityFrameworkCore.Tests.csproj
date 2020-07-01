@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.4" />
     <ProjectReference Include="..\..\src\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.TestBase\EasyAbp.WeChatManagement.MiniPrograms.TestBase.csproj" />
