@@ -1,11 +1,11 @@
 <Project>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>EasyAbp Team</Authors>
-    <Description>基于EasyAbp.Abp.WeChat模块实现微信登录、微信用户信息存储、微信服务器管理等高级功能的Abp应用模块</Description>
+    <Description>基于EasyAbp.Abp.WeChat模块实现微信登录、微信用户信息存储、微信服务器管理、微信第三方平台等高级功能的Abp应用模块组</Description>
     <PackageProjectUrl>https://github.com/EasyAbp/WeChatManagement</PackageProjectUrl>
     <RepositoryUrl>https://github.com/EasyAbp/WeChatManagement</RepositoryUrl>
     <PackageTags>abp module easyabp WeChat weixin wx WeChatManagement</PackageTags>

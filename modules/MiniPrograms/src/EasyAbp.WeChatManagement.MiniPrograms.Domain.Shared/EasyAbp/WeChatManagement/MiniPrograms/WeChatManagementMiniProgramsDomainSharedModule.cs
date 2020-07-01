@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Modularity;
+﻿using EasyAbp.WeChatManagement.Common;
+using Volo.Abp.Modularity;
 using Volo.Abp.Localization;
 using EasyAbp.WeChatManagement.MiniPrograms.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
@@ -9,7 +10,8 @@ using Volo.Abp.VirtualFileSystem;
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     [DependsOn(
-        typeof(AbpValidationModule)
+        typeof(AbpValidationModule),
+        typeof(WeChatManagementCommonDomainSharedModule)
     )]
     public class WeChatManagementMiniProgramsDomainSharedModule : AbpModule
     {

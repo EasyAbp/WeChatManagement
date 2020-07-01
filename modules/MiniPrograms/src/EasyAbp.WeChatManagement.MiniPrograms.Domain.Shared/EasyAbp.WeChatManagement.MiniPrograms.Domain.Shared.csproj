@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
+  <Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,6 +14,10 @@
   <ItemGroup>
     <EmbeddedResource Include="EasyAbp\WeChatManagement\MiniPrograms\Localization\*.json" />
     <Content Remove="EasyAbp\WeChatManagement\MiniPrograms\Localization\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.Domain.Shared\EasyAbp.WeChatManagement.Common.Domain.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -77,6 +77,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Mi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.TestBase", "..\..\..\modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.TestBase\EasyAbp.WeChatManagement.MiniPrograms.TestBase.csproj", "{FBE160B5-E390-421E-AD04-240CB48085B8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.Domain.Shared", "..\..\..\modules\Common\src\EasyAbp.WeChatManagement.Common.Domain.Shared\EasyAbp.WeChatManagement.Common.Domain.Shared.csproj", "{EEE6309B-919B-40CA-8CF2-7DB9855B980D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -207,6 +213,10 @@ Global
 		{FBE160B5-E390-421E-AD04-240CB48085B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBE160B5-E390-421E-AD04-240CB48085B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBE160B5-E390-421E-AD04-240CB48085B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEE6309B-919B-40CA-8CF2-7DB9855B980D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEE6309B-919B-40CA-8CF2-7DB9855B980D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEE6309B-919B-40CA-8CF2-7DB9855B980D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEE6309B-919B-40CA-8CF2-7DB9855B980D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -246,6 +256,9 @@ Global
 		{7D9C068D-8FF0-4842-91D3-8BAB34706B62} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
 		{386D09A2-6432-4982-86CA-33BCEB074632} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
 		{FBE160B5-E390-421E-AD04-240CB48085B8} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
+		{6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6} = {3457788B-7A02-414D-9F55-BD6680773CB9}
+		{F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB} = {6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6}
+		{EEE6309B-919B-40CA-8CF2-7DB9855B980D} = {F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
