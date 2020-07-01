@@ -15,61 +15,61 @@ jobs:
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application/EasyAbp.WeChatManagement.MiniPrograms.Application.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish EasyAbp.WeChatManagement.MiniPrograms.Domain.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Domain/EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared/EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore/EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish EasyAbp.WeChatManagement.MiniPrograms.HttpApi.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.HttpApi/EasyAbp.WeChatManagement.MiniPrograms.HttpApi.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client/EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish EasyAbp.WeChatManagement.MiniPrograms.MongoDB.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.MongoDB/EasyAbp.WeChatManagement.MiniPrograms.MongoDB.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: publish EasyAbp.WeChatManagement.MiniPrograms.Web.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
           PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Web/EasyAbp.WeChatManagement.MiniPrograms.Web.csproj
-          VERSION_FILE_PATH: modules/MiniPrograms/common.props
+          VERSION_FILE_PATH: modules/common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
