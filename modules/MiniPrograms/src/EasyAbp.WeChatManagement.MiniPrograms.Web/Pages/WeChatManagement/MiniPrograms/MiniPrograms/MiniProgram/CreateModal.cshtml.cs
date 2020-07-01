@@ -9,7 +9,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
     public class CreateModalModel : MiniProgramsPageModel
     {
         [BindProperty]
-        public CreateEditMiniProgramViewModel ViewModel { get; set; }
+        public CreateEditMiniProgramViewModel ViewModel { get; set; } = new CreateEditMiniProgramViewModel();
 
         private readonly IMiniProgramAppService _service;
 
@@ -17,7 +17,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
         {
             _service = service;
         }
-
         public virtual async Task<IActionResult> OnPostAsync()
         {
             var dto = ObjectMapper.Map<CreateEditMiniProgramViewModel, CreateUpdateMiniProgramDto>(ViewModel);

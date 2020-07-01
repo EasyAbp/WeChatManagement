@@ -20,9 +20,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
         public string DisplayName { get; set; }
 
         [Required]
-        [DefaultValue("Default")]
         [Display(Name = "MiniProgramOpenAppIdOrName")]
-        public string OpenAppIdOrName { get; set; }
+        public string OpenAppIdOrName { get; set; } = "Default";
         
         [Required]
         [Display(Name = "MiniProgramAppId")]
