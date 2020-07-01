@@ -14,7 +14,7 @@ jobs:
       - name: publish EasyAbp.WeChatManagement.Common.Domain.Shared.dll
         uses: brandedoutcast/publish-nuget@v2
         with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.Common.Domain.Shared/EasyAbp.WeChatManagement.Common.Domain.Shared.csproj
+          PROJECT_FILE_PATH: modules/Common/src/EasyAbp.WeChatManagement.Common.Domain.Shared/EasyAbp.WeChatManagement.Common.Domain.Shared.csproj
           VERSION_FILE_PATH: common.props
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
