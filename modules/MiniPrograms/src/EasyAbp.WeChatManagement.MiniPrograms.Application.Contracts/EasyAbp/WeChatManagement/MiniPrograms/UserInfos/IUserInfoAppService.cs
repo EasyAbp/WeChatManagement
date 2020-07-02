@@ -6,12 +6,10 @@ using Volo.Abp.Application.Services;
 namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
 {
     public interface IUserInfoAppService :
-        ICrudAppService< 
+        IReadOnlyAppService< 
             UserInfoDto, 
             Guid, 
-            PagedAndSortedResultRequestDto,
-            object,
-            object>
+            PagedAndSortedResultRequestDto>
     {
 
     }
