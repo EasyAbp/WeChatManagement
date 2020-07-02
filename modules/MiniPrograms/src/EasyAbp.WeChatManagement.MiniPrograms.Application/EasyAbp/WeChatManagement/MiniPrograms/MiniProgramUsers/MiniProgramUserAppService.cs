@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
 {
-    public class MiniProgramUserAppService : CrudAppService<MiniProgramUser, MiniProgramUserDto, Guid, PagedAndSortedResultRequestDto, object, object>,
+    public class MiniProgramUserAppService : ReadOnlyAppService<MiniProgramUser, MiniProgramUserDto, Guid, PagedAndSortedResultRequestDto>,
         IMiniProgramUserAppService
     {
         protected override string GetPolicyName { get; set; } = MiniProgramsPermissions.MiniProgramUser.Default;
@@ -19,24 +19,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
         public MiniProgramUserAppService(IMiniProgramUserRepository repository) : base(repository)
         {
             _repository = repository;
-        }
-
-        [RemoteService(false)]
-        public override Task<MiniProgramUserDto> CreateAsync(object input)
-        {
-            throw new NotSupportedException();
-        }
-
-        [RemoteService(false)]
-        public override Task<MiniProgramUserDto> UpdateAsync(Guid id, object input)
-        {
-            throw new NotSupportedException();
-        }
-
-        [RemoteService(false)]
-        public override Task DeleteAsync(Guid id)
-        {
-            throw new NotSupportedException();
         }
     }
 }

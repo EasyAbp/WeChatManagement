@@ -6,12 +6,10 @@ using Volo.Abp.Application.Services;
 namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
 {
     public interface IMiniProgramUserAppService :
-        ICrudAppService< 
+        IReadOnlyAppService< 
             MiniProgramUserDto, 
             Guid, 
-            PagedAndSortedResultRequestDto,
-            object,
-            object>
+            PagedAndSortedResultRequestDto>
     {
 
     }

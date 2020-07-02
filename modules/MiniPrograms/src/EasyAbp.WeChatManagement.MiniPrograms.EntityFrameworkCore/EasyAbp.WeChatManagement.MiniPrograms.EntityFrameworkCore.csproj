@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="2.9.0" />
-    <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="2.9.0" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="3.0.0" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Domain\EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj" />
   </ItemGroup>
 
