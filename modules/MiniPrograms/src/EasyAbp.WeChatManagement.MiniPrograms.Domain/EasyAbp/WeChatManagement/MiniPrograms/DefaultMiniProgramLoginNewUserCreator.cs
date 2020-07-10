@@ -33,17 +33,22 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             var identityUser = new IdentityUser(_guidGenerator.Create(), await GenerateUserNameAsync(userInfoModel),
                 await GenerateEmailAsync(userInfoModel), _currentTenant.Id);
             
-            var result = await _identityUserManager.CreateAsync(identityUser);
+            CheckIdentityResult(await _identityUserManager.CreateAsync(identityUser));
 
+            CheckIdentityResult(await _identityUserManager.AddDefaultRolesAsync(identityUser));
+
+            CheckIdentityResult(await _identityUserManager.AddLoginAsync(identityUser,
+                new UserLoginInfo(loginProvider, providerKey, "微信用户")));
+            
+            return identityUser;
+        }
+
+        protected virtual void CheckIdentityResult(IdentityResult result)
+        {
             if (!result.Succeeded)
             {
                 throw new AbpIdentityResultException(result);
             }
-
-            await _identityUserManager.AddLoginAsync(identityUser,
-                new UserLoginInfo(loginProvider, providerKey, "微信用户"));
-            
-            return identityUser;
         }
         
         protected virtual Task<string> GenerateUserNameAsync(UserInfoModel userInfoModel)
