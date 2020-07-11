@@ -3,41 +3,41 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Domain", "src\WeChatManagementSample.Domain\WeChatManagementSample.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Domain", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Domain\WeChatManagementSample.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Application", "src\WeChatManagementSample.Application\WeChatManagementSample.Application.csproj", "{1A94A50E-06DC-43C1-80B5-B662820EC3EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Application", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Application\WeChatManagementSample.Application.csproj", "{1A94A50E-06DC-43C1-80B5-B662820EC3EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.EntityFrameworkCore", "src\WeChatManagementSample.EntityFrameworkCore\WeChatManagementSample.EntityFrameworkCore.csproj", "{C956DD76-69C8-4A9C-83EA-D17DF83340FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.EntityFrameworkCore", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.EntityFrameworkCore\WeChatManagementSample.EntityFrameworkCore.csproj", "{C956DD76-69C8-4A9C-83EA-D17DF83340FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web", "src\WeChatManagementSample.Web\WeChatManagementSample.Web.csproj", "{068855E8-9240-4F1A-910B-CF825794513B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Web\WeChatManagementSample.Web.csproj", "{068855E8-9240-4F1A-910B-CF825794513B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CA9AC87F-097E-4F15-8393-4BC07735A5B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{04DBDB01-70F4-4E06-B468-8F87850B22BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Application.Tests", "test\WeChatManagementSample.Application.Tests\WeChatManagementSample.Application.Tests.csproj", "{50B2631D-129C-47B3-A587-029CCD6099BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Application.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Application.Tests\WeChatManagementSample.Application.Tests.csproj", "{50B2631D-129C-47B3-A587-029CCD6099BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web.Tests", "test\WeChatManagementSample.Web.Tests\WeChatManagementSample.Web.Tests.csproj", "{5F1B28C6-8D0C-4155-92D0-252F7EA5F674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Web.Tests\WeChatManagementSample.Web.Tests.csproj", "{5F1B28C6-8D0C-4155-92D0-252F7EA5F674}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.EntityFrameworkCore.DbMigrations", "src\WeChatManagementSample.EntityFrameworkCore.DbMigrations\WeChatManagementSample.EntityFrameworkCore.DbMigrations.csproj", "{0372FA84-C517-4EB3-9A9F-B9ACAC0CA5E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.EntityFrameworkCore.DbMigrations", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.EntityFrameworkCore.DbMigrations\WeChatManagementSample.EntityFrameworkCore.DbMigrations.csproj", "{0372FA84-C517-4EB3-9A9F-B9ACAC0CA5E0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Domain.Shared", "src\WeChatManagementSample.Domain.Shared\WeChatManagementSample.Domain.Shared.csproj", "{42F719ED-8413-4895-B5B4-5AB56079BC66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Domain.Shared", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Domain.Shared\WeChatManagementSample.Domain.Shared.csproj", "{42F719ED-8413-4895-B5B4-5AB56079BC66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Application.Contracts", "src\WeChatManagementSample.Application.Contracts\WeChatManagementSample.Application.Contracts.csproj", "{520659C8-C734-4298-A3DA-B539DB9DFC0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Application.Contracts", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Application.Contracts\WeChatManagementSample.Application.Contracts.csproj", "{520659C8-C734-4298-A3DA-B539DB9DFC0B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.HttpApi", "src\WeChatManagementSample.HttpApi\WeChatManagementSample.HttpApi.csproj", "{4164BDF7-F527-4E85-9CE6-E3C2D7426A27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.HttpApi", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.HttpApi\WeChatManagementSample.HttpApi.csproj", "{4164BDF7-F527-4E85-9CE6-E3C2D7426A27}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.HttpApi.Client", "src\WeChatManagementSample.HttpApi.Client\WeChatManagementSample.HttpApi.Client.csproj", "{3B5A0094-670D-4BB1-BFDD-61B88A8773DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.HttpApi.Client", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.HttpApi.Client\WeChatManagementSample.HttpApi.Client.csproj", "{3B5A0094-670D-4BB1-BFDD-61B88A8773DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.EntityFrameworkCore.Tests", "test\WeChatManagementSample.EntityFrameworkCore.Tests\WeChatManagementSample.EntityFrameworkCore.Tests.csproj", "{1FE30EB9-74A9-47F5-A9F6-7B1FAB672D81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.EntityFrameworkCore.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.EntityFrameworkCore.Tests\WeChatManagementSample.EntityFrameworkCore.Tests.csproj", "{1FE30EB9-74A9-47F5-A9F6-7B1FAB672D81}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.TestBase", "test\WeChatManagementSample.TestBase\WeChatManagementSample.TestBase.csproj", "{91853F21-9CD9-4132-BC29-A7D5D84FFFE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.TestBase", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.TestBase\WeChatManagementSample.TestBase.csproj", "{91853F21-9CD9-4132-BC29-A7D5D84FFFE7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Domain.Tests", "test\WeChatManagementSample.Domain.Tests\WeChatManagementSample.Domain.Tests.csproj", "{E512F4D9-9375-480F-A2F6-A46509F9D824}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Domain.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Domain.Tests\WeChatManagementSample.Domain.Tests.csproj", "{E512F4D9-9375-480F-A2F6-A46509F9D824}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.HttpApi.Client.ConsoleTestApp", "test\WeChatManagementSample.HttpApi.Client.ConsoleTestApp\WeChatManagementSample.HttpApi.Client.ConsoleTestApp.csproj", "{EF480016-9127-4916-8735-D2466BDBC582}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.HttpApi.Client.ConsoleTestApp", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.HttpApi.Client.ConsoleTestApp\WeChatManagementSample.HttpApi.Client.ConsoleTestApp.csproj", "{EF480016-9127-4916-8735-D2466BDBC582}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.DbMigrator", "src\WeChatManagementSample.DbMigrator\WeChatManagementSample.DbMigrator.csproj", "{AA94D832-1CCC-4715-95A9-A483F23A1A5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.DbMigrator", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.DbMigrator\WeChatManagementSample.DbMigrator.csproj", "{AA94D832-1CCC-4715-95A9-A483F23A1A5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{3457788B-7A02-414D-9F55-BD6680773CB9}"
 EndProject
@@ -47,41 +47,45 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BBF90359-754
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{32EE8186-65DF-45D4-849F-6A9CEA866BEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Application", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application\EasyAbp.WeChatManagement.MiniPrograms.Application.csproj", "{59EE0492-495D-440E-8DD2-825015DCC89F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application\EasyAbp.WeChatManagement.MiniPrograms.Application.csproj", "{59EE0492-495D-440E-8DD2-825015DCC89F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj", "{BF5369A3-FF30-4C3A-A2FF-79C6B85478FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj", "{BF5369A3-FF30-4C3A-A2FF-79C6B85478FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain\EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj", "{73933A62-7E62-4B53-A825-8F6C7F0F0630}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain\EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj", "{73933A62-7E62-4B53-A825-8F6C7F0F0630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.csproj", "{28721E99-3265-40BB-AC9B-98FC3378164E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.csproj", "{28721E99-3265-40BB-AC9B-98FC3378164E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj", "{18B0CE33-389F-4E67-A16D-652CDF8461C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj", "{18B0CE33-389F-4E67-A16D-652CDF8461C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.csproj", "{8B352BC6-80C4-4A94-A6DE-009A9943D652}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.csproj", "{8B352BC6-80C4-4A94-A6DE-009A9943D652}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.csproj", "{C6F9E6F2-62B5-4B15-BF6A-26E2F35D8DCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.csproj", "{C6F9E6F2-62B5-4B15-BF6A-26E2F35D8DCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.MongoDB", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.MongoDB\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.csproj", "{7A7A9B05-CEFD-41FB-A373-DFA4FE991F94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.MongoDB", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.MongoDB\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.csproj", "{7A7A9B05-CEFD-41FB-A373-DFA4FE991F94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Web", "..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Web\EasyAbp.WeChatManagement.MiniPrograms.Web.csproj", "{0812E529-E43F-4F5B-8D75-FB202C0BCAF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Web", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Web\EasyAbp.WeChatManagement.MiniPrograms.Web.csproj", "{0812E529-E43F-4F5B-8D75-FB202C0BCAF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Application.Tests", "..\..\..\modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.Application.Tests\EasyAbp.WeChatManagement.MiniPrograms.Application.Tests.csproj", "{ADF75C63-1E24-4E07-BAEF-6909F82A7E64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.Application.Tests\EasyAbp.WeChatManagement.MiniPrograms.Application.Tests.csproj", "{ADF75C63-1E24-4E07-BAEF-6909F82A7E64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests", "..\..\..\modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests\EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests.csproj", "{62C0599E-1035-40E7-9AFF-724B06507CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests\EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests.csproj", "{62C0599E-1035-40E7-9AFF-724B06507CC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests", "..\..\..\modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests.csproj", "{59663EB3-E9A3-4C19-9C42-D180371F45D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests.csproj", "{59663EB3-E9A3-4C19-9C42-D180371F45D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp", "..\..\..\modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp.csproj", "{7D9C068D-8FF0-4842-91D3-8BAB34706B62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp.csproj", "{7D9C068D-8FF0-4842-91D3-8BAB34706B62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests", "..\..\..\modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests.csproj", "{386D09A2-6432-4982-86CA-33BCEB074632}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests.csproj", "{386D09A2-6432-4982-86CA-33BCEB074632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.TestBase", "..\..\..\modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.TestBase\EasyAbp.WeChatManagement.MiniPrograms.TestBase.csproj", "{FBE160B5-E390-421E-AD04-240CB48085B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.TestBase", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.TestBase\EasyAbp.WeChatManagement.MiniPrograms.TestBase.csproj", "{FBE160B5-E390-421E-AD04-240CB48085B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.Domain.Shared", "..\..\..\modules\Common\src\EasyAbp.WeChatManagement.Common.Domain.Shared\EasyAbp.WeChatManagement.Common.Domain.Shared.csproj", "{EEE6309B-919B-40CA-8CF2-7DB9855B980D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.Domain.Shared", "modules\Common\src\EasyAbp.WeChatManagement.Common.Domain.Shared\EasyAbp.WeChatManagement.Common.Domain.Shared.csproj", "{EEE6309B-919B-40CA-8CF2-7DB9855B980D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{C17A0276-1AC8-489C-BDDF-9E22DFABD5AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeChatManagementSample", "WeChatManagementSample", "{1A87614D-01D8-43A5-9AD5-D18F5E50D89D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -226,6 +230,8 @@ Global
 		{1A94A50E-06DC-43C1-80B5-B662820EC3EB} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{C956DD76-69C8-4A9C-83EA-D17DF83340FD} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{068855E8-9240-4F1A-910B-CF825794513B} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{CA9AC87F-097E-4F15-8393-4BC07735A5B0} = {1A87614D-01D8-43A5-9AD5-D18F5E50D89D}
+		{04DBDB01-70F4-4E06-B468-8F87850B22BE} = {1A87614D-01D8-43A5-9AD5-D18F5E50D89D}
 		{50B2631D-129C-47B3-A587-029CCD6099BC} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
 		{5F1B28C6-8D0C-4155-92D0-252F7EA5F674} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
 		{0372FA84-C517-4EB3-9A9F-B9ACAC0CA5E0} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
@@ -259,6 +265,7 @@ Global
 		{6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6} = {3457788B-7A02-414D-9F55-BD6680773CB9}
 		{F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB} = {6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6}
 		{EEE6309B-919B-40CA-8CF2-7DB9855B980D} = {F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB}
+		{1A87614D-01D8-43A5-9AD5-D18F5E50D89D} = {C17A0276-1AC8-489C-BDDF-9E22DFABD5AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
