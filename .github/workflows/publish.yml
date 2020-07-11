@@ -5,78 +5,33 @@ on:
       - master # Default release branch
 jobs:
   publish:
-    name: list on nuget
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      # Publish modules
-      - name: publish EasyAbp.WeChatManagement.Common.Domain.Shared.dll
-        uses: brandedoutcast/publish-nuget@v2
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
         with:
-          PROJECT_FILE_PATH: modules/Common/src/EasyAbp.WeChatManagement.Common.Domain.Shared/EasyAbp.WeChatManagement.Common.Domain.Shared.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+          dotnet-version: 3.1.200
+          source-url: https://nuget.pkg.github.com/EasyAbp/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.Application.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application/EasyAbp.WeChatManagement.MiniPrograms.Application.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: dotnet build
+        run: dotnet build -c Release
 
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: dotnet pack
+        run: dotnet pack -c Release --no-build -o dest
 
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.Domain.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Domain/EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: remove unused packages
+        run: |
+          cd dest
+          ls | grep -v EasyAbp. | xargs rm -f
+          ls | grep HttpApi.Client.ConsoleTestApp | xargs rm -f
+          ls
 
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared/EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: dotnet nuget push to GitHub
+        run: dotnet nuget push ./dest/**/*.nupkg --skip-duplicate --no-symbols true
 
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore/EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.HttpApi.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.HttpApi/EasyAbp.WeChatManagement.MiniPrograms.HttpApi.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client/EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.MongoDB.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.MongoDB/EasyAbp.WeChatManagement.MiniPrograms.MongoDB.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-
-      - name: publish EasyAbp.WeChatManagement.MiniPrograms.Web.dll
-        uses: brandedoutcast/publish-nuget@v2
-        with:
-          PROJECT_FILE_PATH: modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Web/EasyAbp.WeChatManagement.MiniPrograms.Web.csproj
-          VERSION_FILE_PATH: common.props
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: dotnet nuget push to NuGet
+        run: dotnet nuget push ./dest/**/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json --skip-duplicate --no-symbols true
