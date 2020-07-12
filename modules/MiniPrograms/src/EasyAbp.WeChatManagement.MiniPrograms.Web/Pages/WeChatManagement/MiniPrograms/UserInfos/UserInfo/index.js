@@ -1,6 +1,6 @@
 $(function () {
 
-    var l = abp.localization.getResource('MiniPrograms');
+    var l = abp.localization.getResource('EasyAbpWeChatManagementMiniPrograms');
 
     var service = easyAbp.weChatManagement.miniPrograms.userInfos.userInfo;
 

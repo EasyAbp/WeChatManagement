@@ -1,6 +1,6 @@
 $(function () {
 
-    var l = abp.localization.getResource('MiniPrograms');
+    var l = abp.localization.getResource('EasyAbpWeChatManagementMiniPrograms');
 
     var service = easyAbp.weChatManagement.miniPrograms.miniPrograms.miniProgram;
     var createModal = new abp.ModalManager(abp.appPath + 'WeChatManagement/MiniPrograms/MiniPrograms/MiniProgram/CreateModal');
