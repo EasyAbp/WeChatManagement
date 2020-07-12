@@ -1,6 +1,7 @@
 using Shouldly;
 using System.Threading.Tasks;
-using EasyAbp.WeChatManagement.MiniPrograms.Dtos;
+using EasyAbp.WeChatManagement.MiniPrograms.Login;
+using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using Xunit;
 

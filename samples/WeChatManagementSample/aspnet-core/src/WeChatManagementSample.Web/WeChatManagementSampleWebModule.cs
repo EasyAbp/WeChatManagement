@@ -169,10 +169,6 @@ namespace WeChatManagementSample.Web
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
                 options.ConventionalControllers.Create(typeof(WeChatManagementSampleApplicationModule).Assembly);
-                options.ConventionalControllers.Create(typeof(WeChatManagementMiniProgramsApplicationModule).Assembly, opt =>
-                {
-                    opt.RootPath = "weChatManagement/miniPrograms";
-                });
             });
         }
 

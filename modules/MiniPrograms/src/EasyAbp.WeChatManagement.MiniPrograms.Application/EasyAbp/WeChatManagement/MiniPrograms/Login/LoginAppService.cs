@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
-using EasyAbp.WeChatManagement.MiniPrograms.Dtos;
+using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using IdentityModel;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.Data;
 using Volo.Abp.Identity;
-using Volo.Abp.IdentityModel;
 using Volo.Abp.Json;
 using Volo.Abp.MultiTenancy;
 
-namespace EasyAbp.WeChatManagement.MiniPrograms
+namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
     public class LoginAppService : MiniProgramsAppService, ILoginAppService
     {

@@ -1,4 +1,4 @@
-﻿namespace EasyAbp.WeChatManagement.MiniPrograms.Dtos
+﻿namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
 {
     public class RefreshDto
     {

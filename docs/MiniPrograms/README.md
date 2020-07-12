@@ -31,15 +31,13 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
 
     1. (Optional) If you need MVC UI, install `EasyAbp.WeChatManagement.MiniPrograms.Web` NuGet package to `MyProject.Web` project and add `[DependsOn(WeChatManagementMiniProgramsWebModule)]` attribute to the module.
     
-    1. Add `options.ConventionalControllers.Create(typeof(WeChatManagementMiniProgramsApplicationModule).Assembly, opt => { opt.RootPath = "weChatManagement/miniPrograms"; });` to `Configure<AbpAspNetCoreMvcOptions>(options => { ... });` in your host module (It is usually Web project or HttpApi.Host project).
-
     1. Add `builder.ConfigureWeChatManagementMiniPrograms();` to OnModelCreating method in `MyProjectMigrationsDbContext.cs`.
 
     1. Add EF Core migrations and update your database. See: [ABP document](https://docs.abp.io/en/abp/latest/Tutorials/Part-1?UI=MVC#add-new-migration-update-the-database).
     
-    1. 在 Web 启动项目的 appsettings.json 中的 AuthServer 下增加 `ClientId` 和 `ClientSecret` 配置（可使用文件中 `IdentityServer` 下的配置）。
+    1. 在 Web / HttpApi.Host 启动项目的 appsettings.json 的 AuthServer 中增加 `ClientId` 和 `ClientSecret` 配置（可使用文件中 IdentityServer 中的配置）。
     
-    1. 在 IdentityServerClientGrantTypes 表中给上一步中使用的客户端增加一条 `WeChatMiniProgram_credentials` 的 GrantType.
+    1. 在 IdentityServerClientGrantTypes 表中给上一步使用的 Client 增加一条 `WeChatMiniProgram_credentials` 的 GrantType.
 
 ## Usage
 
