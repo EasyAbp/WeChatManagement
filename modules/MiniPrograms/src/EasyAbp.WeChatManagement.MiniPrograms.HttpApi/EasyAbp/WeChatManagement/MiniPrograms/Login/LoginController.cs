@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
-using IdentityModel.Client;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
 
@@ -19,14 +18,14 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         [HttpPost]
         [Route("login")]
-        public Task<TokenResponse> LoginAsync(LoginDto input)
+        public Task<string> LoginAsync(LoginDto input)
         {
             return _service.LoginAsync(input);
         }
 
         [HttpPost]
         [Route("refresh")]
-        public Task<TokenResponse> RefreshAsync(RefreshDto input)
+        public Task<string> RefreshAsync(RefreshDto input)
         {
             return _service.RefreshAsync(input);
         }
