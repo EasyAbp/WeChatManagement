@@ -199,10 +199,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         {
             var client = _httpClientFactory.CreateClient(MiniProgramConsts.IdentityServerHttpClientName);
 
-            return await client.RequestTokenAsync(new RefreshTokenRequest
+            return await client.RequestRefreshTokenAsync(new RefreshTokenRequest
             {
                 Address = _configuration["AuthServer:Authority"] + "/connect/token",
-                GrantType = OidcConstants.GrantTypes.RefreshToken,
 
                 ClientId = _configuration["AuthServer:ClientId"],
                 ClientSecret = _configuration["AuthServer:ClientSecret"],
