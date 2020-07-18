@@ -41,11 +41,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             };
 
             // Act
-            var response = await _loginAppService.LoginAsync(input);
+            var result = await _loginAppService.LoginAsync(input);
 
             // Assert
-            response.ShouldNotBeNull();
-            response.AccessToken.ShouldNotBeEmpty();
+            result.ShouldNotBeNull();
         }
     }
 }
