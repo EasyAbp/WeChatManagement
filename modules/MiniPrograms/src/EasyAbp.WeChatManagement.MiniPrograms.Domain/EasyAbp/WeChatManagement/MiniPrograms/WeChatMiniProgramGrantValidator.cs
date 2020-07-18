@@ -13,7 +13,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     public class WeChatMiniProgramGrantValidator : IExtensionGrantValidator, ITransientDependency
     {
-        public string GrantType => MiniProgramConsts.CustomGrantType;
+        public string GrantType => WeChatMiniProgramConsts.GrantType;
 
         private readonly IMiniProgramLoginProviderProvider _miniProgramLoginProviderProvider;
         private readonly IMiniProgramRepository _miniProgramRepository;

@@ -41,19 +41,28 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
 
 ## Usage
 
-### 微信登录
+### 小程序登录
 
-* 使用 `/api/weChatManagement/miniPrograms/login/login` 接口进行微信登录，留意 [LoginDto](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp/WeChatManagement/MiniPrograms/Dtos/LoginDto.cs) 的注释说明。
+1. 使用 `/api/weChatManagement/miniPrograms/login/login` 接口进行微信登录，留意 [LoginDto](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp/WeChatManagement/MiniPrograms/Dtos/LoginDto.cs) 的注释说明。
     
-* 使用 `/api/weChatManagement/miniPrograms/login/refresh` 接口对 AccessToken 续期。
+2. 使用 `/api/weChatManagement/miniPrograms/login/refresh` 接口对 AccessToken 续期。
+
+### 小程序授权 Razor 页面登录
+
+1. 重写登录页，在页面中插入 [WeChatMiniProgramPcLoginWidget](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Web/Pages/WeChatManagement/MiniPrograms/Components/WeChatMiniProgramPcLoginWidget/WeChatMiniProgramPcLoginWidgetViewComponent.cs)，重写方法参考 [官方文档](https://docs.abp.io/en/abp/latest/How-To/Customize-Login-Page-MVC) 和 [本模块示例](../../samples/WeChatManagementSample/aspnet-core/src/WeChatManagementSample.Web/Pages/Account)。
+
+2. 微信扫码后（注意小程序本身需已完成登录），小程序将获得的 [scene](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html) 作为 token 参数传入 `/api/weChatManagement/miniPrograms/login/authorizePc` 接口。
+
+3. 此时，Razor 登录页将自动完成登录并跳转。
 
 ![MiniProgram](images/MiniProgram.png)
 ![MiniProgramUser](images/MiniProgramUser.png)
 ![UserInfo](images/UserInfo.png)
-![LoginSwagger](images/LoginSwagger.png)
+![PcLogin](images/PcLogin.png)
 
 ## Roadmap
 
 - [ ] 微信服务器
+- [x] 微信授权 Razor 页面登录
 - [ ] 对接第三方平台模块
-- [ ] Unit tests.
+- [ ] 单元测试

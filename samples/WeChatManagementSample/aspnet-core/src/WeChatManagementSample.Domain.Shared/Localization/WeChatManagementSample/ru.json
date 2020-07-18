@@ -3,6 +3,10 @@
   "texts": {
     "Menu:Home": "Главная",
     "Welcome": "Добро пожаловать",
-    "LongWelcomeMessage": "Добро пожаловать в приложение. Этот запущенный проект основан на фреймворке ABP. Для получения дополнительной информации посетите сайт abp.io."
+    "LongWelcomeMessage": "Добро пожаловать в приложение. Этот запущенный проект основан на фреймворке ABP. Для получения дополнительной информации посетите сайт abp.io.",
+    "PasswordLogin": "Password Login",
+    "ChangeToPasswordLogin": "<br />(Change to password login)",
+    "WeChatMiniProgramPcLogin": "WeChat mini-program login",
+    "ChangeToWeChatMiniProgramPcLogin": "<br />(Change to WeChat mini-program login)"
   }
 }

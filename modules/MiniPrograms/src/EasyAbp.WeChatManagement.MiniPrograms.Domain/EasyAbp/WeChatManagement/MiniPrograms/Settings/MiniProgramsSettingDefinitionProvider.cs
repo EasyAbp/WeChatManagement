@@ -1,4 +1,6 @@
-﻿using Volo.Abp.Settings;
+﻿using EasyAbp.WeChatManagement.MiniPrograms.Localization;
+using Volo.Abp.Localization;
+using Volo.Abp.Settings;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Settings
 {
@@ -9,6 +11,25 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Settings
             /* Define module settings here.
              * Use names from MiniProgramsSettings class.
              */
+            
+            context.Add(new SettingDefinition(
+                MiniProgramsSettings.PcLogin.DefaultProgramName, 
+                "Default",
+                L("Setting:DefaultPcLoginMiniProgramName"),
+                isVisibleToClients: true
+            ));
+            
+            context.Add(new SettingDefinition(
+                MiniProgramsSettings.PcLogin.HandlePage, 
+                null,
+                L("Setting:HandlePage"),
+                isVisibleToClients: true
+            ));
+        }
+        
+        private static LocalizableString L(string name)
+        {
+            return LocalizableString.Create<MiniProgramsResource>(name);
         }
     }
 }

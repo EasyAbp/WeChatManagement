@@ -44,6 +44,7 @@
     "UserInfoCity": "UserInfoCity",
     "UserInfoProvince": "UserInfoProvince",
     "UserInfoCountry": "UserInfoCountry",
-    "UserInfoAvatarUrl": "UserInfoAvatarUrl"
+    "UserInfoAvatarUrl": "UserInfoAvatarUrl",
+    "Setting:DefaultPcLoginMiniProgramName": "Setting:DefaultPcLoginMiniProgramName"
   }
 }

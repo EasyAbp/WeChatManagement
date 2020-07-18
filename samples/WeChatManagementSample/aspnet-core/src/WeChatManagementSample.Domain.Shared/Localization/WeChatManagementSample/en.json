@@ -3,6 +3,10 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Welcome",
-    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io."
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information, visit abp.io.",
+    "PasswordLogin": "Password Login",
+    "ChangeToPasswordLogin": "<br />(Change to password login)",
+    "WeChatMiniProgramPcLogin": "WeChat mini-program login",
+    "ChangeToWeChatMiniProgramPcLogin": "<br />(Change to WeChat mini-program login)"
   }
 }

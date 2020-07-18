@@ -3,6 +3,10 @@
   "texts": {
     "Menu:Home": "Úvod",
     "Welcome": "Vítejte",
-    "LongWelcomeMessage": "Vítejte v aplikaci. Toto je startovací projekt založený na ABP frameworku. Pro více informací, navštivte abp.io."
+    "LongWelcomeMessage": "Vítejte v aplikaci. Toto je startovací projekt založený na ABP frameworku. Pro více informací, navštivte abp.io.",
+    "PasswordLogin": "Password Login",
+    "ChangeToPasswordLogin": "<br />(Change to password login)",
+    "WeChatMiniProgramPcLogin": "WeChat mini-program login",
+    "ChangeToWeChatMiniProgramPcLogin": "<br />(Change to WeChat mini-program login)"
   }
 }

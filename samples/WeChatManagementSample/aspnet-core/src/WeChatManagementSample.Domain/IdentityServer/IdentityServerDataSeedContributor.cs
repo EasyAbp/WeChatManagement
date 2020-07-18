@@ -133,7 +133,7 @@ namespace WeChatManagementSample.IdentityServer
                 await CreateClientAsync(
                     consoleClientId,
                     commonScopes,
-                    new[] { "password", "client_credentials", MiniProgramConsts.CustomGrantType },
+                    new[] { "password", "client_credentials", WeChatMiniProgramConsts.GrantType },
                     (configurationSection["WeChatManagementSample_App:ClientSecret"] ?? "1q2w3e*").Sha256()
                 );
             }

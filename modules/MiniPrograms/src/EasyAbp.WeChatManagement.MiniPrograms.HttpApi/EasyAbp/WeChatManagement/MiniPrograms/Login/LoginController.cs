@@ -18,16 +18,37 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         [HttpPost]
         [Route("login")]
-        public Task<string> LoginAsync(LoginDto input)
+        public Task<string> LoginAsync(LoginInput input)
         {
             return _service.LoginAsync(input);
         }
 
         [HttpPost]
         [Route("refresh")]
-        public Task<string> RefreshAsync(RefreshDto input)
+        public Task<string> RefreshAsync(RefreshInput input)
         {
             return _service.RefreshAsync(input);
+        }
+        
+        [HttpGet]
+        [Route("pcLoginACode")]
+        public Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName)
+        {
+            return _service.GetPcLoginACodeAsync(miniProgramName);
+        }
+
+        [HttpPost]
+        [Route("authorizePc")]
+        public Task AuthorizePcAsync(AuthorizePcInput input)
+        {
+            return _service.AuthorizePcAsync(input);
+        }
+
+        [HttpPost]
+        [Route("pcLogin")]
+        public Task<PcLoginOutput> PcLoginAsync(PcLoginInput input)
+        {
+            return _service.PcLoginAsync(input);
         }
     }
 }
