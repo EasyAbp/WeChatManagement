@@ -20,7 +20,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         public async Task Request_Tokens_Should_Get_AccessToken()
         {
             // Arrange
-            var input = new LoginDto
+            var input = new LoginInput
             {
                 AppId = "AppId",
                 Code = "Code",

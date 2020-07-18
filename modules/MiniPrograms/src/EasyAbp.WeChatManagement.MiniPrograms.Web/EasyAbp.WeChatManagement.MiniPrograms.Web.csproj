@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="3.0.1" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="3.0.1" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="3.0.4" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="3.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +45,7 @@
     <_ContentIncludedByDefault Remove="Pages\MiniPrograms\UserInfos\UserInfo\CreateModal.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\MiniPrograms\UserInfos\UserInfo\EditModal.cshtml" />
     <_ContentIncludedByDefault Remove="Pages\MiniPrograms\UserInfos\UserInfo\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\Components\WeChatMiniProgramPcLoginWidget\Default.cshtml" />
   </ItemGroup>
 
 </Project>

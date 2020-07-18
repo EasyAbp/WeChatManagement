@@ -3,6 +3,10 @@
   "texts": {
     "Menu:Home": "Home",
     "Welcome": "Witaj",
-    "LongWelcomeMessage": "Witaj w aplikacji. To jest inicjalny projekt bazujący na ABP framework. Po więcej informacji odwiedź stronę abp.io."
+    "LongWelcomeMessage": "Witaj w aplikacji. To jest inicjalny projekt bazujący na ABP framework. Po więcej informacji odwiedź stronę abp.io.",
+    "PasswordLogin": "Password Login",
+    "ChangeToPasswordLogin": "<br />(Change to password login)",
+    "WeChatMiniProgramPcLogin": "WeChat mini-program login",
+    "ChangeToWeChatMiniProgramPcLogin": "<br />(Change to WeChat mini-program login)"
   }
 }

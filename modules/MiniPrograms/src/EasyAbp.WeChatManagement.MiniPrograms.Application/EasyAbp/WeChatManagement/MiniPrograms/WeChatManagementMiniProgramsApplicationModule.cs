@@ -1,5 +1,7 @@
 ﻿using System;
+using EasyAbp.Abp.WeChat;
 using EasyAbp.Abp.WeChat.MiniProgram;
+using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure.OptionsResolve;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
@@ -24,9 +26,18 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 options.AddMaps<WeChatManagementMiniProgramsApplicationModule>(validate: true);
             });
             
-            context.Services.AddHttpClient(MiniProgramConsts.IdentityServerHttpClientName, c =>
+            context.Services.AddHttpClient(WeChatMiniProgramConsts.IdentityServerHttpClientName, c =>
             {
                 c.Timeout = TimeSpan.FromMilliseconds(5000);
+            });
+            
+            Configure<AbpWeChatMiniProgramResolveOptions>(options =>
+            {
+                options.Contributors.InsertRange(0, new IWeChatMiniProgramOptionsResolveContributor[]
+                {
+                    new AsyncLocalWeChatMiniProgramOptionsResolveContributor(),
+                    new ClaimsWeChatMiniProgramOptionsResolveContributor()
+                });
             });
         }
     }

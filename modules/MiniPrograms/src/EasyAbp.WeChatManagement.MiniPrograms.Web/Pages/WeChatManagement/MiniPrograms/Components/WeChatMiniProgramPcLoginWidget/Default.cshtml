@@ -1,0 +1,9 @@
+﻿@model EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.Components.WeChatMiniProgramPcLoginWidget.WeChatMiniProgramPcLoginViewModel
+<script>
+    var token = "@Model.Token";
+</script>
+<div class="weChat-miniProgram-pcLogin-area" data-miniProgram-name="@Model.MiniProgramName">
+    <div class="weChat-miniProgram-pcLogin-aCode">
+        <img src="data:image/png;base64,@Convert.ToBase64String(Model.ACode)" alt="ACode"/>
+    </div>
+</div>
