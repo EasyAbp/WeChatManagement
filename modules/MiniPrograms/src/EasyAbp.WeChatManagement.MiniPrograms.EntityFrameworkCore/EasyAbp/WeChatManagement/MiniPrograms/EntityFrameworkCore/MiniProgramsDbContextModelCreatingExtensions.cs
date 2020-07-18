@@ -48,9 +48,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
             {
                 b.ToTable(options.TablePrefix + "MiniPrograms", options.Schema);
                 b.ConfigureByConvention(); 
-                
 
                 /* Configure more properties here */
+                b.HasIndex(x => x.Name).IsUnique();
             });
 
 
@@ -58,7 +58,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
             {
                 b.ToTable(options.TablePrefix + "MiniProgramUsers", options.Schema);
                 b.ConfigureByConvention(); 
-                
 
                 /* Configure more properties here */
             });
@@ -68,7 +67,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
             {
                 b.ToTable(options.TablePrefix + "UserInfos", options.Schema);
                 b.ConfigureByConvention(); 
-                
 
                 /* Configure more properties here */
             });
