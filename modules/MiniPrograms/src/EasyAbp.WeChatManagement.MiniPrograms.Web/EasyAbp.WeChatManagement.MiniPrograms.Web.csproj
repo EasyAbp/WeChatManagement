@@ -38,14 +38,4 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\MiniPrograms\MiniPrograms\MiniProgram\CreateModal.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\MiniPrograms\MiniPrograms\MiniProgram\EditModal.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\MiniPrograms\MiniPrograms\MiniProgram\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\MiniPrograms\UserInfos\UserInfo\CreateModal.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\MiniPrograms\UserInfos\UserInfo\EditModal.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\MiniPrograms\UserInfos\UserInfo\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\Components\WeChatMiniProgramPcLoginWidget\Default.cshtml" />
-  </ItemGroup>
-
 </Project>
