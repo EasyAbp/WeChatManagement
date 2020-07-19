@@ -32,7 +32,7 @@ namespace WeChatManagementSample
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<WeChatManagementSampleDomainSharedModule>("WeChatManagementSample");
+                options.FileSets.AddEmbedded<WeChatManagementSampleDomainSharedModule>();
             });
 
             Configure<AbpLocalizationOptions>(options =>
