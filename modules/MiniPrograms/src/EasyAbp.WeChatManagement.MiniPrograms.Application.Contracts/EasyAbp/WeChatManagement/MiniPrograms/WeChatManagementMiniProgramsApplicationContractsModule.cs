@@ -12,12 +12,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
     )]
     public class WeChatManagementMiniProgramsApplicationContractsModule : AbpModule
     {
-        public override void ConfigureServices(ServiceConfigurationContext context)
-        {
-            Configure<AbpVirtualFileSystemOptions>(options =>
-            {
-                options.FileSets.AddEmbedded<WeChatManagementMiniProgramsApplicationContractsModule>("EasyAbp.WeChatManagement.MiniPrograms");
-            });
-        }
+
     }
 }

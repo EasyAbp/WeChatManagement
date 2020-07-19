@@ -41,7 +41,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<WeChatManagementMiniProgramsWebModule>("EasyAbp.WeChatManagement.MiniPrograms.Web");
+                options.FileSets.AddEmbedded<WeChatManagementMiniProgramsWebModule>();
             });
 
             context.Services.AddAutoMapperObjectMapper<WeChatManagementMiniProgramsWebModule>();
