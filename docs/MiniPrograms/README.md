@@ -53,7 +53,7 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
 
 2. 重写登录页，在页面中插入 [WeChatMiniProgramPcLoginWidget](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Web/Pages/WeChatManagement/MiniPrograms/Components/WeChatMiniProgramPcLoginWidget/WeChatMiniProgramPcLoginWidgetViewComponent.cs)，重写方法参考 [官方文档](https://docs.abp.io/en/abp/latest/How-To/Customize-Login-Page-MVC) 和 [本模块示例](../../samples/WeChatManagementSample/aspnet-core/src/WeChatManagementSample.Web/Pages/Account)。
 
-3. 微信扫码后（默认使用主页），确保小程序本身已完成用户登录，小程序将获得的 [scene](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html) 作为 token 参数传入 `/api/weChatManagement/miniPrograms/login/authorizePc` 接口。
+3. 微信扫码后（默认配置下，会打开小程序首页），确保小程序本身已完成用户登录，小程序将获得的 [scene](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html) 作为 token 参数传入 `/api/weChatManagement/miniPrograms/login/authorizePc` 接口。
 
 4. 此时，Razor 登录页将自动完成登录并跳转。
 
