@@ -43,7 +43,7 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
 
 ### 小程序登录
 
-1. 使用 `/api/weChatManagement/miniPrograms/login/login` 接口进行微信登录，留意 [LoginDto](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp/WeChatManagement/MiniPrograms/Dtos/LoginDto.cs) 的注释说明。
+1. 使用 `/api/weChatManagement/miniPrograms/login/login` 接口进行微信登录，留意 [LoginInput](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp/WeChatManagement/MiniPrograms/Login/Dtos/LoginInput.cs) 的注释说明。
     
 2. 使用 `/api/weChatManagement/miniPrograms/login/refresh` 接口对 AccessToken 续期。
 
