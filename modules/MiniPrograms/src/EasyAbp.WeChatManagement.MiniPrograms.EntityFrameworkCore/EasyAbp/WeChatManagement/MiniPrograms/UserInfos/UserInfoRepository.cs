@@ -7,7 +7,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
 {
     public class UserInfoRepository : EfCoreRepository<IMiniProgramsDbContext, UserInfo, Guid>, IUserInfoRepository
     {
-        public UserInfoRepository(IDbContextProvider<MiniProgramsDbContext> dbContextProvider) : base(dbContextProvider)
+        public UserInfoRepository(IDbContextProvider<IMiniProgramsDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
     }

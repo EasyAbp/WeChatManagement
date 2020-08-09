@@ -7,7 +7,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms
 {
     public class MiniProgramRepository : EfCoreRepository<IMiniProgramsDbContext, MiniProgram, Guid>, IMiniProgramRepository
     {
-        public MiniProgramRepository(IDbContextProvider<MiniProgramsDbContext> dbContextProvider) : base(dbContextProvider)
+        public MiniProgramRepository(IDbContextProvider<IMiniProgramsDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
     }
