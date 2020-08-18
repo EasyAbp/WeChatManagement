@@ -58,9 +58,9 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
 4. 此时，Razor 登录页将自动完成登录并跳转。
 
 ![MiniProgram](/docs/MiniPrograms/images/MiniProgram.png)
-![MiniProgramUser](/docs/MiniPrograms/MiniProgramUser.png)
-![UserInfo](/docs/MiniPrograms/UserInfo.png)
-![PcLogin](/docs/MiniPrograms/PcLogin.png)
+![MiniProgramUser](/docs/MiniPrograms/images/MiniProgramUser.png)
+![UserInfo](/docs/MiniPrograms/images/UserInfo.png)
+![PcLogin](/docs/MiniPrograms/images/PcLogin.png)
 
 ## Roadmap
 
