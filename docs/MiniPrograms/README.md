@@ -43,24 +43,24 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
 
 ### 小程序登录
 
-1. 使用 `/api/weChatManagement/miniPrograms/login/login` 接口进行微信登录，留意 [LoginInput](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp/WeChatManagement/MiniPrograms/Login/Dtos/LoginInput.cs) 的注释说明。
+1. 使用 `/api/weChatManagement/miniPrograms/login/login` 接口进行微信登录，留意 [LoginInput](https://github.com/EasyAbp/WeChatManagement/blob/master/modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp/WeChatManagement/MiniPrograms/Login/Dtos/LoginInput.cs) 的注释说明。
     
 2. 使用 `/api/weChatManagement/miniPrograms/login/refresh` 接口对 AccessToken 续期。
 
 ### 小程序授权 Razor 页面登录
 
-1. 配置用于微信登录的小程序的 Name，默认为`Default`，参考[本模块设置](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Domain/EasyAbp/WeChatManagement/MiniPrograms/Settings/MiniProgramsSettings.cs)。
+1. 配置用于微信登录的小程序的 Name，默认为`Default`，参考[本模块设置](https://github.com/EasyAbp/WeChatManagement/blob/master/modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Domain/EasyAbp/WeChatManagement/MiniPrograms/Settings/MiniProgramsSettings.cs)。
 
-2. 重写登录页，在页面中插入 [WeChatMiniProgramPcLoginWidget](../../modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Web/Pages/WeChatManagement/MiniPrograms/Components/WeChatMiniProgramPcLoginWidget/WeChatMiniProgramPcLoginWidgetViewComponent.cs)，重写方法参考 [官方文档](https://docs.abp.io/en/abp/latest/How-To/Customize-Login-Page-MVC) 和 [本模块示例](../../samples/WeChatManagementSample/aspnet-core/src/WeChatManagementSample.Web/Pages/Account)。
+2. 重写登录页，在页面中插入 [WeChatMiniProgramPcLoginWidget](https://github.com/EasyAbp/WeChatManagement/blob/master/modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Web/Pages/WeChatManagement/MiniPrograms/Components/WeChatMiniProgramPcLoginWidget/WeChatMiniProgramPcLoginWidgetViewComponent.cs)，重写方法参考 [官方文档](https://docs.abp.io/en/abp/latest/How-To/Customize-Login-Page-MVC) 和 [本模块示例](https://github.com/EasyAbp/WeChatManagement/blob/master/samples/WeChatManagementSample/aspnet-core/src/WeChatManagementSample.Web/Pages/Account)。
 
 3. 微信扫码后（默认配置下，会打开小程序首页），确保小程序本身已完成用户登录，小程序将获得的 [scene](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html) 作为 token 参数传入 `/api/weChatManagement/miniPrograms/login/authorizePc` 接口。
 
 4. 此时，Razor 登录页将自动完成登录并跳转。
 
-![MiniProgram](images/MiniProgram.png)
-![MiniProgramUser](images/MiniProgramUser.png)
-![UserInfo](images/UserInfo.png)
-![PcLogin](images/PcLogin.png)
+![MiniProgram](/docs/MiniPrograms/images/MiniProgram.png)
+![MiniProgramUser](/docs/MiniPrograms/MiniProgramUser.png)
+![UserInfo](/docs/MiniPrograms/UserInfo.png)
+![PcLogin](/docs/MiniPrograms/PcLogin.png)
 
 ## Roadmap
 
