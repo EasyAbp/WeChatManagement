@@ -2,21 +2,20 @@
 
 [![NuGet](https://img.shields.io/nuget/v/EasyAbp.WeChatManagement.Common.Domain.Shared.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.WeChatManagement.Common.Domain.Shared)
 [![NuGet Download](https://img.shields.io/nuget/dt/EasyAbp.WeChatManagement.Common.Domain.Shared.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.WeChatManagement.Common.Domain.Shared)
+[![GitHub stars](https://img.shields.io/github/stars/EasyAbp/WeChatManagement?style=social)](https://www.github.com/EasyAbp/WeChatManagement)
 
-基于EasyAbp.Abp.WeChat模块实现微信登录、微信用户信息存储、微信服务器管理、微信第三方平台等高级功能的Abp应用模块组
+基于[EasyAbp.Abp.WeChat](https://github.com/EasyAbp/Abp.WeChat)模块实现微信登录、微信用户信息存储、微信服务器管理、微信第三方平台等高级功能的Abp应用模块组
 
-## Getting Started
+## Online Demo
 
-* Install with [AbpHelper](https://github.com/EasyAbp/AbpHelper.GUI)
+We have launched an online demo for this module: [https://wechat.samples.easyabp.io](https://wechat.samples.easyabp.io)
 
-    Coming soon.
+## Installation
 
-* Install Manually
-
-    * [安装小程序模块](/docs/MiniPrograms/README.md#getting-started)
-    * 安装公众号模块
-    * 安装企业微信模块
-    * 安装第三方平台模块
+* [安装小程序模块](/docs/MiniPrograms/README.md#installation)
+* 安装公众号模块
+* 安装企业微信模块
+* 安装第三方平台模块
 
 ## Usage
 

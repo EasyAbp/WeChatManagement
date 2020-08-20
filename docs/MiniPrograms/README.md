@@ -2,42 +2,37 @@
 
 [![小程序模块](https://img.shields.io/nuget/v/EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared)
 [![下载量](https://img.shields.io/nuget/dt/EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared)
+[![GitHub stars](https://img.shields.io/github/stars/EasyAbp/WeChatManagement?style=social)](https://www.github.com/EasyAbp/WeChatManagement)
 
 Abp 小程序管理模块，提供小程序登录、用户个人信息记录、小程序微信服务器等功能，自动适应微信开放平台规则，与微信第三方平台模块轻松衔接。
 
-## Getting Started
+## Online Demo
 
-* Install with [AbpHelper](https://github.com/EasyAbp/AbpHelper.GUI)
+We have launched an online demo for this module: [https://pm.samples.easyabp.io](https://pm.samples.easyabp.io)
 
-    Coming soon.
+## Installation
 
-* Install Manually
+1. Install the following NuGet packages. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/How-To.md#add-nuget-packages))
 
-    1. Install `EasyAbp.WeChatManagement.MiniPrograms.Application` NuGet package to `MyProject.Application` project and add `[DependsOn(WeChatManagementMiniProgramsApplicationModule)]` attribute to the module.
+    * EasyAbp.WeChatManagement.MiniPrograms.Application
+    * EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts
+    * EasyAbp.WeChatManagement.MiniPrograms.Domain
+    * EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared
+    * EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
+    * EasyAbp.WeChatManagement.MiniPrograms.HttpApi
+    * EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client
+    * (Optional) EasyAbp.WeChatManagement.MiniPrograms.MongoDB
+    * (Optional) EasyAbp.WeChatManagement.MiniPrograms.Web
 
-    1. Install `EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts` NuGet package to `MyProject.Application.Contracts` project and add `[DependsOn(WeChatManagementMiniProgramsApplicationContractsModule)]` attribute to the module.
+1. Add `DependsOn(typeof(WeChatManagementMiniProgramsXxxModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/How-To.md#add-module-dependencies))
 
-    1. Install `EasyAbp.WeChatManagement.MiniPrograms.Domain` NuGet package to `MyProject.Domain` project and add `[DependsOn(WeChatManagementMiniProgramsDomainModule)]` attribute to the module.
+1. Add `builder.ConfigureWeChatManagementMiniPrograms();` to the `OnModelCreating()` method in **MyProjectMigrationsDbContext.cs**.
 
-    1. Install `EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared` NuGet package to `MyProject.Domain.Shared` project and add `[DependsOn(WeChatManagementMiniProgramsDomainSharedModule)]` attribute to the module.
+1. Add EF Core migrations and update your database. See: [ABP document](https://docs.abp.io/en/abp/latest/Tutorials/Part-1?UI=MVC#add-new-migration-update-the-database).
 
-    1. Install `EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore` NuGet package to `MyProject.EntityFrameworkCore` project and add `[DependsOn(WeChatManagementMiniProgramsEntityFrameworkCoreModule)]` attribute to the module.
+1. 在 Web / HttpApi.Host 启动项目的 appsettings.json 的 AuthServer 中增加 `ClientId` 和 `ClientSecret` 配置（可使用文件中 IdentityServer 中的配置）。
 
-    1. Install `EasyAbp.WeChatManagement.MiniPrograms.HttpApi` NuGet package to `MyProject.HttpApi` project and add `[DependsOn(WeChatManagementMiniProgramsHttpApiModule)]` attribute to the module.
-
-    1. Install `EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client` NuGet package to `MyProject.HttpApi.Client` project and add `[DependsOn(WeChatManagementMiniProgramsHttpApiClientModule)]` attribute to the module.
-
-    1. Install `EasyAbp.WeChatManagement.MiniPrograms.MongoDB` NuGet package to `MyProject.MongoDB` project and add `[DependsOn(WeChatManagementMiniProgramsMongoDbModule)]` attribute to the module.
-
-    1. (Optional) If you need MVC UI, install `EasyAbp.WeChatManagement.MiniPrograms.Web` NuGet package to `MyProject.Web` project and add `[DependsOn(WeChatManagementMiniProgramsWebModule)]` attribute to the module.
-    
-    1. Add `builder.ConfigureWeChatManagementMiniPrograms();` to OnModelCreating method in `MyProjectMigrationsDbContext.cs`.
-
-    1. Add EF Core migrations and update your database. See: [ABP document](https://docs.abp.io/en/abp/latest/Tutorials/Part-1?UI=MVC#add-new-migration-update-the-database).
-    
-    1. 在 Web / HttpApi.Host 启动项目的 appsettings.json 的 AuthServer 中增加 `ClientId` 和 `ClientSecret` 配置（可使用文件中 IdentityServer 中的配置）。
-    
-    1. 在 IdentityServerClientGrantTypes 表中给上一步使用的 Client 增加一条 `WeChatMiniProgram_credentials` 的 GrantType.
+1. 在 IdentityServerClientGrantTypes 表中给上一步使用的 Client 增加一条 `WeChatMiniProgram_credentials` 的 GrantType.
 
 ## Usage
 
