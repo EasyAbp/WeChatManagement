@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\WeChatManagementSample.EntityFrameworkCore.DbMigrations\WeChatManagementSample.EntityFrameworkCore.DbMigrations.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.TestBase\WeChatManagementSample.TestBase.csproj" />
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="3.0.4" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>

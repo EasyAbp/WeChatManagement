@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.4" />
     <ProjectReference Include="..\..\src\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.TestBase\EasyAbp.WeChatManagement.MiniPrograms.TestBase.csproj" />
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="3.0.4" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="3.1.2" />
   </ItemGroup>
 
 </Project>

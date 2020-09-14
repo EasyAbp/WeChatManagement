@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Autofac" Version="3.0.4" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="3.1.2" />
     <ProjectReference Include="..\WeChatManagementSample.Application.Contracts\WeChatManagementSample.Application.Contracts.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.EntityFrameworkCore.DbMigrations\WeChatManagementSample.EntityFrameworkCore.DbMigrations.csproj" />
   </ItemGroup>
