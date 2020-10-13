@@ -8,7 +8,7 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
 
 ## Online Demo
 
-We have launched an online demo for this module: [https://pm.samples.easyabp.io](https://pm.samples.easyabp.io)
+We have launched an online demo for this module: [https://wechat.samples.easyabp.io](https://wechat.samples.easyabp.io)
 
 ## Installation
 
