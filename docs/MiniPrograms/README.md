@@ -48,9 +48,9 @@ We have launched an online demo for this module: [https://pm.samples.easyabp.io]
 
 2. 重写登录页，在页面中插入 [WeChatMiniProgramPcLoginWidget](https://github.com/EasyAbp/WeChatManagement/blob/master/modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Web/Pages/WeChatManagement/MiniPrograms/Components/WeChatMiniProgramPcLoginWidget/WeChatMiniProgramPcLoginWidgetViewComponent.cs)，重写方法参考 [官方文档](https://docs.abp.io/en/abp/latest/How-To/Customize-Login-Page-MVC) 和 [本模块示例](https://github.com/EasyAbp/WeChatManagement/blob/master/samples/WeChatManagementSample/aspnet-core/src/WeChatManagementSample.Web/Pages/Account)。
 
-3. 微信扫码后（默认配置下，会打开小程序首页），确保小程序本身已完成用户登录，小程序将获得的 [scene](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html) 作为 token 参数传入 `/api/weChatManagement/miniPrograms/login/authorizePc` 接口。
+3. 微信扫码后（默认配置下，会打开小程序首页），确保小程序本身已完成用户登录，小程序需要将扫码获得的 [scene](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/qr-code/wxacode.getUnlimited.html) 作为 token 参数传入 `/api/weChatManagement/miniPrograms/login/authorizePc` 接口。
 
-4. 此时，Razor 登录页将自动完成登录并跳转。
+4. 完成上一步后，Razor 登录页将自动完成登录并跳转。
 
 ![MiniProgram](/docs/MiniPrograms/images/MiniProgram.png)
 ![MiniProgramUser](/docs/MiniPrograms/images/MiniProgramUser.png)
