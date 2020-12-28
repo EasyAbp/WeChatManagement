@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Identity;
 
@@ -17,20 +19,25 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 
         private readonly IMiniProgramLoginProviderProvider _miniProgramLoginProviderProvider;
         private readonly IMiniProgramRepository _miniProgramRepository;
+        private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
 
         public WeChatMiniProgramGrantValidator(
             IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
             IMiniProgramRepository miniProgramRepository,
+            IOptions<IdentityOptions> identityOptions,
             IdentityUserManager identityUserManager)
         {
             _miniProgramLoginProviderProvider = miniProgramLoginProviderProvider;
             _miniProgramRepository = miniProgramRepository;
+            _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
         }
         
         public virtual async Task ValidateAsync(ExtensionGrantValidationContext context)
         {
+            await _identityOptions.SetAsync();
+
             var appId = context.Request.Raw.Get("appid");
             var openId = context.Request.Raw.Get("openid");
             var unionId = context.Request.Raw.Get("unionid");

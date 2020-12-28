@@ -6,7 +6,7 @@ using Volo.Abp;
 namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
 {
     [RemoteService(Name = "EasyAbpWeChatManagementMiniPrograms")]
-    [Route("/api/weChatManagement/miniPrograms/profile")]
+    [Route("/api/wechat-management/mini-programs/profile")]
     public class ProfileController : MiniProgramsController, IProfileAppService
     {
         private readonly IProfileAppService _service;
@@ -22,7 +22,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("bindPhoneNumber")]
+        [Route("bind-phone-number")]
         public Task BindPhoneNumberAsync(BindPhoneNumberInput input)
         {
             return _service.BindPhoneNumberAsync(input);

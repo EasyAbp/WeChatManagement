@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Identity;
@@ -46,6 +47,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         private readonly IMiniProgramLoginProviderProvider _miniProgramLoginProviderProvider;
         private readonly IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> _pcLoginAuthorizationCache;
         private readonly IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> _pcLoginUserLimitCache;
+        private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
         private readonly IMiniProgramRepository _miniProgramRepository;
 
@@ -65,6 +67,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
             IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
             IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
+            IOptions<IdentityOptions> identityOptions,
             IdentityUserManager identityUserManager,
             IMiniProgramRepository miniProgramRepository)
         {
@@ -83,12 +86,15 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             _miniProgramLoginProviderProvider = miniProgramLoginProviderProvider;
             _pcLoginAuthorizationCache = pcLoginAuthorizationCache;
             _pcLoginUserLimitCache = pcLoginUserLimitCache;
+            _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
             _miniProgramRepository = miniProgramRepository;
         }
         
         public virtual async Task<string> LoginAsync(LoginInput input)
         {
+            await _identityOptions.SetAsync();
+
             var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
             
             var code2SessionResponse =
@@ -295,6 +301,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         public virtual async Task<PcLoginOutput> PcLoginAsync(PcLoginInput input)
         {
+            await _identityOptions.SetAsync();
+
             var cacheItem = await _pcLoginAuthorizationCache.GetAsync(input.Token);
 
             if (cacheItem == null)

@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
 {
     [RemoteService(Name = "EasyAbpWeChatManagementMiniPrograms")]
-    [Route("/api/weChatManagement/miniPrograms/userInfo")]
+    [Route("/api/wechat-management/mini-programs/user-info")]
     public class UserInfoController : MiniProgramsController, IUserInfoAppService
     {
         private readonly IUserInfoAppService _service;

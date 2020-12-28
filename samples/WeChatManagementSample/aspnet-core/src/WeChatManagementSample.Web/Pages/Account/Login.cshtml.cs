@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.Settings;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Account.Web;
@@ -23,7 +24,9 @@ namespace WeChatManagementSample.Web.Pages.Account
 
         public CustomLoginModel(
             IAuthenticationSchemeProvider schemeProvider,
-            IOptions<AbpAccountOptions> accountOptions) : base(schemeProvider, accountOptions)
+            IOptions<AbpAccountOptions> accountOptions,
+            IOptions<IdentityOptions> identityOptions)
+            : base(schemeProvider, accountOptions, identityOptions)
         {
         }
 

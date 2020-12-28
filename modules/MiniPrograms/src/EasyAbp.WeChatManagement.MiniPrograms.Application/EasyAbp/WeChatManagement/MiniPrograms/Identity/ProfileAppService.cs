@@ -6,6 +6,7 @@ using EasyAbp.WeChatManagement.MiniPrograms.Identity.Dtos;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Volo.Abp;
 using Volo.Abp.Identity;
 using Volo.Abp.Json;
@@ -17,17 +18,20 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
     public class ProfileAppService : MiniProgramsAppService, IProfileAppService
     {
         private readonly LoginService _loginService;
+        private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
         private readonly IJsonSerializer _jsonSerializer;
         private readonly IMiniProgramRepository _miniProgramRepository;
 
         public ProfileAppService(
             LoginService loginService,
+            IOptions<IdentityOptions> identityOptions,
             IdentityUserManager identityUserManager,
             IJsonSerializer jsonSerializer,
             IMiniProgramRepository miniProgramRepository)
         {
             _loginService = loginService;
+            _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
             _jsonSerializer = jsonSerializer;
             _miniProgramRepository = miniProgramRepository;
@@ -42,6 +46,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
         /// <exception cref="AbpIdentityResultException"></exception>
         public async Task BindPhoneNumberAsync(BindPhoneNumberInput input)
         {
+            await _identityOptions.SetAsync();
+            
             var user = await _identityUserManager.GetByIdAsync(CurrentUser.GetId());
             
             var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);

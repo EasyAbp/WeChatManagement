@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
 using Volo.Abp.Identity;
@@ -16,20 +17,25 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
     {
         private readonly ICurrentTenant _currentTenant;
         private readonly IGuidGenerator _guidGenerator;
+        private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
 
         public DefaultMiniProgramLoginNewUserCreator(
             ICurrentTenant currentTenant,
             IGuidGenerator guidGenerator,
+            IOptions<IdentityOptions> identityOptions,
             IdentityUserManager identityUserManager)
         {
             _currentTenant = currentTenant;
             _guidGenerator = guidGenerator;
+            _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
         }
         
         public virtual async Task<IdentityUser> CreateAsync(UserInfoModel userInfoModel, string loginProvider, string providerKey)
         {
+            await _identityOptions.SetAsync();
+
             var identityUser = new IdentityUser(_guidGenerator.Create(), await GenerateUserNameAsync(userInfoModel),
                 await GenerateEmailAsync(userInfoModel), _currentTenant.Id);
             

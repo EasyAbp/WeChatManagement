@@ -6,7 +6,7 @@ using Volo.Abp;
 namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
     [RemoteService(Name = "EasyAbpWeChatManagementMiniPrograms")]
-    [Route("/api/weChatManagement/miniPrograms/login")]
+    [Route("/api/wechat-management/mini-programs/login")]
     public class LoginController : MiniProgramsController, ILoginAppService
     {
         private readonly ILoginAppService _service;
@@ -31,21 +31,21 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         }
         
         [HttpGet]
-        [Route("pcLoginACode")]
+        [Route("pc-login-acode")]
         public Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName)
         {
             return _service.GetPcLoginACodeAsync(miniProgramName);
         }
 
         [HttpPost]
-        [Route("authorizePc")]
+        [Route("authorize-pc")]
         public Task AuthorizePcAsync(AuthorizePcInput input)
         {
             return _service.AuthorizePcAsync(input);
         }
 
         [HttpPost]
-        [Route("pcLogin")]
+        [Route("pc-login")]
         public Task<PcLoginOutput> PcLoginAsync(PcLoginInput input)
         {
             return _service.PcLoginAsync(input);
