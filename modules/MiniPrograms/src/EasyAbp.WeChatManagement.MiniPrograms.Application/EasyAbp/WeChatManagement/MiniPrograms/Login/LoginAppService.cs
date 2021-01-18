@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Volo.Abp;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Identity;
@@ -50,7 +51,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
         private readonly IMiniProgramRepository _miniProgramRepository;
-
+        
         public LoginAppService(
             LoginService loginService,
             ACodeService aCodeService,
@@ -90,7 +91,82 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             _identityUserManager = identityUserManager;
             _miniProgramRepository = miniProgramRepository;
         }
-        
+
+        public virtual async Task<string> BindAsync(LoginInput input)
+        {
+
+            await _identityOptions.SetAsync();
+
+            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+
+            var code2SessionResponse =
+                await _loginService.Code2SessionAsync(miniProgram.AppId, miniProgram.AppSecret, input.Code);
+
+            _signatureChecker.Check(input.RawData, code2SessionResponse.SessionKey, input.Signature);
+
+            var openId = code2SessionResponse.OpenId;
+            var unionId = code2SessionResponse.UnionId;
+
+            if (input.LookupUseRecentlyTenant)
+            {
+                Guid? tenantId;
+
+                using (_dataFilter.Disable<IMultiTenant>())
+                {
+                    tenantId = await _miniProgramUserRepository.FindRecentlyTenantIdAsync(miniProgram.Id, openId);
+                }
+
+                using var tenantChange = CurrentTenant.Change(tenantId);
+            }
+
+            string loginProvider;
+            string providerKey;
+
+            // 如果 auth.code2Session 没有返回用户的 UnionId
+            if (unionId.IsNullOrWhiteSpace())
+            {
+                if (!input.EncryptedData.IsNullOrWhiteSpace() && !input.Iv.IsNullOrWhiteSpace())
+                {
+                    // 方法1：通过 EncryptedData 和 Iv 解密获得用户的 UnionId
+                    var decryptedData =
+                        _jsonSerializer.Deserialize<Dictionary<string, object>>(
+                            AesHelper.AesDecrypt(input.EncryptedData, input.Iv, code2SessionResponse.SessionKey));
+
+                    unionId = decryptedData.GetOrDefault("unionId") as string;
+                }
+                else
+                {
+                    // 方法2：尝试通过 OpenId 在 MiniProgramUser 实体中查找用户的 UnionId
+                    // Todo: should use IMiniProgramUserStore
+                    unionId = await _miniProgramUserRepository.FindUnionIdByOpenIdAsync(miniProgram.Id, openId);
+                }
+            }
+
+            if (unionId.IsNullOrWhiteSpace())
+            {
+                loginProvider = await _miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
+                providerKey = openId;
+            }
+            else
+            {
+                loginProvider = await _miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
+                providerKey = unionId;
+            }
+
+            var identityUser = await _identityUserManager.FindByLoginAsync(loginProvider, providerKey) ??
+                               await _identityUserManager.FindByIdAsync(CurrentUser.Id.ToString());
+
+            if (identityUser is null)
+            {
+                throw new BusinessException(message: "无法绑定或更新用户信息");
+            }
+
+            await UpdateMiniProgramUserAsync(identityUser, miniProgram, unionId, openId, code2SessionResponse.SessionKey);
+            await UpdateUserInfoAsync(identityUser, input.UserInfo);
+
+            return (await RequestIds4LoginAsync(input.AppId, unionId, openId))?.Raw;
+        }
+
         public virtual async Task<string> LoginAsync(LoginInput input)
         {
             await _identityOptions.SetAsync();
