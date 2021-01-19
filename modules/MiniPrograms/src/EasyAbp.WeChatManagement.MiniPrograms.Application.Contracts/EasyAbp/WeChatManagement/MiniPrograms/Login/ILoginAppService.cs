@@ -16,6 +16,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         
         Task<PcLoginOutput> PcLoginAsync(PcLoginInput input);
 
-        Task<string> BindAsync(LoginInput input);
+        Task BindAsync(LoginInput input);
     }
 }

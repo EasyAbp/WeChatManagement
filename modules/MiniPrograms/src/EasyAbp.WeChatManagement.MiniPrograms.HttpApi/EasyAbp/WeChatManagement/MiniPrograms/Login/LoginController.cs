@@ -53,7 +53,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         [HttpPost]
         [Route("bind")]
-        public Task<string> BindAsync(LoginInput input)
+        public Task BindAsync(LoginInput input)
         {
             return _service.BindAsync(input);
         }
