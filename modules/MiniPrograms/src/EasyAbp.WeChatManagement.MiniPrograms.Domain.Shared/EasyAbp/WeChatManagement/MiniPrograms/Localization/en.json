@@ -45,6 +45,7 @@
     "UserInfoProvince": "UserInfoProvince",
     "UserInfoCountry": "UserInfoCountry",
     "UserInfoAvatarUrl": "UserInfoAvatarUrl",
-    "Setting:DefaultPcLoginMiniProgramName": "Setting:DefaultPcLoginMiniProgramName"
+    "Setting:DefaultPcLoginMiniProgramName": "Setting:DefaultPcLoginMiniProgramName",
+    "WechatAccountHasBeenBound": "WechatAccountHasBeenBound"
   }
 }

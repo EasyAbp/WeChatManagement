@@ -44,6 +44,7 @@
     "UserInfoCity": "城市",
     "UserInfoProvince": "省份",
     "UserInfoCountry": "国家",
-    "UserInfoAvatarUrl": "头像图片"
+    "UserInfoAvatarUrl": "头像图片",
+    "WechatAccountHasBeenBound": "您的微信已被其他用户绑定"
   }
 }

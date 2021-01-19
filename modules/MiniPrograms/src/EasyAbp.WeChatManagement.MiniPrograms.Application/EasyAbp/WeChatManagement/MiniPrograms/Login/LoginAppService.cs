@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Volo.Abp;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Identity;
@@ -32,6 +33,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
     public class LoginAppService : MiniProgramsAppService, ILoginAppService
     {
+        protected virtual string BindPolicyName { get; set; }
+
         private readonly LoginService _loginService;
         private readonly ACodeService _aCodeService;
         private readonly SignatureChecker _signatureChecker;
@@ -50,7 +53,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
         private readonly IMiniProgramRepository _miniProgramRepository;
-
+        
         public LoginAppService(
             LoginService loginService,
             ACodeService aCodeService,
@@ -90,13 +93,65 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             _identityUserManager = identityUserManager;
             _miniProgramRepository = miniProgramRepository;
         }
-        
-        public virtual async Task<string> LoginAsync(LoginInput input)
+
+        [Authorize]
+        public virtual async Task BindAsync(LoginInput input)
         {
+            await CheckBindPolicyAsync();
+            
+            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+
+            var loginResult = await GetLoginResultAsync(miniProgram, input);
+
             await _identityOptions.SetAsync();
 
-            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+            if (await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) != null)
+            {
+                throw new WechatAccountHasBeenBoundException();
+            }
             
+            var identityUser = await _identityUserManager.GetByIdAsync(CurrentUser.GetId());
+
+            (await _identityUserManager.AddLoginAsync(identityUser,
+                new UserLoginInfo(loginResult.LoginProvider, loginResult.ProviderKey,
+                    WeChatManagementCommonConsts.WeChatUserLoginInfoDisplayName))).CheckErrors();
+
+            await UpdateMiniProgramUserAsync(identityUser, miniProgram, loginResult.Code2SessionResponse.UnionId,
+                loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
+            
+            await UpdateUserInfoAsync(identityUser, input.UserInfo);
+        }
+
+        public virtual async Task<string> LoginAsync(LoginInput input)
+        {
+            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+
+            var loginResult = await GetLoginResultAsync(miniProgram, input);
+
+            await _identityOptions.SetAsync();
+
+            var identityUser =
+                await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) ??
+                await _miniProgramLoginNewUserCreator.CreateAsync(input.UserInfo, loginResult.LoginProvider,
+                    loginResult.ProviderKey);
+
+            await UpdateMiniProgramUserAsync(identityUser, miniProgram, loginResult.Code2SessionResponse.UnionId,
+                loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
+            
+            await UpdateUserInfoAsync(identityUser, input.UserInfo);
+
+            return (await RequestIds4LoginAsync(input.AppId, loginResult.Code2SessionResponse.UnionId,
+                loginResult.Code2SessionResponse.OpenId))?.Raw;
+        }
+        
+        protected virtual async Task CheckBindPolicyAsync()
+        {
+            await CheckPolicyAsync(BindPolicyName);
+        }
+
+        protected virtual async Task<LoginResultInfoModel> GetLoginResultAsync(MiniProgram miniProgram,
+            LoginInput input)
+        {
             var code2SessionResponse =
                 await _loginService.Code2SessionAsync(miniProgram.AppId, miniProgram.AppSecret, input.Code);
 
@@ -104,11 +159,11 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
             var openId = code2SessionResponse.OpenId;
             var unionId = code2SessionResponse.UnionId;
-            
+
             if (input.LookupUseRecentlyTenant)
             {
                 Guid? tenantId;
-                
+
                 using (_dataFilter.Disable<IMultiTenant>())
                 {
                     tenantId = await _miniProgramUserRepository.FindRecentlyTenantIdAsync(miniProgram.Id, openId);
@@ -116,9 +171,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
                 using var tenantChange = CurrentTenant.Change(tenantId);
             }
-
-            string loginProvider;
-            string providerKey;
 
             // 如果 auth.code2Session 没有返回用户的 UnionId
             if (unionId.IsNullOrWhiteSpace())
@@ -140,6 +192,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 }
             }
 
+            string loginProvider;
+            string providerKey;
+            
             if (unionId.IsNullOrWhiteSpace())
             {
                 loginProvider = await _miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
@@ -150,14 +205,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 loginProvider = await _miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
                 providerKey = unionId;
             }
-
-            var identityUser = await _identityUserManager.FindByLoginAsync(loginProvider, providerKey) ??
-                               await _miniProgramLoginNewUserCreator.CreateAsync(input.UserInfo, loginProvider, providerKey);
-            
-            await UpdateMiniProgramUserAsync(identityUser, miniProgram, unionId, openId, code2SessionResponse.SessionKey);
-            await UpdateUserInfoAsync(identityUser, input.UserInfo);
-            
-            return (await RequestIds4LoginAsync(input.AppId, unionId, openId))?.Raw;
+            return new LoginResultInfoModel
+            {
+                LoginProvider = loginProvider,
+                ProviderKey = providerKey,
+                Code2SessionResponse = code2SessionResponse
+            };
         }
 
         public virtual async Task<string> RefreshAsync(RefreshInput input)

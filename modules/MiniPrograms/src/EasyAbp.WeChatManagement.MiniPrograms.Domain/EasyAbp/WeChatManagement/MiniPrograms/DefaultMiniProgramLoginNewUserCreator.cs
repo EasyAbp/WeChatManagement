@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Identity;
@@ -39,24 +40,17 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             var identityUser = new IdentityUser(_guidGenerator.Create(), await GenerateUserNameAsync(userInfoModel),
                 await GenerateEmailAsync(userInfoModel), _currentTenant.Id);
             
-            CheckIdentityResult(await _identityUserManager.CreateAsync(identityUser));
+            (await _identityUserManager.CreateAsync(identityUser)).CheckErrors();
 
-            CheckIdentityResult(await _identityUserManager.AddDefaultRolesAsync(identityUser));
+            (await _identityUserManager.AddDefaultRolesAsync(identityUser)).CheckErrors();
 
-            CheckIdentityResult(await _identityUserManager.AddLoginAsync(identityUser,
-                new UserLoginInfo(loginProvider, providerKey, "微信用户")));
+            (await _identityUserManager.AddLoginAsync(identityUser,
+                new UserLoginInfo(loginProvider, providerKey,
+                    WeChatManagementCommonConsts.WeChatUserLoginInfoDisplayName))).CheckErrors();
             
             return identityUser;
         }
 
-        protected virtual void CheckIdentityResult(IdentityResult result)
-        {
-            if (!result.Succeeded)
-            {
-                throw new AbpIdentityResultException(result);
-            }
-        }
-        
         protected virtual Task<string> GenerateUserNameAsync(UserInfoModel userInfoModel)
         {
             return Task.FromResult("WeChat_" + Guid.NewGuid());

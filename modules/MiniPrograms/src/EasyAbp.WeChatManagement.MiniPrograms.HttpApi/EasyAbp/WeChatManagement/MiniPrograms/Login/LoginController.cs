@@ -50,5 +50,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         {
             return _service.PcLoginAsync(input);
         }
+
+        [HttpPost]
+        [Route("bind")]
+        public Task BindAsync(LoginInput input)
+        {
+            return _service.BindAsync(input);
+        }
     }
 }
