@@ -8,6 +8,10 @@
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\GitProjects\WeChatManagement\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Validation" Version="$(AbpVersion)" />
   </ItemGroup>
