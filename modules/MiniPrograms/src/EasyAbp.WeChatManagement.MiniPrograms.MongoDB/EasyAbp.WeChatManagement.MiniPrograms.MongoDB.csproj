@@ -7,10 +7,6 @@
     <RootNamespace />
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\GitProjects\WeChatManagement\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.MongoDB\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Volo.Abp.MongoDB" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Domain\EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj" />

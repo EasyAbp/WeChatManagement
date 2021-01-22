@@ -7,19 +7,9 @@
     <RootNamespace />
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\GitProjects\WeChatManagement\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="EasyAbp.WeChatManagement.MiniPrograms.HttpApi.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

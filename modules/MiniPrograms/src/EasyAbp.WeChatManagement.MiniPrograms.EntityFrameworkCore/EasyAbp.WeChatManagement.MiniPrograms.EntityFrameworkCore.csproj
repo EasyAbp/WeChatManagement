@@ -7,10 +7,6 @@
     <RootNamespace />
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\GitProjects\WeChatManagement\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="$(AbpVersion)" />

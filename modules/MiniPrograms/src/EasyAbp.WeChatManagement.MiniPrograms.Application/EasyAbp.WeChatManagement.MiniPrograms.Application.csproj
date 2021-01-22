@@ -7,10 +7,6 @@
     <RootNamespace />
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\GitProjects\WeChatManagement\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application\EasyAbp.WeChatManagement.MiniPrograms.Application.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="EasyAbp.Abp.WeChat.MiniProgram" Version="1.7.0" />
     <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
