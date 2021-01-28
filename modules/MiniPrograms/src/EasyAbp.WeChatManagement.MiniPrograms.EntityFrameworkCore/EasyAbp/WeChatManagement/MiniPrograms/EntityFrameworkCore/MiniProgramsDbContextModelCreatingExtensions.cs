@@ -50,7 +50,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
                 b.ConfigureByConvention(); 
 
                 /* Configure more properties here */
-                b.HasIndex(x => x.Name).IsUnique();
+                b.HasIndex(x => new {x.Name, x.TenantId}).IsUnique();
             });
 
 
