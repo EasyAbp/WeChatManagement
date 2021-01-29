@@ -140,7 +140,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
 
-            return (await RequestIds4LoginAsync(input.AppId, loginResult.Code2SessionResponse.UnionId,
+            return (await RequestIds4LoginAsync(input.AppId, loginResult.UnionId,
                 loginResult.Code2SessionResponse.OpenId))?.Raw;
         }
         
