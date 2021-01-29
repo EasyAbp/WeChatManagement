@@ -170,7 +170,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 using (_dataFilter.Disable<IMultiTenant>())
                 {
-                    tenantId = await _miniProgramUserRepository.FindRecentlyTenantIdAsync(miniProgram.Id, openId);
+                    tenantId = await _miniProgramUserRepository.FindRecentlyTenantIdAsync(miniProgram.Id, openId, true);
                 }
             }
 
