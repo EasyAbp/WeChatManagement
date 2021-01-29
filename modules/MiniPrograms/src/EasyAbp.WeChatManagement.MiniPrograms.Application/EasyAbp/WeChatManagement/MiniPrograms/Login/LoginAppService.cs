@@ -294,7 +294,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         {
             var client = _httpClientFactory.CreateClient(WeChatMiniProgramConsts.IdentityServerHttpClientName);
 
-            return await client.RequestTokenAsync(new TokenRequest
+            var request = new TokenRequest
             {
                 Address = _configuration["AuthServer:Authority"] + "/connect/token",
                 GrantType = WeChatMiniProgramConsts.GrantType,
@@ -308,22 +308,35 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                     {"unionid", unionId},
                     {"openid", openId},
                 }
-            });
+            };
+            
+            request.Headers.Add(GetTenantHeaderName(), CurrentTenant.Id?.ToString());
+            
+            return await client.RequestTokenAsync(request);
         }
 
         protected virtual async Task<TokenResponse> RequestIds4RefreshAsync(string refreshToken)
         {
             var client = _httpClientFactory.CreateClient(WeChatMiniProgramConsts.IdentityServerHttpClientName);
 
-            return await client.RequestRefreshTokenAsync(new RefreshTokenRequest
+            var request = new RefreshTokenRequest
             {
                 Address = _configuration["AuthServer:Authority"] + "/connect/token",
 
                 ClientId = _configuration["AuthServer:ClientId"],
                 ClientSecret = _configuration["AuthServer:ClientSecret"],
-                
+
                 RefreshToken = refreshToken
-            });
+            };
+            
+            request.Headers.Add(GetTenantHeaderName(), CurrentTenant.Id?.ToString());
+
+            return await client.RequestRefreshTokenAsync(request);
+        }
+        
+        protected virtual string GetTenantHeaderName()
+        {
+            return "__tenant";
         }
 
         public virtual async Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName)

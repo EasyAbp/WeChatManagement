@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Identity;
+using Volo.Abp.Security.Claims;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
@@ -85,6 +86,11 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 // 记录 appid
                 new Claim("appid", appId)
             };
+            
+            if (identityUser.TenantId.HasValue)
+            {
+                claims.Add(new Claim(AbpClaimTypes.TenantId, identityUser.TenantId?.ToString()));
+            }
 
             claims.AddRange(identityUser.Claims.Select(item => new Claim(item.ClaimType, item.ClaimValue)));
 
