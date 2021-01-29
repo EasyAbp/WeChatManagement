@@ -18,7 +18,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         [HttpPost]
         [Route("login")]
-        public Task<string> LoginAsync(LoginInput input)
+        public Task<LoginOutput> LoginAsync(LoginInput input)
         {
             return _service.LoginAsync(input);
         }

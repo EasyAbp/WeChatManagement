@@ -124,7 +124,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
         }
 
-        public virtual async Task<string> LoginAsync(LoginInput input)
+        public virtual async Task<LoginOutput> LoginAsync(LoginInput input)
         {
             var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
 
@@ -144,8 +144,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
 
-            return (await RequestIds4LoginAsync(input.AppId, loginResult.UnionId,
-                loginResult.Code2SessionResponse.OpenId))?.Raw;
+            return new LoginOutput
+            {
+                TenantId = loginResult.TenantId,
+                RawData = (await RequestIds4LoginAsync(input.AppId, loginResult.UnionId,
+                    loginResult.Code2SessionResponse.OpenId))?.Raw
+            };
         }
         
         protected virtual async Task CheckBindPolicyAsync()

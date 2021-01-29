@@ -6,7 +6,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
     public interface ILoginAppService : IApplicationService
     {
-        Task<string> LoginAsync(LoginInput input);
+        Task<LoginOutput> LoginAsync(LoginInput input);
         
         Task<string> RefreshAsync(RefreshInput input);
         
