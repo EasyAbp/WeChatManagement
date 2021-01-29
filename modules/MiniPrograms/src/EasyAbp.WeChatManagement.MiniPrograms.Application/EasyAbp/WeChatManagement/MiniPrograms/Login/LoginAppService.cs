@@ -135,7 +135,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 await _miniProgramLoginNewUserCreator.CreateAsync(input.UserInfo, loginResult.LoginProvider,
                     loginResult.ProviderKey);
 
-            await UpdateMiniProgramUserAsync(identityUser, miniProgram, loginResult.Code2SessionResponse.UnionId,
+            await UpdateMiniProgramUserAsync(identityUser, miniProgram, loginResult.UnionId,
                 loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
             
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
