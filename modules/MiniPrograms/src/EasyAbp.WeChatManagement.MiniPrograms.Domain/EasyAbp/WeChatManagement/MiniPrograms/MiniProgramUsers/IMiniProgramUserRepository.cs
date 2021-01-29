@@ -9,6 +9,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
     {
         Task<string> FindUnionIdByOpenIdAsync(Guid miniProgramId, string openId, CancellationToken cancellationToken = default);
         
-        Task<Guid?> FindRecentlyTenantIdAsync(Guid miniProgramId, string openId, bool exceptHost, CancellationToken cancellationToken = default);
+        Task<Guid?> FindRecentlyTenantIdAsync(string appId, string openId, bool exceptHost, CancellationToken cancellationToken = default);
     }
 }

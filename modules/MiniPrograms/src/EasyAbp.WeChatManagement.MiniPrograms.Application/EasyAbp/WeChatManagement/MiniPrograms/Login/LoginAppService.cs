@@ -99,11 +99,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         {
             await CheckBindPolicyAsync();
             
-            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+            var loginResult = await GetLoginResultAsync(input);
 
-            var loginResult = await GetLoginResultAsync(miniProgram, input);
-
-            using var tenantChange = CurrentTenant.Change(loginResult.TenantId);
+            using var tenantChange = CurrentTenant.Change(loginResult.MiniProgram.TenantId);
 
             await _identityOptions.SetAsync();
 
@@ -118,7 +116,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 new UserLoginInfo(loginResult.LoginProvider, loginResult.ProviderKey,
                     WeChatManagementCommonConsts.WeChatUserLoginInfoDisplayName))).CheckErrors();
 
-            await UpdateMiniProgramUserAsync(identityUser, miniProgram, loginResult.UnionId,
+            await UpdateMiniProgramUserAsync(identityUser, loginResult.MiniProgram, loginResult.UnionId,
                 loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
             
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
@@ -126,11 +124,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         public virtual async Task<LoginOutput> LoginAsync(LoginInput input)
         {
-            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+            var loginResult = await GetLoginResultAsync(input);
 
-            var loginResult = await GetLoginResultAsync(miniProgram, input);
-
-            using var tenantChange = CurrentTenant.Change(loginResult.TenantId);
+            using var tenantChange = CurrentTenant.Change(loginResult.MiniProgram.TenantId);
 
             await _identityOptions.SetAsync();
 
@@ -139,14 +135,14 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 await _miniProgramLoginNewUserCreator.CreateAsync(input.UserInfo, loginResult.LoginProvider,
                     loginResult.ProviderKey);
 
-            await UpdateMiniProgramUserAsync(identityUser, miniProgram, loginResult.UnionId,
+            await UpdateMiniProgramUserAsync(identityUser, loginResult.MiniProgram, loginResult.UnionId,
                 loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
             
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
 
             return new LoginOutput
             {
-                TenantId = loginResult.TenantId,
+                TenantId = loginResult.MiniProgram.TenantId,
                 RawData = (await RequestIds4LoginAsync(input.AppId, loginResult.UnionId,
                     loginResult.Code2SessionResponse.OpenId))?.Raw
             };
@@ -157,9 +153,25 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             await CheckPolicyAsync(BindPolicyName);
         }
 
-        protected virtual async Task<LoginResultInfoModel> GetLoginResultAsync(MiniProgram miniProgram,
-            LoginInput input)
+        protected virtual async Task<LoginResultInfoModel> GetLoginResultAsync(LoginInput input)
         {
+            var tenantId = CurrentTenant.Id;
+            var tenantChanged = false;
+            
+            MiniProgram miniProgram;
+            
+            if (input.LookupUseRecentlyTenant)
+            {
+                using (_dataFilter.Disable<IMultiTenant>())
+                {
+                    miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+                }
+            }
+            else
+            {
+                miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+            }
+            
             var code2SessionResponse =
                 await _loginService.Code2SessionAsync(miniProgram.AppId, miniProgram.AppSecret, input.Code);
 
@@ -168,17 +180,25 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             var openId = code2SessionResponse.OpenId;
             var unionId = code2SessionResponse.UnionId;
 
-            var tenantId = CurrentTenant.Id;
-            
             if (input.LookupUseRecentlyTenant)
             {
                 using (_dataFilter.Disable<IMultiTenant>())
                 {
-                    tenantId = await _miniProgramUserRepository.FindRecentlyTenantIdAsync(miniProgram.Id, openId, true);
+                    tenantId = await _miniProgramUserRepository.FindRecentlyTenantIdAsync(input.AppId, openId, true);
+                }
+
+                if (tenantId != CurrentTenant.Id)
+                {
+                    tenantChanged = true;
                 }
             }
-
+            
             using var tenantChange = CurrentTenant.Change(tenantId);
+            
+            if (tenantChanged)
+            {
+                miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+            }
 
             // 如果 auth.code2Session 没有返回用户的 UnionId
             if (unionId.IsNullOrWhiteSpace())
@@ -215,7 +235,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             }
             return new LoginResultInfoModel
             {
-                TenantId = tenantId,
+                MiniProgram = miniProgram,
                 LoginProvider = loginProvider,
                 ProviderKey = providerKey,
                 UnionId = unionId,
