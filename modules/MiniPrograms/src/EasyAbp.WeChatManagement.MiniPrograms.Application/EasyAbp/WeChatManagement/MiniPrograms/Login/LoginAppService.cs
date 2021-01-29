@@ -116,7 +116,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 new UserLoginInfo(loginResult.LoginProvider, loginResult.ProviderKey,
                     WeChatManagementCommonConsts.WeChatUserLoginInfoDisplayName))).CheckErrors();
 
-            await UpdateMiniProgramUserAsync(identityUser, miniProgram, loginResult.Code2SessionResponse.UnionId,
+            await UpdateMiniProgramUserAsync(identityUser, miniProgram, loginResult.UnionId,
                 loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
             
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
@@ -209,6 +209,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 LoginProvider = loginProvider,
                 ProviderKey = providerKey,
+                UnionId = unionId,
                 Code2SessionResponse = code2SessionResponse
             };
         }
