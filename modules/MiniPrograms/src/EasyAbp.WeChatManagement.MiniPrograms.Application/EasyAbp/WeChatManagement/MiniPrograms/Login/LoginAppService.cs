@@ -23,6 +23,7 @@ using Microsoft.Extensions.Options;
 using Volo.Abp;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
+using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
 using Volo.Abp.Json;
 using Volo.Abp.MultiTenancy;
@@ -164,7 +165,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 using (_dataFilter.Disable<IMultiTenant>())
                 {
-                    miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+                    miniProgram = await _miniProgramRepository.FirstOrDefaultAsync(x => x.AppId == input.AppId);
                 }
             }
             else
