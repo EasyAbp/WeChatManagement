@@ -27,6 +27,7 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
 using Volo.Abp.Json;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.Uow;
 using Volo.Abp.Users;
 using IdentityUser = Volo.Abp.Identity.IdentityUser;
 
@@ -131,17 +132,20 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
             await _identityOptions.SetAsync();
 
-            var identityUser =
-                await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) ??
-                await _miniProgramLoginNewUserCreator.CreateAsync(input.UserInfo, loginResult.LoginProvider,
-                    loginResult.ProviderKey);
+            using (var uow = UnitOfWorkManager.Begin(new AbpUnitOfWorkOptions(true), true))
+            {
+                var identityUser =
+                    await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) ??
+                    await _miniProgramLoginNewUserCreator.CreateAsync(input.UserInfo, loginResult.LoginProvider,
+                        loginResult.ProviderKey);
 
-            await UpdateMiniProgramUserAsync(identityUser, loginResult.MiniProgram, loginResult.UnionId,
-                loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
+                await UpdateMiniProgramUserAsync(identityUser, loginResult.MiniProgram, loginResult.UnionId,
+                    loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
             
-            await UpdateUserInfoAsync(identityUser, input.UserInfo);
+                await UpdateUserInfoAsync(identityUser, input.UserInfo);
 
-            await CurrentUnitOfWork.CompleteAsync();
+                await uow.CompleteAsync();
+            }
 
             return new LoginOutput
             {
