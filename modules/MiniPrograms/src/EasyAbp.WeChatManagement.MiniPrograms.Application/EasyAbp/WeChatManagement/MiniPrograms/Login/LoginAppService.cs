@@ -141,6 +141,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
 
+            await CurrentUnitOfWork.CompleteAsync();
+
             return new LoginOutput
             {
                 TenantId = loginResult.MiniProgram.TenantId,
