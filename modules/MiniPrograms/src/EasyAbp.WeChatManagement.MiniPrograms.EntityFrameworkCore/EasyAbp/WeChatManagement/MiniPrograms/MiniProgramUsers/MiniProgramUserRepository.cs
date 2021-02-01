@@ -29,7 +29,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
                 .Where(x => x.MpUser.OpenId == openId)
                 .Where(x => x.MiniProgram.AppId == appId)
                 .WhereIf(exceptHost, x => x.MiniProgram.TenantId.HasValue)
-                .OrderByDescending(x => x.MpUser.LastModificationTime)
+                .OrderBy(x => x.MpUser.LastModificationTime == null)
+                .ThenByDescending(x => x.MpUser.LastModificationTime)
                 .Select(x => x.MpUser.TenantId)
                 .FirstOrDefaultAsync(cancellationToken);
         }
