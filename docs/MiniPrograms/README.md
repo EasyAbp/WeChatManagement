@@ -24,6 +24,7 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
     * EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client
     * (Optional) EasyAbp.WeChatManagement.MiniPrograms.MongoDB
     * (Optional) EasyAbp.WeChatManagement.MiniPrograms.Web
+    * (Optional) EasyAbp.Abp.WeChat.Common.SharedCache.StackExchangeRedis (**重要！如果采用分布式部署，必须安装此模块，使用分布式缓存共享 AccessToken: https://github.com/EasyAbp/WeChatManagement/issues/15#issuecomment-769718739**)
 
 1. Add `DependsOn(typeof(WeChatManagementMiniProgramsXxxModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/docs/How-To.md#add-module-dependencies))
 
