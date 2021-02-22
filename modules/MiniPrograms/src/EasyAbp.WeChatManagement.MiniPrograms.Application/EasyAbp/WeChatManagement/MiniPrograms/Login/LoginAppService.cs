@@ -143,10 +143,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
             (await _identityUserManager.RemoveLoginAsync(identityUser, loginResult.LoginProvider, loginResult.ProviderKey)).CheckErrors();
 
-            await RemoveUserInfoAsync(identityUser);
-
             await RemoveMiniProgramUserAsync(identityUser, loginResult.MiniProgram);
-
+            
+            if (!await _miniProgramUserRepository.AnyAsync(x => x.UserId == identityUser.Id))
+            {
+                await RemoveUserInfoAsync(identityUser);
+            }
         }
 
         public virtual async Task<LoginOutput> LoginAsync(LoginInput input)
@@ -336,9 +338,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         protected virtual async Task RemoveUserInfoAsync(IdentityUser identityUser)
         {
-            var userInfo = await _userInfoRepository.GetAsync(x => x.UserId == identityUser.Id);
+            var userInfo = await _userInfoRepository.FindAsync(x => x.UserId == identityUser.Id);
 
-            await _userInfoRepository.DeleteAsync(userInfo, true);
+            if (userInfo != null)
+            {
+                await _userInfoRepository.DeleteAsync(userInfo, true);
+            }
         }
 
         protected virtual async Task<TokenResponse> RequestIds4LoginAsync(string appId, string unionId, string openId)
