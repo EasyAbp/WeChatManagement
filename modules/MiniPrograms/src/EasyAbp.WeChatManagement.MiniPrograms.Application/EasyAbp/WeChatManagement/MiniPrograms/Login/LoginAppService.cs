@@ -124,6 +124,29 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             await UpdateUserInfoAsync(identityUser, input.UserInfo);
         }
 
+        [Authorize]
+        public virtual async Task UnbindAsync(LoginInput input)
+        {
+            await CheckBindPolicyAsync();
+
+            var loginResult = await GetLoginResultAsync(input);
+
+            using var tenantChange = CurrentTenant.Change(loginResult.MiniProgram.TenantId);
+
+            await _identityOptions.SetAsync();
+
+            if (await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) == null)
+            {
+                throw new WechatAccountHasNotBeenBoundException();
+            }
+
+            var identityUser = await _identityUserManager.GetByIdAsync(CurrentUser.GetId());
+
+            (await _identityUserManager.RemoveLoginAsync(identityUser,loginResult.LoginProvider, loginResult.ProviderKey)).CheckErrors();
+
+            await RemoveMiniProgramUserAsync(identityUser, loginResult.MiniProgram);
+        }
+
         public virtual async Task<LoginOutput> LoginAsync(LoginInput input)
         {
             var loginResult = await GetLoginResultAsync(input);
@@ -275,6 +298,22 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 mpUserMapping.UpdateSessionKey(sessionKey, Clock);
 
                 await _miniProgramUserRepository.UpdateAsync(mpUserMapping, true);
+            }
+        }
+
+        protected virtual async Task RemoveMiniProgramUserAsync(IdentityUser identityUser, MiniProgram miniProgram)
+        {
+            var mpUserMapping = await _miniProgramUserRepository.FindAsync(x =>
+                x.MiniProgramId == miniProgram.Id && x.UserId == identityUser.Id);
+
+            if (mpUserMapping == null)
+            {
+                // TODO: Throw Exception?
+                return;
+            }
+            else
+            {
+                await _miniProgramUserRepository.DeleteAsync(mpUserMapping, true);
             }
         }
 

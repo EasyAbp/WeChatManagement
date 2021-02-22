@@ -4,11 +4,11 @@ using Volo.Abp;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
-    public class WechatAccountHasBeenBoundException : UserFriendlyException
+    public class WechatAccountHasNotBeenBoundException : UserFriendlyException
     {
-        public WechatAccountHasBeenBoundException(
-            string message = "账号已经绑定微信",
-            string code = "WechatAccountHasBeenBound",
+        public WechatAccountHasNotBeenBoundException(
+            string message = "账号尚未绑定微信",
+            string code = "WechatAccountHasNotBeenBound",
             string details = null,
             Exception innerException = null,
             LogLevel logLevel = LogLevel.Warning)
