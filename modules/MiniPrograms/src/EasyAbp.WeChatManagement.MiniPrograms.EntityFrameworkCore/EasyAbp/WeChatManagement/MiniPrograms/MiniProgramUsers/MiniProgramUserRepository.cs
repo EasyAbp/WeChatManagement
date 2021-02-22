@@ -17,14 +17,14 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers
 
         public virtual async Task<string> FindUnionIdByOpenIdAsync(Guid miniProgramId, string openId, CancellationToken cancellationToken = default)
         {
-            return await GetQueryable().Where(x => x.OpenId == openId && x.MiniProgramId == miniProgramId)
+            return await (await GetQueryableAsync()).Where(x => x.OpenId == openId && x.MiniProgramId == miniProgramId)
                 .Select(x => x.UnionId).FirstOrDefaultAsync(cancellationToken: cancellationToken);
         }
 
         public async Task<Guid?> FindRecentlyTenantIdAsync(string appId, string openId, bool exceptHost, CancellationToken cancellationToken = default)
         {
-            return await GetQueryable()
-                .Join(DbContext.MiniPrograms, mpUser => mpUser.MiniProgramId, miniProgram => miniProgram.Id,
+            return await (await GetQueryableAsync())
+                .Join((await GetDbContextAsync()).MiniPrograms, mpUser => mpUser.MiniProgramId, miniProgram => miniProgram.Id,
                     (mpUser, miniProgram) => new {MpUser = mpUser, MiniProgram = miniProgram})
                 .Where(x => x.MpUser.OpenId == openId)
                 .Where(x => x.MiniProgram.AppId == appId)
