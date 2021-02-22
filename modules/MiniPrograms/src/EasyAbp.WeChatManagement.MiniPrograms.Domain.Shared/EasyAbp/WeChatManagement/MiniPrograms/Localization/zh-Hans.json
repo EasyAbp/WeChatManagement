@@ -45,6 +45,7 @@
     "UserInfoProvince": "省份",
     "UserInfoCountry": "国家",
     "UserInfoAvatarUrl": "头像图片",
-    "WechatAccountHasBeenBound": "您的微信已被其他用户绑定"
+    "WechatAccountHasBeenBound": "您的微信已被其他用户绑定",
+    "WechatAccountHasNotBeenBound": "您的微信尚未绑定"
   }
 }
