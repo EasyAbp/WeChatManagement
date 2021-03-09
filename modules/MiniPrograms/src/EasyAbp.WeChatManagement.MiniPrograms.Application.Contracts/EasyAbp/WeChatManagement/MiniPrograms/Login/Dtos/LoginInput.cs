@@ -19,6 +19,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
         
         /// <summary>
         /// wx.getUserInfo 调用后返回的 userInfo 的值
+        /// 2021年4月13日后，此属性为匿名属性，对于已绑定过微信的用户而言，此属性仅用于签名验证，不会覆盖仓储中的UserInfo
+        /// 见 https://github.com/EasyAbp/WeChatManagement/issues/20
         /// </summary>
         public UserInfoModel UserInfo { get; set; }
         
@@ -44,6 +46,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
         /// 3. 明确：此用户在同开放平台+同主体下，登录过“其他任意” app。
         /// 4. 明确：当前 app 没有加入开放平台，或不需要使用 UnionId 作为用户识别凭证。
         /// 更多信息：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html
+        /// * 注意：2021年4月13日后，以上内容不再有效：https://github.com/EasyAbp/WeChatManagement/issues/20
         /// </remark>
         public string EncryptedData { get; set; }
         
@@ -58,6 +61,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
         /// 3. 明确：此用户在同开放平台+同主体下，登录过“其他任意” app。
         /// 4. 明确：当前 app 没有加入开放平台，或不需要使用 UnionId 作为用户识别凭证。
         /// 更多信息：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html
+        /// * 注意：2021年4月13日后，以上内容不再有效：https://github.com/EasyAbp/WeChatManagement/issues/20
         /// </remark>
         public string Iv { get; set; }
         

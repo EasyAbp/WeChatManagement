@@ -120,7 +120,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             await UpdateMiniProgramUserAsync(identityUser, loginResult.MiniProgram, loginResult.UnionId,
                 loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
 
-            await UpdateUserInfoAsync(identityUser, input.UserInfo);
+            await TryCreateUserInfoAsync(identityUser, input.UserInfo);
         }
 
         [Authorize]
@@ -169,7 +169,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 await UpdateMiniProgramUserAsync(identityUser, loginResult.MiniProgram, loginResult.UnionId,
                     loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);
 
-                await UpdateUserInfoAsync(identityUser, input.UserInfo);
+                await TryCreateUserInfoAsync(identityUser, input.UserInfo);
 
                 await uow.CompleteAsync();
             }
@@ -318,7 +318,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             await _miniProgramUserRepository.DeleteAsync(mpUserMapping, true);
         }
 
-        protected virtual async Task UpdateUserInfoAsync(IdentityUser identityUser, UserInfoModel userInfoModel)
+        protected virtual async Task TryCreateUserInfoAsync(IdentityUser identityUser, UserInfoModel userInfoModel)
         {
             var userInfo = await _userInfoRepository.FindAsync(x => x.UserId == identityUser.Id);
 
@@ -330,9 +330,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             }
             else
             {
-                userInfo.UpdateInfo(userInfoModel);
-
-                await _userInfoRepository.UpdateAsync(userInfo, true);
+                // 注意：2021年4月13日后，登录时获得的UserInfo将是匿名信息，非真实用户信息，因此不再覆盖更新
+                // https://github.com/EasyAbp/WeChatManagement/issues/20
+                // https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801
             }
         }
 
