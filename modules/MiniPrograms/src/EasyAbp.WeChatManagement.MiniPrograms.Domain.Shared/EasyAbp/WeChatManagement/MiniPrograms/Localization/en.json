@@ -2,6 +2,7 @@
   "culture": "en",
   "texts": {
     "ManageYourProfile": "Manage your profile",
+    "Permission:MiniPrograms": "MiniProgramManagement",
     "Permission:MiniProgram": "MiniProgram",
     "Permission:Create": "Create",
     "Permission:Update": "Update",
