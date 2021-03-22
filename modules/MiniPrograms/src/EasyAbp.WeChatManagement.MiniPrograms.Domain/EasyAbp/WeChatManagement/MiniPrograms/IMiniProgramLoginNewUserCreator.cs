@@ -7,6 +7,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     public interface IMiniProgramLoginNewUserCreator
     {
-        Task<IdentityUser> CreateAsync(UserInfoModel userInfoModel, string loginProvider, string providerKey);
+        Task<IdentityUser> CreateAsync(string loginProvider, string providerKey);
     }
 }
