@@ -2,6 +2,7 @@
   "culture": "sl",
   "texts": {
     "ManageYourProfile": "Upravljajte svojim profilom",
+    "Permission:MiniPrograms": "MiniProgramManagement",
     "Permission:MiniProgram": "MiniProgram",
     "Permission:Create": "Create",
     "Permission:Update": "Update",

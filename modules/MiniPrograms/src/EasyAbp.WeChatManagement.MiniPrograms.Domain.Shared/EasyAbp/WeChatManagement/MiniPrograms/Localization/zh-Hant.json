@@ -2,6 +2,7 @@
   "culture": "zh-Hant",
   "texts": {
     "ManageYourProfile": "管理個人資料",
+    "Permission:MiniPrograms": "小程序管理",
     "Permission:MiniProgram": "小程序",
     "Permission:Create": "新建",
     "Permission:Update": "編輯",

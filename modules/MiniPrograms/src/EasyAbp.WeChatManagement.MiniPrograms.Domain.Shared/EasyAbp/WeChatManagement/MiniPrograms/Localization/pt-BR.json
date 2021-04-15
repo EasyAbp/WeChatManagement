@@ -1,6 +1,7 @@
 {
   "culture": "pt-BR",
   "texts": {
+    "Permission:MiniPrograms": "MiniProgramManagement",
     "Permission:MiniProgram": "MiniProgram",
     "Permission:Create": "Create",
     "Permission:Update": "Update",
