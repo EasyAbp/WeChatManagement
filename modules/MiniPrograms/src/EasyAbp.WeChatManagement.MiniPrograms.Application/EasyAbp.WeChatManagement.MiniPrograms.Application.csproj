@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyAbp.Abp.WeChat.MiniProgram" Version="1.7.7" />
+    <PackageReference Include="EasyAbp.Abp.WeChat.MiniProgram" Version="$(EasyAbpAbpWeChatModuleVersion)" />
     <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj" />

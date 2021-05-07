@@ -33,6 +33,7 @@ using Volo.Abp.Identity.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.Web;
+using Volo.Abp.SettingManagement.Web;
 using Volo.Abp.TenantManagement.Web;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
@@ -51,6 +52,8 @@ namespace WeChatManagementSample.Web
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
+        typeof(AbpFeatureManagementWebModule),
+        typeof(AbpSettingManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(WeChatManagementMiniProgramsWebModule)
     )]
@@ -97,11 +100,11 @@ namespace WeChatManagementSample.Web
         private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
         {
             context.Services.AddAuthentication()
-                .AddIdentityServerAuthentication(options =>
+                .AddJwtBearer(options =>
                 {
                     options.Authority = configuration["AuthServer:Authority"];
                     options.RequireHttpsMetadata = false;
-                    options.ApiName = "WeChatManagementSample";
+                    options.Audience = "WeChatManagementSample";
                 });
         }
 
@@ -193,13 +196,16 @@ namespace WeChatManagementSample.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+
+            app.UseAbpRequestLocalization();
+
+            if (!env.IsDevelopment())
             {
                 app.UseErrorPage();
             }
 
             app.UseCorrelationId();
-            app.UseVirtualFiles();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();
@@ -209,7 +215,7 @@ namespace WeChatManagementSample.Web
                 app.UseMultiTenancy();
             }
 
-            app.UseAbpRequestLocalization();
+            app.UseUnitOfWork();
             app.UseIdentityServer();
             app.UseAuthorization();
             app.UseSwagger();

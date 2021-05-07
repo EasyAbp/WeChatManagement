@@ -4,6 +4,7 @@ using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.HttpApi;
+using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
 
 namespace WeChatManagementSample
@@ -15,6 +16,7 @@ namespace WeChatManagementSample
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpTenantManagementHttpApiModule),
         typeof(AbpFeatureManagementHttpApiModule),
+        typeof(AbpSettingManagementHttpApiModule),
         typeof(WeChatManagementMiniProgramsHttpApiModule)
     )]
     public class WeChatManagementSampleHttpApiModule : AbpModule
