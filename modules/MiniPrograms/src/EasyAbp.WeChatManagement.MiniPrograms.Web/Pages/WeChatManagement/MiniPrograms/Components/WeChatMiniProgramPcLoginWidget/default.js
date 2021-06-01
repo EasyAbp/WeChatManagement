@@ -14,6 +14,8 @@
             }
 
             function init() {
+                if (token == null || token === '') return;
+                
                 var intervalID = window.setInterval(function () {
                     easyAbp.weChatManagement.miniPrograms.login.login.pcLogin({token: token}, {
                         success: function (data) {

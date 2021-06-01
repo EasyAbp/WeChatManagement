@@ -9,6 +9,7 @@
     "Menu:EasyAbpWeChatManagement": "EasyAbpWeChatManagement",
     "Menu:MiniProgramManagement": "MiniProgramManagement",
     "Menu:MiniProgram": "MenuMiniProgram",
+    "ACodeGenerationFailed": "ACodeGenerationFailed",
     "MiniProgram": "MiniProgram",
     "MiniProgramWeChatComponentId": "MiniProgramWeChatComponentId",
     "MiniProgramWeChatComponentIdPlaceHolder": "MiniProgramWeChatComponentIdPlaceHolder",

@@ -1,9 +1,19 @@
-﻿@model EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.Components.WeChatMiniProgramPcLoginWidget.WeChatMiniProgramPcLoginViewModel
+﻿@using EasyAbp.WeChatManagement.MiniPrograms.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.Components.WeChatMiniProgramPcLoginWidget.WeChatMiniProgramPcLoginViewModel
+@inject IHtmlLocalizer<MiniProgramsResource> L
 <script>
     var token = "@Model.Token";
 </script>
 <div class="weChat-miniProgram-pcLogin-area" data-miniProgram-name="@Model.MiniProgramName">
     <div class="weChat-miniProgram-pcLogin-aCode">
-        <img src="data:image/png;base64,@Convert.ToBase64String(Model.ACode)" alt="ACode"/>
+        @if (!Model.ACode.IsNullOrEmpty())
+        {
+            <img src="data:image/png;base64,@Convert.ToBase64String(Model.ACode)" alt="ACode"/>
+        }
+        else
+        {
+            <h2>@L["ACodeGenerationFailed"]</h2>
+        }
     </div>
 </div>

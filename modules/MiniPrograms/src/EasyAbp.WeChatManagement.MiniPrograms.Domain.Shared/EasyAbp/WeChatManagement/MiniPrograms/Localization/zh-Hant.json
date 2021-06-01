@@ -10,6 +10,7 @@
     "Menu:EasyAbpWeChatManagement": "微信管理",
     "Menu:MiniProgramManagement": "小程序管理",
     "Menu:MiniProgram": "小程序",
+    "ACodeGenerationFailed": "小程式碼生成失敗",
     "MiniProgram": "小程序",
     "MiniProgramWeChatComponentId": "微信第三方平台 ID",
     "MiniProgramWeChatComponentIdPlaceHolder": "通過微信第三方平台管理則必填",

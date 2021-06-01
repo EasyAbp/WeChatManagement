@@ -44,7 +44,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         private readonly IConfiguration _configuration;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IUserInfoRepository _userInfoRepository;
-        private readonly IJsonSerializer _jsonSerializer;
         private readonly IWeChatMiniProgramAsyncLocal _weChatMiniProgramAsyncLocal;
         private readonly IMiniProgramUserRepository _miniProgramUserRepository;
         private readonly IMiniProgramLoginNewUserCreator _miniProgramLoginNewUserCreator;
@@ -63,7 +62,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             IConfiguration configuration,
             IHttpClientFactory httpClientFactory,
             IUserInfoRepository userInfoRepository,
-            IJsonSerializer jsonSerializer,
             IWeChatMiniProgramAsyncLocal weChatMiniProgramAsyncLocal,
             IMiniProgramUserRepository miniProgramUserRepository,
             IMiniProgramLoginNewUserCreator miniProgramLoginNewUserCreator,
@@ -81,7 +79,6 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             _configuration = configuration;
             _httpClientFactory = httpClientFactory;
             _userInfoRepository = userInfoRepository;
-            _jsonSerializer = jsonSerializer;
             _weChatMiniProgramAsyncLocal = weChatMiniProgramAsyncLocal;
             _miniProgramUserRepository = miniProgramUserRepository;
             _miniProgramLoginNewUserCreator = miniProgramLoginNewUserCreator;
@@ -426,9 +423,20 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 throw new PcLoginAuthorizeTooFrequentlyException();
             }
+            
+            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+
+            var miniProgramUser = await _miniProgramUserRepository.GetAsync(x =>
+                x.MiniProgramId == miniProgram.Id && x.UserId == CurrentUser.GetId());
 
             await _pcLoginAuthorizationCache.SetAsync(input.Token,
-                new MiniProgramPcLoginAuthorizationCacheItem { UserId = CurrentUser.GetId() },
+                new MiniProgramPcLoginAuthorizationCacheItem
+                {
+                    AppId = input.AppId,
+                    UnionId = miniProgramUser.UnionId,
+                    OpenId = miniProgramUser.OpenId,
+                    UserId = CurrentUser.GetId()
+                },
                 new DistributedCacheEntryOptions
                 {
                     AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30)
@@ -460,6 +468,26 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             await _signInManager.SignInAsync(user, false);
 
             return new PcLoginOutput { IsSuccess = true };
+        }
+        
+        public virtual async Task<PcLoginRequestTokensOutput> PcLoginRequestTokensAsync(PcLoginInput input)
+        {
+            await _identityOptions.SetAsync();
+
+            var cacheItem = await _pcLoginAuthorizationCache.GetAsync(input.Token);
+
+            if (cacheItem == null)
+            {
+                return new PcLoginRequestTokensOutput { IsSuccess = false };
+            }
+            
+            await _pcLoginAuthorizationCache.RemoveAsync(input.Token);
+
+            return new PcLoginRequestTokensOutput
+            {
+                IsSuccess = true,
+                RawData = (await RequestIds4LoginAsync(cacheItem.AppId, cacheItem.UnionId, cacheItem.OpenId))?.Raw
+            };
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.Login;
+using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.UI.Widgets;
@@ -22,7 +24,19 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniP
         
         public async Task<IViewComponentResult> InvokeAsync(string miniProgramName)
         {
-            var aCode = await _loginAppService.GetPcLoginACodeAsync(miniProgramName);
+            GetPcLoginACodeOutput aCode;
+            try
+            {
+                aCode = await _loginAppService.GetPcLoginACodeAsync(miniProgramName);
+            }
+            catch
+            {
+                aCode = new GetPcLoginACodeOutput
+                {
+                    ACode = null,
+                    Token = null
+                };
+            }
             
             var viewModel = new WeChatMiniProgramPcLoginViewModel
             {

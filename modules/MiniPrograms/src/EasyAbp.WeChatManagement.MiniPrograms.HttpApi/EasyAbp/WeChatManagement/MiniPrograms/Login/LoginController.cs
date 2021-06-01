@@ -52,6 +52,13 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         }
 
         [HttpPost]
+        [Route("pc-login-request-tokens")]
+        public Task<PcLoginRequestTokensOutput> PcLoginRequestTokensAsync(PcLoginInput input)
+        {
+            return _service.PcLoginRequestTokensAsync(input);
+        }
+
+        [HttpPost]
         [Route("bind")]
         public Task BindAsync(LoginInput input)
         {
