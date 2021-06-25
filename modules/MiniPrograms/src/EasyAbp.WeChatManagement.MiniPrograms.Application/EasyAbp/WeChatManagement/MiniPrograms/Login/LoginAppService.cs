@@ -29,6 +29,8 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
 using IdentityUser = Volo.Abp.Identity.IdentityUser;
+using EasyAbp.WeChatManagement.MiniPrograms.Permissions;
+using System.Linq;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
@@ -140,6 +142,45 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
             await RemoveMiniProgramUserAsync(identityUser, loginResult.MiniProgram);
             
+            if (!await _miniProgramUserRepository.AnyAsync(x => x.UserId == identityUser.Id))
+            {
+                await RemoveUserInfoAsync(identityUser);
+            }
+        }
+
+        [Authorize()]
+        public virtual async Task UnbindAsync(UnbindUserInput input)
+        {
+            await CheckUnbindPolicyAsync();
+
+            if (input.UserId != CurrentUser.Id)
+            {
+                await CheckPolicyAsync(MiniProgramsPermissions.MiniProgramUser.Manage);
+            }
+            MiniProgram miniProgram;
+
+            using (_dataFilter.Disable<IMultiTenant>())
+            {
+                miniProgram = await _miniProgramRepository.FirstOrDefaultAsync(x => x.AppId == input.AppId);
+            }
+
+            await _identityOptions.SetAsync();
+
+            var identityUser = await _identityUserManager.GetByIdAsync(input.UserId ?? CurrentUser.GetId());
+
+            var appLoginProvider = await _miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
+
+            var appOpenLoginProvider = await _miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
+
+            var identityUserLogins = identityUser.Logins.Where(x => x.LoginProvider == appLoginProvider || x.LoginProvider == appOpenLoginProvider);
+
+            foreach (var login in identityUserLogins)
+            {
+                (await _identityUserManager.RemoveLoginAsync(identityUser, login.LoginProvider, login.ProviderKey)).CheckErrors();
+            }
+
+            await RemoveMiniProgramUserAsync(identityUser, miniProgram);
+
             if (!await _miniProgramUserRepository.AnyAsync(x => x.UserId == identityUser.Id))
             {
                 await RemoveUserInfoAsync(identityUser);
