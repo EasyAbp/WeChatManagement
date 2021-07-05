@@ -16,8 +16,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Permissions
             miniProgramPermission.AddChild(MiniProgramsPermissions.MiniProgram.Delete, L("Permission:Delete"));
 
             var miniProgramUserPermission = myGroup.AddPermission(MiniProgramsPermissions.MiniProgramUser.Default, L("Permission:MiniProgramUser"));
+            miniProgramUserPermission.AddChild(MiniProgramsPermissions.MiniProgramUser.Manage, L("Permission:Manage"));
 
             var userInfoPermission = myGroup.AddPermission(MiniProgramsPermissions.UserInfo.Default, L("Permission:UserInfo"));
+
         }
 
         private static LocalizableString L(string name)

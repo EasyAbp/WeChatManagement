@@ -1,12 +1,12 @@
 using EasyAbp.Abp.WeChat;
 using EasyAbp.Abp.WeChat.MiniProgram;
-using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.ACode;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
 using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 using EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers;
+using EasyAbp.WeChatManagement.MiniPrograms.Permissions;
 using EasyAbp.WeChatManagement.MiniPrograms.Settings;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using IdentityModel.Client;
@@ -16,15 +16,13 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using EasyAbp.WeChatManagement.MiniPrograms.UserInfos.Dtos;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
-using Volo.Abp.Json;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
@@ -139,7 +137,46 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             (await _identityUserManager.RemoveLoginAsync(identityUser, loginResult.LoginProvider, loginResult.ProviderKey)).CheckErrors();
 
             await RemoveMiniProgramUserAsync(identityUser, loginResult.MiniProgram);
-            
+
+            if (!await _miniProgramUserRepository.AnyAsync(x => x.UserId == identityUser.Id))
+            {
+                await RemoveUserInfoAsync(identityUser);
+            }
+        }
+
+        [Authorize]
+        public virtual async Task UnbindAsync(UnbindUserInput input)
+        {
+            await CheckUnbindPolicyAsync();
+
+            Guid userId = input.UserId ?? CurrentUser.GetId();
+
+            if (userId != CurrentUser.GetId())
+            {
+                await CheckPolicyAsync(MiniProgramsPermissions.MiniProgramUser.Manage);
+            }
+
+            MiniProgram miniProgram;
+
+            miniProgram = await _miniProgramRepository.FirstOrDefaultAsync(x => x.AppId == input.AppId);
+
+            await _identityOptions.SetAsync();
+
+            var identityUser = await _identityUserManager.GetByIdAsync(userId);
+
+            var appLoginProvider = await _miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
+
+            var appOpenLoginProvider = await _miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
+
+            var identityUserLogins = identityUser.Logins.Where(x => x.LoginProvider == appLoginProvider || x.LoginProvider == appOpenLoginProvider);
+
+            foreach (var login in identityUserLogins)
+            {
+                (await _identityUserManager.RemoveLoginAsync(identityUser, login.LoginProvider, login.ProviderKey)).CheckErrors();
+            }
+
+            await RemoveMiniProgramUserAsync(identityUser, miniProgram);
+
             if (!await _miniProgramUserRepository.AnyAsync(x => x.UserId == identityUser.Id))
             {
                 await RemoveUserInfoAsync(identityUser);
@@ -423,7 +460,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 throw new PcLoginAuthorizeTooFrequentlyException();
             }
-            
+
             var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
 
             var miniProgramUser = await _miniProgramUserRepository.GetAsync(x =>
@@ -469,7 +506,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
             return new PcLoginOutput { IsSuccess = true };
         }
-        
+
         public virtual async Task<PcLoginRequestTokensOutput> PcLoginRequestTokensAsync(PcLoginInput input)
         {
             await _identityOptions.SetAsync();
@@ -480,7 +517,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 return new PcLoginRequestTokensOutput { IsSuccess = false };
             }
-            
+
             await _pcLoginAuthorizationCache.RemoveAsync(input.Token);
 
             return new PcLoginRequestTokensOutput

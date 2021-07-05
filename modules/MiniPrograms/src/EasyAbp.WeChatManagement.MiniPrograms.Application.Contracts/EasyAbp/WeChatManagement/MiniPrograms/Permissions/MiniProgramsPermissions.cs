@@ -22,6 +22,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Permissions
         public class MiniProgramUser
         {
             public const string Default = GroupName + ".MiniProgramUser";
+            public const string Manage = Default + ".Manage";
         }
 
         public class UserInfo
