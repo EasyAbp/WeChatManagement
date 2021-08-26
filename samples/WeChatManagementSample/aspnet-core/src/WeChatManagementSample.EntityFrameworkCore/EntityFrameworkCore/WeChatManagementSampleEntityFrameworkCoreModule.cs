@@ -46,7 +46,7 @@ namespace WeChatManagementSample.EntityFrameworkCore
             Configure<AbpDbContextOptions>(options =>
             {
                 /* The main point to change your DBMS.
-                 * See also WeChatManagementSampleMigrationsDbContextFactory for EF Core tooling. */
+                 * See also WeChatManagementSampleDbContextFactory for EF Core tooling. */
                 options.UseSqlServer();
             });
         }

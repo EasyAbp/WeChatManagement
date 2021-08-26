@@ -7,7 +7,7 @@ namespace WeChatManagementSample.DbMigrator
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(WeChatManagementSampleEntityFrameworkCoreDbMigrationsModule),
+        typeof(WeChatManagementSampleEntityFrameworkCoreModule),
         typeof(WeChatManagementSampleApplicationContractsModule)
         )]
     public class WeChatManagementSampleDbMigratorModule : AbpModule

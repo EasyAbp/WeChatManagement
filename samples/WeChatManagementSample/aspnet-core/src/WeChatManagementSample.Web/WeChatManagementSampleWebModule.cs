@@ -45,7 +45,7 @@ namespace WeChatManagementSample.Web
     [DependsOn(
         typeof(WeChatManagementSampleHttpApiModule),
         typeof(WeChatManagementSampleApplicationModule),
-        typeof(WeChatManagementSampleEntityFrameworkCoreDbMigrationsModule),
+        typeof(WeChatManagementSampleEntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
         typeof(AbpIdentityWebModule),
         typeof(AbpAccountWebIdentityServerModule),

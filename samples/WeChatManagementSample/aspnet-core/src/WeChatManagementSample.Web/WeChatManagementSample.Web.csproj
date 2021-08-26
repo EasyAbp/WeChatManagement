@@ -39,7 +39,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WeChatManagementSample.Application\WeChatManagementSample.Application.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.HttpApi\WeChatManagementSample.HttpApi.csproj" />
-    <ProjectReference Include="..\WeChatManagementSample.EntityFrameworkCore.DbMigrations\WeChatManagementSample.EntityFrameworkCore.DbMigrations.csproj" />
+    <ProjectReference Include="..\WeChatManagementSample.EntityFrameworkCore\WeChatManagementSample.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Web\EasyAbp.WeChatManagement.MiniPrograms.Web.csproj" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />

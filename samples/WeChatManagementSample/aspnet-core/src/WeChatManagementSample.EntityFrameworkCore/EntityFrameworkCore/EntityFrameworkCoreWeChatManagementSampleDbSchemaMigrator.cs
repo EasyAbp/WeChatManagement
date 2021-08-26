@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using WeChatManagementSample.Data;
 using Volo.Abp.DependencyInjection;
+using WeChatManagementSample.Data;
 
 namespace WeChatManagementSample.EntityFrameworkCore
 {
@@ -20,14 +20,14 @@ namespace WeChatManagementSample.EntityFrameworkCore
 
         public async Task MigrateAsync()
         {
-            /* We intentionally resolving the WeChatManagementSampleMigrationsDbContext
+            /* We intentionally resolving the WeChatManagementSampleDbContext
              * from IServiceProvider (instead of directly injecting it)
              * to properly get the connection string of the current tenant in the
              * current scope.
              */
 
             await _serviceProvider
-                .GetRequiredService<WeChatManagementSampleMigrationsDbContext>()
+                .GetRequiredService<WeChatManagementSampleDbContext>()
                 .Database
                 .MigrateAsync();
         }
