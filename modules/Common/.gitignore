@@ -256,3 +256,4 @@ host/EasyAbp.WeChatManagement.Common.IdentityServer/Logs/logs.txt
 host/EasyAbp.WeChatManagement.Common.HttpApi.Host/Logs/logs.txt
 host/EasyAbp.WeChatManagement.Common.Web.Host/Logs/logs.txt
 host/EasyAbp.WeChatManagement.Common.Web.Unified/Logs/logs.txt
+host/EasyAbp.WeChatManagement.Common.Blazor.Server.Host/Logs/logs.txt

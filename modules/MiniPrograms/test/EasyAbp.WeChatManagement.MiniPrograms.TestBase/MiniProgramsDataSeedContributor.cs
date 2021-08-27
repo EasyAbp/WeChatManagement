@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
+using EasyAbp.WeChatManagement.Common.WeChatApps;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
@@ -8,14 +8,14 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     public class MiniProgramsDataSeedContributor : IDataSeedContributor, ITransientDependency
     {
-        private readonly IMiniProgramRepository _miniProgramRepository;
+        private readonly IWeChatAppRepository _weChatAppRepository;
         private readonly IGuidGenerator _guidGenerator;
 
         public MiniProgramsDataSeedContributor(
-            IMiniProgramRepository miniProgramRepository,
+            IWeChatAppRepository weChatAppRepository,
             IGuidGenerator guidGenerator)
         {
-            _miniProgramRepository = miniProgramRepository;
+            _weChatAppRepository = weChatAppRepository;
             _guidGenerator = guidGenerator;
         }
         
@@ -25,9 +25,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
              * at this point!
              */
 
-            await _miniProgramRepository.InsertAsync(new MiniProgram(
+            await _weChatAppRepository.InsertAsync(new WeChatApp(
                 _guidGenerator.Create(),
                 null,
+                WeChatAppType.MiniProgram,
                 null,
                 "TestMiniProgram",
                 "TestMiniProgram",

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.MongoDB" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.MongoDB\EasyAbp.WeChatManagement.Common.MongoDB.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Domain\EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj" />
   </ItemGroup>
 

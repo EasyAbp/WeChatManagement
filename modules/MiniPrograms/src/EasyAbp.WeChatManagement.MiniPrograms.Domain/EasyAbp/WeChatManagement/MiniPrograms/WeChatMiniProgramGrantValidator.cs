@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
+using EasyAbp.WeChatManagement.Common.WeChatApps;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Identity;
@@ -19,18 +19,18 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         public string GrantType => WeChatMiniProgramConsts.GrantType;
 
         private readonly IMiniProgramLoginProviderProvider _miniProgramLoginProviderProvider;
-        private readonly IMiniProgramRepository _miniProgramRepository;
+        private readonly IWeChatAppRepository _weChatAppRepository;
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
 
         public WeChatMiniProgramGrantValidator(
             IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
-            IMiniProgramRepository miniProgramRepository,
+            IWeChatAppRepository weChatAppRepository,
             IOptions<IdentityOptions> identityOptions,
             IdentityUserManager identityUserManager)
         {
             _miniProgramLoginProviderProvider = miniProgramLoginProviderProvider;
-            _miniProgramRepository = miniProgramRepository;
+            _weChatAppRepository = weChatAppRepository;
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
         }
@@ -63,7 +63,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 return;
             }
 
-            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == appId);
+            var miniProgram = await _weChatAppRepository.GetMiniProgramAppByAppIdAsync(appId);
 
             string loginProvider;
             string providerKey;

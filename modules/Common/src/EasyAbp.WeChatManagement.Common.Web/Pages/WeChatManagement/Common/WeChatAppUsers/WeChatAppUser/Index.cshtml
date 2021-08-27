@@ -1,0 +1,51 @@
+@page
+@using EasyAbp.WeChatManagement.Common.Permissions
+@using EasyAbp.WeChatManagement.Common.Localization
+@using EasyAbp.WeChatManagement.Common.Web.Menus
+@using EasyAbp.WeChatManagement.Common.Web.Pages.WeChatManagement.Common.WeChatAppUsers.WeChatAppUser
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<CommonResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["WeChatAppUser"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:WeChatAppUser"].Value);
+    PageLayout.Content.MenuItemName = CommonMenus.WeChatAppUser;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/WeChatManagement/Common/WeChatAppUsers/WeChatAppUser/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/WeChatManagement/Common/WeChatAppUsers/WeChatAppUser/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["WeChatAppUser"]</abp-card-title>
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="WeChatAppUserTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["WeChatAppUserWeChatAppId"]</th>
+                <th>@L["WeChatAppUserUserId"]</th>
+                <th>@L["WeChatAppUserUnionId"]</th>
+                <th>@L["WeChatAppUserOpenId"]</th>
+                <th>@L["WeChatAppUserSessionKey"]</th>
+                <th>@L["WeChatAppUserSessionKeyChangedTime"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

@@ -1,12 +1,12 @@
 ﻿using System;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
+using EasyAbp.WeChatManagement.Common.WeChatApps;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
     public record LoginResultInfoModel
     {
-        public MiniProgram MiniProgram { get; init; }
+        public WeChatApp MiniProgram { get; init; }
         
         public string LoginProvider { get; init; }
         

@@ -9,14 +9,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Permissions
         public override void Define(IPermissionDefinitionContext context)
         {
             var myGroup = context.AddGroup(MiniProgramsPermissions.GroupName, L("Permission:MiniPrograms"));
-
-            var miniProgramPermission = myGroup.AddPermission(MiniProgramsPermissions.MiniProgram.Default, L("Permission:MiniProgram"));
-            miniProgramPermission.AddChild(MiniProgramsPermissions.MiniProgram.Create, L("Permission:Create"));
-            miniProgramPermission.AddChild(MiniProgramsPermissions.MiniProgram.Update, L("Permission:Update"));
-            miniProgramPermission.AddChild(MiniProgramsPermissions.MiniProgram.Delete, L("Permission:Delete"));
-
-            var miniProgramUserPermission = myGroup.AddPermission(MiniProgramsPermissions.MiniProgramUser.Default, L("Permission:MiniProgramUser"));
-
+            
             var userInfoPermission = myGroup.AddPermission(MiniProgramsPermissions.UserInfo.Default, L("Permission:UserInfo"));
         }
 

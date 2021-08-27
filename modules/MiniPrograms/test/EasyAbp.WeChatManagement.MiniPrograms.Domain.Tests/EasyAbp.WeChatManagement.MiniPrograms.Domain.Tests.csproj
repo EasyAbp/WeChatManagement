@@ -4,11 +4,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace />
+    <RootNamespace>EasyAbp.WeChatManagement.MiniPrograms</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests.csproj" />
   </ItemGroup>
 

@@ -2,6 +2,7 @@
 using EasyAbp.Abp.WeChat;
 using EasyAbp.Abp.WeChat.MiniProgram;
 using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure.OptionsResolve;
+using EasyAbp.WeChatManagement.Common;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
@@ -14,7 +15,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         typeof(WeChatManagementMiniProgramsApplicationContractsModule),
         typeof(AbpDddApplicationModule),
         typeof(AbpAutoMapperModule),
-        typeof(AbpWeChatMiniProgramModule)
+        typeof(AbpWeChatMiniProgramModule),
+        typeof(WeChatManagementCommonApplicationModule)
     )]
     public class WeChatManagementMiniProgramsApplicationModule : AbpModule
     {

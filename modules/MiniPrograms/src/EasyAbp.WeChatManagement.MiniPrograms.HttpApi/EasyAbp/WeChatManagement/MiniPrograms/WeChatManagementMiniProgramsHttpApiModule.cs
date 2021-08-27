@@ -1,4 +1,5 @@
-﻿using Localization.Resources.AbpUi;
+﻿using EasyAbp.WeChatManagement.Common;
+using Localization.Resources.AbpUi;
 using EasyAbp.WeChatManagement.MiniPrograms.Localization;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Localization;
@@ -9,7 +10,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     [DependsOn(
         typeof(WeChatManagementMiniProgramsApplicationContractsModule),
-        typeof(AbpAspNetCoreMvcModule))]
+        typeof(AbpAspNetCoreMvcModule),
+        typeof(WeChatManagementCommonHttpApiModule)
+    )]
     public class WeChatManagementMiniProgramsHttpApiModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

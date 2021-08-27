@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.Web\EasyAbp.WeChatManagement.Common.Web.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.HttpApi\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.csproj" />
   </ItemGroup>
 

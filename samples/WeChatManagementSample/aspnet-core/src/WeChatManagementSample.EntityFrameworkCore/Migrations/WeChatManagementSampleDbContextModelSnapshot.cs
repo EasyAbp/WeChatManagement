@@ -21,7 +21,7 @@ namespace WeChatManagementSample.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers.MiniProgramUser", b =>
+            modelBuilder.Entity("EasyAbp.WeChatManagement.Common.WeChatAppUsers.WeChatAppUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,9 +67,6 @@ namespace WeChatManagementSample.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("LastModifierId");
 
-                    b.Property<Guid>("MiniProgramId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("OpenId")
                         .HasColumnType("nvarchar(max)");
 
@@ -89,12 +86,15 @@ namespace WeChatManagementSample.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("WeChatAppId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.ToTable("EasyAbpWeChatManagementMiniProgramsMiniProgramUsers");
+                    b.ToTable("EasyAbpWeChatManagementCommonWeChatAppUsers");
                 });
 
-            modelBuilder.Entity("EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms.MiniProgram", b =>
+            modelBuilder.Entity("EasyAbp.WeChatManagement.Common.WeChatApps.WeChatApp", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -168,12 +168,15 @@ namespace WeChatManagementSample.Migrations
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
                     b.Property<Guid?>("WeChatComponentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("EasyAbpWeChatManagementMiniProgramsMiniPrograms");
+                    b.ToTable("EasyAbpWeChatManagementCommonWeChatApps");
                 });
 
             modelBuilder.Entity("EasyAbp.WeChatManagement.MiniPrograms.UserInfos.UserInfo", b =>

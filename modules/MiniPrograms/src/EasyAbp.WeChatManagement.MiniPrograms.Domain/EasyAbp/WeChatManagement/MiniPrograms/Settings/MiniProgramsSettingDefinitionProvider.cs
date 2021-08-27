@@ -15,14 +15,14 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Settings
             context.Add(new SettingDefinition(
                 MiniProgramsSettings.PcLogin.DefaultProgramName, 
                 "Default",
-                L("Setting:DefaultPcLoginMiniProgramName"),
+                L("Setting:DefaultPcLoginWeChatAppName"),
                 isVisibleToClients: true
             ));
             
             context.Add(new SettingDefinition(
                 MiniProgramsSettings.PcLogin.HandlePage, 
                 null,
-                L("Setting:HandlePage"),
+                L("Setting:PcLoginHandlePage"),
                 isVisibleToClients: true
             ));
         }

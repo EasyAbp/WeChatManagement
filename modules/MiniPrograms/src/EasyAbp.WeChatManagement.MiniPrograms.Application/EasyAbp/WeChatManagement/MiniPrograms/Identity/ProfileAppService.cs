@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
+using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.MiniPrograms.Identity.Dtos;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -21,20 +21,20 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
         private readonly IJsonSerializer _jsonSerializer;
-        private readonly IMiniProgramRepository _miniProgramRepository;
+        private readonly IWeChatAppRepository _weChatAppRepository;
 
         public ProfileAppService(
             LoginService loginService,
             IOptions<IdentityOptions> identityOptions,
             IdentityUserManager identityUserManager,
             IJsonSerializer jsonSerializer,
-            IMiniProgramRepository miniProgramRepository)
+            IWeChatAppRepository weChatAppRepository)
         {
             _loginService = loginService;
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
             _jsonSerializer = jsonSerializer;
-            _miniProgramRepository = miniProgramRepository;
+            _weChatAppRepository = weChatAppRepository;
         }
         
         /// <summary>
@@ -49,8 +49,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
             await _identityOptions.SetAsync();
             
             var user = await _identityUserManager.GetByIdAsync(CurrentUser.GetId());
-            
-            var miniProgram = await _miniProgramRepository.GetAsync(x => x.AppId == input.AppId);
+
+            var miniProgram = await _weChatAppRepository.GetMiniProgramAppByAppIdAsync(input.AppId);
 
             var response = await _loginService.Code2SessionAsync(miniProgram.AppId, miniProgram.AppSecret, input.Code);
 

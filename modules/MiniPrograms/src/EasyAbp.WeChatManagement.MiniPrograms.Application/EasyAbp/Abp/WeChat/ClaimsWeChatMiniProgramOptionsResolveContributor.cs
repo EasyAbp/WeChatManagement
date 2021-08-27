@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.MiniProgram;
 using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure.OptionsResolve;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
+using EasyAbp.WeChatManagement.Common.WeChatApps;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Users;
 
@@ -24,9 +24,9 @@ namespace EasyAbp.Abp.WeChat
             }
             
             // Todo: should use IMiniProgramStore
-            var miniProgramRepository = context.ServiceProvider.GetRequiredService<IMiniProgramRepository>();
+            var weChatAppRepository = context.ServiceProvider.GetRequiredService<IWeChatAppRepository>();
 
-            var miniProgram = await miniProgramRepository.GetAsync(x => x.AppId == appid.Value);
+            var miniProgram = await weChatAppRepository.GetMiniProgramAppByAppIdAsync(appid.Value);
             
             context.Options = new AbpWeChatMiniProgramOptions
             {

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Http.Client" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.HttpApi.Client\EasyAbp.WeChatManagement.Common.HttpApi.Client.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj" />
   </ItemGroup>
 

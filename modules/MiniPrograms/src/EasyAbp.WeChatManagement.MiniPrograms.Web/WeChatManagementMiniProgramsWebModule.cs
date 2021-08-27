@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using EasyAbp.WeChatManagement.Common.Web;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
 using EasyAbp.WeChatManagement.MiniPrograms.Localization;
 using EasyAbp.WeChatManagement.MiniPrograms.Web.Menus;
@@ -15,8 +16,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web
     [DependsOn(
         typeof(WeChatManagementMiniProgramsHttpApiModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
-        typeof(AbpAutoMapperModule)
-        )]
+        typeof(AbpAutoMapperModule),
+        typeof(WeChatManagementCommonWebModule)
+    )]
     public class WeChatManagementMiniProgramsWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

@@ -11,6 +11,7 @@
     <PackageReference Include="EasyAbp.Abp.WeChat.MiniProgram" Version="$(EasyAbpAbpWeChatModuleVersion)" />
     <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.Application\EasyAbp.WeChatManagement.Common.Application.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Domain\EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj" />
   </ItemGroup>

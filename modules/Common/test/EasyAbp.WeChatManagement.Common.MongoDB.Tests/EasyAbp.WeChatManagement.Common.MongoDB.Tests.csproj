@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>EasyAbp.WeChatManagement.Common</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
+    <PackageReference Include="Mongo2Go" Version="3.1.1" />
+    <ProjectReference Include="..\..\src\EasyAbp.WeChatManagement.Common.MongoDB\EasyAbp.WeChatManagement.Common.MongoDB.csproj" />
+    <ProjectReference Include="..\EasyAbp.WeChatManagement.Common.TestBase\EasyAbp.WeChatManagement.Common.TestBase.csproj" />
+  </ItemGroup>
+
+</Project>

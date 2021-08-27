@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniProgramUsers;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
@@ -13,8 +11,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
         /* Add DbSet for each Aggregate Root here. Example:
          * public DbSet<Question> Questions { get; set; }
          */
-        public DbSet<MiniProgram> MiniPrograms { get; set; }
-        public DbSet<MiniProgramUser> MiniProgramUsers { get; set; }
+
         public DbSet<UserInfo> UserInfos { get; set; }
 
         public MiniProgramsDbContext(DbContextOptions<MiniProgramsDbContext> options) 

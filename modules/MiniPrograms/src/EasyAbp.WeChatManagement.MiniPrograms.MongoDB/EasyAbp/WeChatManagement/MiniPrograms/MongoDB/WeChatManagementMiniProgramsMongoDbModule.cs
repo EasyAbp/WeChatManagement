@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyAbp.WeChatManagement.Common;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Modularity;
 using Volo.Abp.MongoDB;
 
@@ -6,8 +7,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MongoDB
 {
     [DependsOn(
         typeof(WeChatManagementMiniProgramsDomainModule),
-        typeof(AbpMongoDbModule)
-        )]
+        typeof(AbpMongoDbModule),
+        typeof(WeChatManagementCommonDomainModule)
+    )]
     public class WeChatManagementMiniProgramsMongoDbModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

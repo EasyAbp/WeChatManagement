@@ -2,7 +2,7 @@
 {
     public static class MiniProgramsTestConsts
     {
-        public const string OpenAppIdOrName = null;
+        public const string OpenAppIdOrName = "Default";
 
         public const string AppId = "";
 

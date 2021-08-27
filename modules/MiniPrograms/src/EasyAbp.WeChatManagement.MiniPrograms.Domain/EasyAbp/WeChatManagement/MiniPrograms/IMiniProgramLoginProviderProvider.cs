@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
+using EasyAbp.WeChatManagement.Common.WeChatApps;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
@@ -8,8 +8,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         string WeChatAppLoginProviderPrefix { get; }
         string WeChatOpenLoginProviderPrefix { get; }
         
-        Task<string> GetAppLoginProviderAsync(MiniProgram miniProgram);
+        Task<string> GetAppLoginProviderAsync(WeChatApp miniProgram);
         
-        Task<string> GetOpenLoginProviderAsync(MiniProgram miniProgram);
+        Task<string> GetOpenLoginProviderAsync(WeChatApp miniProgram);
     }
 }

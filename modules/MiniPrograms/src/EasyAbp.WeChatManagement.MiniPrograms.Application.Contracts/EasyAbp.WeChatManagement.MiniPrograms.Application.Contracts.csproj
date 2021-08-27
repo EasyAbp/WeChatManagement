@@ -11,6 +11,7 @@
     <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Authorization" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.IdentityModel" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.Application.Contracts\EasyAbp.WeChatManagement.Common.Application.Contracts.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.csproj" />
   </ItemGroup>
 
