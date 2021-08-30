@@ -10,8 +10,10 @@ namespace EasyAbp.Abp.WeChat
 {
     public class ClaimsWeChatMiniProgramOptionsResolveContributor : IWeChatMiniProgramOptionsResolveContributor
     {
-        public string Name { get; } = "WeChatManagementClaims";
+        public const string ContributorName = "WeChatManagementClaims";
 
+        public string Name => ContributorName;
+        
         public async Task ResolveAsync(WeChatMiniProgramOptionsResolveContext context)
         {
             var currentUser = context.ServiceProvider.GetRequiredService<ICurrentUser>();

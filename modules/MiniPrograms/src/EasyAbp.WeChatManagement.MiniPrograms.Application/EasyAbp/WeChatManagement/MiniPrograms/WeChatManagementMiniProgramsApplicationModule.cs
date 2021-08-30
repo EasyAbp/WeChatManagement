@@ -35,11 +35,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             
             Configure<AbpWeChatMiniProgramResolveOptions>(options =>
             {
-                options.Contributors.InsertRange(0, new IWeChatMiniProgramOptionsResolveContributor[]
+                if (!options.Contributors.Exists(x => x.Name == ClaimsWeChatMiniProgramOptionsResolveContributor.ContributorName))
                 {
-                    new AsyncLocalWeChatMiniProgramOptionsResolveContributor(),
-                    new ClaimsWeChatMiniProgramOptionsResolveContributor()
-                });
+                    options.Contributors.Insert(0, new ClaimsWeChatMiniProgramOptionsResolveContributor());
+                }
             });
         }
     }
