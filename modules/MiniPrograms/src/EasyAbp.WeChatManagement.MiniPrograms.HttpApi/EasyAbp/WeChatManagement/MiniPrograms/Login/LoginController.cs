@@ -29,12 +29,13 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         {
             return _service.RefreshAsync(input);
         }
-        
+
         [HttpGet]
         [Route("pc-login-acode")]
-        public Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName)
+        [Route("pc-login-acode/{miniProgramName}")]
+        public Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName, string handlePage = null)
         {
-            return _service.GetPcLoginACodeAsync(miniProgramName);
+            return _service.GetPcLoginACodeAsync(miniProgramName, handlePage);
         }
 
         [HttpPost]

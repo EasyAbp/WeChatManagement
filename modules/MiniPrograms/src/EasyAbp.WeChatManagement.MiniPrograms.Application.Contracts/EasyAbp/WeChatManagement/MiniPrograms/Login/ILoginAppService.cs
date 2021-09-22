@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
+using JetBrains.Annotations;
 using Volo.Abp.Application.Services;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Login
@@ -9,8 +10,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         Task<LoginOutput> LoginAsync(LoginInput input);
         
         Task<string> RefreshAsync(RefreshInput input);
-        
-        Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName);
+
+        Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync([NotNull] string miniProgramName,
+            [CanBeNull] string handlePage = null);
         
         Task AuthorizePcAsync(AuthorizePcInput input);
         

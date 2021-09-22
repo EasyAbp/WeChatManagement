@@ -381,7 +381,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             return "__tenant";
         }
 
-        public virtual async Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName)
+        public virtual async Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName,
+            string handlePage = null)
         {
             var miniProgram = await _weChatAppRepository.GetMiniProgramAppByNameAsync(miniProgramName);
 
@@ -398,7 +399,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 var token = Guid.NewGuid().ToString("N");
 
-                var handlePage = await SettingProvider.GetOrNullAsync(MiniProgramsSettings.PcLogin.HandlePage);
+                if (handlePage.IsNullOrWhiteSpace())
+                {
+                    handlePage = await SettingProvider.GetOrNullAsync(MiniProgramsSettings.PcLogin.HandlePage);
+                }
 
                 var aCodeResponse = await _aCodeService.GetUnlimitedACodeAsync(token, handlePage);
 
@@ -409,6 +413,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
                 return new GetPcLoginACodeOutput
                 {
+                    HandlePage = handlePage,
                     Token = token,
                     ACode = aCodeResponse.BinaryData
                 };
