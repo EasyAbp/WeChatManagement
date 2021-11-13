@@ -167,11 +167,18 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 await uow.CompleteAsync();
             }
 
+            var response = await RequestIds4LoginAsync(input.AppId, loginResult.UnionId,
+                loginResult.Code2SessionResponse.OpenId);
+
+            if (response.IsError)
+            {
+                throw response.Exception;
+            }
+            
             return new LoginOutput
             {
                 TenantId = loginResult.MiniProgram.TenantId,
-                RawData = (await RequestIds4LoginAsync(input.AppId, loginResult.UnionId,
-                    loginResult.Code2SessionResponse.OpenId))?.Raw
+                RawData = response.Raw
             };
         }
 
@@ -487,10 +494,18 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             
             await _pcLoginAuthorizationCache.RemoveAsync(input.Token);
 
+            var response = await RequestIds4LoginAsync(cacheItem.AppId, cacheItem.UnionId,
+                cacheItem.OpenId);
+
+            if (response.IsError)
+            {
+                throw response.Exception;
+            }
+            
             return new PcLoginRequestTokensOutput
             {
                 IsSuccess = true,
-                RawData = (await RequestIds4LoginAsync(cacheItem.AppId, cacheItem.UnionId, cacheItem.OpenId))?.Raw
+                RawData = response.Raw
             };
         }
     }
