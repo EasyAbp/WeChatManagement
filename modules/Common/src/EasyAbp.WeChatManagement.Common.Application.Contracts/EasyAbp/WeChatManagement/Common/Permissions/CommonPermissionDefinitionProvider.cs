@@ -15,7 +15,7 @@ namespace EasyAbp.WeChatManagement.Common.Permissions
             weChatAppPermission.AddChild(CommonPermissions.WeChatApp.Update, L("Permission:Update"));
             weChatAppPermission.AddChild(CommonPermissions.WeChatApp.Delete, L("Permission:Delete"));
 
-            var weChatAppUserPermission = myGroup.AddPermission(CommonPermissions.WeChatAppUser.Default, L("Permission:WeChatAppUserUser"));
+            var weChatAppUserPermission = myGroup.AddPermission(CommonPermissions.WeChatAppUser.Default, L("Permission:WeChatAppUser"));
 
         }
 

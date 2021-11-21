@@ -2,6 +2,7 @@
   "culture": "en",
   "texts": {
     "Menu:EasyAbpWeChatManagement": "WeChat",
+    "Permission:Common": "WeChat",
     "Permission:Create": "Create",
     "Permission:Update": "Update",
     "Permission:Delete": "Delete",

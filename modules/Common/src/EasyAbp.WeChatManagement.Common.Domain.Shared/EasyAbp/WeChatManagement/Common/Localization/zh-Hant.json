@@ -2,6 +2,7 @@
   "culture": "zh-Hant",
   "texts": {
     "Menu:EasyAbpWeChatManagement": "微信管理",
+    "Permission:Common": "微信管理",
     "Permission:Create": "新建",
     "Permission:Update": "編輯",
     "Permission:Delete": "刪除",
