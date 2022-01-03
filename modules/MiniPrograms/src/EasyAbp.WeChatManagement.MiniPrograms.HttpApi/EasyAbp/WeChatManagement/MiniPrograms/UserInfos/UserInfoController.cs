@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
@@ -7,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
 {
-    [RemoteService(Name = "EasyAbpWeChatManagementMiniPrograms")]
+    [RemoteService(Name = WeChatManagementRemoteServiceConsts.RemoteServiceName)]
     [Route("/api/wechat-management/mini-programs/user-info")]
     public class UserInfoController : MiniProgramsController, IUserInfoAppService
     {

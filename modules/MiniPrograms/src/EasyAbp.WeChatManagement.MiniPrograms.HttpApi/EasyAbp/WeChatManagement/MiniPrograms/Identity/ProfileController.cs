@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
+using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.MiniPrograms.Identity.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
 {
-    [RemoteService(Name = "EasyAbpWeChatManagementMiniPrograms")]
+    [RemoteService(Name = WeChatManagementRemoteServiceConsts.RemoteServiceName)]
     [Route("/api/wechat-management/mini-programs/profile")]
     public class ProfileController : MiniProgramsController, IProfileAppService
     {

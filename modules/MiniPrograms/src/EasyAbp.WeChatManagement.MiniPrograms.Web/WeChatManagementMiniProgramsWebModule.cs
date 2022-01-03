@@ -14,7 +14,7 @@ using EasyAbp.WeChatManagement.MiniPrograms.Permissions;
 namespace EasyAbp.WeChatManagement.MiniPrograms.Web
 {
     [DependsOn(
-        typeof(WeChatManagementMiniProgramsHttpApiModule),
+        typeof(WeChatManagementMiniProgramsApplicationContractsModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
         typeof(AbpAutoMapperModule),
         typeof(WeChatManagementCommonWebModule)

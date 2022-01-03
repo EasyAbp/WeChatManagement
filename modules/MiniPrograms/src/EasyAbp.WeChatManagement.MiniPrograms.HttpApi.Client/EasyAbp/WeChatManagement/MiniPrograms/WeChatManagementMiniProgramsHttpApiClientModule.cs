@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Http.Client;
 using Volo.Abp.Modularity;
+using Volo.Abp.VirtualFileSystem;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
@@ -12,7 +13,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
     )]
     public class WeChatManagementMiniProgramsHttpApiClientModule : AbpModule
     {
-        public const string RemoteServiceName = "EasyAbpWeChatManagementMiniPrograms";
+        public const string RemoteServiceName = WeChatManagementRemoteServiceConsts.RemoteServiceName;
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
@@ -20,6 +21,11 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 typeof(WeChatManagementMiniProgramsApplicationContractsModule).Assembly,
                 RemoteServiceName
             );
+            
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<WeChatManagementMiniProgramsHttpApiClientModule>();
+            });
         }
     }
 }

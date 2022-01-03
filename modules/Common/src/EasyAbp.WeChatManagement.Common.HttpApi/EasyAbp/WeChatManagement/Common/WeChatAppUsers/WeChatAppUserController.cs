@@ -7,7 +7,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.WeChatManagement.Common.WeChatAppUsers
 {
-    [RemoteService(Name = "EasyAbpWeChatManagementCommon")]
+    [RemoteService(Name = WeChatManagementRemoteServiceConsts.RemoteServiceName)]
     [Route("/api/wechat-management/common/wechat-app-user")]
     public class WeChatAppUserController : CommonController, IWeChatAppUserAppService
     {

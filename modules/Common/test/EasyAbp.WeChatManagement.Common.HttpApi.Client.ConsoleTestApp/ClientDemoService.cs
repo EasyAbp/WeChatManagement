@@ -66,7 +66,7 @@ namespace EasyAbp.WeChatManagement.Common
             {
                 httpClient.SetBearerToken(accessToken);
 
-                var url = _configuration["RemoteServices:Common:BaseUrl"] +
+                var url = _configuration["RemoteServices:EasyAbpWeChatManagement:BaseUrl"] +
                           "api/Common/sample/authorized";
 
                 var responseMessage = await httpClient.GetAsync(url);
@@ -127,7 +127,7 @@ namespace EasyAbp.WeChatManagement.Common
             {
                 httpClient.SetBearerToken(tokenResponse.AccessToken);
 
-                var url = _configuration["RemoteServices:Common:BaseUrl"] +
+                var url = _configuration["RemoteServices:EasyAbpWeChatManagement:BaseUrl"] +
                           "api/Common/sample/authorized";
 
                 var responseMessage = await httpClient.GetAsync(url);

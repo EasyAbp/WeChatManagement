@@ -13,7 +13,7 @@ using EasyAbp.WeChatManagement.Common.Permissions;
 namespace EasyAbp.WeChatManagement.Common.Web
 {
     [DependsOn(
-        typeof(WeChatManagementCommonHttpApiModule),
+        typeof(WeChatManagementCommonApplicationContractsModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
         typeof(AbpAutoMapperModule)
         )]

@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
+using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
-    [RemoteService(Name = "EasyAbpWeChatManagementMiniPrograms")]
+    [RemoteService(Name = WeChatManagementRemoteServiceConsts.RemoteServiceName)]
     [Route("/api/wechat-management/mini-programs/login")]
     public class LoginController : MiniProgramsController, ILoginAppService
     {

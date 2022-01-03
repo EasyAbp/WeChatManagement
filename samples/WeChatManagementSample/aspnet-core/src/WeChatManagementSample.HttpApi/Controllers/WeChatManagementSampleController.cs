@@ -5,7 +5,7 @@ namespace WeChatManagementSample.Controllers
 {
     /* Inherit your controllers from this class.
      */
-    public abstract class WeChatManagementSampleController : AbpController
+    public abstract class WeChatManagementSampleController : AbpControllerBase
     {
         protected WeChatManagementSampleController()
         {
