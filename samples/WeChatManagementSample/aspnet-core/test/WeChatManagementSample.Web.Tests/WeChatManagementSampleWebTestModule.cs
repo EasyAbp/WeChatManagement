@@ -30,7 +30,7 @@ namespace WeChatManagementSample
         {
             context.Services.PreConfigure<IMvcBuilder>(builder =>
             {
-                builder.PartManager.ApplicationParts.Add(new AssemblyPart(typeof(WeChatManagementSampleWebModule).Assembly));
+                builder.PartManager.ApplicationParts.Add(new CompiledRazorAssemblyPart(typeof(WeChatManagementSampleWebModule).Assembly));
             });
         }
 
