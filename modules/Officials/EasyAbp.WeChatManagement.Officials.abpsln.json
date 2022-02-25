@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "EasyAbp.WeChatManagement.Officials": {
+      "path": "EasyAbp.WeChatManagement.Officials.abpmdl.json"
+    }
+  }
+}

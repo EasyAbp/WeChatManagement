@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>EasyAbp.WeChatManagement.Officials</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\EasyAbp.WeChatManagement.Officials.Application\EasyAbp.WeChatManagement.Officials.Application.csproj" />
+    <ProjectReference Include="..\EasyAbp.WeChatManagement.Officials.Domain.Tests\EasyAbp.WeChatManagement.Officials.Domain.Tests.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+  </ItemGroup>
+
+</Project>
