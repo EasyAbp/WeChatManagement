@@ -203,11 +203,11 @@ namespace WeChatManagementSample.Web
             Configure<AbpWeChatOfficialOptions>(op =>
             {
                 // 微信公众号所配置的 Token 值。
-                op.Token = "WXDZBP";
+                op.Token = "00000000";
                 // 微信公众号分配的 AppId。
-                op.AppId = "wx3c5fa76484f96e23";
+                op.AppId = "00000000";
                 // 微信公众号的唯一密钥。
-                op.AppSecret = "23ca77c4457b605cb6a39b6bb83bdd41";
+                op.AppSecret = "00000000";
                 // OAuth 授权回调，用于微信公众号网页使用授权码换取 AccessToken。
                 op.OAuthRedirectUrl = "http://test.hospital.wx.zhongfeiiot.com";
             });

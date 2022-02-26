@@ -16,7 +16,7 @@ public class OfficialsMenuContributor : IMenuContributor
     private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
         //Add main menu items.
-        context.Menu.AddItem(new ApplicationMenuItem(OfficialsMenus.Prefix, displayName: "Officials", "~/Officials", icon: "fa fa-globe"));
+        //context.Menu.AddItem(new ApplicationMenuItem(OfficialsMenus.Prefix, displayName: "Officials", "~/Officials", icon: "fa fa-globe"));
 
         return Task.CompletedTask;
     }
