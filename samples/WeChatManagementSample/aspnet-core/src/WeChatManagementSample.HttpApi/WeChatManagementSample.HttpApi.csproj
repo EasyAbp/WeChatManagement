@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WeChatManagementSample.Application.Contracts\WeChatManagementSample.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.csproj" />
+    <ProjectReference Include="..\..\..\..\..\modules\Officials\src\EasyAbp.WeChatManagement.Officials.HttpApi\EasyAbp.WeChatManagement.Officials.HttpApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

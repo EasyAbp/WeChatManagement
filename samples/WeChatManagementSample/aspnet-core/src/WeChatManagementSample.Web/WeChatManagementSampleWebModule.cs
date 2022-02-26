@@ -1,30 +1,23 @@
-using System;
-using System.IO;
+using EasyAbp.Abp.WeChat.Official;
 using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.Common.Web;
 using EasyAbp.WeChatManagement.MiniPrograms;
 using EasyAbp.WeChatManagement.MiniPrograms.Web;
+using EasyAbp.WeChatManagement.Officials;
+using EasyAbp.WeChatManagement.Officials.Web;
 using Localization.Resources.AbpUi;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WeChatManagementSample.EntityFrameworkCore;
-using WeChatManagementSample.Localization;
-using WeChatManagementSample.MultiTenancy;
-using WeChatManagementSample.Web.Menus;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Authentication.JwtBearer;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
-using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
@@ -34,13 +27,15 @@ using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.Web;
 using Volo.Abp.SettingManagement.Web;
 using Volo.Abp.TenantManagement.Web;
-using Volo.Abp.UI.Navigation.Urls;
-using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
+using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.VirtualFileSystem;
+using WeChatManagementSample.EntityFrameworkCore;
+using WeChatManagementSample.Localization;
+using WeChatManagementSample.MultiTenancy;
+using WeChatManagementSample.Web.Menus;
 
 namespace WeChatManagementSample.Web
 {
@@ -57,7 +52,8 @@ namespace WeChatManagementSample.Web
         typeof(AbpFeatureManagementWebModule),
         typeof(AbpSettingManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(WeChatManagementMiniProgramsWebModule)
+        typeof(WeChatManagementMiniProgramsWebModule),
+        typeof(WeChatManagementOfficialsWebModule)
     )]
     public class WeChatManagementSampleWebModule : AbpModule
     {
@@ -89,6 +85,7 @@ namespace WeChatManagementSample.Web
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
+            ConfigureWeChatOfficial();
         }
 
         private void ConfigureUrls(IConfiguration configuration)
@@ -142,6 +139,12 @@ namespace WeChatManagementSample.Web
                     options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementMiniProgramsApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}MiniPrograms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts"));
                     options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementMiniProgramsApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}MiniPrograms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.MiniPrograms.Application"));
                     options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementMiniProgramsWebModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}MiniPrograms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.MiniPrograms.Web"));
+
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementOfficialsDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}Officials{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.Officials.Domain.Shared"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementOfficialsDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}Officials{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.Officials.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementOfficialsApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}Officials{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.Officials.Application.Contracts"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementOfficialsApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}Officials{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.Officials.Application"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementOfficialsWebModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}Officials{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.Officials.Web"));
                 });
             }
         }
@@ -193,6 +196,21 @@ namespace WeChatManagementSample.Web
                     options.CustomSchemaIds(type => type.FullName);
                 }
             );
+        }
+
+        private void ConfigureWeChatOfficial()
+        {
+            Configure<AbpWeChatOfficialOptions>(op =>
+            {
+                // 微信公众号所配置的 Token 值。
+                op.Token = "WXDZBP";
+                // 微信公众号分配的 AppId。
+                op.AppId = "wx3c5fa76484f96e23";
+                // 微信公众号的唯一密钥。
+                op.AppSecret = "23ca77c4457b605cb6a39b6bb83bdd41";
+                // OAuth 授权回调，用于微信公众号网页使用授权码换取 AccessToken。
+                op.OAuthRedirectUrl = "http://test.hospital.wx.zhongfeiiot.com";
+            });
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)

@@ -7,7 +7,7 @@ using Volo.Abp;
 namespace EasyAbp.WeChatManagement.Officials.Login
 {
     [RemoteService(Name = WeChatManagementRemoteServiceConsts.RemoteServiceName)]
-    [Route("/api/wechat-management/official/login")]
+    [Route("/api/wechat-management/officials/login")]
     public class LoginController : OfficialsController, ILoginAppService
     {
         private readonly ILoginAppService _service;

@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WeChatManagementSample.Domain\WeChatManagementSample.Domain.csproj" />
     <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\..\..\..\modules\Officials\src\EasyAbp.WeChatManagement.Officials.EntityFrameworkCore\EasyAbp.WeChatManagement.Officials.EntityFrameworkCore.csproj" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="$(AbpVersion)" />

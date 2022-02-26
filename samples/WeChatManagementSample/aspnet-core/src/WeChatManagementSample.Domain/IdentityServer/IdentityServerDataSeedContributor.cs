@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using EasyAbp.WeChatManagement.MiniPrograms;
+﻿using EasyAbp.WeChatManagement.MiniPrograms;
+using EasyAbp.WeChatManagement.Officials;
 using IdentityServer4.Models;
 using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -133,7 +134,7 @@ namespace WeChatManagementSample.IdentityServer
                 await CreateClientAsync(
                     consoleClientId,
                     commonScopes,
-                    new[] { "password", "client_credentials", WeChatMiniProgramConsts.GrantType },
+                    new[] { "password", "client_credentials", WeChatMiniProgramConsts.GrantType, WeChatOfficialConsts.GrantType },
                     (configurationSection["WeChatManagementSample_App:ClientSecret"] ?? "1q2w3e*").Sha256()
                 );
             }

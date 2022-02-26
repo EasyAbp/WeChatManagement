@@ -1,4 +1,5 @@
 ﻿using EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore;
+using EasyAbp.WeChatManagement.Officials.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -25,7 +26,8 @@ namespace WeChatManagementSample.EntityFrameworkCore
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(WeChatManagementMiniProgramsEntityFrameworkCoreModule)
+        typeof(WeChatManagementMiniProgramsEntityFrameworkCoreModule),
+        typeof(WeChatManagementOfficialsEntityFrameworkCoreModule)
     )]
     public class WeChatManagementSampleEntityFrameworkCoreModule : AbpModule
     {

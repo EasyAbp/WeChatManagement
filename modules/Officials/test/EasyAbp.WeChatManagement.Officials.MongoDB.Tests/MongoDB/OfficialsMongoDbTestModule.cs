@@ -6,7 +6,7 @@ using Volo.Abp.Uow;
 namespace EasyAbp.WeChatManagement.Officials.MongoDB;
 
 [DependsOn(
-    typeof(OfficialsTestBaseModule),
+    typeof(WeChatManagementOfficialsTestBaseModule),
     typeof(WeChatManagementOfficialsMongoDbModule)
     )]
 public class OfficialsMongoDbTestModule : AbpModule

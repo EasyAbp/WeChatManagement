@@ -9,7 +9,7 @@ using Volo.Abp.Modularity;
 namespace EasyAbp.WeChatManagement.Officials.EntityFrameworkCore;
 
 [DependsOn(
-    typeof(OfficialsTestBaseModule),
+    typeof(WeChatManagementOfficialsTestBaseModule),
     typeof(WeChatManagementOfficialsEntityFrameworkCoreModule),
     typeof(AbpEntityFrameworkCoreSqliteModule)
     )]

@@ -38,9 +38,21 @@ namespace EasyAbp.WeChatManagement.Officials.Login
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
 
-        public LoginAppService(LoginService loginService)
+        public LoginAppService(LoginService loginService, SignInManager<IdentityUser> signInManager, IDataFilter dataFilter, IConfiguration configuration, IHttpClientFactory httpClientFactory, IUserInfoRepository userInfoRepository, IWeChatOfficialAsyncLocal weChatOfficialAsyncLocal, IWeChatAppRepository weChatAppRepository, IWeChatAppUserRepository weChatAppUserRepository, IOfficialLoginNewUserCreator officialLoginNewUserCreator, IOfficialLoginProviderProvider officialLoginProviderProvider, IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager)
         {
             _loginService = loginService;
+            _signInManager = signInManager;
+            _dataFilter = dataFilter;
+            _configuration = configuration;
+            _httpClientFactory = httpClientFactory;
+            _userInfoRepository = userInfoRepository;
+            _weChatOfficialAsyncLocal = weChatOfficialAsyncLocal;
+            _weChatAppRepository = weChatAppRepository;
+            _weChatAppUserRepository = weChatAppUserRepository;
+            _officialLoginNewUserCreator = officialLoginNewUserCreator;
+            _officialLoginProviderProvider = officialLoginProviderProvider;
+            _identityOptions = identityOptions;
+            _identityUserManager = identityUserManager;
         }
 
         public async Task<LoginOutput> LoginAsync(LoginInput input)

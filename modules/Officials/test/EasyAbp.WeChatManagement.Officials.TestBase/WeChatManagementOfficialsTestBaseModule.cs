@@ -14,7 +14,7 @@ namespace EasyAbp.WeChatManagement.Officials;
     typeof(AbpAuthorizationModule),
     typeof(WeChatManagementOfficialsDomainModule)
     )]
-public class OfficialsTestBaseModule : AbpModule
+public class WeChatManagementOfficialsTestBaseModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
