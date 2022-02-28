@@ -1,16 +1,21 @@
-﻿using EasyAbp.Abp.WeChat.Official.Infrastructure.OptionsResolve.Contributors;
+﻿using EasyAbp.Abp.WeChat.Official;
+using EasyAbp.Abp.WeChat.Official.Infrastructure.OptionsResolve.Contributors;
 using EasyAbp.Abp.WeChat.Official.Services.Login;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
 using EasyAbp.WeChatManagement.Officials.Login.Dtos;
+using EasyAbp.WeChatManagement.Officials.Settings;
 using EasyAbp.WeChatManagement.Officials.UserInfos;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
+using System.Web;
+using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
@@ -36,10 +41,27 @@ namespace EasyAbp.WeChatManagement.Officials.Login
         private readonly IWeChatAppUserRepository _weChatAppUserRepository;
         private readonly IOfficialLoginNewUserCreator _officialLoginNewUserCreator;
         private readonly IOfficialLoginProviderProvider _officialLoginProviderProvider;
+        private readonly IDistributedCache<OfficialLoginAuthorizationCacheItem> _loginAuthorizationCache;
+        private readonly IDistributedCache<OfficialLoginUserLimitCacheItem> _loginUserLimitCache;
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
 
-        public LoginAppService(LoginService loginService, SignInManager<IdentityUser> signInManager, IDataFilter dataFilter, IConfiguration configuration, IHttpClientFactory httpClientFactory, IUserInfoRepository userInfoRepository, IWeChatOfficialAsyncLocal weChatOfficialAsyncLocal, IWeChatAppRepository weChatAppRepository, IWeChatAppUserRepository weChatAppUserRepository, IOfficialLoginNewUserCreator officialLoginNewUserCreator, IOfficialLoginProviderProvider officialLoginProviderProvider, IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager)
+        public LoginAppService(
+            LoginService loginService,
+            SignInManager<IdentityUser> signInManager,
+            IDataFilter dataFilter,
+            IConfiguration configuration,
+            IHttpClientFactory httpClientFactory,
+            IUserInfoRepository userInfoRepository,
+            IWeChatOfficialAsyncLocal weChatOfficialAsyncLocal,
+            IWeChatAppRepository weChatAppRepository,
+            IWeChatAppUserRepository weChatAppUserRepository,
+            IOfficialLoginNewUserCreator officialLoginNewUserCreator,
+            IOfficialLoginProviderProvider officialLoginProviderProvider,
+            IDistributedCache<OfficialLoginAuthorizationCacheItem> loginAuthorizationCache,
+            IDistributedCache<OfficialLoginUserLimitCacheItem> loginUserLimitCache,
+            IOptions<IdentityOptions> identityOptions,
+            IdentityUserManager identityUserManager)
         {
             _loginService = loginService;
             _signInManager = signInManager;
@@ -52,11 +74,13 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             _weChatAppUserRepository = weChatAppUserRepository;
             _officialLoginNewUserCreator = officialLoginNewUserCreator;
             _officialLoginProviderProvider = officialLoginProviderProvider;
+            _loginAuthorizationCache = loginAuthorizationCache;
+            _loginUserLimitCache = loginUserLimitCache;
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
         }
 
-        public async Task<LoginOutput> LoginAsync(LoginInput input)
+        public async Task LoginAsync(LoginInput input)
         {
             var loginResult = await GetLoginResultAsync(input);
 
@@ -71,25 +95,56 @@ namespace EasyAbp.WeChatManagement.Officials.Login
                     await _officialLoginNewUserCreator.CreateAsync(loginResult.LoginProvider,
                         loginResult.ProviderKey);
 
-                await UpdateWeChatAppUserAsync(identityUser, loginResult.Official, loginResult.Code2AccessTokenResponse.OpenId);
+                var weChatAppUser = await UpdateWeChatAppUserAsync(identityUser, loginResult.Official, loginResult.Code2AccessTokenResponse.OpenId);
 
                 await TryCreateUserInfoAsync(identityUser, await GenerateFakeUserInfoAsync());
 
+                await _loginAuthorizationCache.SetAsync(input.AppId,
+                    new OfficialLoginAuthorizationCacheItem
+                    {
+                        AppId = input.AppId,
+                        UnionId = weChatAppUser.UnionId,
+                        OpenId = weChatAppUser.OpenId,
+                        UserId = weChatAppUser.Id
+                    },
+                    new DistributedCacheEntryOptions
+                    {
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30)
+                    });
+
+                await _signInManager.SignInAsync(identityUser, false);
+
                 await uow.CompleteAsync();
             }
+        }
 
-            var response = await RequestIds4LoginAsync(input.AppId, loginResult.Code2AccessTokenResponse.OpenId);
+        public async Task<GetLoginAuthorizeUrlOutput> GetLoginAuthorizeUrlAsync(string officialName, string handlePage = null)
+        {
+            var official = await _weChatAppRepository.GetOfficialAppByNameAsync(officialName);
 
-            if (response.IsError)
+            var options = new AbpWeChatOfficialOptions
             {
-                throw response.Exception;
-            }
-
-            return new LoginOutput
-            {
-                TenantId = loginResult.Official.TenantId,
-                RawData = response.Raw
+                Token = official.Token,
+                AppId = official.AppId,
+                AppSecret = official.AppSecret,
+                OAuthRedirectUrl = official.OAuthRedirectUrl
             };
+
+            using (_weChatOfficialAsyncLocal.Change(options))
+            {
+                if (handlePage.IsNullOrWhiteSpace())
+                {
+                    handlePage = await SettingProvider.GetOrNullAsync(OfficialsSettings.Login.HandlePage);
+                }
+
+                var authorizeUrl = $"https://open.weixin.qq.com/connect/oauth2/authorize?appid={official.AppId}&redirect_uri={HttpUtility.UrlEncode(official.OAuthRedirectUrl + "/Account/Login?method=WeChatOfficial&appId=" + official.AppId)}&response_type=code&scope=snsapi_base&state=#wechat_redirect";
+
+                return new GetLoginAuthorizeUrlOutput
+                {
+                    HandlePage = handlePage,
+                    AuthorizeUrl = authorizeUrl
+                };
+            }
         }
 
         protected virtual Task<UserInfoModel> GenerateFakeUserInfoAsync()
@@ -192,7 +247,7 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             };
         }
 
-        protected virtual async Task UpdateWeChatAppUserAsync(IdentityUser identityUser, WeChatApp official, string openId)
+        protected virtual async Task<WeChatAppUser> UpdateWeChatAppUserAsync(IdentityUser identityUser, WeChatApp official, string openId)
         {
             var mpUserMapping = await _weChatAppUserRepository.FindAsync(x =>
                 x.WeChatAppId == official.Id && x.UserId == identityUser.Id);
@@ -202,14 +257,12 @@ namespace EasyAbp.WeChatManagement.Officials.Login
                 mpUserMapping = new WeChatAppUser(GuidGenerator.Create(), CurrentTenant.Id, official.Id,
                     identityUser.Id, null, openId);
 
-                await _weChatAppUserRepository.InsertAsync(mpUserMapping, true);
+                return await _weChatAppUserRepository.InsertAsync(mpUserMapping, true);
             }
-            else
-            {
-                mpUserMapping.SetOpenId(openId);
 
-                await _weChatAppUserRepository.UpdateAsync(mpUserMapping, true);
-            }
+            mpUserMapping.SetOpenId(openId);
+
+            return await _weChatAppUserRepository.UpdateAsync(mpUserMapping, true);
         }
 
         protected virtual async Task TryCreateUserInfoAsync(IdentityUser identityUser, UserInfoModel userInfoModel)

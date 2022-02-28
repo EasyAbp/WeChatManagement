@@ -1,0 +1,16 @@
+﻿@using EasyAbp.WeChatManagement.Officials.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model EasyAbp.WeChatManagement.Officials.Web.Pages.WeChatManagement.Officials.Components.WeChatOfficialLoginWidget.WeChatOfficialLoginViewModel
+@inject IHtmlLocalizer<OfficialsResource> L
+<div class="weChat-official-login-area" data-official-name="@Model.OfficialName">
+    <div class="weChat-official-login-login">
+        @if (!Model.AuthorizeUrl.IsNullOrEmpty())
+        {
+            <a href="@Model.AuthorizeUrl" class="text-decoration-none">@L["WeChatOfficialLogin"]</a>
+        }
+        else
+        {
+            <h2>@L["AuthorizeUrlGenerationFailed"]</h2>
+        }
+    </div>
+</div>

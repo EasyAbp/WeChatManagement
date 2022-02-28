@@ -1,5 +1,6 @@
 ﻿@page
 @using EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.Components.WeChatMiniProgramPcLoginWidget
+@using EasyAbp.WeChatManagement.Officials.Web.Pages.WeChatManagement.Officials.Components.WeChatOfficialLoginWidget
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Volo.Abp.Account.Localization
 @using Volo.Abp.Account.Settings
@@ -27,13 +28,27 @@
                 <form method="post" class="mt-4">
                     @if (Model.Method == CustomLoginModel.WeChatMiniProgramMethodName)
                     {
-                        <p>@LSample["WeChatMiniProgramPcLogin"]<a href="@Url.Page(HttpContext.Request.Path, new { method = CustomLoginModel.PasswordMethodName, returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash })" class="text-decoration-none">@LSample["ChangeToPasswordLogin"]</a></p>
+                        <p>@LSample["WeChatMiniProgramPcLogin"]
+                            <a href="@Url.Page(HttpContext.Request.Path, new { method = CustomLoginModel.WeChatOfficialMethodName, returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash })" class="text-decoration-none">@LSample["ChangeToWeChatOfficialLogin"]</a>
+                            <a href="@Url.Page(HttpContext.Request.Path, new { method = CustomLoginModel.PasswordMethodName, returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash })" class="text-decoration-none">@LSample["ChangeToPasswordLogin"]</a>
+                        </p>
                         @await Component.InvokeAsync(typeof(WeChatMiniProgramPcLoginWidgetViewComponent), Model.MiniProgramName)
+                    }
+                    else if (Model.Method == CustomLoginModel.WeChatOfficialMethodName)
+                    {
+                        <p>@LSample["WeChatOfficialLogin"]
+                            <a href="@Url.Page(HttpContext.Request.Path, new { method = CustomLoginModel.WeChatMiniProgramMethodName, returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash })" class="text-decoration-none">@LSample["ChangeToWeChatMiniProgramPcLogin"]</a>
+                            <a href="@Url.Page(HttpContext.Request.Path, new { method = CustomLoginModel.PasswordMethodName, returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash })" class="text-decoration-none">@LSample["ChangeToPasswordLogin"]</a>
+                        </p>
+                        @await Component.InvokeAsync(typeof(WeChatOfficialLoginWidgetViewComponent), Model.OfficialName)
                     }
                     else if (Model.Method == CustomLoginModel.PasswordMethodName)
                     {
-                        <p>@LSample["PasswordLogin"]<a href="@Url.Page(HttpContext.Request.Path, new { method = CustomLoginModel.WeChatMiniProgramMethodName, returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash })" class="text-decoration-none">@LSample["ChangeToWeChatMiniProgramPcLogin"]</a></p>
-                        <div class="mb-3">
+                        <p>@LSample["PasswordLogin"]
+                            <a href="@Url.Page(HttpContext.Request.Path, new { method = CustomLoginModel.WeChatMiniProgramMethodName, returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash })" class="text-decoration-none">@LSample["ChangeToWeChatMiniProgramPcLogin"]</a>
+                            <a href="@Url.Page(HttpContext.Request.Path, new { method = CustomLoginModel.WeChatOfficialMethodName, returnUrl = Model.ReturnUrl, returnUrlHash = Model.ReturnUrlHash })" class="text-decoration-none">@LSample["ChangeToWeChatOfficialLogin"]</a>
+                        </p>
+                       <div class="mb-3">
                             <label asp-for="LoginInput.UserNameOrEmailAddress" class="form-label"></label>
                             <input asp-for="LoginInput.UserNameOrEmailAddress" class="form-control"/>
                             <span asp-validation-for="LoginInput.UserNameOrEmailAddress" class="text-danger"></span>

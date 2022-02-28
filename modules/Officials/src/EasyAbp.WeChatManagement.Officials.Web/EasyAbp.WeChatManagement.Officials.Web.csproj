@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<Import Project="..\..\..\..\common.props" />
 
@@ -36,6 +36,11 @@
 		<Content Remove="Components\**\*.js" />
 		<Content Remove="Components\**\*.css" />
 		<Content Remove="wwwroot\**\*.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Pages\WeChatManagement\Officials\Components\WeChatOfficialLoginWidget\default.css" />
+	  <None Remove="Pages\WeChatManagement\Officials\Components\WeChatOfficialLoginWidget\default.js" />
 	</ItemGroup>
 
 </Project>

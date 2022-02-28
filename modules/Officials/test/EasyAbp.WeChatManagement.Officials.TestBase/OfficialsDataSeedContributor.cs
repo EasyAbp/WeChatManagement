@@ -39,6 +39,7 @@ public class OfficialsDataSeedContributor : IDataSeedContributor, ITransientDepe
             OfficialsTestConsts.AppSecret,
             OfficialsTestConsts.Token,
             OfficialsTestConsts.EncodingAesKey,
+            null,
             false
         ), true);
     }
