@@ -8,10 +8,6 @@
 
 基于[EasyAbp.Abp.WeChat](https://github.com/EasyAbp/Abp.WeChat)模块实现微信登录、微信用户信息存储、微信服务器管理、微信第三方平台等高级功能的Abp应用模块组
 
-## Online Demo
-
-We have launched an online demo for this module: [https://wechat.samples.easyabp.io](https://wechat.samples.easyabp.io)
-
 ## Installation
 
 * [安装小程序模块](/docs/MiniPrograms/README.md#installation)
