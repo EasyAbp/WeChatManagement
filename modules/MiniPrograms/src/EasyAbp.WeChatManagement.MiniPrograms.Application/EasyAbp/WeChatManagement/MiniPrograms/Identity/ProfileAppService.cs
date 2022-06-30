@@ -74,7 +74,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
                     throw new BusinessException(message: $"WeChat error: [{response.ErrorCode}]: {response.ErrorMessage}");
                 }
                 
-                var phoneNumber = response.PhoneInfo.PurePhoneNumber;
+                var phoneNumber = response.PhoneInfo.PhoneNumber;
 
                 _identityUserManager.RegisterTokenProvider(TokenOptions.DefaultPhoneProvider,
                     new StaticPhoneNumberTokenProvider());
