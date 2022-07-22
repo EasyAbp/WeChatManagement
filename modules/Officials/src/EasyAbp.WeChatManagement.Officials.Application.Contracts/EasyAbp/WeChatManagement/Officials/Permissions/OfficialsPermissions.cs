@@ -10,4 +10,9 @@ public class OfficialsPermissions
     {
         return ReflectionHelper.GetPublicConstantsRecursively(typeof(OfficialsPermissions));
     }
+
+    public class UserInfo
+    {
+        public const string Default = GroupName + ".UserInfo";
+    }
 }

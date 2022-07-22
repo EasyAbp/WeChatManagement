@@ -7,8 +7,12 @@ namespace EasyAbp.WeChatManagement.Officials.Login
 {
     public interface ILoginAppService : IApplicationService
     {
-        Task LoginAsync(LoginInput input);
+        Task<LoginOutput> LoginAsync(LoginInput input);
 
         Task<GetLoginAuthorizeUrlOutput> GetLoginAuthorizeUrlAsync([NotNull] string officialName, [CanBeNull] string handlePage = null);
+
+        Task BindAsync(LoginInput input);
+
+        Task UnbindAsync(LoginInput input);
     }
 }

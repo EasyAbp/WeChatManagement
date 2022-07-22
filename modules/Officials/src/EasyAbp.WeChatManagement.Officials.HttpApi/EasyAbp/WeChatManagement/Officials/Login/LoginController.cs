@@ -17,18 +17,32 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             _service = service;
         }
 
-        [HttpPost]
-        [Route("login")]
-        public Task LoginAsync(LoginInput input)
-        {
-            return _service.LoginAsync(input);
-        }
-
         [HttpGet]
         [Route("get-login-authorize-url")]
         public Task<GetLoginAuthorizeUrlOutput> GetLoginAuthorizeUrlAsync(string officialName, string handlePage = null)
         {
             return _service.GetLoginAuthorizeUrlAsync(officialName, handlePage);
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public Task<LoginOutput> LoginAsync(LoginInput input)
+        {
+            return _service.LoginAsync(input);
+        }
+
+        [HttpPost]
+        [Route("bind")]
+        public Task BindAsync(LoginInput input)
+        {
+            return _service.BindAsync(input);
+        }
+
+        [HttpPost]
+        [Route("unbind")]
+        public Task UnbindAsync(LoginInput input)
+        {
+            return _service.UnbindAsync(input);
         }
     }
 }

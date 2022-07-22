@@ -9,6 +9,7 @@ public class OfficialsPermissionDefinitionProvider : PermissionDefinitionProvide
     public override void Define(IPermissionDefinitionContext context)
     {
         var officialsGroup = context.AddGroup(OfficialsPermissions.GroupName, L("Permission:Officials"));
+        var userInfoPermission = officialsGroup.AddPermission(OfficialsPermissions.UserInfo.Default, L("Permission:UserInfo"));
     }
 
     private static LocalizableString L(string name)
