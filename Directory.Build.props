@@ -1,8 +1,8 @@
 <Project>
   <PropertyGroup>
 
-    <AbpVersion>5.1.3</AbpVersion>
-    <EasyAbpAbpWeChatModuleVersion>1.9.0</EasyAbpAbpWeChatModuleVersion>
+    <AbpVersion>5.3.1</AbpVersion>
+    <EasyAbpAbpWeChatModuleVersion>1.9.2</EasyAbpAbpWeChatModuleVersion>
 
   </PropertyGroup>
 </Project>

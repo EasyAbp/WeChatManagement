@@ -9,11 +9,5 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity.Dtos
         
         [Required]
         public string Code { get; set; }
-
-        [Required]
-        public string EncryptedData { get; set; }
-
-        [Required]
-        public string Iv { get; set; }
     }
 }

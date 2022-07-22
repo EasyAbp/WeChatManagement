@@ -1,5 +1,6 @@
 .weChat-miniProgram-pcLogin-aCode {
-  margin-top: 30px;
+  max-width: 350px;
+  margin: 30px auto 0;
 }
 
 .weChat-miniProgram-pcLogin-aCode img {
