@@ -14,6 +14,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -100,7 +101,7 @@ namespace EasyAbp.WeChatManagement.Officials.Login
 
             await UpdateWeChatAppUserAsync(identityUser, loginResult.Official, loginResult.Code2AccessTokenResponse.OpenId);
 
-            await TryCreateUserInfoAsync(identityUser, await GenerateFakeUserInfoAsync());
+            await TryCreateUserInfoAsync(identityUser, loginResult);
         }
 
         [Authorize]
@@ -151,7 +152,7 @@ namespace EasyAbp.WeChatManagement.Officials.Login
                 var weChatAppUser = await UpdateWeChatAppUserAsync(identityUser, loginResult.Official, loginResult.Code2AccessTokenResponse.OpenId);
 
                 //Todo: 检查Scope并且获取用户信息
-                await TryCreateUserInfoAsync(identityUser, await GenerateFakeUserInfoAsync());
+                await TryCreateUserInfoAsync(identityUser, loginResult);
 
                 await uow.CompleteAsync();
             }
@@ -213,6 +214,29 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             });
         }
 
+        protected virtual bool HasUserInfoScope(LoginResultInfoModel input)
+        {
+            var scopes = input.Code2AccessTokenResponse.Scope.Split(",").ToList();
+
+            return scopes.Contains(WeChatOfficialConsts.UserInfoScope);
+        }
+
+        protected virtual async Task<UserInfoModel> GetUserInfoAsync(LoginResultInfoModel input)
+        {
+            var accessTokenToUserInfoResponse = await _loginService.AccessToken2UserInfoAsync(input.Code2AccessTokenResponse.AccessToken, input.Code2AccessTokenResponse.OpenId);
+
+            return new UserInfoModel
+            {
+                NickName = accessTokenToUserInfoResponse.NickName,
+                Gender = accessTokenToUserInfoResponse.Gender,
+                Language = "zh_CN", // Todo: Add a setting for default language?
+                City = accessTokenToUserInfoResponse.City,
+                Province = accessTokenToUserInfoResponse.Province,
+                Country = accessTokenToUserInfoResponse.Country,
+                AvatarUrl = accessTokenToUserInfoResponse.AvatarUrl,
+            };
+        }
+
         protected virtual async Task<TokenResponse> RequestIds4LoginAsync(string appId, string openId)
         {
             var client = _httpClientFactory.CreateClient(WeChatOfficialConsts.IdentityServerHttpClientName);
@@ -263,7 +287,7 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             }
 
             var code2AccessTokenResponse =
-                await _loginService.Code2SessionAsync(official.AppId, official.AppSecret, input.Code);
+                await _loginService.Code2AccessTokenAsync(official.AppId, official.AppSecret, input.Code);
 
             var openId = code2AccessTokenResponse.OpenId;
 
@@ -317,21 +341,30 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             return await _weChatAppUserRepository.UpdateAsync(mpUserMapping, true);
         }
 
-        protected virtual async Task TryCreateUserInfoAsync(IdentityUser identityUser, UserInfoModel userInfoModel)
+        protected virtual async Task TryCreateUserInfoAsync(IdentityUser identityUser, LoginResultInfoModel input)
         {
+            var hasUserInfoScope = HasUserInfoScope(input);
+
             var userInfo = await _userInfoRepository.FindAsync(x => x.UserId == identityUser.Id);
 
             if (userInfo == null)
             {
-                userInfo = new UserInfo(GuidGenerator.Create(), CurrentTenant.Id, identityUser.Id, userInfoModel);
+                userInfo = new UserInfo(
+                    GuidGenerator.Create(), 
+                    CurrentTenant.Id, 
+                    identityUser.Id, 
+                    hasUserInfoScope ? await GetUserInfoAsync(input) : await GenerateFakeUserInfoAsync());
 
                 await _userInfoRepository.InsertAsync(userInfo, true);
             }
             else
             {
-                // 注意：2021年4月13日后，登录时获得的UserInfo将是匿名信息，非真实用户信息，因此不再覆盖更新
-                // https://github.com/EasyAbp/WeChatManagement/issues/20
-                // https://developers.weixin.qq.com/community/develop/doc/000cacfa20ce88df04cb468bc52801
+                if (hasUserInfoScope)
+                {
+                    userInfo.UpdateInfo(await GetUserInfoAsync(input));
+
+                    await _userInfoRepository.UpdateAsync(userInfo, true);
+                }
             }
         }
 
