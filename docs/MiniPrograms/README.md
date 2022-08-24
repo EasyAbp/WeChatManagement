@@ -29,7 +29,7 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
 
 1. Add `DependsOn(typeof(WeChatManagementMiniProgramsXxxModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/docs/How-To.md#add-module-dependencies))
 
-1. Add `builder.ConfigureWeChatManagementMiniPrograms();` to the `OnModelCreating()` method in **MyProjectMigrationsDbContext.cs**.
+1. Add `builder.ConfigureWeChatManagementCommon();` and `builder.ConfigureWeChatManagementMiniPrograms();` to the `OnModelCreating()` method in **MyProjectMigrationsDbContext.cs**.
 
 1. Add EF Core migrations and update your database. See: [ABP document](https://docs.abp.io/en/abp/latest/Tutorials/Part-1?UI=MVC&DB=EF#add-database-migration).
 
