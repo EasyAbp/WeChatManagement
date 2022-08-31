@@ -15,6 +15,11 @@
             public const string DefaultProgramName = PcLoginGroupName + ".DefaultMiniProgramName";
         
             public const string HandlePage = PcLoginGroupName + ".HandlePage";
+
+            /// <summary>
+            /// 单位（秒）
+            /// </summary>
+            public const string BindCodeExpiredTime = PcLoginGroupName + ".BindCodeExpiredTime";
         }
     }
 }

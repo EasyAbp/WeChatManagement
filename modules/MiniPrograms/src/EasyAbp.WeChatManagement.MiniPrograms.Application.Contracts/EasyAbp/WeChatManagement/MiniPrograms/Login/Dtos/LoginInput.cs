@@ -20,6 +20,11 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
         public string Code { get; set; }
 
         /// <summary>
+        /// 待绑定账号的临时Token
+        /// </summary>
+        public string Token { get; set; }
+
+        /// <summary>
         /// 查找并使用最近一次登录的租户登录（忽略当前租户环境）
         /// </summary>
         public bool LookupUseRecentlyTenant { get; set; }

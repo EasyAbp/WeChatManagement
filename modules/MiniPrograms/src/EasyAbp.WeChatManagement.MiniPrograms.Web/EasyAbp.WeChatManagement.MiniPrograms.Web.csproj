@@ -33,7 +33,7 @@
     <Content Remove="Pages\**\*.js" />
     <Content Remove="wwwroot\**\*.*" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>

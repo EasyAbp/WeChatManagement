@@ -13,7 +13,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync([NotNull] string miniProgramName,
             [CanBeNull] string handlePage = null);
+
+        Task<GetPcBindACodeOutput> GetPcBindACodeAsync([NotNull] string miniProgramName,
+            [CanBeNull] string handlePage = null);
         
+        Task<PcBindOutput> PcBindStatusAsync(PcBindInput input);
+
         Task AuthorizePcAsync(AuthorizePcInput input);
         
         Task<PcLoginOutput> PcLoginAsync(PcLoginInput input);

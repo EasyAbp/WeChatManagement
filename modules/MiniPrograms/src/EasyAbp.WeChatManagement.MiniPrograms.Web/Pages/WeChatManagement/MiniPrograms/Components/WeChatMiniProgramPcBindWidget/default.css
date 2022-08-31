@@ -1,0 +1,33 @@
+﻿.weChat-miniProgram-pcBind-aCode {
+    max-width: 350px;
+    margin: 30px auto 0;
+}
+
+.weChat-miniProgram-pcBind-aCode img {
+    width: 100%;
+}
+
+.weChat-miniProgram-pcBind-aCode .count{
+    padding:15px;
+}
+
+.expire-layer {
+    max-width: 350px;
+    position: relative;
+    color: #000000;
+    background-color: #f5f5f7;
+    opacity: 0.1;
+    display: grid;
+    filter: blur(4px);
+}
+.expire-txt {
+    position: relative;
+    width: 100%;
+    font-size: xxx-large;
+    transform: translateY(-100px);
+}
+
+.avatar-img {
+    border-radius: 50%;
+    max-width: 120px;
+}

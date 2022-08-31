@@ -1,0 +1,29 @@
+﻿@using EasyAbp.WeChatManagement.MiniPrograms.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.Components.WeChatMiniProgramPcBindWidget.WeChatMiniProgramPcBindViewModel
+@inject IHtmlLocalizer<MiniProgramsResource> L
+<script>
+    var token = "@Model.Token";
+    var expireTime = "@Model.ExpiredTime";
+</script>
+<div class="weChat-miniProgram-pcBind-area" data-miniProgram-name="@Model.MiniProgramName">
+    <div class="weChat-miniProgram-pcBind-aCode">
+        @if (!Model.ACode.IsNullOrEmpty())
+        {
+            <img id="bindCode" src="data:image/png;base64,@Convert.ToBase64String(Model.ACode)" alt="ACode" />
+
+            <p class="count"></p>
+            <button type="button" id="btn_refresh" class="btn btn-default" onclick="location.reload()">刷新</button>
+        }
+        else if (Model.HasBound)
+        {
+            <h2>@L["HasBound"]</h2>
+            <img src="@Model.AvatarUrl" class="avatar-img" alt="avatar" />
+            <h5 style="padding:10px">@Model.NickName</h5>
+        }
+        else
+        {
+            <h2>@L["ACodeGenerationFailed"]</h2>
+        }
+    </div>
+</div>

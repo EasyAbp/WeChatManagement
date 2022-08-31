@@ -17,6 +17,8 @@
     "UserInfoAvatarUrl": "UserInfoAvatarUrl",
     "Setting:PcLoginHandlePage": "Setting:PcLoginHandlePage",
     "Setting:DefaultPcLoginWeChatAppName": "Setting:DefaultPcLoginWeChatAppName",
+    "Setting:BindCodeExpiredTime": "Setting:BindCodeExpiredTime",
+    "HasBound": "HasBound",
     "WeChatAccountHasBeenBound": "WeChatAccountHasBeenBound",
     "WeChatAccountHasNotBeenBound": "WeChatAccountHasNotBeenBound"
   }

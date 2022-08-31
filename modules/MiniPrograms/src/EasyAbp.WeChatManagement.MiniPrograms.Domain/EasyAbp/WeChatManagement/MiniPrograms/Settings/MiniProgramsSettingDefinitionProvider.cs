@@ -25,6 +25,14 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Settings
                 L("Setting:PcLoginHandlePage"),
                 isVisibleToClients: true
             ));
+
+            context.Add(new SettingDefinition(
+                MiniProgramsSettings.PcLogin.BindCodeExpiredTime,
+                "60",
+                L("Setting:BindCodeExpiredTime"),
+                isVisibleToClients: true
+            ));
+
         }
         
         private static LocalizableString L(string name)

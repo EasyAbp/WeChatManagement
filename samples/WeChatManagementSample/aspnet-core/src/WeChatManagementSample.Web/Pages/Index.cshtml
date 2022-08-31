@@ -1,4 +1,5 @@
 ﻿@page
+@using EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.Components.WeChatMiniProgramPcBindWidget
 @using Microsoft.AspNetCore.Mvc.Localization
 @using WeChatManagementSample.Localization
 @using Volo.Abp.Users
@@ -10,22 +11,30 @@
         <abp-style src="/Pages/Index.css" />
     </abp-style-bundle>
 }
-@section scripts {
+    @section scripts {
     <abp-script-bundle>
         <abp-script src="/Pages/Index.js" />
     </abp-script-bundle>
 }
-<div class="jumbotron text-center">
-    <h1>@L["Welcome"]</h1>
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <p>@L["LongWelcomeMessage"]</p>
-            <hr class="my-4"/>
+    <div class="jumbotron text-center">
+        <h1>@L["Welcome"]</h1>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <p>@L["LongWelcomeMessage"]</p>
+
+            </div>
         </div>
-    </div>
-    <a href="https://abp.io?ref=tmpl" target="_blank" class="btn btn-primary px-4">abp.io</a>
-    @if (!CurrentUser.IsAuthenticated)
+        <a href="https://abp.io?ref=tmpl" target="_blank" class="btn btn-primary px-4">abp.io</a>
+        <hr class="my-4" />
+        @if (!CurrentUser.IsAuthenticated)
     {
         <a abp-button="Primary" href="~/Account/Login" class="px-4"><i class="fa fa-sign-in"></i> @L["Login"]</a>
+    }
+    else
+    {
+        <div class="col-md-auto text-center icon">
+            绑定现有账号
+        </div>
+        @await Component.InvokeAsync(typeof(WeChatMiniProgramPcBindWidgetViewComponent), Model.MiniProgramName)
     }
 </div>
