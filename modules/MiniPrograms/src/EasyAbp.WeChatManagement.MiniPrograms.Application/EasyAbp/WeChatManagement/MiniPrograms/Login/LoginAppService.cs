@@ -22,6 +22,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
+using Volo.Abp.Identity.AspNetCore;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
@@ -36,7 +37,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         private readonly LoginService _loginService;
         private readonly ACodeService _aCodeService;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly AbpSignInManager _signInManager;
         private readonly IDataFilter _dataFilter;
         private readonly IConfiguration _configuration;
         private readonly IHttpClientFactory _httpClientFactory;
@@ -54,7 +55,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         public LoginAppService(
             LoginService loginService,
             ACodeService aCodeService,
-            SignInManager<IdentityUser> signInManager,
+            AbpSignInManager signInManager,
             IDataFilter dataFilter,
             IConfiguration configuration,
             IHttpClientFactory httpClientFactory,
