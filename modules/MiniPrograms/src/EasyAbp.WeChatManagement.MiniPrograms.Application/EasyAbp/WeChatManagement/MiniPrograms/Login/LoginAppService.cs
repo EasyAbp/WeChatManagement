@@ -145,6 +145,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             }
         }
 
+        [UnitOfWork(IsDisabled = true)]
         public virtual async Task<LoginOutput> LoginAsync(LoginInput input)
         {
             var loginResult = await GetLoginResultAsync(input);

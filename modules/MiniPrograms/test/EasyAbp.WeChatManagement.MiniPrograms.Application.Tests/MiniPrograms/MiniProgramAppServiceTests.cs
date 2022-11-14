@@ -1,11 +1,10 @@
-using Shouldly;
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.Login;
 using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
-using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
+using Shouldly;
 using Xunit;
 
-namespace EasyAbp.WeChatManagement.MiniPrograms
+namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms
 {
     public class MiniProgramAppServiceTests : MiniProgramsApplicationTestBase
     {

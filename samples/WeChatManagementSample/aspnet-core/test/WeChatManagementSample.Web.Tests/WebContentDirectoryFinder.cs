@@ -20,7 +20,7 @@ namespace WeChatManagementSample
             }
 
             var directoryInfo = new DirectoryInfo(domainAssemblyDirectoryPath);
-            while (!DirectoryContains(directoryInfo.FullName, "WeChatManagementSample.sln"))
+            while (!DirectoryContains(directoryInfo.FullName, "WeChatManagement.sln"))
             {
                 if (directoryInfo.Parent == null)
                 {
@@ -30,7 +30,7 @@ namespace WeChatManagementSample
                 directoryInfo = directoryInfo.Parent;
             }
 
-            var webFolder = Path.Combine(directoryInfo.FullName, $"src{Path.DirectorySeparatorChar}WeChatManagementSample.Web");
+            var webFolder = Path.Combine(directoryInfo.FullName, $"samples{Path.DirectorySeparatorChar}WeChatManagementSample{Path.DirectorySeparatorChar}aspnet-core{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}WeChatManagementSample.Web");
             if (Directory.Exists(webFolder))
             {
                 return webFolder;

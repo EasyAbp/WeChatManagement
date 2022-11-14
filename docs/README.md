@@ -3,7 +3,7 @@
 [![ABP version](https://img.shields.io/badge/dynamic/xml?style=flat-square&color=yellow&label=abp&query=%2F%2FProject%2FPropertyGroup%2FAbpVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2FEasyAbp%2FWeChatManagement%2Fmaster%2FDirectory.Build.props)](https://abp.io)
 [![NuGet](https://img.shields.io/nuget/v/EasyAbp.WeChatManagement.Common.Domain.Shared.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.WeChatManagement.Common.Domain.Shared)
 [![NuGet Download](https://img.shields.io/nuget/dt/EasyAbp.WeChatManagement.Common.Domain.Shared.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.WeChatManagement.Common.Domain.Shared)
-[![Discord online](https://badgen.net/discord/online-members/S6QaezrCRq?label=Discord)](https://discord.gg/S6QaezrCRq)
+[![Discord online](https://badgen.net/discord/online-members/xyg8TrRa27?label=Discord)](https://discord.gg/xyg8TrRa27)
 [![GitHub stars](https://img.shields.io/github/stars/EasyAbp/WeChatManagement?style=social)](https://www.github.com/EasyAbp/WeChatManagement)
 
 基于[EasyAbp.Abp.WeChat](https://github.com/EasyAbp/Abp.WeChat)模块实现微信登录、微信用户信息存储、微信服务器管理、微信第三方平台等高级功能的Abp应用模块组

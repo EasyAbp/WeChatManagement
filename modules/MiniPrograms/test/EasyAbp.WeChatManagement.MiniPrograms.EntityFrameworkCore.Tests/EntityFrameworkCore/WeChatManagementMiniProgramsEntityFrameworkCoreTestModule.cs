@@ -1,9 +1,11 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using EasyAbp.WeChatManagement.Common.EntityFrameworkCore;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
+using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
@@ -33,8 +35,16 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
 
+            new CommonDbContext(
+                new DbContextOptionsBuilder<CommonDbContext>().UseSqlite(connection).Options
+            ).GetService<IRelationalDatabaseCreator>().CreateTables();
+
             new MiniProgramsDbContext(
                 new DbContextOptionsBuilder<MiniProgramsDbContext>().UseSqlite(connection).Options
+            ).GetService<IRelationalDatabaseCreator>().CreateTables();
+
+            new IdentityDbContext(
+                new DbContextOptionsBuilder<IdentityDbContext>().UseSqlite(connection).Options
             ).GetService<IRelationalDatabaseCreator>().CreateTables();
             
             return connection;
