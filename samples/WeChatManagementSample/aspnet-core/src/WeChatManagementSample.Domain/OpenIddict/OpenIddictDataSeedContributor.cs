@@ -133,7 +133,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
         // WeChat MiniProgram PC Login
         var weChatMiniProgramPcLoginClientId =
-            configurationSection["WeChatManagementSample_WeChatMiniProgramPcLogin:ClientId"];
+            configurationSection["WeChatManagementSample_WeChatMiniProgram:ClientId"];
 
         if (!weChatMiniProgramPcLoginClientId.IsNullOrWhiteSpace())
         {
@@ -142,7 +142,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                 type: OpenIddictConstants.ClientTypes.Confidential,
                 consentType: OpenIddictConstants.ConsentTypes.Implicit,
                 displayName: "WeChat Mini-program PC Login",
-                secret: configurationSection["WeChatManagementSample_WeChatMiniProgramPcLogin:ClientSecret"] ?? "1q2w3e*",
+                secret: configurationSection["WeChatManagementSample_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*",
                 grantTypes: new List<string>
                 {
                     WeChatMiniProgramConsts.GrantType,
