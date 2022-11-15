@@ -10,6 +10,7 @@ using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
@@ -72,6 +73,7 @@ namespace WeChatManagementSample.EntityFrameworkCore
             builder.ConfigureAuditLogging();
             builder.ConfigureIdentity();
             builder.ConfigureIdentityServer();
+            builder.ConfigureOpenIddict();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
 

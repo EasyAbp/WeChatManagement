@@ -30,7 +30,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 options.AddMaps<WeChatManagementMiniProgramsApplicationModule>(validate: true);
             });
             
-            context.Services.AddHttpClient(WeChatMiniProgramConsts.IdentityServerHttpClientName, c =>
+            context.Services.AddHttpClient(WeChatMiniProgramConsts.AuthServerHttpClientName, c =>
             {
                 c.Timeout = TimeSpan.FromMilliseconds(5000);
             });

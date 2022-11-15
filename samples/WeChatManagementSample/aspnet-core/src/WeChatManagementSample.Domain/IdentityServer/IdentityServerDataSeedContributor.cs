@@ -137,6 +137,20 @@ namespace WeChatManagementSample.IdentityServer
                     (configurationSection["WeChatManagementSample_App:ClientSecret"] ?? "1q2w3e*").Sha256()
                 );
             }
+
+            // WeChat MiniProgram PC Login
+            var weChatMiniProgramPcLoginClientId =
+                configurationSection["WeChatManagementSample_WeChatMiniProgram:ClientId"];
+
+            if (!weChatMiniProgramPcLoginClientId.IsNullOrWhiteSpace())
+            {
+                await CreateClientAsync(
+                    weChatMiniProgramPcLoginClientId,
+                    commonScopes,
+                    new[] { "refresh_token", WeChatMiniProgramConsts.GrantType },
+                    (configurationSection["WeChatManagementSample_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*").Sha256()
+                );
+            }
         }
 
         private async Task<Client> CreateClientAsync(
