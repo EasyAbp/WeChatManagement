@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.Common;
-using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
-using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Volo.Abp.DependencyInjection;

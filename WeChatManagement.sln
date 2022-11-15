@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Appl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.EntityFrameworkCore", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.EntityFrameworkCore\WeChatManagementSample.EntityFrameworkCore.csproj", "{C956DD76-69C8-4A9C-83EA-D17DF83340FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Web\WeChatManagementSample.Web.csproj", "{068855E8-9240-4F1A-910B-CF825794513B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web.OpenIddict", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Web.OpenIddict\WeChatManagementSample.Web.OpenIddict.csproj", "{068855E8-9240-4F1A-910B-CF825794513B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CA9AC87F-097E-4F15-8393-4BC07735A5B0}"
 EndProject
@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{04DBDB01-7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Application.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Application.Tests\WeChatManagementSample.Application.Tests.csproj", "{50B2631D-129C-47B3-A587-029CCD6099BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Web.Tests\WeChatManagementSample.Web.Tests.csproj", "{5F1B28C6-8D0C-4155-92D0-252F7EA5F674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web.Ids4.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Web.Ids4.Tests\WeChatManagementSample.Web.Ids4.Tests.csproj", "{5F1B28C6-8D0C-4155-92D0-252F7EA5F674}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Domain.Shared", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Domain.Shared\WeChatManagementSample.Domain.Shared.csproj", "{42F719ED-8413-4895-B5B4-5AB56079BC66}"
 EndProject
@@ -114,6 +114,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.MongoDB.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.MongoDB.Tests\EasyAbp.WeChatManagement.Common.MongoDB.Tests.csproj", "{E793F3D2-5E8A-4281-9597-3F8EA14FA8E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.TestBase", "modules\Common\test\EasyAbp.WeChatManagement.Common.TestBase\EasyAbp.WeChatManagement.Common.TestBase.csproj", "{23D54D42-4626-43BE-8949-14B1965F24B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatManagementSample.Web.Ids4", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Web.Ids4\WeChatManagementSample.Web.Ids4.csproj", "{7710B6B3-6908-44C0-A343-1CB78A630C19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatManagementSample.Web.OpenIddict.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Web.OpenIddict.Tests - 副本\WeChatManagementSample.Web.OpenIddict.Tests.csproj", "{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict.csproj", "{0B64E953-2865-47C2-A5C6-8E2E5A403A64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4\EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4.csproj", "{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -301,6 +309,22 @@ Global
 		{23D54D42-4626-43BE-8949-14B1965F24B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23D54D42-4626-43BE-8949-14B1965F24B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23D54D42-4626-43BE-8949-14B1965F24B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7710B6B3-6908-44C0-A343-1CB78A630C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7710B6B3-6908-44C0-A343-1CB78A630C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7710B6B3-6908-44C0-A343-1CB78A630C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7710B6B3-6908-44C0-A343-1CB78A630C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B64E953-2865-47C2-A5C6-8E2E5A403A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B64E953-2865-47C2-A5C6-8E2E5A403A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B64E953-2865-47C2-A5C6-8E2E5A403A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B64E953-2865-47C2-A5C6-8E2E5A403A64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -360,6 +384,10 @@ Global
 		{9B78FFE3-32AA-4EDA-8475-F931EA6171B1} = {32D52B09-3F02-4EA3-A295-977D364FCFC7}
 		{E793F3D2-5E8A-4281-9597-3F8EA14FA8E8} = {32D52B09-3F02-4EA3-A295-977D364FCFC7}
 		{23D54D42-4626-43BE-8949-14B1965F24B4} = {32D52B09-3F02-4EA3-A295-977D364FCFC7}
+		{7710B6B3-6908-44C0-A343-1CB78A630C19} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
+		{0B64E953-2865-47C2-A5C6-8E2E5A403A64} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
+		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

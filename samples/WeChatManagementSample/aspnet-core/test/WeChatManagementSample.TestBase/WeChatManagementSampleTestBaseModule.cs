@@ -6,6 +6,7 @@ using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Data;
 using Volo.Abp.IdentityServer;
 using Volo.Abp.Modularity;
+using Volo.Abp.OpenIddict;
 using Volo.Abp.Threading;
 
 namespace WeChatManagementSample
@@ -14,6 +15,8 @@ namespace WeChatManagementSample
         typeof(AbpAutofacModule),
         typeof(AbpTestBaseModule),
         typeof(AbpAuthorizationModule),
+        typeof(AbpIdentityServerDomainModule),
+        typeof(AbpOpenIddictDomainModule),
         typeof(WeChatManagementSampleDomainModule)
         )]
     public class WeChatManagementSampleTestBaseModule : AbpModule
