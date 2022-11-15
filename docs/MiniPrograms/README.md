@@ -18,7 +18,8 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
 
     * EasyAbp.WeChatManagement.MiniPrograms.Application
     * EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts
-    * EasyAbp.WeChatManagement.MiniPrograms.Domain
+    * (2选1) EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict
+    * (2选1) EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4
     * EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared
     * EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
     * EasyAbp.WeChatManagement.MiniPrograms.HttpApi
@@ -33,9 +34,39 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
 
 1. Add EF Core migrations and update your database. See: [ABP document](https://docs.abp.io/en/abp/latest/Tutorials/Part-1?UI=MVC&DB=EF#add-database-migration).
 
-1. 在 Web / HttpApi.Host 启动项目的 appsettings.json 的 AuthServer 中增加 `ClientId` 和 `ClientSecret` 配置（可使用文件中 IdentityServer 中的配置）。
+1. 在启动项目的 appsettings.json 中增加微信登录授权服务器配置：
+   ```json
+   {
+     "WeChatManagement": {
+       "MiniPrograms": {
+         "AuthServer": {
+           "Authority": "https://localhost:44380",
+           "ClientId": "MyProjectName_WeChatMiniProgram",
+           "ClientSecret": "1q2w3e*"
+         }
+       }
+     }
+   }
+   ```
 
-1. 在 IdentityServerClientGrantTypes 表中给上一步使用的 Client 增加一条 `WeChatMiniProgram_credentials` 的 GrantType.
+1. 在 OpenIddictDataSeedContributor 中增加新的客户端 Data Seed (你也可以使用 [IDS4](https://github.com/EasyAbp/WeChatManagement/blob/master/samples/WeChatManagementSample/aspnet-core/src/WeChatManagementSample.Domain/IdentityServer/IdentityServerDataSeedContributor.cs))：
+    ```CSharp
+    // WeChat MiniProgram PC Login
+    var weChatMiniProgramPcLoginClientId =
+        configurationSection["MyProjectName_WeChatMiniProgram:ClientId"];
+
+    if (!weChatMiniProgramPcLoginClientId.IsNullOrWhiteSpace())
+    {
+        await CreateClientAsync(
+            weChatMiniProgramPcLoginClientId,
+            commonScopes,
+            new[] { "refresh_token", WeChatMiniProgramConsts.GrantType },
+            (configurationSection["MyProjectName_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*").Sha256()
+        );
+    }
+    ```
+
+1. 运行 DbMigrator 项目，以创建新的授权客户端。
 
 ## Usage
 
