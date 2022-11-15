@@ -34,7 +34,7 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
 
 1. Add EF Core migrations and update your database. See: [ABP document](https://docs.abp.io/en/abp/latest/Tutorials/Part-1?UI=MVC&DB=EF#add-database-migration).
 
-1. 在启动项目的 appsettings.json 中增加微信登录授权服务器配置：
+1. 在 Web/Host 项目的 appsettings.json 中增加微信登录授权服务器配置：
    ```json
    {
      "WeChatManagement": {
@@ -63,6 +63,20 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
             new[] { "refresh_token", WeChatMiniProgramConsts.GrantType },
             (configurationSection["MyProjectName_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*").Sha256()
         );
+    }
+    ```
+
+1. 在 DbMigrator 项目的 appsettings.json 中增加：
+    ```CSharp
+    {
+      "IdentityServer": {
+        "Clients": {
+          "WeChatManagementSample_WeChatMiniProgram": {
+            "ClientId": "MyProjectName_WeChatMiniProgram",
+            "ClientSecret": "1q2w3e*"
+          }
+        }
+      }
     }
     ```
 
