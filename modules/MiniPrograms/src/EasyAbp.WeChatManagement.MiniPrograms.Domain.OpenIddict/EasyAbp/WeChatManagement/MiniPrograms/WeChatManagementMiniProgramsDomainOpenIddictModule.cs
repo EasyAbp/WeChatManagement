@@ -13,6 +13,17 @@ namespace EasyAbp.WeChatManagement.MiniPrograms;
 )]
 public class WeChatManagementMiniProgramsDomainOpenIddictModule : AbpModule
 {
+    public override void PreConfigureServices(ServiceConfigurationContext context)
+    {
+        PreConfigure<OpenIddictServerBuilder>(builder =>
+        {
+            builder.Configure(openIddictServerOptions =>
+            {
+                openIddictServerOptions.GrantTypes.Add(WeChatMiniProgramConsts.GrantType);
+            });
+        });
+    }
+
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.Configure<AbpOpenIddictExtensionGrantsOptions>(options =>
