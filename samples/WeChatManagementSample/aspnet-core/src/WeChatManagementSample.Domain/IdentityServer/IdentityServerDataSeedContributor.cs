@@ -202,7 +202,7 @@ namespace WeChatManagementSample.IdentityServer
                 }
             }
 
-            if (client.FindSecret(secret) == null)
+            if (!secret.IsNullOrWhiteSpace() && client.FindSecret(secret) == null)
             {
                 client.AddSecret(secret);
             }
