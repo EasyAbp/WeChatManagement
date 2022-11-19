@@ -134,7 +134,7 @@ namespace WeChatManagementSample.IdentityServer
                     consoleClientId,
                     commonScopes,
                     new[] { "password", "client_credentials", WeChatMiniProgramConsts.GrantType },
-                    (configurationSection["WeChatManagementSample_App:ClientSecret"] ?? "1q2w3e*").Sha256()
+                    null
                 );
             }
 
