@@ -31,10 +31,5 @@ public class WeChatManagementMiniProgramsDomainOpenIddictModule : AbpModule
             options.Grants.Add(WeChatMiniProgramConsts.GrantType,
                 new WeChatMiniProgramTokenExtensionGrant());
         });
-
-        context.Services.Configure<OpenIddictServerOptions>(options =>
-        {
-            options.GrantTypes.AddIfNotContains(WeChatMiniProgramConsts.GrantType);
-        });
     }
 }
