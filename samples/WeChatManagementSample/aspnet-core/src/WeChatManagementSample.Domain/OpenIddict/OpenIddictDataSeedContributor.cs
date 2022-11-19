@@ -132,13 +132,13 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         }
 
         // WeChat MiniProgram
-        var weChatMiniProgramPcLoginClientId =
+        var weChatMiniProgramClientId =
             configurationSection["WeChatManagementSample_WeChatMiniProgram:ClientId"];
 
-        if (!weChatMiniProgramPcLoginClientId.IsNullOrWhiteSpace())
+        if (!weChatMiniProgramClientId.IsNullOrWhiteSpace())
         {
             await CreateApplicationAsync(
-                name: weChatMiniProgramPcLoginClientId,
+                name: weChatMiniProgramClientId,
                 type: OpenIddictConstants.ClientTypes.Confidential,
                 consentType: OpenIddictConstants.ConsentTypes.Implicit,
                 displayName: "WeChat Mini-program",
