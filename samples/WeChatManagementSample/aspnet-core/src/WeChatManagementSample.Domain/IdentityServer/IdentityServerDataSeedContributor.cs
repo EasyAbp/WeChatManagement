@@ -138,7 +138,7 @@ namespace WeChatManagementSample.IdentityServer
                 );
             }
 
-            // WeChat MiniProgram PC Login
+            // WeChat MiniProgram
             var weChatMiniProgramPcLoginClientId =
                 configurationSection["WeChatManagementSample_WeChatMiniProgram:ClientId"];
 

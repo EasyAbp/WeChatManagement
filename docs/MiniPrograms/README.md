@@ -51,14 +51,14 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
 
 1. 在 OpenIddictDataSeedContributor 中增加新的客户端 Data Seed (你也可以使用 [IDS4](https://github.com/EasyAbp/WeChatManagement/blob/master/samples/WeChatManagementSample/aspnet-core/src/WeChatManagementSample.Domain/IdentityServer/IdentityServerDataSeedContributor.cs))：
     ```CSharp
-    // WeChat MiniProgram PC Login
-    var weChatMiniProgramPcLoginClientId =
+    // WeChat MiniProgram
+    var weChatMiniProgramClientId =
         configurationSection["MyProjectName_WeChatMiniProgram:ClientId"];
 
-    if (!weChatMiniProgramPcLoginClientId.IsNullOrWhiteSpace())
+    if (!weChatMiniProgramClientId.IsNullOrWhiteSpace())
     {
         await CreateClientAsync(
-            weChatMiniProgramPcLoginClientId,
+            weChatMiniProgramClientId,
             commonScopes,
             new[] { "refresh_token", WeChatMiniProgramConsts.GrantType },
             (configurationSection["MyProjectName_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*").Sha256()

@@ -131,7 +131,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             );
         }
 
-        // WeChat MiniProgram PC Login
+        // WeChat MiniProgram
         var weChatMiniProgramPcLoginClientId =
             configurationSection["WeChatManagementSample_WeChatMiniProgram:ClientId"];
 
@@ -141,7 +141,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                 name: weChatMiniProgramPcLoginClientId,
                 type: OpenIddictConstants.ClientTypes.Confidential,
                 consentType: OpenIddictConstants.ConsentTypes.Implicit,
-                displayName: "WeChat Mini-program PC Login",
+                displayName: "WeChat Mini-program",
                 secret: configurationSection["WeChatManagementSample_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*",
                 grantTypes: new List<string>
                 {
