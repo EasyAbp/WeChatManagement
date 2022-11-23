@@ -54,14 +54,20 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
     // WeChat MiniProgram
     var weChatMiniProgramClientId =
         configurationSection["MyProjectName_WeChatMiniProgram:ClientId"];
-
     if (!weChatMiniProgramClientId.IsNullOrWhiteSpace())
     {
-        await CreateClientAsync(
-            weChatMiniProgramClientId,
-            commonScopes,
-            new[] { "refresh_token", WeChatMiniProgramConsts.GrantType },
-            (configurationSection["MyProjectName_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*").Sha256()
+        await CreateApplicationAsync(
+            name: weChatMiniProgramClientId,
+            type: OpenIddictConstants.ClientTypes.Public,
+            consentType: OpenIddictConstants.ConsentTypes.Implicit,
+            displayName: "WeChat Mini-program",
+            secret: configurationSection["MyProjectName_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*",
+            grantTypes: new List<string>
+            {
+                OpenIddictConstants.GrantTypes.RefreshToken,
+                WeChatMiniProgramConsts.GrantType
+            },
+            scopes: commonScopes
         );
     }
     ```
@@ -69,8 +75,8 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
 1. 在 DbMigrator 项目的 appsettings.json 中增加：
     ```CSharp
     {
-      "IdentityServer": {
-        "Clients": {
+      "OpenIddict": {
+        "Applications": {
           "WeChatManagementSample_WeChatMiniProgram": {
             "ClientId": "MyProjectName_WeChatMiniProgram",
             "ClientSecret": "1q2w3e*"
