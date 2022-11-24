@@ -58,7 +58,7 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
     {
         await CreateApplicationAsync(
             name: weChatMiniProgramClientId,
-            type: OpenIddictConstants.ClientTypes.Public,
+            type: OpenIddictConstants.ClientTypes.Confidential,
             consentType: OpenIddictConstants.ConsentTypes.Implicit,
             displayName: "WeChat Mini-program",
             secret: configurationSection["MyProjectName_WeChatMiniProgram:ClientSecret"] ?? "1q2w3e*",
