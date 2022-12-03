@@ -71,6 +71,20 @@ We have launched an online demo for this module: [https://wechat.samples.easyabp
         );
     }
     ```
+1. 在 OpenIddictDataSeedContributor 中找到
+    ```CSharp
+    if (grantType == OpenIddictConstants.GrantTypes.ClientCredentials)
+    {
+        application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.ClientCredentials);
+    }
+    ```
+    在下面增加
+    ```CSharp
+    if (grantType == WeChatMiniProgramConsts.GrantType)
+    {
+        application.Permissions.Add($"gt:{WeChatMiniProgramConsts.GrantType}");
+    }
+    ```
 
 1. 在 DbMigrator 项目的 appsettings.json 中增加：
     ```CSharp
