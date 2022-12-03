@@ -20,6 +20,7 @@ public class WeChatManagementMiniProgramsDomainOpenIddictModule : AbpModule
             builder.Configure(openIddictServerOptions =>
             {
                 openIddictServerOptions.GrantTypes.Add(WeChatMiniProgramConsts.GrantType);
+                openIddictServerOptions.Claims.Add(WeChatMiniProgramConsts.AppIdClaim);
             });
         });
     }
@@ -28,8 +29,7 @@ public class WeChatManagementMiniProgramsDomainOpenIddictModule : AbpModule
     {
         context.Services.Configure<AbpOpenIddictExtensionGrantsOptions>(options =>
         {
-            options.Grants.Add(WeChatMiniProgramConsts.GrantType,
-                new WeChatMiniProgramTokenExtensionGrant());
+            options.Grants.Add(WeChatMiniProgramConsts.GrantType, new WeChatMiniProgramTokenExtensionGrant());
         });
     }
 }

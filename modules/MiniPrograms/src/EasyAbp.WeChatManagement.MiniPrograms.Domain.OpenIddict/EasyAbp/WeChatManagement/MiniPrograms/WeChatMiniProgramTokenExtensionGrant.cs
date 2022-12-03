@@ -94,7 +94,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 
             principal.SetScopes(context.Request.GetScopes());
             principal.SetResources(await GetResourcesAsync(context.Request.GetScopes(), scopeManager));
-            principal.SetClaim("appid", appId); // 记录 appid
+            principal.SetClaim(WeChatMiniProgramConsts.AppIdClaim, appId); // 记录 appid
 
             await openIddictClaimDestinationsManager.SetAsync(principal);
 
