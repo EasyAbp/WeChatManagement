@@ -39,7 +39,8 @@ public class FakeLoginAppService : LoginAppService
     {
     }
 
-    protected override Task<TokenResponse> RequestAuthServerLoginAsync(string appId, string unionId, string openId)
+    protected override Task<TokenResponse> RequestAuthServerLoginAsync(
+        string appId, string unionId, string openId, string scope)
     {
         return Task.FromResult(new TokenResponse());
     }

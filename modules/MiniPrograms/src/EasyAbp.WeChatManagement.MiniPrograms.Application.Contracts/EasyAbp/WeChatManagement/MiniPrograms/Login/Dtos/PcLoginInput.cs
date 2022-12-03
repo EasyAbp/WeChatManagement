@@ -8,5 +8,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
     {
         [Required]
         public string Token { get; set; }
+
+        public string Scope { get; set; }
     }
 }

@@ -170,7 +170,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             }
 
             var response = await RequestAuthServerLoginAsync(input.AppId, loginResult.UnionId,
-                loginResult.Code2SessionResponse.OpenId);
+                loginResult.Code2SessionResponse.OpenId, input.Scope);
 
             if (response.IsError)
             {
@@ -341,7 +341,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             }
         }
 
-        protected virtual async Task<TokenResponse> RequestAuthServerLoginAsync(string appId, string unionId, string openId)
+        protected virtual async Task<TokenResponse> RequestAuthServerLoginAsync(string appId, string unionId, string openId, string scope)
         {
             var client = _httpClientFactory.CreateClient(WeChatMiniProgramConsts.AuthServerHttpClientName);
 
@@ -358,6 +358,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                     {"appid", appId},
                     {"unionid", unionId},
                     {"openid", openId},
+                    {"scope", scope},
                 }
             };
 
@@ -497,7 +498,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             await _pcLoginAuthorizationCache.RemoveAsync(input.Token);
 
             var response = await RequestAuthServerLoginAsync(cacheItem.AppId, cacheItem.UnionId,
-                cacheItem.OpenId);
+                cacheItem.OpenId, input.Scope);
 
             if (response.IsError)
             {

@@ -23,5 +23,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
         /// 查找并使用最近一次登录的租户登录（忽略当前租户环境）
         /// </summary>
         public bool LookupUseRecentlyTenant { get; set; }
+
+        public string Scope { get; set; }
     }
 }
