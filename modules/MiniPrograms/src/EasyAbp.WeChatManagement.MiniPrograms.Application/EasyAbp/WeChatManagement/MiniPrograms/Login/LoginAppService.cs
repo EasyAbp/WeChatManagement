@@ -230,7 +230,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
             var code2SessionResponse =
                 await _loginService.Code2SessionAsync(miniProgram.AppId, miniProgram.AppSecret, input.Code);
-            // wechat code2session凑五
+            // wechat code2session 错误
             if(code2SessionResponse.ErrorCode != 0)
             {
                 throw new WeChatBusinessException(code2SessionResponse.ErrorCode, code2SessionResponse.ErrorMessage);
