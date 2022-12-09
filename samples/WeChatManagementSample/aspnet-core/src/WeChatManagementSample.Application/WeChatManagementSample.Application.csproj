@@ -11,6 +11,7 @@
     <ProjectReference Include="..\WeChatManagementSample.Domain\WeChatManagementSample.Domain.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.Application.Contracts\WeChatManagementSample.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application\EasyAbp.WeChatManagement.MiniPrograms.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\..\modules\Officials\src\EasyAbp.WeChatManagement.Officials.Application\EasyAbp.WeChatManagement.Officials.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

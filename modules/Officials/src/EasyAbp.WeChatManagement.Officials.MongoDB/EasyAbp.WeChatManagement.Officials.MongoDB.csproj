@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace />
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.MongoDB" Version="$(AbpVersion)" />
+		<ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.MongoDB\EasyAbp.WeChatManagement.Common.MongoDB.csproj" />
+		<ProjectReference Include="..\EasyAbp.WeChatManagement.Officials.Domain\EasyAbp.WeChatManagement.Officials.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

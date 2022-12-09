@@ -37,6 +37,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 MiniProgramsTestConsts.AppSecret,
                 MiniProgramsTestConsts.Token,
                 MiniProgramsTestConsts.EncodingAesKey,
+                null,
                 false
             ), true);
         }

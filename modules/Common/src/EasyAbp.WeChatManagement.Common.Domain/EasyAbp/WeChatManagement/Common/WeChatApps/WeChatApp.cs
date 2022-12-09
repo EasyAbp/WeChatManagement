@@ -1,5 +1,5 @@
-using System;
 using JetBrains.Annotations;
+using System;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
@@ -36,7 +36,13 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
 
         [CanBeNull]
         public virtual string EncodingAesKey { get; protected set; }
-        
+
+        /// <summary>
+        /// OAuth 授权回调，用于微信公众号网页使用授权码换取 AccessToken
+        /// </summary>
+        [CanBeNull]
+        public virtual string OAuthRedirectUrl { get; protected set; }
+
         public virtual bool IsStatic { get; protected set; }
 
         protected WeChatApp()
@@ -55,6 +61,7 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
             [CanBeNull] string appSecret,
             [CanBeNull] string token,
             [CanBeNull] string encodingAesKey,
+            [CanBeNull] string oAuthRedirectUrl,
             bool isStatic) : base(id)
         {
             TenantId = tenantId;
@@ -67,6 +74,7 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
             AppSecret = appSecret;
             Token = token;
             EncodingAesKey = encodingAesKey;
+            OAuthRedirectUrl = oAuthRedirectUrl;
             IsStatic = isStatic;
         }
     }

@@ -40,6 +40,8 @@
     <ProjectReference Include="..\WeChatManagementSample.HttpApi\WeChatManagementSample.HttpApi.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.EntityFrameworkCore\WeChatManagementSample.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Web\EasyAbp.WeChatManagement.MiniPrograms.Web.csproj" />
+    <ProjectReference Include="..\..\..\..\..\modules\Officials\src\EasyAbp.WeChatManagement.Officials.Web\EasyAbp.WeChatManagement.Officials.Web.csproj" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite" Version="1.0.0-beta.3" />
     <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />

@@ -1,0 +1,7 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "WeChatOfficialLogin": "微信公众号登录",
+    "AuthorizeUrlGenerationFailed": "公众号授权url生成失败"
+  }
+}
