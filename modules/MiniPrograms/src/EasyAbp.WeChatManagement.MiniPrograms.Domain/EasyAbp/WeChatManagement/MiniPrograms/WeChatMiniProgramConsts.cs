@@ -3,9 +3,9 @@
     public class WeChatMiniProgramConsts
     {
         public const string GrantType = "WeChatMiniProgram_credentials";
-        
-        public const string PcLoginGrantType = "WeChatMiniProgramPcLogin_credentials";
-        
-        public const string IdentityServerHttpClientName = "EasyAbpWeChatMagementMiniProgram";
+
+        public const string AuthServerHttpClientName = "EasyAbpWeChatMagementMiniProgram";
+
+        public const string AppIdClaim = "wechat_appid";
     }
 }

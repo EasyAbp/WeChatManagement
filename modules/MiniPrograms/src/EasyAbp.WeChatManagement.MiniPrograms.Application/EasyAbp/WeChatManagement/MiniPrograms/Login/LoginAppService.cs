@@ -1,4 +1,3 @@
-using EasyAbp.Abp.WeChat;
 using EasyAbp.Abp.WeChat.MiniProgram;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.ACode;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
@@ -18,10 +17,12 @@ using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure.OptionsResolve.Contributors;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
+using Volo.Abp;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
+using Volo.Abp.Identity.AspNetCore;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
@@ -36,7 +37,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         private readonly LoginService _loginService;
         private readonly ACodeService _aCodeService;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly AbpSignInManager _signInManager;
         private readonly IDataFilter _dataFilter;
         private readonly IConfiguration _configuration;
         private readonly IHttpClientFactory _httpClientFactory;
@@ -54,7 +55,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         public LoginAppService(
             LoginService loginService,
             ACodeService aCodeService,
-            SignInManager<IdentityUser> signInManager,
+            AbpSignInManager signInManager,
             IDataFilter dataFilter,
             IConfiguration configuration,
             IHttpClientFactory httpClientFactory,
@@ -144,6 +145,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             }
         }
 
+        [UnitOfWork(IsDisabled = true)]
         public virtual async Task<LoginOutput> LoginAsync(LoginInput input)
         {
             var loginResult = await GetLoginResultAsync(input);
@@ -167,12 +169,12 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 await uow.CompleteAsync();
             }
 
-            var response = await RequestIds4LoginAsync(input.AppId, loginResult.UnionId,
-                loginResult.Code2SessionResponse.OpenId);
+            var response = await RequestAuthServerLoginAsync(input.AppId, loginResult.UnionId,
+                loginResult.Code2SessionResponse.OpenId, input.Scope);
 
             if (response.IsError)
             {
-                throw response.Exception;
+                throw response.Exception ?? new AbpException(response.Raw);
             }
             
             return new LoginOutput
@@ -228,6 +230,11 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
             var code2SessionResponse =
                 await _loginService.Code2SessionAsync(miniProgram.AppId, miniProgram.AppSecret, input.Code);
+            // wechat code2session 错误
+            if(code2SessionResponse.ErrorCode != 0)
+            {
+                throw new WeChatBusinessException(code2SessionResponse.ErrorCode, code2SessionResponse.ErrorMessage);
+            }
 
             var openId = code2SessionResponse.OpenId;
             var unionId = code2SessionResponse.UnionId;
@@ -277,7 +284,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
         public virtual async Task<string> RefreshAsync(RefreshInput input)
         {
-            return (await RequestIds4RefreshAsync(input.RefreshToken))?.Raw;
+            return (await RequestAuthServerRefreshAsync(input.RefreshToken))?.Raw;
         }
 
         protected virtual async Task UpdateWeChatAppUserAsync(IdentityUser identityUser, WeChatApp miniProgram, string unionId, string openId, string sessionKey)
@@ -339,23 +346,24 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             }
         }
 
-        protected virtual async Task<TokenResponse> RequestIds4LoginAsync(string appId, string unionId, string openId)
+        protected virtual async Task<TokenResponse> RequestAuthServerLoginAsync(string appId, string unionId, string openId, string scope)
         {
-            var client = _httpClientFactory.CreateClient(WeChatMiniProgramConsts.IdentityServerHttpClientName);
+            var client = _httpClientFactory.CreateClient(WeChatMiniProgramConsts.AuthServerHttpClientName);
 
             var request = new TokenRequest
             {
-                Address = _configuration["AuthServer:Authority"] + "/connect/token",
+                Address = _configuration["WeChatManagement:MiniPrograms:AuthServer:Authority"] + "/connect/token",
                 GrantType = WeChatMiniProgramConsts.GrantType,
 
-                ClientId = _configuration["AuthServer:ClientId"],
-                ClientSecret = _configuration["AuthServer:ClientSecret"],
+                ClientId = _configuration["WeChatManagement:MiniPrograms:AuthServer:ClientId"],
+                ClientSecret = _configuration["WeChatManagement:MiniPrograms:AuthServer:ClientSecret"],
 
                 Parameters =
                 {
                     {"appid", appId},
                     {"unionid", unionId},
                     {"openid", openId},
+                    {"scope", scope},
                 }
             };
 
@@ -364,16 +372,16 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             return await client.RequestTokenAsync(request);
         }
 
-        protected virtual async Task<TokenResponse> RequestIds4RefreshAsync(string refreshToken)
+        protected virtual async Task<TokenResponse> RequestAuthServerRefreshAsync(string refreshToken)
         {
-            var client = _httpClientFactory.CreateClient(WeChatMiniProgramConsts.IdentityServerHttpClientName);
+            var client = _httpClientFactory.CreateClient(WeChatMiniProgramConsts.AuthServerHttpClientName);
 
             var request = new RefreshTokenRequest
             {
-                Address = _configuration["AuthServer:Authority"] + "/connect/token",
+                Address = _configuration["WeChatManagement:MiniPrograms:AuthServer:Authority"] + "/connect/token",
 
-                ClientId = _configuration["AuthServer:ClientId"],
-                ClientSecret = _configuration["AuthServer:ClientSecret"],
+                ClientId = _configuration["WeChatManagement:MiniPrograms:AuthServer:ClientId"],
+                ClientSecret = _configuration["WeChatManagement:MiniPrograms:AuthServer:ClientSecret"],
 
                 RefreshToken = refreshToken
             };
@@ -494,8 +502,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             
             await _pcLoginAuthorizationCache.RemoveAsync(input.Token);
 
-            var response = await RequestIds4LoginAsync(cacheItem.AppId, cacheItem.UnionId,
-                cacheItem.OpenId);
+            var response = await RequestAuthServerLoginAsync(cacheItem.AppId, cacheItem.UnionId,
+                cacheItem.OpenId, input.Scope);
 
             if (response.IsError)
             {

@@ -252,8 +252,8 @@ paket-files/
 *.sln.iml
 
 # WeChatManagementSample
-src/WeChatManagementSample.Web/Logs/*
-src/WeChatManagementSample.Web.Host/Logs/*
+src/WeChatManagementSample.Web.Ids4/Logs/*
+src/WeChatManagementSample.Web.OpenIddict/Logs/*
 src/WeChatManagementSample.IdentityServer/Logs/*
 src/WeChatManagementSample.HttpApi.Host/Logs/*
 src/WeChatManagementSample.HttpApi.HostWithIds/Logs/*
