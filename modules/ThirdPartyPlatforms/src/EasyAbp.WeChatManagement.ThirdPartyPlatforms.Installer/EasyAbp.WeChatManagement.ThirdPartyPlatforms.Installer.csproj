@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+        <RootNamespace />
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.VirtualFileSystem" Version="$(AbpVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="..\..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.abpmdl.json" />
+      <EmbeddedResource Include="..\..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.abpmdl.json" />
+    </ItemGroup>
+
+</Project>

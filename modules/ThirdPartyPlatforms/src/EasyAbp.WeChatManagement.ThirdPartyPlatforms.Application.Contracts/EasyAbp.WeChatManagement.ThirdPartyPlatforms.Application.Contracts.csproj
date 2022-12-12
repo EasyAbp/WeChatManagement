@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.Application.Contracts\EasyAbp.WeChatManagement.Common.Application.Contracts.csproj" />
+    <ProjectReference Include="..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

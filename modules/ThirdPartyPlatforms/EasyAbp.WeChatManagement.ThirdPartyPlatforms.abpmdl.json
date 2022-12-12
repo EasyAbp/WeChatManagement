@@ -1,0 +1,111 @@
+﻿{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore/EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB/EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi/EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client/EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase": {
+      "path": "test/EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase/EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests": {
+      "path": "test/EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests/EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests": {
+      "path": "test/EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests/EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests": {
+      "path": "test/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests": {
+      "path": "test/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Host": {
+      "path": "host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp/EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Host": {
+      "path": "host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Host.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthServer": {
+      "path": "host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthServer/EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthServer.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Host.Shared": {
+      "path": "host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Host.Shared/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Host.Shared.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Unified": {
+      "path": "host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Unified/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Unified.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Host": {
+      "path": "host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Host.abppkg.json",
+      "folder": "host"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Server": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Server/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Server.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.WebAssembly": {
+      "path": "src/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.WebAssembly/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.WebAssembly.abppkg.json",
+      "folder": "src"
+    },
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Server.Host": {
+      "path": "host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Server.Host/EasyAbp.WeChatManagement.ThirdPartyPlatforms.Blazor.Server.Host.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 ﻿using EasyAbp.WeChatManagement.Common.EntityFrameworkCore;
 using EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -79,6 +80,7 @@ namespace WeChatManagementSample.EntityFrameworkCore
 
             builder.ConfigureWeChatManagementCommon();
             builder.ConfigureWeChatManagementMiniPrograms();
+            builder.ConfigureThirdPartyPlatforms();
             
             /* Configure your own tables/entities inside here */
         }

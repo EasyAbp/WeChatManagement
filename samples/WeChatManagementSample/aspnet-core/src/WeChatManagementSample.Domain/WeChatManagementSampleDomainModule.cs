@@ -1,4 +1,5 @@
 ﻿using EasyAbp.WeChatManagement.MiniPrograms;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms;
 using WeChatManagementSample.MultiTenancy;
 using WeChatManagementSample.ObjectExtending;
 using Volo.Abp.AuditLogging;
@@ -26,7 +27,8 @@ namespace WeChatManagementSample
         typeof(AbpPermissionManagementDomainOpenIddictModule),
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
-        typeof(WeChatManagementMiniProgramsDomainModule)
+        typeof(WeChatManagementMiniProgramsDomainModule),
+        typeof(WeChatManagementThirdPartyPlatformsDomainModule)
     )]
     public class WeChatManagementSampleDomainModule : AbpModule
     {

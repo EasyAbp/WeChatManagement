@@ -3,6 +3,7 @@ using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.Common.Web;
 using EasyAbp.WeChatManagement.MiniPrograms;
 using EasyAbp.WeChatManagement.MiniPrograms.Web;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
@@ -52,7 +53,8 @@ namespace WeChatManagementSample.Web.Ids4
         typeof(AbpSettingManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(WeChatManagementMiniProgramsWebModule),
-        typeof(WeChatManagementMiniProgramsDomainOpenIddictModule)
+        typeof(WeChatManagementMiniProgramsDomainOpenIddictModule),
+        typeof(WeChatManagementThirdPartyPlatformsWebModule)
     )]
     public class WeChatManagementSampleWebOpenIddictModule : AbpModule
     {

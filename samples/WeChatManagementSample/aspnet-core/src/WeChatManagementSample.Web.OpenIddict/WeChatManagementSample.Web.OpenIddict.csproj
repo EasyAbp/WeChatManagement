@@ -37,6 +37,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict.csproj" />
+    <ProjectReference Include="..\..\..\..\..\modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.Application\WeChatManagementSample.Application.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.HttpApi\WeChatManagementSample.HttpApi.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.EntityFrameworkCore\WeChatManagementSample.EntityFrameworkCore.csproj" />
