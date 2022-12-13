@@ -20,6 +20,9 @@ public static class ThirdPartyPlatformsDbContextModelCreatingExtensions
 
             /* Configure more properties here */
             b.HasIndex(x => new { x.ComponentAppId, x.AuthorizerAppId });
+            b.Property(x => x.CategoryIds)
+                .HasConversion<CategoryIdsListToStringValueConverter>()
+                .Metadata.SetValueComparer(new CategoryIdsListValueComparer());
         });
     }
 }

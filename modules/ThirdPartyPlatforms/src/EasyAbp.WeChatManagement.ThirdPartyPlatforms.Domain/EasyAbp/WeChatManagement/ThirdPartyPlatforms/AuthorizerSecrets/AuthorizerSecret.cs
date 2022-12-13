@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using Volo.Abp;
 using Volo.Abp.Auditing;
@@ -26,18 +27,21 @@ public class AuthorizerSecret : FullAuditedAggregateRoot<Guid>, IMultiTenant
     [DisableAuditing]
     public virtual string EncryptedRefreshToken { get; protected set; }
 
+    public virtual List<int> CategoryIds { get; protected set; }
+
     protected AuthorizerSecret()
     {
     }
 
     public AuthorizerSecret(Guid id, Guid? tenantId, [NotNull] string componentAppId, [NotNull] string authorizerAppId,
-        [NotNull] string encryptedAccessToken, [NotNull] string encryptedRefreshToken) : base(id)
+        [NotNull] string encryptedAccessToken, [NotNull] string encryptedRefreshToken, List<int> categoryIds) : base(id)
     {
         TenantId = tenantId;
         ComponentAppId = Check.NotNullOrWhiteSpace(componentAppId, nameof(componentAppId));
         AuthorizerAppId = Check.NotNullOrWhiteSpace(authorizerAppId, nameof(authorizerAppId));
         EncryptedAccessToken = Check.NotNullOrWhiteSpace(encryptedAccessToken, nameof(encryptedAccessToken));
         EncryptedRefreshToken = Check.NotNullOrWhiteSpace(encryptedRefreshToken, nameof(encryptedRefreshToken));
+        CategoryIds = categoryIds ?? new List<int>();
     }
 
     public string GetAccessToken(IStringEncryptionService stringEncryptionService)
