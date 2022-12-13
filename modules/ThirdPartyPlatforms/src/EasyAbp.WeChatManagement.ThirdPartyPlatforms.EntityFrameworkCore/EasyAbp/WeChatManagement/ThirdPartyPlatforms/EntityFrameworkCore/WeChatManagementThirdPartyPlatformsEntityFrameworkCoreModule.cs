@@ -1,4 +1,5 @@
-﻿using EasyAbp.WeChatManagement.Common.EntityFrameworkCore;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
+using EasyAbp.WeChatManagement.Common.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
@@ -19,6 +20,7 @@ public class WeChatManagementThirdPartyPlatformsEntityFrameworkCoreModule : AbpM
                 /* Add custom repositories here. Example:
                  * options.AddRepository<Question, EfCoreQuestionRepository>();
                  */
+            options.AddRepository<AuthorizerSecret, AuthorizerSecretRepository>();
         });
     }
 }

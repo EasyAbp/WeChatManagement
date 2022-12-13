@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore;
 
@@ -10,24 +12,14 @@ public static class ThirdPartyPlatformsDbContextModelCreatingExtensions
     {
         Check.NotNull(builder, nameof(builder));
 
-        /* Configure all entities here. Example:
-
-        builder.Entity<Question>(b =>
+        builder.Entity<AuthorizerSecret>(b =>
         {
-            //Configure table & schema name
-            b.ToTable(ThirdPartyPlatformsDbProperties.DbTablePrefix + "Questions", ThirdPartyPlatformsDbProperties.DbSchema);
-
+            b.ToTable(ThirdPartyPlatformsDbProperties.DbTablePrefix + "AuthorizerSecrets",
+                ThirdPartyPlatformsDbProperties.DbSchema);
             b.ConfigureByConvention();
 
-            //Properties
-            b.Property(q => q.Title).IsRequired().HasMaxLength(QuestionConsts.MaxTitleLength);
-
-            //Relations
-            b.HasMany(question => question.Tags).WithOne().HasForeignKey(qt => qt.QuestionId);
-
-            //Indexes
-            b.HasIndex(q => q.CreationTime);
+            /* Configure more properties here */
+            b.HasIndex(x => new { x.ComponentAppId, x.AuthorizerAppId });
         });
-        */
     }
 }
