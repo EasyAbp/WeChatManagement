@@ -21,10 +21,6 @@ public class AuthorizerSecret : FullAuditedAggregateRoot<Guid>, IMultiTenant
 
     [NotNull]
     [DisableAuditing]
-    public virtual string EncryptedAccessToken { get; protected set; }
-
-    [NotNull]
-    [DisableAuditing]
     public virtual string EncryptedRefreshToken { get; protected set; }
 
     public virtual List<int> CategoryIds { get; protected set; }
@@ -34,26 +30,13 @@ public class AuthorizerSecret : FullAuditedAggregateRoot<Guid>, IMultiTenant
     }
 
     public AuthorizerSecret(Guid id, Guid? tenantId, [NotNull] string componentAppId, [NotNull] string authorizerAppId,
-        [NotNull] string encryptedAccessToken, [NotNull] string encryptedRefreshToken, List<int> categoryIds) : base(id)
+        [NotNull] string encryptedRefreshToken, List<int> categoryIds) : base(id)
     {
         TenantId = tenantId;
         ComponentAppId = Check.NotNullOrWhiteSpace(componentAppId, nameof(componentAppId));
         AuthorizerAppId = Check.NotNullOrWhiteSpace(authorizerAppId, nameof(authorizerAppId));
-        EncryptedAccessToken = Check.NotNullOrWhiteSpace(encryptedAccessToken, nameof(encryptedAccessToken));
         EncryptedRefreshToken = Check.NotNullOrWhiteSpace(encryptedRefreshToken, nameof(encryptedRefreshToken));
         CategoryIds = categoryIds ?? new List<int>();
-    }
-
-    public string GetAccessToken(IStringEncryptionService stringEncryptionService)
-    {
-        return stringEncryptionService.Decrypt(EncryptedAccessToken);
-    }
-
-    public void SetAccessToken([NotNull] string accessToken, IStringEncryptionService stringEncryptionService)
-    {
-        Check.NotNullOrWhiteSpace(accessToken, nameof(accessToken));
-
-        EncryptedAccessToken = stringEncryptionService.Encrypt(accessToken);
     }
 
     public string GetRefreshToken(IStringEncryptionService stringEncryptionService)
