@@ -7,7 +7,7 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps.Dtos
     {
         public WeChatAppType Type { get; set; }
 
-        public Guid? WeChatComponentId { get; set; }
+        public Guid? ComponentWeChatAppId { get; set; }
 
         public string Name { get; set; }
 

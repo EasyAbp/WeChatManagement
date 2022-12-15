@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.Hosting;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Volo.Abp;
 
-namespace EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp
+namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     public class ConsoleTestAppHostedService : IHostedService
     {

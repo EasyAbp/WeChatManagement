@@ -61,7 +61,7 @@ $(function () {
                     }
                 }
             },
-            { data: "weChatComponentId" },
+            { data: "componentWeChatAppId" },
             { data: "name" },
             { data: "displayName" },
             { data: "openAppIdOrName" },

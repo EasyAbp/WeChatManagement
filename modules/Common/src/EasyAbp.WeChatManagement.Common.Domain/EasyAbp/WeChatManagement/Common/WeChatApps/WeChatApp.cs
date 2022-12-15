@@ -11,7 +11,7 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
         
         public virtual WeChatAppType Type { get; protected set; }
         
-        public virtual Guid? WeChatComponentId { get; protected set; }
+        public virtual Guid? ComponentWeChatAppId { get; protected set; }
         
         [NotNull]
         public virtual string Name { get; protected set; }
@@ -26,7 +26,7 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
         public virtual string AppId { get; protected set; }
 
         /// <summary>
-        /// AppSecret 为空时，需提供开放平台 WeChatComponentId
+        /// AppSecret 为空时，系第三方平台管理的微信应用，需设置 ComponentWeChatAppId
         /// </summary>
         [CanBeNull]
         public virtual string AppSecret { get; protected set; }
@@ -47,7 +47,7 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
             Guid id,
             Guid? tenantId,
             WeChatAppType type,
-            Guid? weChatComponentId,
+            Guid? componentWeChatAppId,
             [NotNull] string name,
             [NotNull] string displayName,
             [NotNull] string openAppIdOrName,
@@ -59,7 +59,7 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
         {
             TenantId = tenantId;
             Type = type;
-            WeChatComponentId = weChatComponentId;
+            ComponentWeChatAppId = componentWeChatAppId;
             Name = name;
             DisplayName = displayName;
             OpenAppIdOrName = openAppIdOrName;

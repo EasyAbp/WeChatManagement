@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace EasyAbp.WeChatManagement.Common.HttpApi.Client.ConsoleTestApp
+namespace EasyAbp.WeChatManagement.Common
 {
     class Program
     {

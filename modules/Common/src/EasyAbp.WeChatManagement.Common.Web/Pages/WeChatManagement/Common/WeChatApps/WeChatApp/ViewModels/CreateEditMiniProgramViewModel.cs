@@ -10,9 +10,9 @@ namespace EasyAbp.WeChatManagement.Common.Web.Pages.WeChatManagement.Common.WeCh
         [Display(Name = "WeChatAppType")]
         public WeChatAppType Type { get; set; }
 
-        [Placeholder("WeChatAppWeChatComponentIdPlaceHolder")]
-        [Display(Name = "WeChatAppWeChatComponentId")]
-        public Guid? WeChatComponentId { get; set; }
+        [Placeholder("WeChatAppComponentWeChatAppIdPlaceHolder")]
+        [Display(Name = "WeChatAppComponentWeChatAppId")]
+        public Guid? ComponentWeChatAppId { get; set; }
         
         [Required]
         [Display(Name = "WeChatAppName")]
