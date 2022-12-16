@@ -8,9 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyAbp.Abp.WeChat.OpenPlatform" Version="$(EasyAbpAbpWeChatModuleVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
     <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.Domain\EasyAbp.WeChatManagement.Common.Domain.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EasyAbp\Abp\WeChat\OpenPlatform\Infrastructure" />
   </ItemGroup>
 
 </Project>

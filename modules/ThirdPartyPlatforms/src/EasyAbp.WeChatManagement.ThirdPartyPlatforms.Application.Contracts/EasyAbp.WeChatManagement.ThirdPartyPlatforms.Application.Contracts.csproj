@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyAbp.Abp.WeChat.OpenPlatform.Abstractions" Version="$(EasyAbpAbpWeChatModuleVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Authorization" Version="$(AbpVersion)" />
     <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.Application.Contracts\EasyAbp.WeChatManagement.Common.Application.Contracts.csproj" />

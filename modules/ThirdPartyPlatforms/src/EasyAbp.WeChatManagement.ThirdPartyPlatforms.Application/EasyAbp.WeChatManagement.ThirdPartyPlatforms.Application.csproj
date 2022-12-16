@@ -15,4 +15,8 @@
     <ProjectReference Include="..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EasyAbp\WeChatManagement\ThirdPartyPlatforms\Authorization\Caches" />
+  </ItemGroup>
+
 </Project>

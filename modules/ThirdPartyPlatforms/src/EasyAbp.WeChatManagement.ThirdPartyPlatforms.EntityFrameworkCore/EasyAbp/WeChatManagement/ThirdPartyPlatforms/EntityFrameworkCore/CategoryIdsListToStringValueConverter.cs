@@ -11,7 +11,7 @@ public class CategoryIdsListToStringValueConverter : ValueConverter<List<int>, s
 
     public CategoryIdsListToStringValueConverter() : base(
         v => v.JoinAsString(Separator),
-        v => new List<int>(v.Split(Separator, StringSplitOptions.RemoveEmptyEntries).Cast<int>()))
+        v => new List<int>(v.Split(Separator, StringSplitOptions.RemoveEmptyEntries).Select(x => Convert.ToInt32(x))))
     {
     }
 }

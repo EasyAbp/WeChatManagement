@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp;
+namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms;
 
 class Program
 {
