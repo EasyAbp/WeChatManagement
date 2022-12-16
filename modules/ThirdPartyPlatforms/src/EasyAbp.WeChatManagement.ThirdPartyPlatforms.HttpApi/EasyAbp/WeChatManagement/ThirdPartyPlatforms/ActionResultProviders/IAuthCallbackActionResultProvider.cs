@@ -6,5 +6,5 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.ActionResultProviders;
 
 public interface IAuthCallbackActionResultProvider
 {
-    Task<ActionResult> GetAsync(HandleAuthCallbackResultDto resultDto);
+    Task<ActionResult> GetAsync(HandleCallbackResultDto resultDto);
 }

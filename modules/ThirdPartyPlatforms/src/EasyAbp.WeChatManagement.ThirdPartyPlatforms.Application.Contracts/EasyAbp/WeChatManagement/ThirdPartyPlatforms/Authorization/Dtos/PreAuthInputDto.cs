@@ -5,18 +5,12 @@ using Volo.Abp;
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Dtos;
 
 [Serializable]
-public class HandleAuthCallbackInputDto
+public class PreAuthInputDto
 {
     /// <summary>
     /// 微信第三方平台的 WeChatAppId
     /// </summary>
     public Guid ThirdPartyPlatformWeChatAppId { get; set; }
-
-    /// <summary>
-    /// 微信第三方平台授权流程中获得的 AuthorizationCode
-    /// </summary>
-    [NotNull]
-    public string AuthorizationCode { get; set; } = null!;
 
     /// <summary>
     /// 本属性将用于区别不同的授权方，设置 OpenAppIdOrName = "3rd-party:" + AuthorizerName，
@@ -27,17 +21,26 @@ public class HandleAuthCallbackInputDto
     [NotNull]
     public string AuthorizerName { get; set; } = null!;
 
-    public HandleAuthCallbackInputDto()
+    public bool AllowOfficial { get; set; }
+
+    public bool AllowMiniProgram { get; set; }
+
+    public string SpecifiedAppId { get; set; }
+
+    public string CategoryIds { get; set; }
+
+    public PreAuthInputDto()
     {
     }
 
-    public HandleAuthCallbackInputDto(
-        Guid thirdPartyPlatformWeChatAppId,
-        [NotNull] string authorizationCode,
-        [NotNull] string authorizerName)
+    public PreAuthInputDto(Guid thirdPartyPlatformWeChatAppId, [NotNull] string authorizerName, bool allowOfficial,
+        bool allowMiniProgram, [NotNull] string specifiedAppId, [NotNull] string categoryIds)
     {
         ThirdPartyPlatformWeChatAppId = thirdPartyPlatformWeChatAppId;
-        AuthorizationCode = Check.NotNullOrWhiteSpace(authorizationCode, nameof(authorizationCode));
         AuthorizerName = Check.NotNullOrWhiteSpace(authorizerName, nameof(authorizerName));
+        AllowOfficial = allowOfficial;
+        AllowMiniProgram = allowMiniProgram;
+        SpecifiedAppId = specifiedAppId;
+        CategoryIds = categoryIds;
     }
 }

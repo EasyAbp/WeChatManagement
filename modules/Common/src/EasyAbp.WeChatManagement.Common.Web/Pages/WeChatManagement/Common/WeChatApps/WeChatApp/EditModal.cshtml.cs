@@ -14,7 +14,7 @@ namespace EasyAbp.WeChatManagement.Common.Web.Pages.WeChatManagement.Common.WeCh
         public Guid Id { get; set; }
 
         [BindProperty]
-        public CreateEditWeChatAppViewModel ViewModel { get; set; }
+        public EditWeChatAppViewModel ViewModel { get; set; }
 
         private readonly IWeChatAppAppService _appService;
 
@@ -26,12 +26,12 @@ namespace EasyAbp.WeChatManagement.Common.Web.Pages.WeChatManagement.Common.WeCh
         public virtual async Task OnGetAsync()
         {
             var dto = await _appService.GetAsync(Id);
-            ViewModel = ObjectMapper.Map<WeChatAppDto, CreateEditWeChatAppViewModel>(dto);
+            ViewModel = ObjectMapper.Map<WeChatAppDto, EditWeChatAppViewModel>(dto);
         }
 
         public virtual async Task<IActionResult> OnPostAsync()
         {
-            var dto = ObjectMapper.Map<CreateEditWeChatAppViewModel, CreateUpdateWeChatAppDto>(ViewModel);
+            var dto = ObjectMapper.Map<EditWeChatAppViewModel, UpdateWeChatAppDto>(ViewModel);
             await _appService.UpdateAsync(Id, dto);
             return NoContent();
         }

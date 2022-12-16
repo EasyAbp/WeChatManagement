@@ -14,14 +14,14 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Controllers;
 public class WeChatThirdPartyPlatformController : ThirdPartyPlatformsController
 {
     protected IAuthCallbackActionResultProvider AuthCallbackActionResultProvider { get; }
-    protected IAuthCallbackAppService AuthCallbackAppService { get; }
+    protected IAuthorizationAppService AuthorizationAppService { get; }
 
     public WeChatThirdPartyPlatformController(
         IAuthCallbackActionResultProvider authCallbackActionResultProvider,
-        IAuthCallbackAppService authCallbackAppService)
+        IAuthorizationAppService authorizationAppService)
     {
         AuthCallbackActionResultProvider = authCallbackActionResultProvider;
-        AuthCallbackAppService = authCallbackAppService;
+        AuthorizationAppService = authorizationAppService;
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public class WeChatThirdPartyPlatformController : ThirdPartyPlatformsController
         using var changeTenant = CurrentTenant.Change(tenantId.IsNullOrWhiteSpace() ? null : Guid.Parse(tenantId));
 
         var result =
-            await AuthCallbackAppService.HandleAsync(new HandleAuthCallbackInputDto(weChatAppId,
+            await AuthorizationAppService.HandleCallbackAsync(new HandleCallbackInputDto(weChatAppId,
                 HttpContext.Request.Query["auth_code"].First(), authorizerName));
 
         if (result.ErrorCode == 0)

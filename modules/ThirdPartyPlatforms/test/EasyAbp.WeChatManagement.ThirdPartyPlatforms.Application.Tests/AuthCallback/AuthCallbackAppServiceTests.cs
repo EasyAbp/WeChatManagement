@@ -34,7 +34,7 @@ public class AuthCallbackAppServiceTests : ThirdPartyPlatformsApplicationTestBas
     private const string NewAuthorizerAccessToken = "new_authorizer_access_token";
     private const string NewAuthorizerRefreshToken = "new_authorizer_refresh_token";
 
-    private readonly IAuthCallbackAppService _authCallbackAppService;
+    private readonly IAuthorizationAppService _authorizationAppService;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
     private readonly IWeChatAppRepository _weChatAppRepository;
     private readonly IStringEncryptionService _stringEncryptionService;
@@ -43,7 +43,7 @@ public class AuthCallbackAppServiceTests : ThirdPartyPlatformsApplicationTestBas
 
     public AuthCallbackAppServiceTests()
     {
-        _authCallbackAppService = GetRequiredService<IAuthCallbackAppService>();
+        _authorizationAppService = GetRequiredService<IAuthorizationAppService>();
         _authorizerSecretRepository = GetRequiredService<IAuthorizerSecretRepository>();
         _weChatAppRepository = GetRequiredService<IWeChatAppRepository>();
         _stringEncryptionService = GetRequiredService<IStringEncryptionService>();
@@ -157,11 +157,11 @@ public class AuthCallbackAppServiceTests : ThirdPartyPlatformsApplicationTestBas
 
         authorizerSecret.ShouldBeNull();
 
-        var input = new HandleAuthCallbackInputDto(
+        var input = new HandleCallbackInputDto(
             (await _weChatAppRepository.GetAsync(x => x.AppId == ThirdPartyPlatformsTestConsts.AppId)).Id,
             authorizationCode, AuthorizerName);
 
-        (await _authCallbackAppService.HandleAsync(input)).ErrorCode.ShouldBe(0);
+        (await _authorizationAppService.HandleCallbackAsync(input)).ErrorCode.ShouldBe(0);
 
         authorizerSecret = await _authorizerSecretRepository.FindAsync(x =>
             x.ComponentAppId == ThirdPartyPlatformsTestConsts.AppId &&

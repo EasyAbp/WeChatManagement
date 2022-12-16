@@ -7,7 +7,7 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.ActionResultProviders;
 
 public class DefaultAuthCallbackActionResultProvider : IAuthCallbackActionResultProvider, ITransientDependency
 {
-    public virtual async Task<ActionResult> GetAsync(HandleAuthCallbackResultDto resultDto)
+    public virtual async Task<ActionResult> GetAsync(HandleCallbackResultDto resultDto)
     {
         if (resultDto.ErrorCode == 0)
         {

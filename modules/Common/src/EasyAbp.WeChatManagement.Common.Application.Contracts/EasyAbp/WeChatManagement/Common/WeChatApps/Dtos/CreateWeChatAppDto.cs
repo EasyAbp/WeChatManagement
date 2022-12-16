@@ -3,7 +3,7 @@ using System;
 namespace EasyAbp.WeChatManagement.Common.WeChatApps.Dtos
 {
     [Serializable]
-    public class CreateUpdateWeChatAppDto
+    public class CreateWeChatAppDto
     {
         public WeChatAppType Type { get; set; }
 

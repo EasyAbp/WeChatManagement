@@ -1,16 +1,24 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using EasyAbp.Abp.TagHelperPlus.EasySelector;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace EasyAbp.WeChatManagement.Common.Web.Pages.WeChatManagement.Common.WeChatApps.WeChatApp.ViewModels
 {
-    public class CreateEditWeChatAppViewModel
+    public class CreateWeChatAppViewModel
     {
         [Display(Name = "WeChatAppType")]
         public WeChatAppType Type { get; set; }
 
-        [Placeholder("WeChatAppComponentWeChatAppIdPlaceHolder")]
+        [EasySelector(
+            getListedDataSourceUrl: "/api/wechat-management/common/wechat-app?type=ThirdPartyPlatform",
+            getSingleDataSourceUrl: "/api/wechat-management/common/wechat-app/{id}",
+            keyPropertyName: "id",
+            textPropertyName: "displayName",
+            alternativeTextPropertyName: "name",
+            hideSubText: false)]
+        [InputInfoText("WeChatAppComponentWeChatAppIdInputInfoText")]
         [Display(Name = "WeChatAppComponentWeChatAppId")]
         public Guid? ComponentWeChatAppId { get; set; }
         

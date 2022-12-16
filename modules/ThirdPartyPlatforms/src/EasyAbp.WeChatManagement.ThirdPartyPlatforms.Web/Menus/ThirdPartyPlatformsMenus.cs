@@ -4,7 +4,5 @@ public class ThirdPartyPlatformsMenus
 {
     public const string Prefix = "EasyAbp.WeChatManagement.ThirdPartyPlatforms";
 
-    //Add your menu items here...
-    //public const string Home = Prefix + ".MyNewMenuItem";
-
+    public const string Authorization = Prefix + ".Authorization";
 }

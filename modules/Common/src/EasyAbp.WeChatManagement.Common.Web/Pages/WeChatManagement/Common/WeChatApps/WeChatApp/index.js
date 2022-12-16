@@ -56,6 +56,8 @@ $(function () {
                             return l("WeChatAppType.Work");
                         case 3:
                             return l("WeChatAppType.OpenPlatform");
+                        case 4:
+                            return l("WeChatAppType.ThirdPartyPlatform");
                         default:
                             return null;
                     }

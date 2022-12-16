@@ -1,0 +1,17 @@
+@page
+@using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@inject IHtmlLocalizer<ThirdPartyPlatformsResource> L
+@model EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Pages.WeChatManagement.ThirdPartyPlatforms.Authorization.CreateRequestModel
+@{
+    Layout = null;
+}
+<abp-modal>
+    <abp-modal-header title="@L["CreateRequest"].Value"></abp-modal-header>
+    <abp-modal-body>
+        <abp-input asp-for="PcAuthorizationUrl" />
+        <abp-input asp-for="H5AuthorizationUrl" />
+    </abp-modal-body>
+    <abp-modal-footer buttons="@AbpModalButtons.Close"></abp-modal-footer>
+</abp-modal>

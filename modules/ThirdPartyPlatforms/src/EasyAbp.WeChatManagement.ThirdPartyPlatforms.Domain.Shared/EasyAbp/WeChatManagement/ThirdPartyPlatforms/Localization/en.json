@@ -1,6 +1,24 @@
 ﻿{
   "culture": "en",
   "texts": {
-    "Menu:ThirdPartyPlatformManagement": "Third-party platform"
+    "Menu:ThirdPartyPlatformManagement": "Third-party platform",
+    "Menu:Authorization": "Authorization",
+    "Permission:ThirdPartyPlatforms": "Third-party platforms",
+    "Permission:Authorization": "Authorization",
+    "Permission:CreateRequest": "Create request",
+    "Authorization": "Authorization",
+    "ThirdPartyPlatformWeChatAppId": "Third-party platform WeChat app",
+    "AuthorizerName": "Authorizer name",
+    "AuthorizerNameInputInfoText": "(input info text)",
+    "AllowOfficial": "Allow WeChat official app",
+    "AllowMiniProgram": "Allow WeChat mini-program app",
+    "SpecifiedAppId": "Allow only the specified appid",
+    "CategoryIds": "Category id list",
+    "CategoryIdsInputInfoText": "Use | char to separate them, e.g. 1|2|5|100",
+    "CreateRequest": "Create request",
+    "RequestAuthorization": "Request WeChat app authorization",
+    "ClickToSeeDocs": "Click to see the WeChat docs",
+    "PcAuthorizationUrl": "PC authorization page url",
+    "H5AuthorizationUrl": "H5 authorization page url (open with phone)"
   }
 }

@@ -9,9 +9,9 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
         ICrudAppService< 
             WeChatAppDto, 
             Guid, 
-            PagedAndSortedResultRequestDto,
-            CreateUpdateWeChatAppDto,
-            CreateUpdateWeChatAppDto>
+            WeChatAppGetListInput,
+            CreateWeChatAppDto,
+            UpdateWeChatAppDto>
     {
 
     }

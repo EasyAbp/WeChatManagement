@@ -9,6 +9,11 @@ public class ThirdPartyPlatformsPermissionDefinitionProvider : PermissionDefinit
     public override void Define(IPermissionDefinitionContext context)
     {
         var myGroup = context.AddGroup(ThirdPartyPlatformsPermissions.GroupName, L("Permission:ThirdPartyPlatforms"));
+
+        var authorizationPermission = myGroup.AddPermission(ThirdPartyPlatformsPermissions.Authorization.Default,
+            L("Permission:Authorization"));
+        authorizationPermission.AddChild(ThirdPartyPlatformsPermissions.Authorization.CreateRequest,
+            L("Permission:CreateRequest"));
     }
 
     private static LocalizableString L(string name)

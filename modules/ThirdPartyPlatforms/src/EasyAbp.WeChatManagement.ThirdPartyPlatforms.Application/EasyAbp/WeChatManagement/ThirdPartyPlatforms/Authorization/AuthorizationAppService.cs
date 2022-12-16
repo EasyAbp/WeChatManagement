@@ -11,17 +11,20 @@ using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.Options.
 using EasyAbp.Abp.WeChat.OpenPlatform.Services.ThirdPartyPlatform;
 using EasyAbp.Abp.WeChat.OpenPlatform.Services.ThirdPartyPlatform.Response;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Caches;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Dtos;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Models;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
+using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json.Linq;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Caching;
 using Volo.Abp.Security.Encryption;
 
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization;
 
-public class AuthCallbackAppService : ApplicationService, IAuthCallbackAppService
+public class AuthorizationAppService : ApplicationService, IAuthorizationAppService
 {
     private readonly IWeChatAppRepository _weChatAppRepository;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
@@ -30,15 +33,17 @@ public class AuthCallbackAppService : ApplicationService, IAuthCallbackAppServic
     private readonly IWeChatThirdPartyPlatformAsyncLocal _weChatThirdPartyPlatformAsyncLocal;
     private readonly ThirdPartyPlatformApiService _thirdPartyPlatformApiService;
     private readonly IStringEncryptionService _stringEncryptionService;
+    private readonly IDistributedCache<WeChatThirdPartyPlatformPreAuthCacheItem> _cache;
 
-    public AuthCallbackAppService(
+    public AuthorizationAppService(
         IWeChatAppRepository weChatAppRepository,
         IAuthorizerSecretRepository authorizerSecretRepository,
         IAuthorizerAccessTokenCache authorizerAccessTokenCache,
         IAuthorizerRefreshTokenStore authorizerRefreshTokenStore,
         IWeChatThirdPartyPlatformAsyncLocal weChatThirdPartyPlatformAsyncLocal,
         ThirdPartyPlatformApiService thirdPartyPlatformApiService,
-        IStringEncryptionService stringEncryptionService)
+        IStringEncryptionService stringEncryptionService,
+        IDistributedCache<WeChatThirdPartyPlatformPreAuthCacheItem> cache)
     {
         _weChatAppRepository = weChatAppRepository;
         _authorizerSecretRepository = authorizerSecretRepository;
@@ -47,15 +52,71 @@ public class AuthCallbackAppService : ApplicationService, IAuthCallbackAppServic
         _weChatThirdPartyPlatformAsyncLocal = weChatThirdPartyPlatformAsyncLocal;
         _thirdPartyPlatformApiService = thirdPartyPlatformApiService;
         _stringEncryptionService = stringEncryptionService;
+        _cache = cache;
     }
 
-    public virtual async Task<HandleAuthCallbackResultDto> HandleAsync(HandleAuthCallbackInputDto input)
+    public virtual async Task<PreAuthResultDto> PreAuthAsync(PreAuthInputDto input)
     {
+        return new PreAuthResultDto
+        {
+            PreAuthCode = "123"
+        };
+        var thirdPartyPlatformWeChatApp =
+            await _weChatAppRepository.GetThirdPartyPlatformAppAsync(input.ThirdPartyPlatformWeChatAppId);
+
+        using var changeOptions = _weChatThirdPartyPlatformAsyncLocal.Change(new AbpWeChatThirdPartyPlatformOptions
+        {
+            Token = thirdPartyPlatformWeChatApp.Token,
+            AppId = thirdPartyPlatformWeChatApp.AppId,
+            AppSecret = thirdPartyPlatformWeChatApp.AppSecret,
+            EncodingAesKey = thirdPartyPlatformWeChatApp.EncodingAesKey
+        });
+
+        var response = await _thirdPartyPlatformApiService.GetPreAuthCodeAsync();
+
+        if (response.ErrorCode != 0 || response.PreAuthCode.IsNullOrWhiteSpace())
+        {
+            throw new UserFriendlyException(
+                $"微信 api_create_preauthcode 接口调用失败。错误代码：{response.ErrorCode}，错误信息：{response.ErrorMessage}");
+        }
+
+        await _cache.SetAsync(response.PreAuthCode, new WeChatThirdPartyPlatformPreAuthCacheItem
+        {
+            ThirdPartyPlatformWeChatAppId = thirdPartyPlatformWeChatApp.Id,
+            AuthorizerName = input.AuthorizerName,
+            AllowOfficial = input.AllowOfficial,
+            AllowMiniProgram = input.AllowMiniProgram,
+            SpecifiedAppId = input.SpecifiedAppId,
+            CategoryIds = input.CategoryIds
+        }, new DistributedCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(600)
+        });
+
+        return new PreAuthResultDto
+        {
+            PreAuthCode = response.PreAuthCode
+        };
+    }
+
+    public virtual async Task<HandleCallbackResultDto> HandleCallbackAsync(HandleCallbackInputDto input)
+    {
+        var cacheItem = await _cache.GetAsync(input.PreAuthCode);
+
+        if (cacheItem is null)
+        {
+            return new HandleCallbackResultDto
+            {
+                ErrorCode = -1,
+                ErrorMessage = $"不存在的预授权 {input.PreAuthCode}，请联系管理员。"
+            };
+        }
+
         var thirdPartyPlatformWeChatApp = await _weChatAppRepository.FindAsync(input.ThirdPartyPlatformWeChatAppId);
 
         if (thirdPartyPlatformWeChatApp is null)
         {
-            return new HandleAuthCallbackResultDto
+            return new HandleCallbackResultDto
             {
                 ErrorCode = -1,
                 ErrorMessage = $"不存在的第三方平台：{input.ThirdPartyPlatformWeChatAppId}"
@@ -74,12 +135,12 @@ public class AuthCallbackAppService : ApplicationService, IAuthCallbackAppServic
 
         if (await _weChatAppRepository.FindAsync(x => x.AppId == response.AuthorizationInfo.AuthorizerAppId) == null)
         {
-            await CreateAuthorizerWeChatAppAsync(thirdPartyPlatformWeChatApp, response, input);
+            await CreateAuthorizerWeChatAppAsync(thirdPartyPlatformWeChatApp, response, cacheItem.AuthorizerName);
         }
 
         await CreateOrUpdateAuthorizerSecretAsync(thirdPartyPlatformWeChatApp, response);
 
-        return new HandleAuthCallbackResultDto
+        return new HandleCallbackResultDto
         {
             ErrorCode = response.ErrorCode,
             ErrorMessage = response.ErrorMessage
@@ -87,7 +148,7 @@ public class AuthCallbackAppService : ApplicationService, IAuthCallbackAppServic
     }
 
     protected async Task CreateAuthorizerWeChatAppAsync(WeChatApp thirdPartyPlatformWeChatApp,
-        QueryAuthResponse response, HandleAuthCallbackInputDto input)
+        QueryAuthResponse response, string authorizerName)
     {
         var appInfo = await QueryAuthorizerWeChatAppInfoAsync(thirdPartyPlatformWeChatApp,
             response.AuthorizationInfo.AuthorizerAppId);
@@ -99,7 +160,7 @@ public class AuthCallbackAppService : ApplicationService, IAuthCallbackAppServic
             thirdPartyPlatformWeChatApp.Id,
             appInfo.Username,
             appInfo.Nickname,
-            await GenerateOpenAppIdOrNameAsync(input.AuthorizerName),
+            await GenerateOpenAppIdOrNameAsync(authorizerName),
             response.AuthorizationInfo.AuthorizerAppId,
             null,
             null,

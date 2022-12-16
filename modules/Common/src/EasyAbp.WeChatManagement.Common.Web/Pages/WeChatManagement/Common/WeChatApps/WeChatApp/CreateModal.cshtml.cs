@@ -9,7 +9,7 @@ namespace EasyAbp.WeChatManagement.Common.Web.Pages.WeChatManagement.Common.WeCh
     public class CreateModalModel : CommonPageModel
     {
         [BindProperty]
-        public CreateEditWeChatAppViewModel ViewModel { get; set; } = new CreateEditWeChatAppViewModel();
+        public CreateWeChatAppViewModel ViewModel { get; set; } = new CreateWeChatAppViewModel();
 
         private readonly IWeChatAppAppService _appService;
 
@@ -19,7 +19,7 @@ namespace EasyAbp.WeChatManagement.Common.Web.Pages.WeChatManagement.Common.WeCh
         }
         public virtual async Task<IActionResult> OnPostAsync()
         {
-            var dto = ObjectMapper.Map<CreateEditWeChatAppViewModel, CreateUpdateWeChatAppDto>(ViewModel);
+            var dto = ObjectMapper.Map<CreateWeChatAppViewModel, CreateWeChatAppDto>(ViewModel);
             await _appService.CreateAsync(dto);
             return NoContent();
         }

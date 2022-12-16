@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.Common.Web.Menus;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Localization;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Permissions;
 using Volo.Abp.UI.Navigation;
 
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Menus;
@@ -22,6 +23,14 @@ public class ThirdPartyPlatformsMenuContributor : IMenuContributor
 
         var thirdPartyPlatformManagementMenuItem =
             new ApplicationMenuItem(ThirdPartyPlatformsMenus.Prefix, l["Menu:ThirdPartyPlatformManagement"]);
+
+        if (await context.IsGrantedAsync(ThirdPartyPlatformsPermissions.Authorization.CreateRequest))
+        {
+            thirdPartyPlatformManagementMenuItem.AddItem(
+                new ApplicationMenuItem(ThirdPartyPlatformsMenus.Authorization,
+                    l["Menu:Authorization"],
+                    "/WeChatManagement/ThirdPartyPlatforms/Authorization"));
+        }
 
         if (!thirdPartyPlatformManagementMenuItem.Items.IsNullOrEmpty())
         {

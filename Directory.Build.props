@@ -2,6 +2,7 @@
   <PropertyGroup>
 
     <AbpVersion>6.0.1</AbpVersion>
+    <EasyAbpAbpTagHelperPlusModuleVersion>1.2.3</EasyAbpAbpTagHelperPlusModuleVersion>
     <EasyAbpAbpWeChatModuleVersion>2.0.0-preview.6</EasyAbpAbpWeChatModuleVersion>
 
   </PropertyGroup>
