@@ -15,7 +15,6 @@ namespace EasyAbp.WeChatManagement.Common
              * into multiple profile classes for a better organization. */
             
             CreateMap<WeChatApp, WeChatAppDto>();
-            CreateMap<CreateUpdateWeChatAppDto, WeChatApp>(MemberList.Source);
             CreateMap<WeChatAppUser, WeChatAppUserDto>();
         }
     }

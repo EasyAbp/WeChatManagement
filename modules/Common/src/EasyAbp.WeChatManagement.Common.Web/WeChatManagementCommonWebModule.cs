@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using EasyAbp.Abp.TagHelperPlus;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
 using EasyAbp.WeChatManagement.Common.Localization;
 using EasyAbp.WeChatManagement.Common.Web.Menus;
@@ -8,15 +9,15 @@ using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
-using EasyAbp.WeChatManagement.Common.Permissions;
 
 namespace EasyAbp.WeChatManagement.Common.Web
 {
     [DependsOn(
         typeof(WeChatManagementCommonApplicationContractsModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
-        typeof(AbpAutoMapperModule)
-        )]
+        typeof(AbpAutoMapperModule),
+        typeof(AbpTagHelperPlusModule)
+    )]
     public class WeChatManagementCommonWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

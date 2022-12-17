@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.Domain.Shared\WeChatManagementSample.Domain.Shared.csproj" />
     <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj" />
   </ItemGroup>

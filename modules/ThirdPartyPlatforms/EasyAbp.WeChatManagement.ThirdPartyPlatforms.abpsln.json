@@ -1,0 +1,7 @@
+﻿{
+  "modules": {
+    "EasyAbp.WeChatManagement.ThirdPartyPlatforms": {
+      "path": "EasyAbp.WeChatManagement.ThirdPartyPlatforms.abpmdl.json"
+    }
+  }
+}

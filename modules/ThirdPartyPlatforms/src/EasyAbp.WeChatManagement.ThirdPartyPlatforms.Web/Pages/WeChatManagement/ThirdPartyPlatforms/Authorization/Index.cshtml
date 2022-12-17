@@ -1,0 +1,50 @@
+﻿@page
+@using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form
+@using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Pages.WeChatManagement.ThirdPartyPlatforms.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Button
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Card
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Grid
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<ThirdPartyPlatformsResource> L
+@{
+    PageLayout.Content.Title = L["Authorization"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Authorization"].Value);
+    PageLayout.Content.MenuItemName = "Authorization";
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/WeChatManagement/ThirdPartyPlatforms/Authorization/index.js"/>
+}
+
+@section styles
+{
+    <abp-style src="/Pages/WeChatManagement/ThirdPartyPlatforms/Authorization/index.css"/>
+}
+
+<abp-dynamic-form abp-model="ViewModel" data-ajaxForm="true" asp-page="Index">
+    <abp-card>
+        <abp-card-header>
+            <abp-row>
+                <abp-column size-md="_6">
+                    <abp-card-title>@L["RequestAuthorization"]</abp-card-title>
+                    <abp-card-text>
+                        <a target="_blank" href="https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/api/Before_Develop/Authorization_Process_Technical_Description.html">
+                            @L["ClickToSeeDocs"]
+                        </a>
+                    </abp-card-text>
+                </abp-column>
+            </abp-row>
+        </abp-card-header>
+        <abp-card-body>
+            <abp-form-content></abp-form-content>
+        </abp-card-body>
+        <abp-card-footer>
+            <abp-button id="CreateRequestButton" button-type="Primary" text="@L["CreateRequest"].Value"/>
+        </abp-card-footer>
+    </abp-card>
+</abp-dynamic-form>

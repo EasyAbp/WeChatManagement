@@ -1,4 +1,5 @@
 ﻿using EasyAbp.WeChatManagement.MiniPrograms;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
@@ -18,7 +19,8 @@ namespace WeChatManagementSample
         typeof(AbpTenantManagementHttpApiClientModule),
         typeof(AbpFeatureManagementHttpApiClientModule),
         typeof(AbpSettingManagementHttpApiClientModule),
-        typeof(WeChatManagementMiniProgramsHttpApiClientModule)
+        typeof(WeChatManagementMiniProgramsHttpApiClientModule),
+        typeof(WeChatManagementThirdPartyPlatformsHttpApiClientModule)
     )]
     public class WeChatManagementSampleHttpApiClientModule : AbpModule
     {

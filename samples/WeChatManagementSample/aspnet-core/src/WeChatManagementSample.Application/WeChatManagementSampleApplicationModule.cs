@@ -1,4 +1,5 @@
 ﻿using EasyAbp.WeChatManagement.MiniPrograms;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms;
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
@@ -19,7 +20,8 @@ namespace WeChatManagementSample
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
         typeof(AbpSettingManagementApplicationModule),
-        typeof(WeChatManagementMiniProgramsApplicationModule)
+        typeof(WeChatManagementMiniProgramsApplicationModule),
+        typeof(WeChatManagementThirdPartyPlatformsApplicationModule)
     )]
     public class WeChatManagementSampleApplicationModule : AbpModule
     {

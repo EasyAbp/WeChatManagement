@@ -1,4 +1,5 @@
 ﻿using EasyAbp.WeChatManagement.MiniPrograms;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms;
 using WeChatManagementSample.Localization;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
@@ -26,7 +27,8 @@ namespace WeChatManagementSample
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
         typeof(AbpTenantManagementDomainSharedModule),
-        typeof(WeChatManagementMiniProgramsDomainSharedModule)
+        typeof(WeChatManagementMiniProgramsDomainSharedModule),
+        typeof(WeChatManagementThirdPartyPlatformsDomainSharedModule)
     )]
     public class WeChatManagementSampleDomainSharedModule : AbpModule
     {

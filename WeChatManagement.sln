@@ -123,6 +123,44 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Mi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4\EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4.csproj", "{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdPartyPlatforms", "ThirdPartyPlatforms", "{FD43231C-8D9F-47BC-B93F-D2B74E740067}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.csproj", "{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts.csproj", "{9306D225-8E4F-4EAD-B0CF-CD1097E4A825}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.csproj", "{E53BF96B-8C86-405C-9DFC-8215DB75BBCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared.csproj", "{5879F56A-373E-4CD5-BFF5-38E378C53A06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.csproj", "{9C7ABC28-48FF-4E89-8364-DDFAC1BB225D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.csproj", "{3D1C44B8-0FF2-4601-9138-2701EB3BA429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.csproj", "{944AF4B6-3F37-4F4B-A93D-592911EE890C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer.csproj", "{389F66AC-297F-47B6-BEED-1903C3856075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.csproj", "{FA463D1D-F016-449D-B1E0-5C5B04C62F74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.csproj", "{B298EEFF-4476-4053-AB08-9587276DD235}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{12395BF4-C0CE-4206-BFB6-6726785440C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests.csproj", "{ADC51CDA-FD58-410C-B0D1-7888C9180CA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests.csproj", "{1216DA39-6F68-4FD4-A141-01A48132CE3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests.csproj", "{9F665079-BE46-42CD-80A3-1D0A822ED4A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp.csproj", "{4E487371-0C0E-4F40-89B1-BF8F072CF089}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests.csproj", "{8485A92E-606A-47B2-A3BC-D57B769A58E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase\EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase.csproj", "{FAB33897-FF3B-4235-B80D-8E5827039259}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -325,6 +363,70 @@ Global
 		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9306D225-8E4F-4EAD-B0CF-CD1097E4A825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9306D225-8E4F-4EAD-B0CF-CD1097E4A825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9306D225-8E4F-4EAD-B0CF-CD1097E4A825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9306D225-8E4F-4EAD-B0CF-CD1097E4A825}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E53BF96B-8C86-405C-9DFC-8215DB75BBCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53BF96B-8C86-405C-9DFC-8215DB75BBCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53BF96B-8C86-405C-9DFC-8215DB75BBCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53BF96B-8C86-405C-9DFC-8215DB75BBCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5879F56A-373E-4CD5-BFF5-38E378C53A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5879F56A-373E-4CD5-BFF5-38E378C53A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5879F56A-373E-4CD5-BFF5-38E378C53A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5879F56A-373E-4CD5-BFF5-38E378C53A06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C7ABC28-48FF-4E89-8364-DDFAC1BB225D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C7ABC28-48FF-4E89-8364-DDFAC1BB225D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C7ABC28-48FF-4E89-8364-DDFAC1BB225D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C7ABC28-48FF-4E89-8364-DDFAC1BB225D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D1C44B8-0FF2-4601-9138-2701EB3BA429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D1C44B8-0FF2-4601-9138-2701EB3BA429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D1C44B8-0FF2-4601-9138-2701EB3BA429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D1C44B8-0FF2-4601-9138-2701EB3BA429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{944AF4B6-3F37-4F4B-A93D-592911EE890C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{944AF4B6-3F37-4F4B-A93D-592911EE890C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{944AF4B6-3F37-4F4B-A93D-592911EE890C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{944AF4B6-3F37-4F4B-A93D-592911EE890C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{389F66AC-297F-47B6-BEED-1903C3856075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{389F66AC-297F-47B6-BEED-1903C3856075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{389F66AC-297F-47B6-BEED-1903C3856075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{389F66AC-297F-47B6-BEED-1903C3856075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA463D1D-F016-449D-B1E0-5C5B04C62F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA463D1D-F016-449D-B1E0-5C5B04C62F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA463D1D-F016-449D-B1E0-5C5B04C62F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA463D1D-F016-449D-B1E0-5C5B04C62F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B298EEFF-4476-4053-AB08-9587276DD235}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B298EEFF-4476-4053-AB08-9587276DD235}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B298EEFF-4476-4053-AB08-9587276DD235}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B298EEFF-4476-4053-AB08-9587276DD235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADC51CDA-FD58-410C-B0D1-7888C9180CA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADC51CDA-FD58-410C-B0D1-7888C9180CA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADC51CDA-FD58-410C-B0D1-7888C9180CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADC51CDA-FD58-410C-B0D1-7888C9180CA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1216DA39-6F68-4FD4-A141-01A48132CE3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1216DA39-6F68-4FD4-A141-01A48132CE3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1216DA39-6F68-4FD4-A141-01A48132CE3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1216DA39-6F68-4FD4-A141-01A48132CE3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F665079-BE46-42CD-80A3-1D0A822ED4A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F665079-BE46-42CD-80A3-1D0A822ED4A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F665079-BE46-42CD-80A3-1D0A822ED4A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F665079-BE46-42CD-80A3-1D0A822ED4A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E487371-0C0E-4F40-89B1-BF8F072CF089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E487371-0C0E-4F40-89B1-BF8F072CF089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E487371-0C0E-4F40-89B1-BF8F072CF089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E487371-0C0E-4F40-89B1-BF8F072CF089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8485A92E-606A-47B2-A3BC-D57B769A58E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8485A92E-606A-47B2-A3BC-D57B769A58E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8485A92E-606A-47B2-A3BC-D57B769A58E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8485A92E-606A-47B2-A3BC-D57B769A58E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAB33897-FF3B-4235-B80D-8E5827039259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAB33897-FF3B-4235-B80D-8E5827039259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAB33897-FF3B-4235-B80D-8E5827039259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAB33897-FF3B-4235-B80D-8E5827039259}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -388,6 +490,25 @@ Global
 		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
 		{0B64E953-2865-47C2-A5C6-8E2E5A403A64} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
 		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
+		{FD43231C-8D9F-47BC-B93F-D2B74E740067} = {3457788B-7A02-414D-9F55-BD6680773CB9}
+		{62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6} = {FD43231C-8D9F-47BC-B93F-D2B74E740067}
+		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{9306D225-8E4F-4EAD-B0CF-CD1097E4A825} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{E53BF96B-8C86-405C-9DFC-8215DB75BBCC} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{5879F56A-373E-4CD5-BFF5-38E378C53A06} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{9C7ABC28-48FF-4E89-8364-DDFAC1BB225D} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{3D1C44B8-0FF2-4601-9138-2701EB3BA429} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{944AF4B6-3F37-4F4B-A93D-592911EE890C} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{389F66AC-297F-47B6-BEED-1903C3856075} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{FA463D1D-F016-449D-B1E0-5C5B04C62F74} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{B298EEFF-4476-4053-AB08-9587276DD235} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
+		{12395BF4-C0CE-4206-BFB6-6726785440C0} = {FD43231C-8D9F-47BC-B93F-D2B74E740067}
+		{ADC51CDA-FD58-410C-B0D1-7888C9180CA2} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
+		{1216DA39-6F68-4FD4-A141-01A48132CE3E} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
+		{9F665079-BE46-42CD-80A3-1D0A822ED4A5} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
+		{4E487371-0C0E-4F40-89B1-BF8F072CF089} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
+		{8485A92E-606A-47B2-A3BC-D57B769A58E7} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
+		{FAB33897-FF3B-4235-B80D-8E5827039259} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

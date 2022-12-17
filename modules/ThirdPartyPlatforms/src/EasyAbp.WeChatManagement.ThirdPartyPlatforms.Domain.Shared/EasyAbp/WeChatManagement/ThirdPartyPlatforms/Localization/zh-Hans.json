@@ -1,0 +1,24 @@
+﻿{
+  "culture": "zh-Hans",
+  "texts": {
+    "Menu:ThirdPartyPlatformManagement": "第三方平台",
+    "Menu:Authorization": "授权",
+    "Permission:ThirdPartyPlatforms": "第三方平台",
+    "Permission:Authorization": "授权",
+    "Permission:CreateRequest": "创建请求",
+    "Authorization": "授权",
+    "ThirdPartyPlatformWeChatAppId": "第三方平台微信应用",
+    "AuthorizerName": "授权人名称",
+    "AuthorizerNameInputInfoText": "本属性将用于区别不同的授权方，设置 OpenAppIdOrName = \"3rd-party:\" + AuthorizerName，最终将不同的开放平台区别开来，合成 IdentityUserLogin 实体的 ProviderName，相同 AuthorizerName 的不同 WeChatApp 会自动绑定在相同 UnionId 对应的 IdentityUserLogin 中。你需要做的，仅是为客户使用唯一的 AuthorizerName。",
+    "AllowOfficial": "允许公众号授权",
+    "AllowMiniProgram": "允许小程序授权",
+    "SpecifiedAppId": "只允许填入的 AppId 授权",
+    "CategoryIds": "授权权限集",
+    "CategoryIdsInputInfoText": "使用|隔开，如：1|2|5|100",
+    "CreateRequest": "创建请求",
+    "RequestAuthorization": "请求微信应用授权",
+    "ClickToSeeDocs": "点击查看相关功能的微信官方文档",
+    "PcAuthorizationUrl": "PC 授权页地址",
+    "H5AuthorizationUrl": "H5 授权页地址（用手机打开）"
+  }
+}

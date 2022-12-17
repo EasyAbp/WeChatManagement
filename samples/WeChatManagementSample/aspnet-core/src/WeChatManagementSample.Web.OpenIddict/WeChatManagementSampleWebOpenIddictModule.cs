@@ -3,6 +3,8 @@ using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.Common.Web;
 using EasyAbp.WeChatManagement.MiniPrograms;
 using EasyAbp.WeChatManagement.MiniPrograms.Web;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
@@ -52,7 +54,8 @@ namespace WeChatManagementSample.Web.Ids4
         typeof(AbpSettingManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(WeChatManagementMiniProgramsWebModule),
-        typeof(WeChatManagementMiniProgramsDomainOpenIddictModule)
+        typeof(WeChatManagementMiniProgramsDomainOpenIddictModule),
+        typeof(WeChatManagementThirdPartyPlatformsWebModule)
     )]
     public class WeChatManagementSampleWebOpenIddictModule : AbpModule
     {
@@ -170,6 +173,22 @@ namespace WeChatManagementSample.Web.Ids4
                     options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementMiniProgramsWebModule>(Path.Combine(
                         hostingEnvironment.ContentRootPath,
                         $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}MiniPrograms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.MiniPrograms.Web"));
+
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementThirdPartyPlatformsDomainSharedModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}ThirdPartyPlatforms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementThirdPartyPlatformsDomainModule>(Path.Combine(
+                        hostingEnvironment.ContentRootPath,
+                        $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}ThirdPartyPlatforms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementThirdPartyPlatformsApplicationContractsModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}ThirdPartyPlatforms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementThirdPartyPlatformsApplicationModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}ThirdPartyPlatforms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<WeChatManagementThirdPartyPlatformsWebModule>(Path.Combine(
+                        hostingEnvironment.ContentRootPath,
+                        $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}modules{Path.DirectorySeparatorChar}ThirdPartyPlatforms{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web"));
                 });
             }
         }

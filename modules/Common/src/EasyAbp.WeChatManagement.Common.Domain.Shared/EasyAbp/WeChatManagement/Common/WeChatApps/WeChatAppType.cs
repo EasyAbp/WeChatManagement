@@ -5,6 +5,7 @@
         MiniProgram = 0,
         Official = 1,
         Work = 2,
-        OpenPlatform = 3
+        OpenPlatform = 3,
+        ThirdPartyPlatform = 4
     }
 }

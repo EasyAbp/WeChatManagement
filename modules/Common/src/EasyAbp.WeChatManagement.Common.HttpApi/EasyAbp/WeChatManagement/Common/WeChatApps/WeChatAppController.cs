@@ -26,20 +26,20 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
         }
 
         [HttpGet]
-        public Task<PagedResultDto<WeChatAppDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        public Task<PagedResultDto<WeChatAppDto>> GetListAsync(WeChatAppGetListInput input)
         {
             return _appService.GetListAsync(input);
         }
 
         [HttpPost]
-        public Task<WeChatAppDto> CreateAsync(CreateUpdateWeChatAppDto input)
+        public Task<WeChatAppDto> CreateAsync(CreateWeChatAppDto input)
         {
             return _appService.CreateAsync(input);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public Task<WeChatAppDto> UpdateAsync(Guid id, CreateUpdateWeChatAppDto input)
+        public Task<WeChatAppDto> UpdateAsync(Guid id, UpdateWeChatAppDto input)
         {
             return _appService.UpdateAsync(id, input);
         }
