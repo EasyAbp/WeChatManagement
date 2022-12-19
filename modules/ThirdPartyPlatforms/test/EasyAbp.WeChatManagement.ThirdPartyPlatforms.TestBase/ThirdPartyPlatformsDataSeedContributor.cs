@@ -48,15 +48,26 @@ public class ThirdPartyPlatformsDataSeedContributor : IDataSeedContributor, ITra
 
     private async Task SeedThirdPartyPlatformWeChatAppsAsync(DataSeedContext context)
     {
-        await _weChatAppRepository.InsertAsync(new WeChatApp(_guidGenerator.Create(), _currentTenant.Id,
-            WeChatAppType.ThirdPartyPlatform, null, "my-3rd-platform", "我的第三方平台", "Default",
-            ThirdPartyPlatformsTestConsts.AppId, ThirdPartyPlatformsTestConsts.AppSecret,
-            ThirdPartyPlatformsTestConsts.Token, ThirdPartyPlatformsTestConsts.EncodingAesKey, false), true);
+        await _weChatAppRepository.InsertAsync(new WeChatApp(
+            _guidGenerator.Create(),
+            _currentTenant.Id,
+            WeChatAppType.ThirdPartyPlatform,
+            null,
+            "my-3rd-platform",
+            "我的第三方平台",
+            "Default",
+            ThirdPartyPlatformsTestConsts.AppId,
+            _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.AppSecret),
+            ThirdPartyPlatformsTestConsts.Token,
+            ThirdPartyPlatformsTestConsts.EncodingAesKey,
+            false
+        ), true);
     }
 
     private async Task SeedAuthorizerSecretsAsync(DataSeedContext context)
     {
-        var encryptedRefreshToken = _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.AuthorizerRefreshToken);
+        var encryptedRefreshToken =
+            _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.AuthorizerRefreshToken);
 
         await _authorizerSecretRepository.InsertAsync(new AuthorizerSecret(_guidGenerator.Create(), _currentTenant.Id,
             ThirdPartyPlatformsTestConsts.AppId, ThirdPartyPlatformsTestConsts.AuthorizerAppId, encryptedRefreshToken,
