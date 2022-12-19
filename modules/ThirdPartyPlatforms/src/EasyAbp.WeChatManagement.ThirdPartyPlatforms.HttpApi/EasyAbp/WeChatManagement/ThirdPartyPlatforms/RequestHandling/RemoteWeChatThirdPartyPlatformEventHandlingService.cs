@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
-using EasyAbp.Abp.WeChat.Common.EventHandling;
-using EasyAbp.Abp.WeChat.OpenPlatform.EventHandling;
+using EasyAbp.Abp.WeChat.Common.RequestHandling;
+using EasyAbp.Abp.WeChat.OpenPlatform.RequestHandling;
 using Volo.Abp.DependencyInjection;
 
-namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.EventHandling;
+namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.RequestHandling;
 
 [Dependency(TryRegister = true)]
 public class RemoteWeChatThirdPartyPlatformEventHandlingService :
-    IWeChatThirdPartyPlatformEventHandlingService, ITransientDependency
+    IWeChatThirdPartyPlatformEventRequestHandlingService, ITransientDependency
 {
     private readonly IEventHandlingAppService _eventHandlingAppService;
 
@@ -16,14 +16,14 @@ public class RemoteWeChatThirdPartyPlatformEventHandlingService :
         _eventHandlingAppService = eventHandlingAppService;
     }
 
-    public virtual Task<WeChatEventHandlingResult> NotifyAuthAsync(string componentAppId,
-        WeChatEventNotificationRequestModel request)
+    public virtual Task<WeChatRequestHandlingResult> NotifyAuthAsync(
+        string componentAppId, WeChatEventRequestModel request)
     {
         return _eventHandlingAppService.NotifyAuthAsync(componentAppId, request);
     }
 
-    public virtual Task<WeChatEventHandlingResult> NotifyAppAsync(string componentAppId, string authorizerAppId,
-        WeChatEventNotificationRequestModel request)
+    public virtual Task<WeChatRequestHandlingResult> NotifyAppAsync(
+        string componentAppId, string authorizerAppId, WeChatEventRequestModel request)
     {
         return _eventHandlingAppService.NotifyAppAsync(componentAppId, authorizerAppId, request);
     }

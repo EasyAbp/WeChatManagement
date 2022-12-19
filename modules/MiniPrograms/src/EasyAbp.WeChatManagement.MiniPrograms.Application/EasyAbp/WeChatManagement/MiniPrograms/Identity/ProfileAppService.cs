@@ -1,18 +1,12 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyAbp.Abp.WeChat.MiniProgram;
-using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure;
-using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure.OptionsResolve.Contributors;
-using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
+using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.PhoneNumber;
-using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.MiniPrograms.Identity.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Volo.Abp;
 using Volo.Abp.Identity;
-using Volo.Abp.Json;
 using Volo.Abp.Users;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
@@ -20,25 +14,19 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
     [Authorize]
     public class ProfileAppService : MiniProgramsAppService, IProfileAppService
     {
-        private readonly PhoneNumberService _phoneNumberService;
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
-        private readonly IWeChatAppRepository _weChatAppRepository;
-        private readonly IWeChatMiniProgramAsyncLocal _weChatMiniProgramAsyncLocal;
+        private readonly IAbpWeChatServiceFactory _abpWeChatServiceFactory;
 
         public ProfileAppService(
             IOptions<IdentityOptions> identityOptions,
             IdentityUserManager identityUserManager,
-            IWeChatAppRepository weChatAppRepository,
-            PhoneNumberService phoneNumberService,
-            IWeChatMiniProgramAsyncLocal weChatMiniProgramAsyncLocal)
+            IAbpWeChatServiceFactory abpWeChatServiceFactory)
         {
             ;
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
-            _weChatAppRepository = weChatAppRepository;
-            _phoneNumberService = phoneNumberService;
-            _weChatMiniProgramAsyncLocal = weChatMiniProgramAsyncLocal;
+            _abpWeChatServiceFactory = abpWeChatServiceFactory;
         }
 
         /// <summary>
@@ -54,39 +42,27 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Identity
 
             var user = await _identityUserManager.GetByIdAsync(CurrentUser.GetId());
 
-            var miniProgram = await _weChatAppRepository.GetMiniProgramAppByAppIdAsync(input.AppId);
+            var phoneNumberWeService = await _abpWeChatServiceFactory.CreateAsync<PhoneNumberWeService>(input.AppId);
 
-            var options = new AbpWeChatMiniProgramOptions
+            var response = await phoneNumberWeService.GetPhoneNumberAsync(input.Code);
+
+            if (response.ErrorCode != 0)
             {
-                OpenAppId = miniProgram.OpenAppIdOrName,
-                AppId = miniProgram.AppId,
-                AppSecret = miniProgram.AppSecret,
-                EncodingAesKey = miniProgram.EncodingAesKey,
-                Token = miniProgram.Token
-            };
+                throw new BusinessException(message: $"WeChat error: [{response.ErrorCode}]: {response.ErrorMessage}");
+            }
 
-            using (_weChatMiniProgramAsyncLocal.Change(options))
+            var phoneNumber = response.PhoneInfo.PhoneNumber;
+
+            _identityUserManager.RegisterTokenProvider(TokenOptions.DefaultPhoneProvider,
+                new StaticPhoneNumberTokenProvider());
+
+            var token = await _identityUserManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
+
+            var identityResult = await _identityUserManager.ChangePhoneNumberAsync(user, phoneNumber, token);
+
+            if (!identityResult.Succeeded)
             {
-                var response = await _phoneNumberService.GetPhoneNumberAsync(input.Code);
-
-                if (response.ErrorCode != 0)
-                {
-                    throw new BusinessException(message: $"WeChat error: [{response.ErrorCode}]: {response.ErrorMessage}");
-                }
-                
-                var phoneNumber = response.PhoneInfo.PhoneNumber;
-
-                _identityUserManager.RegisterTokenProvider(TokenOptions.DefaultPhoneProvider,
-                    new StaticPhoneNumberTokenProvider());
-
-                var token = await _identityUserManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
-
-                var identityResult = await _identityUserManager.ChangePhoneNumberAsync(user, phoneNumber, token);
-
-                if (!identityResult.Succeeded)
-                {
-                    throw new AbpIdentityResultException(identityResult);
-                }
+                throw new AbpIdentityResultException(identityResult);
             }
         }
     }

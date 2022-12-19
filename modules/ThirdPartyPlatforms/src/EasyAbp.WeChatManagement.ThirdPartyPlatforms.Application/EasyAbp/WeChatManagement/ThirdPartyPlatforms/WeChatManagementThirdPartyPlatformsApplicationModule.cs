@@ -1,6 +1,6 @@
-﻿using EasyAbp.Abp.WeChat.OpenPlatform.EventHandling;
+﻿using EasyAbp.Abp.WeChat.OpenPlatform.RequestHandling;
 using EasyAbp.WeChatManagement.Common;
-using EasyAbp.WeChatManagement.ThirdPartyPlatforms.EventHandling;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.RequestHandling;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Volo.Abp.AutoMapper;
@@ -26,7 +26,9 @@ public class WeChatManagementThirdPartyPlatformsApplicationModule : AbpModule
             options.AddMaps<WeChatManagementThirdPartyPlatformsApplicationModule>(validate: true);
         });
 
-        context.Services.Replace(new ServiceDescriptor(typeof(IWeChatThirdPartyPlatformEventHandlingService),
-            typeof(EventHandlingAppService), ServiceLifetime.Transient));
+        context.Services.Replace(new ServiceDescriptor(
+            typeof(IWeChatThirdPartyPlatformEventRequestHandlingService),
+            typeof(EventHandlingAppService),
+            ServiceLifetime.Transient));
     }
 }

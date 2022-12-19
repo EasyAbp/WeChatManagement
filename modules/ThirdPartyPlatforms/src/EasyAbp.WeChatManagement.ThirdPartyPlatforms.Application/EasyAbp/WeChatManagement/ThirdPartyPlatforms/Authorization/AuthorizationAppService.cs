@@ -2,14 +2,14 @@ using System;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using EasyAbp.Abp.WeChat.OpenPlatform;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.AccessToken;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.AuthorizerRefreshToken;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.ComponentAccessToken;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.Options.OptionsResolving.Contributors;
-using EasyAbp.Abp.WeChat.OpenPlatform.Services.ThirdPartyPlatform;
-using EasyAbp.Abp.WeChat.OpenPlatform.Services.ThirdPartyPlatform.Response;
+using EasyAbp.Abp.WeChat.Common.Infrastructure.Options;
+using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.AccessToken;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.ApiRequests;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.AuthorizerRefreshToken;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Options;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Services;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Services.Response;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Caches;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Dtos;
@@ -26,53 +26,41 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization;
 
 public class AuthorizationAppService : ApplicationService, IAuthorizationAppService
 {
+    private readonly IAbpWeChatServiceFactory _abpWeChatServiceFactory;
     private readonly IWeChatAppRepository _weChatAppRepository;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
     private readonly IAuthorizerAccessTokenCache _authorizerAccessTokenCache;
     private readonly IAuthorizerRefreshTokenStore _authorizerRefreshTokenStore;
-    private readonly IWeChatThirdPartyPlatformAsyncLocal _weChatThirdPartyPlatformAsyncLocal;
-    private readonly ThirdPartyPlatformApiService _thirdPartyPlatformApiService;
     private readonly IStringEncryptionService _stringEncryptionService;
     private readonly IDistributedCache<WeChatThirdPartyPlatformPreAuthCacheItem> _cache;
 
     public AuthorizationAppService(
+        IAbpWeChatServiceFactory abpWeChatServiceFactory,
         IWeChatAppRepository weChatAppRepository,
         IAuthorizerSecretRepository authorizerSecretRepository,
         IAuthorizerAccessTokenCache authorizerAccessTokenCache,
         IAuthorizerRefreshTokenStore authorizerRefreshTokenStore,
-        IWeChatThirdPartyPlatformAsyncLocal weChatThirdPartyPlatformAsyncLocal,
-        ThirdPartyPlatformApiService thirdPartyPlatformApiService,
         IStringEncryptionService stringEncryptionService,
         IDistributedCache<WeChatThirdPartyPlatformPreAuthCacheItem> cache)
     {
+        _abpWeChatServiceFactory = abpWeChatServiceFactory;
         _weChatAppRepository = weChatAppRepository;
         _authorizerSecretRepository = authorizerSecretRepository;
         _authorizerAccessTokenCache = authorizerAccessTokenCache;
         _authorizerRefreshTokenStore = authorizerRefreshTokenStore;
-        _weChatThirdPartyPlatformAsyncLocal = weChatThirdPartyPlatformAsyncLocal;
-        _thirdPartyPlatformApiService = thirdPartyPlatformApiService;
         _stringEncryptionService = stringEncryptionService;
         _cache = cache;
     }
 
     public virtual async Task<PreAuthResultDto> PreAuthAsync(PreAuthInputDto input)
     {
-        return new PreAuthResultDto
-        {
-            PreAuthCode = "123"
-        };
         var thirdPartyPlatformWeChatApp =
             await _weChatAppRepository.GetThirdPartyPlatformAppAsync(input.ThirdPartyPlatformWeChatAppId);
 
-        using var changeOptions = _weChatThirdPartyPlatformAsyncLocal.Change(new AbpWeChatThirdPartyPlatformOptions
-        {
-            Token = thirdPartyPlatformWeChatApp.Token,
-            AppId = thirdPartyPlatformWeChatApp.AppId,
-            AppSecret = thirdPartyPlatformWeChatApp.AppSecret,
-            EncodingAesKey = thirdPartyPlatformWeChatApp.EncodingAesKey
-        });
+        var thirdPartyPlatformApiService =
+            await _abpWeChatServiceFactory.CreateAsync<ThirdPartyPlatformWeService>(thirdPartyPlatformWeChatApp.AppId);
 
-        var response = await _thirdPartyPlatformApiService.GetPreAuthCodeAsync();
+        var response = await thirdPartyPlatformApiService.GetPreAuthCodeAsync();
 
         if (response.ErrorCode != 0 || response.PreAuthCode.IsNullOrWhiteSpace())
         {
@@ -123,15 +111,10 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
             };
         }
 
-        using var changeOptions = _weChatThirdPartyPlatformAsyncLocal.Change(new AbpWeChatThirdPartyPlatformOptions
-        {
-            Token = thirdPartyPlatformWeChatApp.Token,
-            AppId = thirdPartyPlatformWeChatApp.AppId,
-            AppSecret = thirdPartyPlatformWeChatApp.AppSecret,
-            EncodingAesKey = thirdPartyPlatformWeChatApp.EncodingAesKey
-        });
+        var thirdPartyPlatformApiService =
+            await _abpWeChatServiceFactory.CreateAsync<ThirdPartyPlatformWeService>(thirdPartyPlatformWeChatApp.AppId);
 
-        var response = await _thirdPartyPlatformApiService.QueryAuthAsync(input.AuthorizationCode);
+        var response = await thirdPartyPlatformApiService.QueryAuthAsync(input.AuthorizationCode);
 
         if (await _weChatAppRepository.FindAsync(x => x.AppId == response.AuthorizationInfo.AuthorizerAppId) == null)
         {
@@ -178,20 +161,20 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
     protected virtual async Task<AuthorizerInfoModel> QueryAuthorizerWeChatAppInfoAsync(
         WeChatApp thirdPartyPlatformWeChatApp, string authorizerAppId)
     {
-        var requester = LazyServiceProvider.LazyGetRequiredService<IWeChatOpenPlatformApiRequester>();
-        var componentAccessTokenProvider = LazyServiceProvider.LazyGetRequiredService<IComponentAccessTokenProvider>();
+        var requester = LazyServiceProvider.LazyGetRequiredService<IWeChatThirdPartyPlatformApiRequester>();
+        var optionsProvider = LazyServiceProvider
+            .LazyGetRequiredService<IAbpWeChatOptionsProvider<AbpWeChatThirdPartyPlatformOptions>>();
 
-        var componentAccessToken = await componentAccessTokenProvider.GetAsync(
-            thirdPartyPlatformWeChatApp.AppId, thirdPartyPlatformWeChatApp.AppSecret);
-
-        var url = $"https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info?" +
-                  $"component_access_token={componentAccessToken}";
-
-        var response = await requester.RequestAsync(url, HttpMethod.Post, new GetAuthorizerInfoRequest
-        {
-            ComponentAppId = thirdPartyPlatformWeChatApp.AppId,
-            AuthorizerAppId = authorizerAppId
-        });
+        var response = await requester.RequestAsync(
+            "https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info",
+            HttpMethod.Post,
+            new GetAuthorizerInfoRequest
+            {
+                ComponentAppId = thirdPartyPlatformWeChatApp.AppId,
+                AuthorizerAppId = authorizerAppId
+            },
+            await optionsProvider.GetAsync(thirdPartyPlatformWeChatApp.AppId)
+        );
 
         var jObject = JObject.Parse(response);
         var authorizerInfo = jObject.SelectToken("authorizer_info");

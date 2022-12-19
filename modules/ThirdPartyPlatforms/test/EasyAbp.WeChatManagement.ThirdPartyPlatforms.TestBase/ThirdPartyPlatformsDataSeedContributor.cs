@@ -56,7 +56,7 @@ public class ThirdPartyPlatformsDataSeedContributor : IDataSeedContributor, ITra
 
     private async Task SeedAuthorizerSecretsAsync(DataSeedContext context)
     {
-        var encryptedRefreshToken = _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.RefreshToken);
+        var encryptedRefreshToken = _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.AuthorizerRefreshToken);
 
         await _authorizerSecretRepository.InsertAsync(new AuthorizerSecret(_guidGenerator.Create(), _currentTenant.Id,
             ThirdPartyPlatformsTestConsts.AppId, ThirdPartyPlatformsTestConsts.AuthorizerAppId, encryptedRefreshToken,

@@ -14,8 +14,4 @@
     <ProjectReference Include="..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EasyAbp\Abp\WeChat\OpenPlatform\Infrastructure" />
-  </ItemGroup>
-
 </Project>

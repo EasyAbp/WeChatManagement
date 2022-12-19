@@ -1,33 +1,29 @@
 using System.Threading.Tasks;
-using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
 using Volo.Abp.Caching;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Uow;
 
-namespace EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.AuthorizerRefreshToken;
+namespace EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.AuthorizerRefreshToken;
 
 /// <summary>
 /// 本类替换了 CacheAuthorizerRefreshTokenStore 的实现，将信息持久化。
 /// </summary>
 [UnitOfWork]
-public class AuthorizerRefreshTokenStore : IAuthorizerRefreshTokenStore, ISingletonDependency
+public class AuthorizerRefreshTokenStore : IAuthorizerRefreshTokenStore, ITransientDependency
 {
     private readonly IStringEncryptionService _stringEncryptionService;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
-    private readonly IWeChatAppRepository _weChatAppRepository;
     private readonly IDistributedCache<string> _cache;
 
     public AuthorizerRefreshTokenStore(
         IStringEncryptionService stringEncryptionService,
         IAuthorizerSecretRepository authorizerSecretRepository,
-        IWeChatAppRepository weChatAppRepository,
         IDistributedCache<string> cache)
     {
         _stringEncryptionService = stringEncryptionService;
         _authorizerSecretRepository = authorizerSecretRepository;
-        _weChatAppRepository = weChatAppRepository;
         _cache = cache;
     }
 

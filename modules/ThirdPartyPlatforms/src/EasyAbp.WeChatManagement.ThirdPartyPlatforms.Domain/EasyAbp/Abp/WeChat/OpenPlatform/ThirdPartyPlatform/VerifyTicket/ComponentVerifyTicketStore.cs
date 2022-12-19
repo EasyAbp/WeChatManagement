@@ -7,12 +7,12 @@ using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Uow;
 
-namespace EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.VerifyTicket;
+namespace EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.VerifyTicket;
 
 /// <summary>
 /// 本类替换了 CacheComponentVerifyTicketStore 的实现，将信息持久化。
 /// </summary>
-public class ComponentVerifyTicketStore : IComponentVerifyTicketStore, ISingletonDependency
+public class ComponentVerifyTicketStore : IComponentVerifyTicketStore, ITransientDependency
 {
     private readonly IUnitOfWorkManager _unitOfWorkManager;
     private readonly IStringEncryptionService _stringEncryptionService;

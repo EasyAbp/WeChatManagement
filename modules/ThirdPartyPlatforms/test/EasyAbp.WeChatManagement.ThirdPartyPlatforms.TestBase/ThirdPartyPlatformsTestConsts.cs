@@ -12,7 +12,11 @@ public static class ThirdPartyPlatformsTestConsts
 
     public const string ComponentVerifyTicket = "some_verify_ticket";
 
+    public const string AuthorizationCode = "my_authorization_code";
+
     public const string AuthorizerAppId = "wx1234567890123456";
 
-    public const string RefreshToken = "my_refresh_token";
+    public const string AuthorizerAccessToken = "512312324123";
+
+    public const string AuthorizerRefreshToken = "245235762341234";
 }
