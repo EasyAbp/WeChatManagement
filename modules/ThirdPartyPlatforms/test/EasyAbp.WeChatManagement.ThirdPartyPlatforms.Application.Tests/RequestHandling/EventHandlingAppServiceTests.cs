@@ -1,22 +1,19 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Encryption;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
-using EasyAbp.Abp.WeChat.Common.RequestHandling;
+using EasyAbp.Abp.WeChat.Common.RequestHandling.Dtos;
+using EasyAbp.Abp.WeChat.OpenPlatform.RequestHandling.Dtos;
 using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.AccessToken;
 using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Options;
 using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Services;
-using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Services.Response;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Fakes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Options;
 using NSubstitute;
 using Shouldly;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
 using Xunit;
 
@@ -80,14 +77,17 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
 
         var xml = XDocument.Parse(encryptedMsg);
 
-        (await _eventHandlingAppService.NotifyAuthAsync(ThirdPartyPlatformsTestConsts.AppId,
-            new WeChatEventRequestModel
+        (await _eventHandlingAppService.NotifyAuthAsync(new NotifyAuthInput
+        {
+            ComponentAppId = ThirdPartyPlatformsTestConsts.AppId,
+            EventRequest = new WeChatEventRequestModel
             {
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
                 Timestamp = TimeStamp,
                 Notice = Nonce
-            })).Success.ShouldBeTrue();
+            }
+        })).Success.ShouldBeTrue();
 
         var weChatApp =
             await _weChatAppRepository.GetThirdPartyPlatformAppByAppIdAsync(ThirdPartyPlatformsTestConsts.AppId);
@@ -129,14 +129,17 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
 
         var xml = XDocument.Parse(encryptedMsg);
 
-        (await _eventHandlingAppService.NotifyAuthAsync(ThirdPartyPlatformsTestConsts.AppId,
-            new WeChatEventRequestModel
+        (await _eventHandlingAppService.NotifyAuthAsync(new NotifyAuthInput
+        {
+            ComponentAppId = ThirdPartyPlatformsTestConsts.AppId,
+            EventRequest = new WeChatEventRequestModel
             {
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
                 Timestamp = TimeStamp,
                 Notice = Nonce
-            })).Success.ShouldBeTrue();
+            }
+        })).Success.ShouldBeTrue();
 
         authorizerSecret = await _authorizerSecretRepository.GetAsync(x =>
             x.ComponentAppId == ThirdPartyPlatformsTestConsts.AppId &&
@@ -176,14 +179,17 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
 
         var xml = XDocument.Parse(encryptedMsg);
 
-        (await _eventHandlingAppService.NotifyAuthAsync(ThirdPartyPlatformsTestConsts.AppId,
-            new WeChatEventRequestModel
+        (await _eventHandlingAppService.NotifyAuthAsync(new NotifyAuthInput
+        {
+            ComponentAppId = ThirdPartyPlatformsTestConsts.AppId,
+            EventRequest = new WeChatEventRequestModel
             {
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
                 Timestamp = TimeStamp,
                 Notice = Nonce
-            })).Success.ShouldBeTrue();
+            }
+        })).Success.ShouldBeTrue();
 
         authorizerSecret = await _authorizerSecretRepository.FindAsync(x =>
             x.ComponentAppId == ThirdPartyPlatformsTestConsts.AppId &&

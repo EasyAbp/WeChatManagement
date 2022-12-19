@@ -1,4 +1,5 @@
-﻿using EasyAbp.WeChatManagement.Common;
+﻿using EasyAbp.Abp.WeChat.OpenPlatform;
+using EasyAbp.WeChatManagement.Common;
 using Localization.Resources.AbpUi;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Localization;
 using Volo.Abp.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms;
 [DependsOn(
     typeof(WeChatManagementCommonHttpApiModule),
     typeof(WeChatManagementThirdPartyPlatformsApplicationContractsModule),
+    typeof(AbpWeChatOpenPlatformHttpApiModule),
     typeof(AbpAspNetCoreMvcModule))]
 public class WeChatManagementThirdPartyPlatformsHttpApiModule : AbpModule
 {
