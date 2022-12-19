@@ -37,7 +37,6 @@
     "WeChatAppUserUserId": "WeChatAppUserUserId",
     "WeChatAppUserUnionId": "WeChatAppUserUnionId",
     "WeChatAppUserOpenId": "WeChatAppUserOpenId",
-    "WeChatAppUserSessionKey": "WeChatAppUserSessionKey",
     "WeChatAppUserSessionKeyChangedTime": "WeChatAppUserSessionKeyChangedTime"
   }
 }

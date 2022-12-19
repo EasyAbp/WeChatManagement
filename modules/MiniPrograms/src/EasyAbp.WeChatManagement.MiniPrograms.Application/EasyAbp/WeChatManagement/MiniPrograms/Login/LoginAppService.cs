@@ -23,6 +23,7 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.AspNetCore;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.Security.Encryption;
 using Volo.Abp.Uow;
 using Volo.Abp.Users;
 using IdentityUser = Volo.Abp.Identity.IdentityUser;
@@ -40,6 +41,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IUserInfoRepository _userInfoRepository;
         private readonly IWeChatAppRepository _weChatAppRepository;
+        private readonly IStringEncryptionService _stringEncryptionService;
         private readonly IWeChatAppUserRepository _weChatAppUserRepository;
         private readonly IAbpWeChatServiceFactory _abpWeChatServiceFactory;
         private readonly IMiniProgramLoginNewUserCreator _miniProgramLoginNewUserCreator;
@@ -56,6 +58,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             IHttpClientFactory httpClientFactory,
             IUserInfoRepository userInfoRepository,
             IWeChatAppRepository weChatAppRepository,
+            IStringEncryptionService stringEncryptionService,
             IWeChatAppUserRepository weChatAppUserRepository,
             IAbpWeChatServiceFactory abpWeChatServiceFactory,
             IMiniProgramLoginNewUserCreator miniProgramLoginNewUserCreator,
@@ -71,6 +74,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             _httpClientFactory = httpClientFactory;
             _userInfoRepository = userInfoRepository;
             _weChatAppRepository = weChatAppRepository;
+            _stringEncryptionService = stringEncryptionService;
             _weChatAppUserRepository = weChatAppUserRepository;
             _abpWeChatServiceFactory = abpWeChatServiceFactory;
             _miniProgramLoginNewUserCreator = miniProgramLoginNewUserCreator;
@@ -228,9 +232,10 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 loginWeService = await _abpWeChatServiceFactory.CreateAsync<LoginWeService>(miniProgram.AppId);
             }
-            
+
             var code2SessionResponse =
-                await loginWeService.Code2SessionAsync(miniProgram.AppId, miniProgram.AppSecret, input.Code);
+                await loginWeService.Code2SessionAsync(miniProgram.AppId,
+                    _stringEncryptionService.Decrypt(miniProgram.EncryptedAppSecret), input.Code);
 
             // wechat code2session 错误
             if (code2SessionResponse.ErrorCode != 0)
@@ -308,7 +313,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                 mpUserMapping.SetOpenId(openId);
                 mpUserMapping.SetUnionId(unionId);
 
-                mpUserMapping.UpdateSessionKey(sessionKey, Clock);
+                mpUserMapping.UpdateSessionKey(sessionKey, _stringEncryptionService, Clock);
 
                 await _weChatAppUserRepository.UpdateAsync(mpUserMapping, true);
             }

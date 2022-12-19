@@ -1,7 +1,9 @@
 using System;
 using JetBrains.Annotations;
+using Volo.Abp.Auditing;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.Security.Encryption;
 using Volo.Abp.Timing;
 
 namespace EasyAbp.WeChatManagement.Common.WeChatAppUsers
@@ -9,20 +11,21 @@ namespace EasyAbp.WeChatManagement.Common.WeChatAppUsers
     public class WeChatAppUser : FullAuditedAggregateRoot<Guid>, IMultiTenant
     {
         public virtual Guid? TenantId { get; protected set; }
-        
+
         public virtual Guid WeChatAppId { get; protected set; }
-        
+
         public virtual Guid UserId { get; protected set; }
-        
+
         [CanBeNull]
         public virtual string UnionId { get; protected set; }
-        
+
         [NotNull]
         public virtual string OpenId { get; protected set; }
 
         [CanBeNull]
-        public virtual string SessionKey { get; protected set; }
-        
+        [DisableAuditing]
+        public virtual string EncryptedSessionKey { get; protected set; }
+
         public virtual DateTime? SessionKeyChangedTime { get; protected set; }
 
         protected WeChatAppUser()
@@ -52,15 +55,18 @@ namespace EasyAbp.WeChatManagement.Common.WeChatAppUsers
         {
             OpenId = openId;
         }
-        
-        public void UpdateSessionKey([CanBeNull] string sessionKey, IClock clock)
+
+        public void UpdateSessionKey(
+            [CanBeNull] string sessionKey, IStringEncryptionService stringEncryptionService, IClock clock)
         {
-            if (SessionKey == sessionKey)
+            var encryptedSessionKey = stringEncryptionService.Encrypt(sessionKey);
+
+            if (EncryptedSessionKey == encryptedSessionKey)
             {
                 return;
             }
 
-            SessionKey = sessionKey;
+            EncryptedSessionKey = encryptedSessionKey;
             SessionKeyChangedTime = clock.Now;
         }
     }

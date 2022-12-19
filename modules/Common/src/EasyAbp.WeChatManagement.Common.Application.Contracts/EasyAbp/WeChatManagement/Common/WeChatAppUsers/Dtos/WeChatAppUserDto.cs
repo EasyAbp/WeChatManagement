@@ -14,8 +14,6 @@ namespace EasyAbp.WeChatManagement.Common.WeChatAppUsers.Dtos
         
         public string OpenId { get; set; }
 
-        public string SessionKey { get; set; }
-
         public DateTime? SessionKeyChangedTime { get; set; }
     }
 }
