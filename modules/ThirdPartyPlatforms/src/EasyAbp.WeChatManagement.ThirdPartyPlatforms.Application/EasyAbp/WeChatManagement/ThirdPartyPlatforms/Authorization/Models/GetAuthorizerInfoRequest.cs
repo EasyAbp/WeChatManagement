@@ -1,4 +1,4 @@
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.Models;
+using EasyAbp.Abp.WeChat.OpenPlatform.Shared.Models;
 using Newtonsoft.Json;
 
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Models;

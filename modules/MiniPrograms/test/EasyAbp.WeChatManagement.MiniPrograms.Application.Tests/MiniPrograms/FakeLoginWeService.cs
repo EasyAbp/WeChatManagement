@@ -1,15 +1,16 @@
 ﻿using System.Threading.Tasks;
-using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure.OptionsResolve;
+using EasyAbp.Abp.WeChat.MiniProgram.Options;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
 using Volo.Abp.DependencyInjection;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 
-[ExposeServices(typeof(LoginService), typeof(FakeLoginService))]
+[ExposeServices(typeof(LoginWeService), typeof(FakeLoginWeService))]
 [Dependency(ReplaceServices = true)]
-public class FakeLoginService : LoginService
+public class FakeLoginWeService : LoginWeService
 {
-    public FakeLoginService(IWeChatMiniProgramOptionsResolver optionsResolver) : base(optionsResolver)
+    public FakeLoginWeService(AbpWeChatMiniProgramOptions options, IAbpLazyServiceProvider lazyServiceProvider) : base(
+        options, lazyServiceProvider)
     {
     }
 

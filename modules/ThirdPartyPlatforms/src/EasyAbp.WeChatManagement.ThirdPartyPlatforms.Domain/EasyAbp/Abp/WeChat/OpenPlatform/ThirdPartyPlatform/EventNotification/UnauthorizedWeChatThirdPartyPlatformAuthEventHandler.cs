@@ -1,14 +1,15 @@
 using System;
 using System.Threading.Tasks;
-using EasyAbp.Abp.WeChat.Common.EventHandling;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.Models.ThirdPartyPlatform;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.AccessToken;
+using EasyAbp.Abp.WeChat.Common.RequestHandling;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.AccessToken;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Models;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.RequestHandling;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Uow;
 
-namespace EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.EventNotification;
+namespace EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.EventNotification;
 
 public class UnauthorizedWeChatThirdPartyPlatformAuthEventHandler :
     IWeChatThirdPartyPlatformAuthEventHandler, ITransientDependency
@@ -17,13 +18,13 @@ public class UnauthorizedWeChatThirdPartyPlatformAuthEventHandler :
 
     private readonly IUnitOfWorkManager _unitOfWorkManager;
     private readonly IAuthorizerAccessTokenCache _authorizerAccessTokenCache;
-    private readonly ILogger<UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler> _logger;
+    private readonly ILogger<UnauthorizedWeChatThirdPartyPlatformAuthEventHandler> _logger;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
 
     public UnauthorizedWeChatThirdPartyPlatformAuthEventHandler(
         IUnitOfWorkManager unitOfWorkManager,
         IAuthorizerAccessTokenCache authorizerAccessTokenCache,
-        ILogger<UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler> logger,
+        ILogger<UnauthorizedWeChatThirdPartyPlatformAuthEventHandler> logger,
         IAuthorizerSecretRepository authorizerSecretRepository)
     {
         _unitOfWorkManager = unitOfWorkManager;
@@ -32,7 +33,7 @@ public class UnauthorizedWeChatThirdPartyPlatformAuthEventHandler :
         _authorizerSecretRepository = authorizerSecretRepository;
     }
 
-    public virtual async Task<WeChatEventHandlingResult> HandleAsync(AuthNotificationModel model)
+    public virtual async Task<WeChatRequestHandlingResult> HandleAsync(AuthEventModel model)
     {
         using var uow = _unitOfWorkManager.Begin(true);
 
@@ -42,10 +43,10 @@ public class UnauthorizedWeChatThirdPartyPlatformAuthEventHandler :
         if (authorizerSecret is null)
         {
             _logger.LogInformation(
-                "实际没有删除 AuthorizerSecret (ComponentAppId={0}, AuthorizerAppId={1}) 实体，因为实体不存在", model.AppId,
-                model.AuthorizerAppId);
+                "实际没有删除 AuthorizerSecret (ComponentAppId={ComponentAppId}, AuthorizerAppId={AuthorizerAppId}) 实体，因为实体不存在",
+                model.AppId, model.AuthorizerAppId);
 
-            return new WeChatEventHandlingResult(true);
+            return new WeChatRequestHandlingResult(true);
         }
 
         try
@@ -56,10 +57,10 @@ public class UnauthorizedWeChatThirdPartyPlatformAuthEventHandler :
         catch
         {
             _logger.LogWarning(
-                "由于 UOW 提交不成功，导致删除 AuthorizerSecret (ComponentAppId={0}, AuthorizerAppId={1}) 实体失败",
+                "由于 UOW 提交不成功，导致删除 AuthorizerSecret (ComponentAppId={ComponentAppId}, AuthorizerAppId={AuthorizerAppId}) 实体失败",
                 model.AppId, model.AuthorizerAppId);
 
-            return new WeChatEventHandlingResult(false);
+            return new WeChatRequestHandlingResult(false);
         }
 
         try
@@ -72,6 +73,6 @@ public class UnauthorizedWeChatThirdPartyPlatformAuthEventHandler :
             _logger.LogException(e);
         }
 
-        return new WeChatEventHandlingResult(true);
+        return new WeChatRequestHandlingResult(true);
     }
 }

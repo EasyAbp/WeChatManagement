@@ -1,18 +1,19 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyAbp.Abp.WeChat.Common.EventHandling;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.Models.ThirdPartyPlatform;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.AccessToken;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.VerifyTicket;
-using EasyAbp.Abp.WeChat.OpenPlatform.Services.ThirdPartyPlatform;
+using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
+using EasyAbp.Abp.WeChat.Common.RequestHandling;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.AccessToken;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Models;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.RequestHandling;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Services;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
 using Microsoft.Extensions.Logging;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Uow;
 
-namespace EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.EventNotification;
+namespace EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.EventNotification;
 
 public class UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler :
     IWeChatThirdPartyPlatformAuthEventHandler, ITransientDependency
@@ -24,7 +25,7 @@ public class UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler :
     private readonly IStringEncryptionService _stringEncryptionService;
     private readonly ILogger<UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler> _logger;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
-    private readonly ThirdPartyPlatformApiService _thirdPartyPlatformApiService;
+    private readonly IAbpWeChatServiceFactory _abpWeChatServiceFactory;
 
     public UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler(
         IUnitOfWorkManager unitOfWorkManager,
@@ -32,17 +33,17 @@ public class UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler :
         IStringEncryptionService stringEncryptionService,
         ILogger<UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler> logger,
         IAuthorizerSecretRepository authorizerSecretRepository,
-        ThirdPartyPlatformApiService thirdPartyPlatformApiService)
+        IAbpWeChatServiceFactory abpWeChatServiceFactory)
     {
         _unitOfWorkManager = unitOfWorkManager;
         _authorizerAccessTokenCache = authorizerAccessTokenCache;
         _stringEncryptionService = stringEncryptionService;
         _logger = logger;
         _authorizerSecretRepository = authorizerSecretRepository;
-        _thirdPartyPlatformApiService = thirdPartyPlatformApiService;
+        _abpWeChatServiceFactory = abpWeChatServiceFactory;
     }
 
-    public virtual async Task<WeChatEventHandlingResult> HandleAsync(AuthNotificationModel model)
+    public virtual async Task<WeChatRequestHandlingResult> HandleAsync(AuthEventModel model)
     {
         using var uow = _unitOfWorkManager.Begin(true);
 
@@ -52,21 +53,24 @@ public class UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler :
         if (authorizerSecret is null)
         {
             _logger.LogWarning(
-                "由于 AuthorizerSecret (ComponentAppId={0}, AuthorizerAppId={1}) 实体不存在，更新 RefreshToken 失败", model.AppId,
-                model.AuthorizerAppId);
+                "由于 AuthorizerSecret (ComponentAppId={ComponentAppId}, AuthorizerAppId={AuthorizerAppId}) 实体不存在，更新 RefreshToken 失败",
+                model.AppId, model.AuthorizerAppId);
 
-            return new WeChatEventHandlingResult(false);
+            return new WeChatRequestHandlingResult(false);
         }
 
-        var response = await _thirdPartyPlatformApiService.QueryAuthAsync(model.AuthorizationCode);
+        var thirdPartyPlatformWeService =
+            await _abpWeChatServiceFactory.CreateAsync<ThirdPartyPlatformWeService>(model.AppId);
+        
+        var response = await thirdPartyPlatformWeService.QueryAuthAsync(model.AuthorizationCode);
 
         if (response.ErrorCode != 0)
         {
             _logger.LogWarning(
-                "微信第三方平台查询授权获取 refresh_token 失败。ComponentAppId={0}, AuthorizerAppId={1}, 错误码：{2}，错误信息：{3}",
+                "微信第三方平台查询授权获取 refresh_token 失败。ComponentAppId={ComponentAppId}, AuthorizerAppId={AuthorizerAppId}, 错误码：{ErrorCode}，错误信息：{ErrorMessage}",
                 model.AppId, model.AuthorizerAppId, response.ErrorCode, response.ErrorMessage);
 
-            return new WeChatEventHandlingResult(false);
+            return new WeChatRequestHandlingResult(false);
         }
 
         var categoryIds = response.AuthorizationInfo.FuncInfo.Select(x => x.FuncScopeCategory.Id);
@@ -83,10 +87,10 @@ public class UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler :
         catch
         {
             _logger.LogWarning(
-                "由于 UOW 提交不成功，导致更新 AuthorizerSecret (ComponentAppId={0}, AuthorizerAppId={1}) 实体的 RefreshToken 失败",
+                "由于 UOW 提交不成功，导致更新 AuthorizerSecret (ComponentAppId={ComponentAppId}, AuthorizerAppId={AuthorizerAppId}) 实体的 RefreshToken 失败",
                 model.AppId, model.AuthorizerAppId);
 
-            return new WeChatEventHandlingResult(false);
+            return new WeChatRequestHandlingResult(false);
         }
 
         try
@@ -100,6 +104,6 @@ public class UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler :
             _logger.LogException(e);
         }
 
-        return new WeChatEventHandlingResult(true);
+        return new WeChatRequestHandlingResult(true);
     }
 }

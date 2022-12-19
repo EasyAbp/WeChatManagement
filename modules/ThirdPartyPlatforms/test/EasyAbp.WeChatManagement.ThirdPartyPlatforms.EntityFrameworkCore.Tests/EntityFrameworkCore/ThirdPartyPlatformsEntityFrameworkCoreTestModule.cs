@@ -1,5 +1,4 @@
-﻿using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.EventNotification;
-using EasyAbp.WeChatManagement.Common.EntityFrameworkCore;
+﻿using EasyAbp.WeChatManagement.Common.EntityFrameworkCore;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;

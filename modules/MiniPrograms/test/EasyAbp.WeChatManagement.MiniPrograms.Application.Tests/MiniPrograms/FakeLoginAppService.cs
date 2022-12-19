@@ -1,8 +1,6 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
-using EasyAbp.Abp.WeChat.MiniProgram.Infrastructure.OptionsResolve.Contributors;
-using EasyAbp.Abp.WeChat.MiniProgram.Services.ACode;
-using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
+using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
 using EasyAbp.WeChatManagement.MiniPrograms.Login;
@@ -23,19 +21,18 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 [Dependency(ReplaceServices = true)]
 public class FakeLoginAppService : LoginAppService
 {
-    public FakeLoginAppService(LoginService loginService, ACodeService aCodeService, AbpSignInManager signInManager,
-        IDataFilter dataFilter, IConfiguration configuration, IHttpClientFactory httpClientFactory,
-        IUserInfoRepository userInfoRepository, IWeChatMiniProgramAsyncLocal weChatMiniProgramAsyncLocal,
+    public FakeLoginAppService(AbpSignInManager signInManager, IDataFilter dataFilter, IConfiguration configuration,
+        IHttpClientFactory httpClientFactory, IUserInfoRepository userInfoRepository,
         IWeChatAppRepository weChatAppRepository, IWeChatAppUserRepository weChatAppUserRepository,
+        IAbpWeChatServiceFactory abpWeChatServiceFactory,
         IMiniProgramLoginNewUserCreator miniProgramLoginNewUserCreator,
         IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
         IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
         IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
-        IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager) : base(loginService,
-        aCodeService, signInManager, dataFilter, configuration, httpClientFactory, userInfoRepository,
-        weChatMiniProgramAsyncLocal, weChatAppRepository, weChatAppUserRepository, miniProgramLoginNewUserCreator,
-        miniProgramLoginProviderProvider, pcLoginAuthorizationCache, pcLoginUserLimitCache, identityOptions,
-        identityUserManager)
+        IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager) : base(signInManager,
+        dataFilter, configuration, httpClientFactory, userInfoRepository, weChatAppRepository, weChatAppUserRepository,
+        abpWeChatServiceFactory, miniProgramLoginNewUserCreator, miniProgramLoginProviderProvider,
+        pcLoginAuthorizationCache, pcLoginUserLimitCache, identityOptions, identityUserManager)
     {
     }
 

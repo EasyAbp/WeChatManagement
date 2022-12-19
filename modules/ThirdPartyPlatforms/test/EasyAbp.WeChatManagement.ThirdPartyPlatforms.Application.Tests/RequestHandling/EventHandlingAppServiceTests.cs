@@ -2,39 +2,39 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Encryption;
-using EasyAbp.Abp.WeChat.OpenPlatform.EventHandling;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.AccessToken;
-using EasyAbp.Abp.WeChat.OpenPlatform.Infrastructure.ThirdPartyPlatform.Options.OptionsResolving;
-using EasyAbp.Abp.WeChat.OpenPlatform.Services.ThirdPartyPlatform;
-using EasyAbp.Abp.WeChat.OpenPlatform.Services.ThirdPartyPlatform.Response;
+using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
+using EasyAbp.Abp.WeChat.Common.RequestHandling;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.AccessToken;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Options;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Services;
+using EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Services.Response;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Fakes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using NSubstitute;
 using Shouldly;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
 using Xunit;
 
-namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.EventHandling;
+namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.RequestHandling;
 
 public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBase
 {
     private const string TimeStamp = "1413192605";
     private const string InfoType = "component_verify_ticket";
     private const string Nonce = "some_nonce";
-    private const string AuthorizationCode = "my_authorization_code";
     private const string PreAuthCode = "my_pre_auth_code";
-    private const string NewAuthorizerAccessToken = "new_authorizer_access_token";
-    private const string NewAuthorizerRefreshToken = "new_authorizer_refresh_token";
 
     private readonly IWeChatAppRepository _weChatAppRepository;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
     private readonly IEventHandlingAppService _eventHandlingAppService;
     private readonly IStringEncryptionService _stringEncryptionService;
     private readonly IAuthorizerAccessTokenCache _authorizerAccessTokenCache;
-    private ThirdPartyPlatformApiService _thirdPartyPlatformApiService;
+    private IAbpWeChatServiceFactory _abpWeChatServiceFactory;
 
     public EventHandlingAppServiceTests()
     {
@@ -48,39 +48,15 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
     protected override void AfterAddApplication(IServiceCollection services)
     {
         base.AfterAddApplication(services);
-        _thirdPartyPlatformApiService = Substitute.For<ThirdPartyPlatformApiService>(
-            new WeChatThirdPartyPlatformOptionsResolver(RootServiceProvider,
-                Options.Create(new AbpWeChatThirdPartyPlatformResolvingOptions())));
-        _thirdPartyPlatformApiService.QueryAuthAsync(AuthorizationCode).Returns(new QueryAuthResponse
-        {
-            ErrorMessage = null,
-            ErrorCode = 0,
-            AuthorizationInfo = new QueryAuthResponseAuthorizationInfo
+
+        _abpWeChatServiceFactory = Substitute.For<IAbpWeChatServiceFactory>();
+        services.Replace(ServiceDescriptor.Transient(s => _abpWeChatServiceFactory));
+
+        _abpWeChatServiceFactory.CreateAsync<ThirdPartyPlatformWeService>(ThirdPartyPlatformsTestConsts.AppId).Returns(
+            new FakeThirdPartyPlatformWeService(new AbpWeChatThirdPartyPlatformOptions
             {
-                AuthorizerAppId = ThirdPartyPlatformsTestConsts.AuthorizerAppId,
-                AuthorizerAccessToken = NewAuthorizerAccessToken,
-                ExpiresIn = 6000,
-                AuthorizerRefreshToken = NewAuthorizerRefreshToken,
-                FuncInfo = new List<QueryAuthResponseFuncInfoItem>
-                {
-                    new()
-                    {
-                        FuncScopeCategory = new QueryAuthResponseFuncScopeCategory
-                        {
-                            Id = 5
-                        }
-                    },
-                    new()
-                    {
-                        FuncScopeCategory = new QueryAuthResponseFuncScopeCategory
-                        {
-                            Id = 8
-                        }
-                    }
-                }
-            }
-        });
-        services.Replace(ServiceDescriptor.Transient(s => _thirdPartyPlatformApiService));
+                AppId = ThirdPartyPlatformsTestConsts.AppId
+            }, null));
     }
 
     [Fact]
@@ -105,7 +81,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
         var xml = XDocument.Parse(encryptedMsg);
 
         (await _eventHandlingAppService.NotifyAuthAsync(ThirdPartyPlatformsTestConsts.AppId,
-            new WeChatEventNotificationRequestModel
+            new WeChatEventRequestModel
             {
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
@@ -128,7 +104,9 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
             x.AuthorizerAppId == ThirdPartyPlatformsTestConsts.AuthorizerAppId);
 
         authorizerSecret.EncryptedRefreshToken.ShouldBe(
-            _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.RefreshToken));
+            _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.AuthorizerRefreshToken));
+
+        FakeThirdPartyPlatformWeService.RefreshTokens[ThirdPartyPlatformsTestConsts.AuthorizerAppId] = "new_token";
 
         var crypt = new WXBizMsgCrypt(
             ThirdPartyPlatformsTestConsts.Token,
@@ -143,7 +121,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
             $"<CreateTime>{TimeStamp}</CreateTime>" +
             $"<InfoType>updateauthorized</InfoType>" +
             $"<AuthorizerAppid>{ThirdPartyPlatformsTestConsts.AuthorizerAppId}</AuthorizerAppid>" +
-            $"<AuthorizationCode>{AuthorizationCode}</AuthorizationCode>" +
+            $"<AuthorizationCode>{ThirdPartyPlatformsTestConsts.AuthorizationCode}</AuthorizationCode>" +
             $"<AuthorizationCodeExpiredTime>6000</AuthorizationCodeExpiredTime>" +
             $"<PreAuthCode>{PreAuthCode}</PreAuthCode>" +
             $"</xml>",
@@ -152,7 +130,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
         var xml = XDocument.Parse(encryptedMsg);
 
         (await _eventHandlingAppService.NotifyAuthAsync(ThirdPartyPlatformsTestConsts.AppId,
-            new WeChatEventNotificationRequestModel
+            new WeChatEventRequestModel
             {
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
@@ -165,7 +143,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
             x.AuthorizerAppId == ThirdPartyPlatformsTestConsts.AuthorizerAppId);
 
         authorizerSecret.ShouldNotBeNull();
-        authorizerSecret.EncryptedRefreshToken.ShouldBe(_stringEncryptionService.Encrypt(NewAuthorizerRefreshToken));
+        authorizerSecret.EncryptedRefreshToken.ShouldBe(_stringEncryptionService.Encrypt("new_token"));
         authorizerSecret.CategoryIds.Count.ShouldBe(2);
         authorizerSecret.CategoryIds.ShouldContain(5);
         authorizerSecret.CategoryIds.ShouldContain(8);
@@ -199,7 +177,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
         var xml = XDocument.Parse(encryptedMsg);
 
         (await _eventHandlingAppService.NotifyAuthAsync(ThirdPartyPlatformsTestConsts.AppId,
-            new WeChatEventNotificationRequestModel
+            new WeChatEventRequestModel
             {
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
@@ -213,7 +191,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
 
         authorizerSecret.ShouldBeNull();
 
-        (await _authorizerAccessTokenCache.GetAsync(ThirdPartyPlatformsTestConsts.AppId,
+        (await _authorizerAccessTokenCache.GetOrNullAsync(ThirdPartyPlatformsTestConsts.AppId,
             ThirdPartyPlatformsTestConsts.AuthorizerAppId)).ShouldBe(null);
     }
 }

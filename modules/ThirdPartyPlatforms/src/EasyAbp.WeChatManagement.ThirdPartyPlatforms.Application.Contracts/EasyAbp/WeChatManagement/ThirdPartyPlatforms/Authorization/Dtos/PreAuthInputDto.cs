@@ -25,8 +25,10 @@ public class PreAuthInputDto
 
     public bool AllowMiniProgram { get; set; }
 
+    [CanBeNull]
     public string SpecifiedAppId { get; set; }
 
+    [CanBeNull]
     public string CategoryIds { get; set; }
 
     public PreAuthInputDto()
@@ -34,7 +36,7 @@ public class PreAuthInputDto
     }
 
     public PreAuthInputDto(Guid thirdPartyPlatformWeChatAppId, [NotNull] string authorizerName, bool allowOfficial,
-        bool allowMiniProgram, [NotNull] string specifiedAppId, [NotNull] string categoryIds)
+        bool allowMiniProgram, [CanBeNull] string specifiedAppId, [CanBeNull] string categoryIds)
     {
         ThirdPartyPlatformWeChatAppId = thirdPartyPlatformWeChatAppId;
         AuthorizerName = Check.NotNullOrWhiteSpace(authorizerName, nameof(authorizerName));
