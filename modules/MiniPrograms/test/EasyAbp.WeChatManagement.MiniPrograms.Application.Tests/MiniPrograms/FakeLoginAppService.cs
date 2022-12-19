@@ -14,6 +14,7 @@ using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.AspNetCore;
+using Volo.Abp.Security.Encryption;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.MiniPrograms;
 
@@ -23,16 +24,17 @@ public class FakeLoginAppService : LoginAppService
 {
     public FakeLoginAppService(AbpSignInManager signInManager, IDataFilter dataFilter, IConfiguration configuration,
         IHttpClientFactory httpClientFactory, IUserInfoRepository userInfoRepository,
-        IWeChatAppRepository weChatAppRepository, IWeChatAppUserRepository weChatAppUserRepository,
-        IAbpWeChatServiceFactory abpWeChatServiceFactory,
+        IWeChatAppRepository weChatAppRepository, IStringEncryptionService stringEncryptionService,
+        IWeChatAppUserRepository weChatAppUserRepository, IAbpWeChatServiceFactory abpWeChatServiceFactory,
         IMiniProgramLoginNewUserCreator miniProgramLoginNewUserCreator,
         IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
         IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
         IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
         IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager) : base(signInManager,
-        dataFilter, configuration, httpClientFactory, userInfoRepository, weChatAppRepository, weChatAppUserRepository,
-        abpWeChatServiceFactory, miniProgramLoginNewUserCreator, miniProgramLoginProviderProvider,
-        pcLoginAuthorizationCache, pcLoginUserLimitCache, identityOptions, identityUserManager)
+        dataFilter, configuration, httpClientFactory, userInfoRepository, weChatAppRepository, stringEncryptionService,
+        weChatAppUserRepository, abpWeChatServiceFactory, miniProgramLoginNewUserCreator,
+        miniProgramLoginProviderProvider, pcLoginAuthorizationCache, pcLoginUserLimitCache, identityOptions,
+        identityUserManager)
     {
     }
 

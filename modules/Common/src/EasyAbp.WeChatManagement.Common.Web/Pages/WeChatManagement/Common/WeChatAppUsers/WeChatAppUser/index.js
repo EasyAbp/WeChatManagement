@@ -30,7 +30,6 @@ $(function () {
             { data: "userId" },
             { data: "unionId" },
             { data: "openId" },
-            { data: "sessionKey" },
             { data: "sessionKeyChangedTime" },
         ]
     }));
