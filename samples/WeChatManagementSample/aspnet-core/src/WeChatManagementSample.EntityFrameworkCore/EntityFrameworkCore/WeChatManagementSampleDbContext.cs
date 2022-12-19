@@ -80,7 +80,7 @@ namespace WeChatManagementSample.EntityFrameworkCore
 
             builder.ConfigureWeChatManagementCommon();
             builder.ConfigureWeChatManagementMiniPrograms();
-            builder.ConfigureThirdPartyPlatforms();
+            builder.ConfigureWeChatManagementThirdPartyPlatforms();
             
             /* Configure your own tables/entities inside here */
         }

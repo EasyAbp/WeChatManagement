@@ -23,6 +23,6 @@ public class ThirdPartyPlatformsDbContext : AbpDbContext<ThirdPartyPlatformsDbCo
     {
         base.OnModelCreating(builder);
 
-        builder.ConfigureThirdPartyPlatforms();
+        builder.ConfigureWeChatManagementThirdPartyPlatforms();
     }
 }

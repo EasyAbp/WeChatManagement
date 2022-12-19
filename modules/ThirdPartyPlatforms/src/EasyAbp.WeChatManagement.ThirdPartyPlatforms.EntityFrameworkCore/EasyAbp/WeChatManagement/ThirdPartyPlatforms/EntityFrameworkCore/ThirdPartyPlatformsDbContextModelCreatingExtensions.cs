@@ -7,7 +7,7 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore;
 
 public static class ThirdPartyPlatformsDbContextModelCreatingExtensions
 {
-    public static void ConfigureThirdPartyPlatforms(
+    public static void ConfigureWeChatManagementThirdPartyPlatforms(
         this ModelBuilder builder)
     {
         Check.NotNull(builder, nameof(builder));
