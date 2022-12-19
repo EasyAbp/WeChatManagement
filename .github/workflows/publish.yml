@@ -8,6 +8,8 @@ jobs:
   publish:
     runs-on: windows-latest
     steps:
+      - name: support longpaths
+        run: git config --system core.longpaths true
       - uses: actions/checkout@v2
       - uses: NuGet/setup-nuget@v1.0.5
       - uses: actions/setup-dotnet@v1
