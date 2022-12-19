@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyAbp.Abp.WeChat.OpenPlatform.HttpApi" Version="$(EasyAbpAbpWeChatModuleVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(AbpVersion)" />
     <ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.HttpApi\EasyAbp.WeChatManagement.Common.HttpApi.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts.csproj" />

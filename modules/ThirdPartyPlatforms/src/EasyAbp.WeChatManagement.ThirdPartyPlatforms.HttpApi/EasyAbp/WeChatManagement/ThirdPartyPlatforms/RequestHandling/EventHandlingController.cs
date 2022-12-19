@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.Common.RequestHandling;
+using EasyAbp.Abp.WeChat.OpenPlatform.RequestHandling.Dtos;
 using EasyAbp.WeChatManagement.Common;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
@@ -19,15 +20,17 @@ public class EventHandlingController : ThirdPartyPlatformsController, IEventHand
         _service = service;
     }
 
-    public virtual Task<WeChatRequestHandlingResult> NotifyAuthAsync(
-        string componentAppId, WeChatEventRequestModel request)
+    [HttpPost]
+    [Route("notify/auth")]
+    public virtual Task<WeChatRequestHandlingResult> NotifyAuthAsync(NotifyAuthInput input)
     {
-        return _service.NotifyAuthAsync(componentAppId, request);
+        return _service.NotifyAuthAsync(input);
     }
 
-    public virtual Task<WeChatRequestHandlingResult> NotifyAppAsync(
-        string componentAppId, string authorizerAppId, WeChatEventRequestModel request)
+    [HttpPost]
+    [Route("notify/app")]
+    public virtual Task<WeChatRequestHandlingResult> NotifyAppAsync(NotifyAppInput input)
     {
-        return _service.NotifyAppAsync(componentAppId, authorizerAppId, request);
+        return _service.NotifyAppAsync(input);
     }
 }
