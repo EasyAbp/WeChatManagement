@@ -3,18 +3,22 @@ using EasyAbp.WeChatManagement.Common.WeChatApps;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
+using Volo.Abp.Security.Encryption;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     public class MiniProgramsDataSeedContributor : IDataSeedContributor, ITransientDependency
     {
+        private readonly IStringEncryptionService _stringEncryptionService;
         private readonly IWeChatAppRepository _weChatAppRepository;
         private readonly IGuidGenerator _guidGenerator;
 
         public MiniProgramsDataSeedContributor(
+            IStringEncryptionService stringEncryptionService,
             IWeChatAppRepository weChatAppRepository,
             IGuidGenerator guidGenerator)
         {
+            _stringEncryptionService = stringEncryptionService;
             _weChatAppRepository = weChatAppRepository;
             _guidGenerator = guidGenerator;
         }
@@ -34,7 +38,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 "TestMiniProgram",
                 MiniProgramsTestConsts.OpenAppIdOrName,
                 MiniProgramsTestConsts.AppId,
-                MiniProgramsTestConsts.AppSecret,
+                _stringEncryptionService.Encrypt(MiniProgramsTestConsts.AppSecret),
                 MiniProgramsTestConsts.Token,
                 MiniProgramsTestConsts.EncodingAesKey,
                 false
