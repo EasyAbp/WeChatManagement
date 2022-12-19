@@ -145,6 +145,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Of
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4FD14E86-08B3-4134-8652-39B06B96A3BC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Domain.Ids4", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Domain.Ids4\EasyAbp.WeChatManagement.Officials.Domain.Ids4.csproj", "{ABCB2388-C0F6-41DB-A910-60D3B634B99F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Domain.OpenIddict", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Domain.OpenIddict\EasyAbp.WeChatManagement.Officials.Domain.OpenIddict.csproj", "{394FEAD6-F39F-4D4D-A34B-5FE2D9A92686}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -383,6 +387,14 @@ Global
 		{86307F5D-C50A-454F-B2B3-A888102AFC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86307F5D-C50A-454F-B2B3-A888102AFC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86307F5D-C50A-454F-B2B3-A888102AFC52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABCB2388-C0F6-41DB-A910-60D3B634B99F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABCB2388-C0F6-41DB-A910-60D3B634B99F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABCB2388-C0F6-41DB-A910-60D3B634B99F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABCB2388-C0F6-41DB-A910-60D3B634B99F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{394FEAD6-F39F-4D4D-A34B-5FE2D9A92686}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{394FEAD6-F39F-4D4D-A34B-5FE2D9A92686}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{394FEAD6-F39F-4D4D-A34B-5FE2D9A92686}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{394FEAD6-F39F-4D4D-A34B-5FE2D9A92686}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -457,6 +469,8 @@ Global
 		{4FEA0BE0-EF8A-4122-BC41-11BF5B909F98} = {4FD14E86-08B3-4134-8652-39B06B96A3BC}
 		{86307F5D-C50A-454F-B2B3-A888102AFC52} = {4FD14E86-08B3-4134-8652-39B06B96A3BC}
 		{4FD14E86-08B3-4134-8652-39B06B96A3BC} = {D91B1616-9D4A-4797-87DB-FFFBECE9E69F}
+		{ABCB2388-C0F6-41DB-A910-60D3B634B99F} = {4FD14E86-08B3-4134-8652-39B06B96A3BC}
+		{394FEAD6-F39F-4D4D-A34B-5FE2D9A92686} = {4FD14E86-08B3-4134-8652-39B06B96A3BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

@@ -9,5 +9,7 @@
         public const string BaseScope = "snsapi_base";
 
         public const string UserInfoScope = "snsapi_userinfo";
+        public const string AppIdClaim = "wechat_appid";
+
     }
 }
