@@ -8,7 +8,7 @@
     "Permission:Authorization": "授權",
     "Permission:CreateRequest": "創建請求",
     "ThirdPartyPlatformWeChatAppId": "第三方平台微信應用",
-    "AuthorizerName": "授權人名稱",
+    "AuthorizerName": "授權方名稱",
     "AuthorizerNameInputInfoText": "本屬性將用於區別不同的授權方，設置 OpenAppIdOrName = \"3rd-party:\" + AuthorizerName，最終將不同的開放平台區別開來，合成 IdentityUserLogin 實體的 ProviderName，相同 AuthorizerName 的不同 WeChatApp 會自動綁定在相同 UnionId 對應的 IdentityUserLogin 中。你需要做的，僅是為客戶使用唯一的 AuthorizerName。",
     "AllowOfficial": "允許公眾號授權",
     "AllowMiniProgram": "允許小程序授權",
@@ -18,7 +18,8 @@
     "CreateRequest": "創建請求",
     "RequestAuthorization": "請求微信應用授權",
     "ClickToSeeDocs": "點擊查看相關功能的微信官方文檔",
-    "PcAuthorizationUrl": "PC 授權頁地址",
-    "H5AuthorizationUrl": "H5 授權頁地址（用手機打開）"
+    "PcAuthorizationUrl": "PC 授權頁地址（只能從本站超鏈接打開）",
+    "H5AuthorizationUrl": "H5 授權頁地址（用手機打開）",
+    "OpenPcAuthorizationPage":"打開 PC 授權頁"
   }
 }

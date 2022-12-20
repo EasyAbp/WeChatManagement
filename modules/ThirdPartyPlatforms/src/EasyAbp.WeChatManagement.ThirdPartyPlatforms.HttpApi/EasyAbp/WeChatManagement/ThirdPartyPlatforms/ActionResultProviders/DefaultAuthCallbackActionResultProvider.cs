@@ -14,7 +14,7 @@ public class DefaultAuthCallbackActionResultProvider : IAuthCallbackActionResult
             return new ContentResult
             {
                 Content = "<h1>恭喜您，授权成功</h1>",
-                ContentType = "text/html",
+                ContentType = "text/html; charset=utf-8",
             };
         }
         else
@@ -24,7 +24,7 @@ public class DefaultAuthCallbackActionResultProvider : IAuthCallbackActionResult
                 Content = $"<h1>授权失败</h1>" +
                           $"<p>错误码：{resultDto.ErrorCode}</p>" +
                           $"<p>错误信息：{resultDto.ErrorMessage}</p>",
-                ContentType = "text/html"
+                ContentType = "text/html; charset=utf-8"
             };
         }
     }
