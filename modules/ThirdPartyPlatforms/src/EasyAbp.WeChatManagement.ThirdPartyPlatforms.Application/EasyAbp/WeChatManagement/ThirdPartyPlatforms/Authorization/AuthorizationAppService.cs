@@ -204,6 +204,8 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
 
         if (authorizerInfo is null)
         {
+            Logger.LogWarning("api_get_authorizer_info 预期外的返回内容：{response}", response);
+            
             throw new UserFriendlyException("无法通过 api_get_authorizer_info 接口获取微信应用信息，授权处理失败");
         }
 

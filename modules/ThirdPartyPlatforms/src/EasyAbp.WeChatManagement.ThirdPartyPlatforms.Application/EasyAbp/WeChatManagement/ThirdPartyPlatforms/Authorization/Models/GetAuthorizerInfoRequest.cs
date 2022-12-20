@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Models;
 
-public class GetAuthorizerInfoRequest : IOpenPlatformRequest
+public class GetAuthorizerInfoRequest : OpenPlatformCommonRequest
 {
     [JsonProperty("component_appid")]
     public string ComponentAppId { get; set; }
