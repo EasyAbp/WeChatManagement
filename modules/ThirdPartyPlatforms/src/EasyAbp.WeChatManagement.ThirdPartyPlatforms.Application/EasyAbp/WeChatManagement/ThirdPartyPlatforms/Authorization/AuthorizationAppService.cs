@@ -15,6 +15,8 @@ using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Caches;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Dtos;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Models;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
+using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json.Linq;
 using Volo.Abp;
@@ -52,6 +54,7 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
         _cache = cache;
     }
 
+    [Authorize(ThirdPartyPlatformsPermissions.Authorization.CreateRequest)]
     public virtual async Task<PreAuthResultDto> PreAuthAsync(PreAuthInputDto input)
     {
         var thirdPartyPlatformWeChatApp =
@@ -153,9 +156,9 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
         await _weChatAppRepository.InsertAsync(authorizerWeChatApp, true);
     }
 
-    protected virtual async Task<string> GenerateOpenAppIdOrNameAsync(string authorizerName)
+    protected virtual Task<string> GenerateOpenAppIdOrNameAsync(string authorizerName)
     {
-        return $"3rd-party:{authorizerName}";
+        return Task.FromResult($"3rd-party:{authorizerName}");
     }
 
     protected virtual async Task<AuthorizerInfoModel> QueryAuthorizerWeChatAppInfoAsync(

@@ -30,8 +30,9 @@ public class WeChatThirdPartyPlatformController : ThirdPartyPlatformsController
     /// </summary>
     /// <param name="tenantId">租户 Id</param>
     /// <param name="weChatAppId">第三方平台微信应用 Id</param>
+    /// <param name="authorizerName">授权方</param>
     /// <returns></returns>
-    [HttpPost]
+    [HttpGet]
     [Route("auth-callback/wechat-app-id/{weChatAppId:guid}/authorizer-name/{authorizerName}")]
     [Route("auth-callback/tenant-id/{tenantId}/wechat-app-id/{weChatAppId:guid}/authorizer-name/{authorizerName}")]
     public virtual async Task<ActionResult> AuthCallbackAsync(string tenantId, Guid weChatAppId, string authorizerName)
