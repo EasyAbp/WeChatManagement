@@ -6,4 +6,6 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Dtos;
 public class PreAuthResultDto
 {
     public string PreAuthCode { get; set; }
+
+    public string Token { get; set; }
 }

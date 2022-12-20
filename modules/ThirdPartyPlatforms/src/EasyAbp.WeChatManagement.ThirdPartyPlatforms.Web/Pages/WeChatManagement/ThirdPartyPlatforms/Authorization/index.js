@@ -20,7 +20,8 @@ $(function () {
                 "Input.AllowMiniProgram": $('#ViewModel_AllowMiniProgram').val(),
                 "Input.SpecifiedAppId": $('#ViewModel_SpecifiedAppId').val(),
                 "Input.CategoryIds": $('#ViewModel_CategoryIds').val(),
-                "preAuthCode": res.preAuthCode
+                "preAuthCode": res.preAuthCode,
+                "token": res.token
             });
         })
     });

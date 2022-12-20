@@ -18,6 +18,7 @@ using EasyAbp.WeChatManagement.ThirdPartyPlatforms.AuthorizerSecrets;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
@@ -71,7 +72,9 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
                 $"微信 api_create_preauthcode 接口调用失败。错误代码：{response.ErrorCode}，错误信息：{response.ErrorMessage}");
         }
 
-        await _cache.SetAsync(response.PreAuthCode, new WeChatThirdPartyPlatformPreAuthCacheItem
+        var token = Guid.NewGuid().ToString();
+
+        await _cache.SetAsync(token, new WeChatThirdPartyPlatformPreAuthCacheItem
         {
             ThirdPartyPlatformWeChatAppId = thirdPartyPlatformWeChatApp.Id,
             AuthorizerName = input.AuthorizerName,
@@ -86,31 +89,34 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
 
         return new PreAuthResultDto
         {
-            PreAuthCode = response.PreAuthCode
+            PreAuthCode = response.PreAuthCode,
+            Token = token
         };
     }
 
     public virtual async Task<HandleCallbackResultDto> HandleCallbackAsync(HandleCallbackInputDto input)
     {
-        var cacheItem = await _cache.GetAsync(input.PreAuthCode);
+        var cacheItem = await _cache.GetAsync(input.Token);
 
         if (cacheItem is null)
         {
             return new HandleCallbackResultDto
             {
                 ErrorCode = -1,
-                ErrorMessage = $"不存在的预授权 {input.PreAuthCode}，请联系管理员。"
+                ErrorMessage = $"不存在的授权 Token：{input.Token}，请联系管理员。"
             };
         }
 
-        var thirdPartyPlatformWeChatApp = await _weChatAppRepository.FindAsync(input.ThirdPartyPlatformWeChatAppId);
+        await _cache.RemoveAsync(input.Token);
+
+        var thirdPartyPlatformWeChatApp = await _weChatAppRepository.FindAsync(cacheItem.ThirdPartyPlatformWeChatAppId);
 
         if (thirdPartyPlatformWeChatApp is null)
         {
             return new HandleCallbackResultDto
             {
                 ErrorCode = -1,
-                ErrorMessage = $"不存在的第三方平台：{input.ThirdPartyPlatformWeChatAppId}"
+                ErrorMessage = $"不存在的第三方平台：{cacheItem.ThirdPartyPlatformWeChatAppId}"
             };
         }
 
@@ -125,6 +131,20 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
         }
 
         await CreateOrUpdateAuthorizerSecretAsync(thirdPartyPlatformWeChatApp, response);
+
+        if (response.ErrorCode == 0)
+        {
+            Logger.LogInformation(
+                "第三方平台授权成功。第三方平台：{ThirdPartyPlatformWeChatAppId}。授权方：{authorizerName}。授权应用：{AuthorizerAppId}。",
+                cacheItem.ThirdPartyPlatformWeChatAppId, cacheItem.AuthorizerName,
+                response.AuthorizationInfo.AuthorizerAppId);
+        }
+        else
+        {
+            Logger.LogError(
+                "第三方平台授权失败。第三方平台：{ThirdPartyPlatformWeChatAppId}。授权方：{authorizerName}。",
+                cacheItem.ThirdPartyPlatformWeChatAppId, cacheItem.AuthorizerName);
+        }
 
         return new HandleCallbackResultDto
         {
