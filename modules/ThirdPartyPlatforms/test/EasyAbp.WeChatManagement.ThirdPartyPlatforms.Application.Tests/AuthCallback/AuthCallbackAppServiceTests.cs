@@ -126,9 +126,7 @@ public class AuthCallbackAppServiceTests : ThirdPartyPlatformsApplicationTestBas
 
         authorizerSecret.ShouldBeNull();
 
-        var input = new HandleCallbackInputDto(
-            (await _weChatAppRepository.GetAsync(x => x.AppId == ThirdPartyPlatformsTestConsts.AppId)).Id,
-            preAuthResult.PreAuthCode, authorizationCode);
+        var input = new HandleCallbackInputDto(authorizationCode, preAuthResult.Token);
 
         (await _authorizationAppService.HandleCallbackAsync(input)).ErrorCode.ShouldBe(0);
 

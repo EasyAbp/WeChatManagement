@@ -29,6 +29,12 @@ public class CreateRequestModel : CommonPageModel
     [BindProperty(SupportsGet = true)]
     public string PreAuthCode { get; set; }
 
+    /// <summary>
+    /// 微信管理模块生成的 Token，与微信的设计无关
+    /// </summary>
+    [BindProperty(SupportsGet = true)]
+    public string Token { get; set; }
+
     [BindProperty]
     public WeChatAppDto ThirdPartyPlatformWeChatApp { get; set; }
 
@@ -102,7 +108,7 @@ public class CreateRequestModel : CommonPageModel
             url += $"/tenant-id/{CurrentTenant.Id}";
         }
 
-        url += $"/wechat-app-id/{Input.ThirdPartyPlatformWeChatAppId}/authorizer-name/{Input.AuthorizerName}";
+        url += $"/token/{Token}";
 
         return Task.FromResult(HttpUtility.UrlEncode(url));
     }
