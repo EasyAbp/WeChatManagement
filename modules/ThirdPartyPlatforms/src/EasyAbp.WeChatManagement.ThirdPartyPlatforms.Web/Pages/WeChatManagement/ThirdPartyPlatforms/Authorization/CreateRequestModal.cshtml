@@ -7,11 +7,25 @@
 @{
     Layout = null;
 }
+
+<script>
+    let pcAuthPageUrl = '@Model.PcAuthorizationUrl'
+    
+    $(function () {
+        $('#OpenPcAuthorizationPageButton').click(function (e) {
+            e.preventDefault();
+            window.open(pcAuthPageUrl, '_blank');
+        });
+    });
+</script>
+
 <abp-modal>
     <abp-modal-header title="@L["CreateRequest"].Value"></abp-modal-header>
     <abp-modal-body>
         <abp-input asp-for="PcAuthorizationUrl" />
         <abp-input asp-for="H5AuthorizationUrl" />
     </abp-modal-body>
-    <abp-modal-footer buttons="@AbpModalButtons.Close"></abp-modal-footer>
+    <abp-modal-footer buttons="@AbpModalButtons.Close">
+        <abp-button id="OpenPcAuthorizationPageButton" text="@L["OpenPcAuthorizationPage"].Value" button-type="Primary" />
+    </abp-modal-footer>
 </abp-modal>

@@ -18,7 +18,8 @@
     "CreateRequest": "Create request",
     "RequestAuthorization": "Request WeChat app authorization",
     "ClickToSeeDocs": "Click to see the WeChat docs",
-    "PcAuthorizationUrl": "PC authorization page url",
-    "H5AuthorizationUrl": "H5 authorization page url (open with phone)"
+    "PcAuthorizationUrl": "PC authorization page url (can only open from a link of this site)",
+    "H5AuthorizationUrl": "H5 authorization page url (open with phone)",
+    "OpenPcAuthorizationPage":"Open PC auth-page"
   }
 }

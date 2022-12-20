@@ -125,9 +125,20 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
 
         var response = await thirdPartyPlatformApiService.QueryAuthAsync(input.AuthorizationCode);
 
-        if (await _weChatAppRepository.FindAsync(x => x.AppId == response.AuthorizationInfo.AuthorizerAppId) == null)
+        var authorizerWeChatApp =
+            await _weChatAppRepository.FindAsync(x => x.AppId == response.AuthorizationInfo.AuthorizerAppId);
+        
+        if (authorizerWeChatApp == null)
         {
             await CreateAuthorizerWeChatAppAsync(thirdPartyPlatformWeChatApp, response, cacheItem.AuthorizerName);
+        }
+        else if (authorizerWeChatApp.OpenAppIdOrName != await GenerateOpenAppIdOrNameAsync(cacheItem.AuthorizerName))
+        {
+            return new HandleCallbackResultDto
+            {
+                ErrorCode = -1,
+                ErrorMessage = $"授权方名称：{cacheItem.AuthorizerName} 与登记的名称不符，请联系管理员调整"
+            };
         }
 
         await CreateOrUpdateAuthorizerSecretAsync(thirdPartyPlatformWeChatApp, response);

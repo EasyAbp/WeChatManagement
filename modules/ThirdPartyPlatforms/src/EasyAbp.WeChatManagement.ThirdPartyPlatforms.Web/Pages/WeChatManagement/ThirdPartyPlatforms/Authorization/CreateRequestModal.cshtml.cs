@@ -63,7 +63,7 @@ public class CreateRequestModel : CommonPageModel
     protected virtual async Task<string> GetPcAuthorizationUrlAsync()
     {
         return $"https://mp.weixin.qq.com/cgi-bin/componentloginpage" +
-               $"&component_appid={ThirdPartyPlatformWeChatApp.AppId}" +
+               $"?component_appid={ThirdPartyPlatformWeChatApp.AppId}" +
                $"&pre_auth_code={PreAuthCode}" +
                $"&redirect_uri={await GetEncodedRedirectUriAsync()}" +
                $"&auth_type={await GetAuthTypeAsync()}" +
