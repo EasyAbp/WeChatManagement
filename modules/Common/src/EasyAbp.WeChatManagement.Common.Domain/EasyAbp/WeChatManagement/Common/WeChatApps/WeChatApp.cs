@@ -35,10 +35,12 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
         public virtual string EncryptedAppSecret { get; protected set; }
 
         [CanBeNull]
-        public virtual string Token { get; protected set; }
+        [DisableAuditing]
+        public virtual string EncryptedToken { get; protected set; }
 
         [CanBeNull]
-        public virtual string EncodingAesKey { get; protected set; }
+        [DisableAuditing]
+        public virtual string EncryptedEncodingAesKey { get; protected set; }
 
         public virtual bool IsStatic { get; protected set; }
 
@@ -56,8 +58,8 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
             [NotNull] string openAppIdOrName,
             [NotNull] string appId,
             [CanBeNull] string encryptedAppSecret,
-            [CanBeNull] string token,
-            [CanBeNull] string encodingAesKey,
+            [CanBeNull] string encryptedToken,
+            [CanBeNull] string encryptedEncodingAesKey,
             bool isStatic) : base(id)
         {
             TenantId = tenantId;
@@ -68,8 +70,8 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
             OpenAppIdOrName = Check.NotNullOrWhiteSpace(openAppIdOrName, nameof(openAppIdOrName));
             AppId = Check.NotNullOrWhiteSpace(appId, nameof(appId));
             EncryptedAppSecret = encryptedAppSecret;
-            Token = token;
-            EncodingAesKey = encodingAesKey;
+            EncryptedToken = encryptedToken;
+            EncryptedEncodingAesKey = encryptedEncodingAesKey;
             IsStatic = isStatic;
         }
 
@@ -80,8 +82,8 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
             [NotNull] string openAppIdOrName,
             [NotNull] string appId,
             [CanBeNull] string encryptedAppSecret,
-            [CanBeNull] string token,
-            [CanBeNull] string encodingAesKey)
+            [CanBeNull] string encryptedToken,
+            [CanBeNull] string encryptedEncodingAesKey)
         {
             ComponentWeChatAppId = componentWeChatAppId;
             Name = Check.NotNullOrWhiteSpace(name, nameof(name));
@@ -89,8 +91,8 @@ namespace EasyAbp.WeChatManagement.Common.WeChatApps
             OpenAppIdOrName = Check.NotNullOrWhiteSpace(openAppIdOrName, nameof(openAppIdOrName));
             AppId = Check.NotNullOrWhiteSpace(appId, nameof(appId));
             EncryptedAppSecret = encryptedAppSecret;
-            Token = token;
-            EncodingAesKey = encodingAesKey;
+            EncryptedToken = encryptedToken;
+            EncryptedEncodingAesKey = encryptedEncodingAesKey;
         }
     }
 }

@@ -43,6 +43,8 @@ public class WeChatAppAppService : CrudAppService<WeChatApp, WeChatAppDto, Guid,
         var dto = await base.MapToGetOutputDtoAsync(entity);
 
         dto.AppSecret = _stringEncryptionService.Decrypt(entity.EncryptedAppSecret);
+        dto.Token = _stringEncryptionService.Decrypt(entity.EncryptedToken);
+        dto.EncodingAesKey = _stringEncryptionService.Decrypt(entity.EncryptedEncodingAesKey);
 
         return dto;
     }
@@ -59,8 +61,8 @@ public class WeChatAppAppService : CrudAppService<WeChatApp, WeChatAppDto, Guid,
             createInput.OpenAppIdOrName,
             createInput.AppId,
             _stringEncryptionService.Encrypt(createInput.AppSecret),
-            createInput.Token,
-            createInput.EncodingAesKey,
+            _stringEncryptionService.Encrypt(createInput.AppSecret),
+            _stringEncryptionService.Encrypt(createInput.EncodingAesKey),
             false));
     }
 
@@ -73,8 +75,8 @@ public class WeChatAppAppService : CrudAppService<WeChatApp, WeChatAppDto, Guid,
             updateInput.OpenAppIdOrName,
             updateInput.AppId,
             _stringEncryptionService.Encrypt(updateInput.AppSecret),
-            updateInput.Token,
-            updateInput.EncodingAesKey);
+            _stringEncryptionService.Encrypt(updateInput.Token),
+            _stringEncryptionService.Encrypt(updateInput.EncodingAesKey));
 
         return Task.CompletedTask;
     }

@@ -27,8 +27,8 @@ public class WeChatManagementThirdPartyPlatformAbpWeChatOptionsProvider :
         {
             AppId = weChatApp.AppId,
             AppSecret = _stringEncryptionService.Decrypt(weChatApp.EncryptedAppSecret),
-            EncodingAesKey = weChatApp.EncodingAesKey,
-            Token = weChatApp.Token
+            Token = _stringEncryptionService.Decrypt(weChatApp.EncryptedToken),
+            EncodingAesKey = _stringEncryptionService.Decrypt(weChatApp.EncryptedEncodingAesKey)
         };
     }
 }

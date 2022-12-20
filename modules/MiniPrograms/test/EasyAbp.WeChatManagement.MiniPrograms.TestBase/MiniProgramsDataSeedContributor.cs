@@ -39,8 +39,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                 MiniProgramsTestConsts.OpenAppIdOrName,
                 MiniProgramsTestConsts.AppId,
                 _stringEncryptionService.Encrypt(MiniProgramsTestConsts.AppSecret),
-                MiniProgramsTestConsts.Token,
-                MiniProgramsTestConsts.EncodingAesKey,
+                _stringEncryptionService.Encrypt(MiniProgramsTestConsts.Token),
+                _stringEncryptionService.Encrypt(MiniProgramsTestConsts.EncodingAesKey),
                 false
             ), true);
         }

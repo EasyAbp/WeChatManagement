@@ -14,7 +14,10 @@ namespace EasyAbp.WeChatManagement.Common
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
 
-            CreateMap<WeChatApp, WeChatAppDto>().ForMember(x => x.AppSecret, x => x.Ignore());
+            CreateMap<WeChatApp, WeChatAppDto>()
+                .ForMember(x => x.AppSecret, x => x.Ignore())
+                .ForMember(x => x.Token, x => x.Ignore())
+                .ForMember(x => x.EncodingAesKey, x => x.Ignore());
             CreateMap<WeChatAppUser, WeChatAppUserDto>();
         }
     }
