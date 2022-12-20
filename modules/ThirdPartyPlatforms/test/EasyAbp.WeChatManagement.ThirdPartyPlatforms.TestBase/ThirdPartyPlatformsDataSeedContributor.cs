@@ -58,8 +58,8 @@ public class ThirdPartyPlatformsDataSeedContributor : IDataSeedContributor, ITra
             "Default",
             ThirdPartyPlatformsTestConsts.AppId,
             _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.AppSecret),
-            ThirdPartyPlatformsTestConsts.Token,
-            ThirdPartyPlatformsTestConsts.EncodingAesKey,
+            _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.Token),
+            _stringEncryptionService.Encrypt(ThirdPartyPlatformsTestConsts.EncodingAesKey),
             false
         ), true);
     }
