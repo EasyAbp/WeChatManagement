@@ -23,12 +23,14 @@ using Newtonsoft.Json.Linq;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Caching;
+using Volo.Abp.EventBus.Distributed;
 using Volo.Abp.Security.Encryption;
 
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization;
 
 public class AuthorizationAppService : ApplicationService, IAuthorizationAppService
 {
+    private readonly IDistributedEventBus _distributedEventBus;
     private readonly IAbpWeChatServiceFactory _abpWeChatServiceFactory;
     private readonly IWeChatAppRepository _weChatAppRepository;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
@@ -38,6 +40,7 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
     private readonly IDistributedCache<WeChatThirdPartyPlatformPreAuthCacheItem> _cache;
 
     public AuthorizationAppService(
+        IDistributedEventBus distributedEventBus,
         IAbpWeChatServiceFactory abpWeChatServiceFactory,
         IWeChatAppRepository weChatAppRepository,
         IAuthorizerSecretRepository authorizerSecretRepository,
@@ -46,6 +49,7 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
         IStringEncryptionService stringEncryptionService,
         IDistributedCache<WeChatThirdPartyPlatformPreAuthCacheItem> cache)
     {
+        _distributedEventBus = distributedEventBus;
         _abpWeChatServiceFactory = abpWeChatServiceFactory;
         _weChatAppRepository = weChatAppRepository;
         _authorizerSecretRepository = authorizerSecretRepository;
@@ -125,12 +129,26 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
 
         var response = await thirdPartyPlatformApiService.QueryAuthAsync(input.AuthorizationCode);
 
+        if (response.ErrorCode != 0)
+        {
+            Logger.LogError(
+                "第三方平台授权失败。第三方平台：{ThirdPartyPlatformWeChatAppId}。授权方：{authorizerName}。",
+                cacheItem.ThirdPartyPlatformWeChatAppId, cacheItem.AuthorizerName);
+
+            return new HandleCallbackResultDto
+            {
+                ErrorCode = response.ErrorCode,
+                ErrorMessage = response.ErrorMessage
+            };
+        }
+
         var authorizerWeChatApp =
             await _weChatAppRepository.FindAsync(x => x.AppId == response.AuthorizationInfo.AuthorizerAppId);
-        
+
         if (authorizerWeChatApp == null)
         {
-            await CreateAuthorizerWeChatAppAsync(thirdPartyPlatformWeChatApp, response, cacheItem.AuthorizerName);
+            authorizerWeChatApp =
+                await CreateAuthorizerWeChatAppAsync(thirdPartyPlatformWeChatApp, response, cacheItem.AuthorizerName);
         }
         else if (authorizerWeChatApp.OpenAppIdOrName != await GenerateOpenAppIdOrNameAsync(cacheItem.AuthorizerName))
         {
@@ -143,19 +161,21 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
 
         await CreateOrUpdateAuthorizerSecretAsync(thirdPartyPlatformWeChatApp, response);
 
-        if (response.ErrorCode == 0)
+        await _distributedEventBus.PublishAsync(new ThirdPartyPlatformAuthorizedEto
         {
-            Logger.LogInformation(
-                "第三方平台授权成功。第三方平台：{ThirdPartyPlatformWeChatAppId}。授权方：{authorizerName}。授权应用：{AuthorizerAppId}。",
-                cacheItem.ThirdPartyPlatformWeChatAppId, cacheItem.AuthorizerName,
-                response.AuthorizationInfo.AuthorizerAppId);
-        }
-        else
-        {
-            Logger.LogError(
-                "第三方平台授权失败。第三方平台：{ThirdPartyPlatformWeChatAppId}。授权方：{authorizerName}。",
-                cacheItem.ThirdPartyPlatformWeChatAppId, cacheItem.AuthorizerName);
-        }
+            TenantId = CurrentTenant.Id,
+            ThirdPartyPlatformWeChatAppId = thirdPartyPlatformWeChatApp.Id,
+            AuthorizerWeChatAppId = authorizerWeChatApp.Id,
+            ComponentAppId = thirdPartyPlatformWeChatApp.AppId,
+            AuthorizerAppId = authorizerWeChatApp.AppId,
+            AuthorizerName = cacheItem.AuthorizerName,
+            CategoryIds = cacheItem.CategoryIds
+        });
+
+        Logger.LogInformation(
+            "第三方平台授权成功。第三方平台：{ThirdPartyPlatformWeChatAppId}。授权方：{authorizerName}。授权应用：{AuthorizerAppId}。",
+            cacheItem.ThirdPartyPlatformWeChatAppId, cacheItem.AuthorizerName,
+            response.AuthorizationInfo.AuthorizerAppId);
 
         return new HandleCallbackResultDto
         {
@@ -164,7 +184,7 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
         };
     }
 
-    protected async Task CreateAuthorizerWeChatAppAsync(WeChatApp thirdPartyPlatformWeChatApp,
+    protected async Task<WeChatApp> CreateAuthorizerWeChatAppAsync(WeChatApp thirdPartyPlatformWeChatApp,
         QueryAuthResponse response, string authorizerName)
     {
         var appInfo = await QueryAuthorizerWeChatAppInfoAsync(thirdPartyPlatformWeChatApp,
@@ -184,7 +204,7 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
             null,
             false);
 
-        await _weChatAppRepository.InsertAsync(authorizerWeChatApp, true);
+        return await _weChatAppRepository.InsertAsync(authorizerWeChatApp, true);
     }
 
     protected virtual Task<string> GenerateOpenAppIdOrNameAsync(string authorizerName)
@@ -216,7 +236,7 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
         if (authorizerInfo is null)
         {
             Logger.LogWarning("api_get_authorizer_info 预期外的返回内容：{response}", response);
-            
+
             throw new UserFriendlyException("无法通过 api_get_authorizer_info 接口获取微信应用信息，授权处理失败");
         }
 
