@@ -273,7 +273,7 @@ public class AuthorizationAppService : ApplicationService, IAuthorizationAppServ
         }
         else
         {
-            authorizerSecret.SetRefreshToken(encryptedRefreshToken, _stringEncryptionService);
+            authorizerSecret.SetEncryptedRefreshToken(encryptedRefreshToken);
             authorizerSecret.CategoryIds.Clear();
             authorizerSecret.CategoryIds.AddRange(categoryIds);
 

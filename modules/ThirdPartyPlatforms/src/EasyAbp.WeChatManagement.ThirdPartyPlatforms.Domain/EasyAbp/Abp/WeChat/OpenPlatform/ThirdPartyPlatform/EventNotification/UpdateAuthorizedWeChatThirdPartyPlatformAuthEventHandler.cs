@@ -75,7 +75,9 @@ public class UpdateAuthorizedWeChatThirdPartyPlatformAuthEventHandler :
 
         var categoryIds = response.AuthorizationInfo.FuncInfo.Select(x => x.FuncScopeCategory.Id);
 
-        authorizerSecret.SetRefreshToken(response.AuthorizationInfo.AuthorizerRefreshToken, _stringEncryptionService);
+        var encryptedRefreshToken = _stringEncryptionService.Encrypt(response.AuthorizationInfo.AuthorizerRefreshToken);
+
+        authorizerSecret.SetEncryptedRefreshToken(encryptedRefreshToken);
         authorizerSecret.CategoryIds.Clear();
         authorizerSecret.CategoryIds.AddRange(categoryIds);
 

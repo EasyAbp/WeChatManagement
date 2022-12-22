@@ -44,10 +44,10 @@ public class AuthorizerSecret : FullAuditedAggregateRoot<Guid>, IMultiTenant
         return stringEncryptionService.Decrypt(EncryptedRefreshToken);
     }
 
-    public void SetRefreshToken([NotNull] string refreshToken, IStringEncryptionService stringEncryptionService)
+    public void SetEncryptedRefreshToken([NotNull] string encryptedRefreshToken)
     {
-        Check.NotNullOrWhiteSpace(refreshToken, nameof(refreshToken));
+        Check.NotNullOrWhiteSpace(encryptedRefreshToken, nameof(encryptedRefreshToken));
 
-        EncryptedRefreshToken = stringEncryptionService.Encrypt(refreshToken);
+        EncryptedRefreshToken = encryptedRefreshToken;
     }
 }
