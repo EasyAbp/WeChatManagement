@@ -1,19 +1,25 @@
+using System;
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Options;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
+using Volo.Abp.Settings;
 
 namespace EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Options;
 
-public class WeChatManagementThirdPartyPlatformAbpWeChatOptionsProvider :
-    AbpWeChatOptionsProviderBase<AbpWeChatThirdPartyPlatformOptions>
+[ExposeServices(
+    typeof(WeChatManagementThirdPartyPlatformAbpWeChatOptionsProvider),
+    typeof(IAbpWeChatOptionsProvider<AbpWeChatThirdPartyPlatformOptions>))]
+public class WeChatManagementThirdPartyPlatformAbpWeChatOptionsProvider : ThirdPartyPlatformAbpWeChatOptionsProvider
 {
     private readonly IStringEncryptionService _stringEncryptionService;
     private readonly IWeChatAppRepository _weChatAppRepository;
 
     public WeChatManagementThirdPartyPlatformAbpWeChatOptionsProvider(
         IStringEncryptionService stringEncryptionService,
-        IWeChatAppRepository weChatAppRepository)
+        IWeChatAppRepository weChatAppRepository,
+        ISettingProvider settingProvider) : base(settingProvider)
     {
         _stringEncryptionService = stringEncryptionService;
         _weChatAppRepository = weChatAppRepository;
@@ -21,6 +27,11 @@ public class WeChatManagementThirdPartyPlatformAbpWeChatOptionsProvider :
 
     public override async Task<AbpWeChatThirdPartyPlatformOptions> GetAsync(string appId)
     {
+        if (appId.IsNullOrWhiteSpace())
+        {
+            return await base.GetAsync(appId);
+        }
+
         var weChatApp = await _weChatAppRepository.GetThirdPartyPlatformAppByAppIdAsync(appId);
 
         return new AbpWeChatThirdPartyPlatformOptions
