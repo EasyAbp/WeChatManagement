@@ -1,19 +1,25 @@
+using System;
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Options;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
+using Volo.Abp.Settings;
 
 namespace EasyAbp.Abp.WeChat.MiniProgram.Options;
 
-public class WeChatManagementMiniProgramAbpWeChatOptionsProvider :
-    AbpWeChatOptionsProviderBase<AbpWeChatMiniProgramOptions>
+[ExposeServices(
+    typeof(WeChatManagementMiniProgramAbpWeChatOptionsProvider),
+    typeof(IAbpWeChatOptionsProvider<AbpWeChatMiniProgramOptions>))]
+public class WeChatManagementMiniProgramAbpWeChatOptionsProvider : MiniProgramAbpWeChatOptionsProvider
 {
     private readonly IStringEncryptionService _stringEncryptionService;
     private readonly IWeChatAppRepository _weChatAppRepository;
 
     public WeChatManagementMiniProgramAbpWeChatOptionsProvider(
         IStringEncryptionService stringEncryptionService,
-        IWeChatAppRepository weChatAppRepository)
+        IWeChatAppRepository weChatAppRepository,
+        ISettingProvider settingProvider) : base(settingProvider)
     {
         _stringEncryptionService = stringEncryptionService;
         _weChatAppRepository = weChatAppRepository;
@@ -21,6 +27,11 @@ public class WeChatManagementMiniProgramAbpWeChatOptionsProvider :
 
     public override async Task<AbpWeChatMiniProgramOptions> GetAsync(string appId)
     {
+        if (appId.IsNullOrWhiteSpace())
+        {
+            return await base.GetAsync(appId);
+        }
+
         var weChatApp = await _weChatAppRepository.GetMiniProgramAppByAppIdAsync(appId);
 
         return new AbpWeChatMiniProgramOptions
