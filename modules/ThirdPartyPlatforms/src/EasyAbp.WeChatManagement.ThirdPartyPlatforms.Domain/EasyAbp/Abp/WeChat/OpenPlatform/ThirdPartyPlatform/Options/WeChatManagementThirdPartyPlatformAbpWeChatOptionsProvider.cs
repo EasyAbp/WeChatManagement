@@ -2,15 +2,11 @@ using System;
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Options;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
-using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Settings;
 
 namespace EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.Options;
 
-[ExposeServices(
-    typeof(WeChatManagementThirdPartyPlatformAbpWeChatOptionsProvider),
-    typeof(IAbpWeChatOptionsProvider<AbpWeChatThirdPartyPlatformOptions>))]
 public class WeChatManagementThirdPartyPlatformAbpWeChatOptionsProvider : ThirdPartyPlatformAbpWeChatOptionsProvider
 {
     private readonly IStringEncryptionService _stringEncryptionService;
