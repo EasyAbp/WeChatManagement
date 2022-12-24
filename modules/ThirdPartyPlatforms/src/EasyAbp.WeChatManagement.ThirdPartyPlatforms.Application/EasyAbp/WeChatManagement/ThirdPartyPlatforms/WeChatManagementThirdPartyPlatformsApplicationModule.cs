@@ -26,9 +26,6 @@ public class WeChatManagementThirdPartyPlatformsApplicationModule : AbpModule
             options.AddMaps<WeChatManagementThirdPartyPlatformsApplicationModule>(validate: true);
         });
 
-        context.Services.Replace(new ServiceDescriptor(
-            typeof(IWeChatThirdPartyPlatformEventRequestHandlingService),
-            typeof(EventHandlingAppService),
-            ServiceLifetime.Transient));
+        context.Services.AddTransient<IWeChatThirdPartyPlatformEventRequestHandlingService, EventHandlingAppService>();
     }
 }
