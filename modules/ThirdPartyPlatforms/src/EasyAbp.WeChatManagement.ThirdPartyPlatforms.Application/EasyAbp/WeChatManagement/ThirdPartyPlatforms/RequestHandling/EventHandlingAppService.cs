@@ -22,7 +22,7 @@ public class EventHandlingAppService : ApplicationService, IEventHandlingAppServ
         return _handlingService.NotifyAuthAsync(input);
     }
 
-    public virtual Task<WeChatRequestHandlingResult> NotifyAppAsync(NotifyAppInput input)
+    public virtual Task<AppEventHandlingResult> NotifyAppAsync(NotifyAppInput input)
     {
         return _handlingService.NotifyAppAsync(input);
     }

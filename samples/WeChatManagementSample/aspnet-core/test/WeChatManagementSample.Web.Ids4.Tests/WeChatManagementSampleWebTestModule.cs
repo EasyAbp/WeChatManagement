@@ -87,7 +87,7 @@ namespace WeChatManagementSample
                 }
             });
 
-            app.UseVirtualFiles();
+            app.UseStaticFiles();
             app.UseRouting();          
             app.UseAuthentication();
             app.UseAbpRequestLocalization();

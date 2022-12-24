@@ -22,7 +22,7 @@ public class RemoteWeChatThirdPartyPlatformEventHandlingService :
         return _eventHandlingAppService.NotifyAuthAsync(input);
     }
 
-    public virtual Task<WeChatRequestHandlingResult> NotifyAppAsync(NotifyAppInput input)
+    public virtual Task<AppEventHandlingResult> NotifyAppAsync(NotifyAppInput input)
     {
         return _eventHandlingAppService.NotifyAppAsync(input);
     }

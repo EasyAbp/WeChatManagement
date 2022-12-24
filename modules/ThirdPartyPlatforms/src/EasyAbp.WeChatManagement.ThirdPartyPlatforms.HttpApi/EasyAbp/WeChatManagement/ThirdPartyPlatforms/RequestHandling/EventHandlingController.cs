@@ -29,7 +29,7 @@ public class EventHandlingController : ThirdPartyPlatformsController, IEventHand
 
     [HttpPost]
     [Route("notify/app")]
-    public virtual Task<WeChatRequestHandlingResult> NotifyAppAsync(NotifyAppInput input)
+    public virtual Task<AppEventHandlingResult> NotifyAppAsync(NotifyAppInput input)
     {
         return _service.NotifyAppAsync(input);
     }
