@@ -32,6 +32,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         }
 
         [HttpGet]
+        [Route("pc-login-acode")]
         [Route("pc-login-acode/{miniProgramName}")]
         public Task<GetPcLoginACodeOutput> GetPcLoginACodeAsync(string miniProgramName, string handlePage = null)
         {
