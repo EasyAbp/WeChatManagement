@@ -33,7 +33,6 @@ public class WeChatThirdPartyPlatformController : ThirdPartyPlatformsController
     /// <returns></returns>
     [HttpGet]
     [Route("auth-callback/token/{token}")]
-    [Route("auth-callback/tenant-id/{tenantId}/token/{token}")]
     public virtual async Task<ActionResult> AuthCallbackAsync(string tenantId, string token)
     {
         using var changeTenant = CurrentTenant.Change(tenantId.IsNullOrWhiteSpace() ? null : Guid.Parse(tenantId));
@@ -52,5 +51,16 @@ public class WeChatThirdPartyPlatformController : ThirdPartyPlatformsController
         }
 
         return await AuthCallbackActionResultProvider.GetAsync(result);
+    }
+    
+    /// <summary>
+    /// 本方法是为了避免多 Route 导致 ABP ApiDescription 报 Warning。
+    /// 见 <see cref="AuthCallbackAsync"/>
+    /// </summary>
+    [HttpGet]
+    [Route("auth-callback/tenant-id/{tenantId}/token/{token}")]
+    public virtual Task<ActionResult> AuthCallback2Async(string tenantId, string token)
+    {
+        return AuthCallbackAsync(tenantId, token);
     }
 }
