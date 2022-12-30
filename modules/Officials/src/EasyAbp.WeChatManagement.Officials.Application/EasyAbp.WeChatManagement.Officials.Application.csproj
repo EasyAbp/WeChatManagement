@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace />
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
+		<PackageReference Include="Volo.Abp.Identity.AspNetCore" Version="$(AbpVersion)" />
+		<ProjectReference Include="..\..\..\Common\src\EasyAbp.WeChatManagement.Common.Application\EasyAbp.WeChatManagement.Common.Application.csproj" />
+		<ProjectReference Include="..\EasyAbp.WeChatManagement.Officials.Application.Contracts\EasyAbp.WeChatManagement.Officials.Application.Contracts.csproj" />
+		<ProjectReference Include="..\EasyAbp.WeChatManagement.Officials.Domain.Shared\EasyAbp.WeChatManagement.Officials.Domain.Shared.csproj" />
+		<ProjectReference Include="..\EasyAbp.WeChatManagement.Officials.Domain\EasyAbp.WeChatManagement.Officials.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

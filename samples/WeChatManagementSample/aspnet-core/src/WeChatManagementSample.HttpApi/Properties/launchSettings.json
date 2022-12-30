@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WeChatManagementSample.HttpApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49337;http://localhost:49342"
+    }
+  }
+}

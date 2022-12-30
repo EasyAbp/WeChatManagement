@@ -1,0 +1,23 @@
+{
+  "culture": "en",
+  "texts": {
+    "Permission:Officials": "OfficialManagement",
+    "Menu:OfficialManagement": "OfficialManagement",
+    "ACodeGenerationFailed": "ACodeGenerationFailed",
+    "Permission:UserInfo": "UserInfo",
+    "Menu:UserInfo": "MenuUserInfo",
+    "UserInfo": "UserInfo",
+    "UserInfoUserId": "UserInfoUserId",
+    "UserInfoNickName": "UserInfoNickName",
+    "UserInfoGender": "UserInfoGender",
+    "UserInfoLanguage": "UserInfoLanguage",
+    "UserInfoCity": "UserInfoCity",
+    "UserInfoProvince": "UserInfoProvince",
+    "UserInfoCountry": "UserInfoCountry",
+    "UserInfoAvatarUrl": "UserInfoAvatarUrl",
+    "Setting:PcLoginHandlePage": "Setting:PcLoginHandlePage",
+    "Setting:DefaultPcLoginWeChatAppName": "Setting:DefaultPcLoginWeChatAppName",
+    "WeChatAccountHasBeenBound": "WeChatAccountHasBeenBound",
+    "WeChatAccountHasNotBeenBound": "WeChatAccountHasNotBeenBound"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "Permission:Officials": "小程序管理",
+    "Menu:OfficialManagement": "小程序管理",
+    "ACodeGenerationFailed": "小程序码生成失败",
+    "Permission:UserInfo": "用户个人信息",
+    "Menu:UserInfo": "用户个人信息",
+    "UserInfo": "用户个人信息",
+    "UserInfoUserId": "用户 ID",
+    "UserInfoNickName": "昵称",
+    "UserInfoGender": "性别",
+    "UserInfoLanguage": "客户端语言",
+    "UserInfoCity": "城市",
+    "UserInfoProvince": "省份",
+    "UserInfoCountry": "国家",
+    "UserInfoAvatarUrl": "头像图片",
+    "Setting:PcLoginHandlePage": "PC 登录处理页面",
+    "Setting:DefaultPcLoginWeChatAppName": "PC 登录默认微信应用名",
+    "WeChatAccountHasBeenBound": "您的微信已被其他用户绑定",
+    "WeChatAccountHasNotBeenBound": "您的微信尚未绑定"
+  }
+}

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29020.237
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Domain", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Domain\WeChatManagementSample.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
 EndProject
@@ -39,42 +39,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.DbMi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{3457788B-7A02-414D-9F55-BD6680773CB9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MiniPrograms", "MiniPrograms", "{E6467F90-C6A3-4D94-90E9-5D03C71A93DF}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BBF90359-754D-4BDB-8F3B-B01FFC426D88}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{32EE8186-65DF-45D4-849F-6A9CEA866BEB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application\EasyAbp.WeChatManagement.MiniPrograms.Application.csproj", "{59EE0492-495D-440E-8DD2-825015DCC89F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj", "{BF5369A3-FF30-4C3A-A2FF-79C6B85478FB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain\EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj", "{73933A62-7E62-4B53-A825-8F6C7F0F0630}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.csproj", "{28721E99-3265-40BB-AC9B-98FC3378164E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj", "{18B0CE33-389F-4E67-A16D-652CDF8461C1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.csproj", "{8B352BC6-80C4-4A94-A6DE-009A9943D652}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.csproj", "{C6F9E6F2-62B5-4B15-BF6A-26E2F35D8DCF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.MongoDB", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.MongoDB\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.csproj", "{7A7A9B05-CEFD-41FB-A373-DFA4FE991F94}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Web", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Web\EasyAbp.WeChatManagement.MiniPrograms.Web.csproj", "{0812E529-E43F-4F5B-8D75-FB202C0BCAF0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.Application.Tests\EasyAbp.WeChatManagement.MiniPrograms.Application.Tests.csproj", "{ADF75C63-1E24-4E07-BAEF-6909F82A7E64}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests\EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests.csproj", "{62C0599E-1035-40E7-9AFF-724B06507CC9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests.csproj", "{59663EB3-E9A3-4C19-9C42-D180371F45D2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp.csproj", "{7D9C068D-8FF0-4842-91D3-8BAB34706B62}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests.csproj", "{386D09A2-6432-4982-86CA-33BCEB074632}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.TestBase", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.TestBase\EasyAbp.WeChatManagement.MiniPrograms.TestBase.csproj", "{FBE160B5-E390-421E-AD04-240CB48085B8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB}"
@@ -85,81 +49,157 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{C17A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WeChatManagementSample", "WeChatManagementSample", "{1A87614D-01D8-43A5-9AD5-D18F5E50D89D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.Application", "modules\Common\src\EasyAbp.WeChatManagement.Common.Application\EasyAbp.WeChatManagement.Common.Application.csproj", "{D3E4F434-ACD4-4DE9-AF35-938F69D94C8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.Application", "modules\Common\src\EasyAbp.WeChatManagement.Common.Application\EasyAbp.WeChatManagement.Common.Application.csproj", "{D3E4F434-ACD4-4DE9-AF35-938F69D94C8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.Application.Contracts", "modules\Common\src\EasyAbp.WeChatManagement.Common.Application.Contracts\EasyAbp.WeChatManagement.Common.Application.Contracts.csproj", "{2146CA1E-B9FB-4A06-A461-5D88BED2B985}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.Application.Contracts", "modules\Common\src\EasyAbp.WeChatManagement.Common.Application.Contracts\EasyAbp.WeChatManagement.Common.Application.Contracts.csproj", "{2146CA1E-B9FB-4A06-A461-5D88BED2B985}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.Domain", "modules\Common\src\EasyAbp.WeChatManagement.Common.Domain\EasyAbp.WeChatManagement.Common.Domain.csproj", "{C652B37C-96A1-4554-A9B7-5E96DA4B0C0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.Domain", "modules\Common\src\EasyAbp.WeChatManagement.Common.Domain\EasyAbp.WeChatManagement.Common.Domain.csproj", "{C652B37C-96A1-4554-A9B7-5E96DA4B0C0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.EntityFrameworkCore", "modules\Common\src\EasyAbp.WeChatManagement.Common.EntityFrameworkCore\EasyAbp.WeChatManagement.Common.EntityFrameworkCore.csproj", "{DBA91F3C-76F4-4934-B265-3B860901F9AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.EntityFrameworkCore", "modules\Common\src\EasyAbp.WeChatManagement.Common.EntityFrameworkCore\EasyAbp.WeChatManagement.Common.EntityFrameworkCore.csproj", "{DBA91F3C-76F4-4934-B265-3B860901F9AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.HttpApi", "modules\Common\src\EasyAbp.WeChatManagement.Common.HttpApi\EasyAbp.WeChatManagement.Common.HttpApi.csproj", "{D88A7E5F-DA06-440D-9CBE-58220EDE0A9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.HttpApi", "modules\Common\src\EasyAbp.WeChatManagement.Common.HttpApi\EasyAbp.WeChatManagement.Common.HttpApi.csproj", "{D88A7E5F-DA06-440D-9CBE-58220EDE0A9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.HttpApi.Client", "modules\Common\src\EasyAbp.WeChatManagement.Common.HttpApi.Client\EasyAbp.WeChatManagement.Common.HttpApi.Client.csproj", "{C20A8A3A-0501-4D29-B11E-AC42FA5461B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.HttpApi.Client", "modules\Common\src\EasyAbp.WeChatManagement.Common.HttpApi.Client\EasyAbp.WeChatManagement.Common.HttpApi.Client.csproj", "{C20A8A3A-0501-4D29-B11E-AC42FA5461B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.MongoDB", "modules\Common\src\EasyAbp.WeChatManagement.Common.MongoDB\EasyAbp.WeChatManagement.Common.MongoDB.csproj", "{B11938D2-AC06-4AF4-A83B-7EBCE8CDCC92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.MongoDB", "modules\Common\src\EasyAbp.WeChatManagement.Common.MongoDB\EasyAbp.WeChatManagement.Common.MongoDB.csproj", "{B11938D2-AC06-4AF4-A83B-7EBCE8CDCC92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.Web", "modules\Common\src\EasyAbp.WeChatManagement.Common.Web\EasyAbp.WeChatManagement.Common.Web.csproj", "{AD6701CC-59D0-454B-9582-A0AE378EEF1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.Web", "modules\Common\src\EasyAbp.WeChatManagement.Common.Web\EasyAbp.WeChatManagement.Common.Web.csproj", "{AD6701CC-59D0-454B-9582-A0AE378EEF1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{32D52B09-3F02-4EA3-A295-977D364FCFC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.Application.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.Application.Tests\EasyAbp.WeChatManagement.Common.Application.Tests.csproj", "{B740F6B8-24C2-4AC7-A44F-45222ACF12D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.Application.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.Application.Tests\EasyAbp.WeChatManagement.Common.Application.Tests.csproj", "{B740F6B8-24C2-4AC7-A44F-45222ACF12D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.Domain.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.Domain.Tests\EasyAbp.WeChatManagement.Common.Domain.Tests.csproj", "{0945EB12-D353-430C-A59E-9688FD52937F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.Domain.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.Domain.Tests\EasyAbp.WeChatManagement.Common.Domain.Tests.csproj", "{0945EB12-D353-430C-A59E-9688FD52937F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.EntityFrameworkCore.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.Common.EntityFrameworkCore.Tests.csproj", "{3F626335-0D2D-424C-9D9E-55E8FFC8544C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.EntityFrameworkCore.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.Common.EntityFrameworkCore.Tests.csproj", "{3F626335-0D2D-424C-9D9E-55E8FFC8544C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.HttpApi.Client.ConsoleTestApp", "modules\Common\test\EasyAbp.WeChatManagement.Common.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.Common.HttpApi.Client.ConsoleTestApp.csproj", "{9B78FFE3-32AA-4EDA-8475-F931EA6171B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.HttpApi.Client.ConsoleTestApp", "modules\Common\test\EasyAbp.WeChatManagement.Common.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.Common.HttpApi.Client.ConsoleTestApp.csproj", "{9B78FFE3-32AA-4EDA-8475-F931EA6171B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.MongoDB.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.MongoDB.Tests\EasyAbp.WeChatManagement.Common.MongoDB.Tests.csproj", "{E793F3D2-5E8A-4281-9597-3F8EA14FA8E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.MongoDB.Tests", "modules\Common\test\EasyAbp.WeChatManagement.Common.MongoDB.Tests\EasyAbp.WeChatManagement.Common.MongoDB.Tests.csproj", "{E793F3D2-5E8A-4281-9597-3F8EA14FA8E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Common.TestBase", "modules\Common\test\EasyAbp.WeChatManagement.Common.TestBase\EasyAbp.WeChatManagement.Common.TestBase.csproj", "{23D54D42-4626-43BE-8949-14B1965F24B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Common.TestBase", "modules\Common\test\EasyAbp.WeChatManagement.Common.TestBase\EasyAbp.WeChatManagement.Common.TestBase.csproj", "{23D54D42-4626-43BE-8949-14B1965F24B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatManagementSample.Web.Ids4", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Web.Ids4\WeChatManagementSample.Web.Ids4.csproj", "{7710B6B3-6908-44C0-A343-1CB78A630C19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web.Ids4", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Web.Ids4\WeChatManagementSample.Web.Ids4.csproj", "{7710B6B3-6908-44C0-A343-1CB78A630C19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatManagementSample.Web.OpenIddict.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Web.OpenIddict.Tests - 副本\WeChatManagementSample.Web.OpenIddict.Tests.csproj", "{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict.csproj", "{0B64E953-2865-47C2-A5C6-8E2E5A403A64}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4\EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4.csproj", "{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatManagementSample.Web.OpenIddict.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Web.OpenIddict.Tests - 副本\WeChatManagementSample.Web.OpenIddict.Tests.csproj", "{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdPartyPlatforms", "ThirdPartyPlatforms", "{FD43231C-8D9F-47BC-B93F-D2B74E740067}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.csproj", "{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.csproj", "{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts.csproj", "{9306D225-8E4F-4EAD-B0CF-CD1097E4A825}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Contracts.csproj", "{9306D225-8E4F-4EAD-B0CF-CD1097E4A825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.csproj", "{E53BF96B-8C86-405C-9DFC-8215DB75BBCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.csproj", "{E53BF96B-8C86-405C-9DFC-8215DB75BBCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared.csproj", "{5879F56A-373E-4CD5-BFF5-38E378C53A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Shared.csproj", "{5879F56A-373E-4CD5-BFF5-38E378C53A06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.csproj", "{9C7ABC28-48FF-4E89-8364-DDFAC1BB225D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.csproj", "{9C7ABC28-48FF-4E89-8364-DDFAC1BB225D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.csproj", "{3D1C44B8-0FF2-4601-9138-2701EB3BA429}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.csproj", "{3D1C44B8-0FF2-4601-9138-2701EB3BA429}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.csproj", "{944AF4B6-3F37-4F4B-A93D-592911EE890C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.csproj", "{944AF4B6-3F37-4F4B-A93D-592911EE890C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer.csproj", "{389F66AC-297F-47B6-BEED-1903C3856075}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Installer.csproj", "{389F66AC-297F-47B6-BEED-1903C3856075}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.csproj", "{FA463D1D-F016-449D-B1E0-5C5B04C62F74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.csproj", "{FA463D1D-F016-449D-B1E0-5C5B04C62F74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.csproj", "{B298EEFF-4476-4053-AB08-9587276DD235}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web", "modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.csproj", "{B298EEFF-4476-4053-AB08-9587276DD235}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{12395BF4-C0CE-4206-BFB6-6726785440C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests.csproj", "{ADC51CDA-FD58-410C-B0D1-7888C9180CA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.Tests.csproj", "{ADC51CDA-FD58-410C-B0D1-7888C9180CA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests.csproj", "{1216DA39-6F68-4FD4-A141-01A48132CE3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests.csproj", "{1216DA39-6F68-4FD4-A141-01A48132CE3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests.csproj", "{9F665079-BE46-42CD-80A3-1D0A822ED4A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.Tests.csproj", "{9F665079-BE46-42CD-80A3-1D0A822ED4A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp.csproj", "{4E487371-0C0E-4F40-89B1-BF8F072CF089}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.ConsoleTestApp.csproj", "{4E487371-0C0E-4F40-89B1-BF8F072CF089}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests.csproj", "{8485A92E-606A-47B2-A3BC-D57B769A58E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.MongoDB.Tests.csproj", "{8485A92E-606A-47B2-A3BC-D57B769A58E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase\EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase.csproj", "{FAB33897-FF3B-4235-B80D-8E5827039259}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase", "modules\ThirdPartyPlatforms\test\EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase\EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase.csproj", "{FAB33897-FF3B-4235-B80D-8E5827039259}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Officials", "Officials", "{200A1FCA-049B-4BE5-8EEA-DC41EBBC1102}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AC2027D3-9179-4ECE-BA2D-E41C7D412132}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Application.Tests", "modules\Officials\test\EasyAbp.WeChatManagement.Officials.Application.Tests\EasyAbp.WeChatManagement.Officials.Application.Tests.csproj", "{57E5BBFE-B890-451B-A414-9B55590C78D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Domain.Tests", "modules\Officials\test\EasyAbp.WeChatManagement.Officials.Domain.Tests\EasyAbp.WeChatManagement.Officials.Domain.Tests.csproj", "{A1A686E7-D0F2-418E-926F-F43DB9BE219B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.EntityFrameworkCore.Tests", "modules\Officials\test\EasyAbp.WeChatManagement.Officials.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.Officials.EntityFrameworkCore.Tests.csproj", "{254BE4D5-7C1B-4137-8F5D-BA1BF495A656}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.HttpApi.Client.ConsoleTestApp", "modules\Officials\test\EasyAbp.WeChatManagement.Officials.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.Officials.HttpApi.Client.ConsoleTestApp.csproj", "{49B809E1-BADE-4937-B274-12874466A21C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.MongoDB.Tests", "modules\Officials\test\EasyAbp.WeChatManagement.Officials.MongoDB.Tests\EasyAbp.WeChatManagement.Officials.MongoDB.Tests.csproj", "{0AF133E4-26D0-4D02-98F7-3677B2C01867}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.TestBase", "modules\Officials\test\EasyAbp.WeChatManagement.Officials.TestBase\EasyAbp.WeChatManagement.Officials.TestBase.csproj", "{31CC7A95-983B-4DB0-A090-6C3B77119527}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Application", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Application\EasyAbp.WeChatManagement.Officials.Application.csproj", "{2B66E935-A8DF-4A39-B6D5-8B2E71949010}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Application.Contracts", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Application.Contracts\EasyAbp.WeChatManagement.Officials.Application.Contracts.csproj", "{765F2D16-DC68-489A-B411-3998F7290414}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Domain", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Domain\EasyAbp.WeChatManagement.Officials.Domain.csproj", "{57BADDB8-0F16-4B3E-80EC-A3BAC4BAD173}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Domain.Ids4", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Domain.Ids4\EasyAbp.WeChatManagement.Officials.Domain.Ids4.csproj", "{033F33B3-B556-455E-A77D-F06A2214C924}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Domain.OpenIddict", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Domain.OpenIddict\EasyAbp.WeChatManagement.Officials.Domain.OpenIddict.csproj", "{32EDF341-D8BC-4A75-B0B8-027445F6DC98}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Domain.Shared", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Domain.Shared\EasyAbp.WeChatManagement.Officials.Domain.Shared.csproj", "{12954A9C-CA63-4DA0-A05E-789FD6CB2CED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.EntityFrameworkCore", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.EntityFrameworkCore\EasyAbp.WeChatManagement.Officials.EntityFrameworkCore.csproj", "{3064D5BC-BF45-420D-8743-E0BD378A2013}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.HttpApi", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.HttpApi\EasyAbp.WeChatManagement.Officials.HttpApi.csproj", "{C1464B10-C400-472D-94AF-B8A8F557FDDB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.HttpApi.Client", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.HttpApi.Client\EasyAbp.WeChatManagement.Officials.HttpApi.Client.csproj", "{7D614BF8-19B9-4BFB-A405-8D07D87094A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.MongoDB", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.MongoDB\EasyAbp.WeChatManagement.Officials.MongoDB.csproj", "{DA380B87-75B6-4486-BDEB-71DAC08BC47D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.Officials.Web", "modules\Officials\src\EasyAbp.WeChatManagement.Officials.Web\EasyAbp.WeChatManagement.Officials.Web.csproj", "{C6D553AF-A425-4B58-9BB2-E0E3116D6119}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MiniPrograms", "MiniPrograms", "{43CDD63E-114E-4D2F-B390-9DD5D84555B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{49C8C7EB-879F-4A03-821F-BA3717D0DD79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{797ED3C3-20C8-4CD3-9BB7-3E3EA509023C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application\EasyAbp.WeChatManagement.MiniPrograms.Application.csproj", "{9B2EFD2F-FF43-4FFD-8BEB-765FDDAC2D7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts\EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts.csproj", "{2F73CE59-D6D5-4515-993D-05D350351D0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain\EasyAbp.WeChatManagement.MiniPrograms.Domain.csproj", "{4BE74D44-9671-428E-BBFB-B67659397188}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4\EasyAbp.WeChatManagement.MiniPrograms.Domain.Ids4.csproj", "{9FDBB68B-BC2A-4DA7-B213-2406B6992DDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict.csproj", "{77EFA985-A2C4-40BB-99A8-4810E3FDB841}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared\EasyAbp.WeChatManagement.MiniPrograms.Domain.Shared.csproj", "{C2DF3E59-901B-40F6-9213-D600F56DFE2F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.csproj", "{F09F18DD-C753-4A19-B293-E1F834C03FD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.csproj", "{71937556-B0B4-4FAD-84F5-7C19D58572A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.csproj", "{90B318F1-E506-4CBA-ADD3-13646CAD39FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.MongoDB", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.MongoDB\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.csproj", "{D7BF516B-5EBB-4637-B0FE-8F0854AC3066}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Web", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Web\EasyAbp.WeChatManagement.MiniPrograms.Web.csproj", "{2A34B353-DF3F-4CEE-8556-4F58C07A5055}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Application.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.Application.Tests\EasyAbp.WeChatManagement.MiniPrograms.Application.Tests.csproj", "{94B9AB14-CAE3-49FE-8487-941DE2AE288A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests\EasyAbp.WeChatManagement.MiniPrograms.Domain.Tests.csproj", "{71D01A98-8AEE-400E-847B-9B004611EA30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests\EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore.Tests.csproj", "{9F42C3AC-160E-4E2F-9C99-BADD96557D6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.ConsoleTestApp.csproj", "{1DD7B00A-ECE8-4881-A7AF-C5AE11F48E91}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests\EasyAbp.WeChatManagement.MiniPrograms.MongoDB.Tests.csproj", "{2675EED4-FF94-4C1E-99B7-A38C0480D38D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.WeChatManagement.MiniPrograms.TestBase", "modules\MiniPrograms\test\EasyAbp.WeChatManagement.MiniPrograms.TestBase\EasyAbp.WeChatManagement.MiniPrograms.TestBase.csproj", "{B26D06CA-CF26-4678-8D7A-20D591111401}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -227,66 +267,6 @@ Global
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59EE0492-495D-440E-8DD2-825015DCC89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59EE0492-495D-440E-8DD2-825015DCC89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59EE0492-495D-440E-8DD2-825015DCC89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59EE0492-495D-440E-8DD2-825015DCC89F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BF5369A3-FF30-4C3A-A2FF-79C6B85478FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF5369A3-FF30-4C3A-A2FF-79C6B85478FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF5369A3-FF30-4C3A-A2FF-79C6B85478FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF5369A3-FF30-4C3A-A2FF-79C6B85478FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73933A62-7E62-4B53-A825-8F6C7F0F0630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73933A62-7E62-4B53-A825-8F6C7F0F0630}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73933A62-7E62-4B53-A825-8F6C7F0F0630}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73933A62-7E62-4B53-A825-8F6C7F0F0630}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28721E99-3265-40BB-AC9B-98FC3378164E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28721E99-3265-40BB-AC9B-98FC3378164E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28721E99-3265-40BB-AC9B-98FC3378164E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28721E99-3265-40BB-AC9B-98FC3378164E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18B0CE33-389F-4E67-A16D-652CDF8461C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18B0CE33-389F-4E67-A16D-652CDF8461C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18B0CE33-389F-4E67-A16D-652CDF8461C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18B0CE33-389F-4E67-A16D-652CDF8461C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B352BC6-80C4-4A94-A6DE-009A9943D652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B352BC6-80C4-4A94-A6DE-009A9943D652}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B352BC6-80C4-4A94-A6DE-009A9943D652}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B352BC6-80C4-4A94-A6DE-009A9943D652}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6F9E6F2-62B5-4B15-BF6A-26E2F35D8DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6F9E6F2-62B5-4B15-BF6A-26E2F35D8DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6F9E6F2-62B5-4B15-BF6A-26E2F35D8DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6F9E6F2-62B5-4B15-BF6A-26E2F35D8DCF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A7A9B05-CEFD-41FB-A373-DFA4FE991F94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A7A9B05-CEFD-41FB-A373-DFA4FE991F94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A7A9B05-CEFD-41FB-A373-DFA4FE991F94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A7A9B05-CEFD-41FB-A373-DFA4FE991F94}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0812E529-E43F-4F5B-8D75-FB202C0BCAF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0812E529-E43F-4F5B-8D75-FB202C0BCAF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0812E529-E43F-4F5B-8D75-FB202C0BCAF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0812E529-E43F-4F5B-8D75-FB202C0BCAF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ADF75C63-1E24-4E07-BAEF-6909F82A7E64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADF75C63-1E24-4E07-BAEF-6909F82A7E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADF75C63-1E24-4E07-BAEF-6909F82A7E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADF75C63-1E24-4E07-BAEF-6909F82A7E64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62C0599E-1035-40E7-9AFF-724B06507CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62C0599E-1035-40E7-9AFF-724B06507CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62C0599E-1035-40E7-9AFF-724B06507CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62C0599E-1035-40E7-9AFF-724B06507CC9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59663EB3-E9A3-4C19-9C42-D180371F45D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59663EB3-E9A3-4C19-9C42-D180371F45D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59663EB3-E9A3-4C19-9C42-D180371F45D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59663EB3-E9A3-4C19-9C42-D180371F45D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D9C068D-8FF0-4842-91D3-8BAB34706B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D9C068D-8FF0-4842-91D3-8BAB34706B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D9C068D-8FF0-4842-91D3-8BAB34706B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D9C068D-8FF0-4842-91D3-8BAB34706B62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{386D09A2-6432-4982-86CA-33BCEB074632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{386D09A2-6432-4982-86CA-33BCEB074632}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{386D09A2-6432-4982-86CA-33BCEB074632}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{386D09A2-6432-4982-86CA-33BCEB074632}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FBE160B5-E390-421E-AD04-240CB48085B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBE160B5-E390-421E-AD04-240CB48085B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBE160B5-E390-421E-AD04-240CB48085B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBE160B5-E390-421E-AD04-240CB48085B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EEE6309B-919B-40CA-8CF2-7DB9855B980D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EEE6309B-919B-40CA-8CF2-7DB9855B980D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEE6309B-919B-40CA-8CF2-7DB9855B980D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -355,14 +335,6 @@ Global
 		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0B64E953-2865-47C2-A5C6-8E2E5A403A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0B64E953-2865-47C2-A5C6-8E2E5A403A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0B64E953-2865-47C2-A5C6-8E2E5A403A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0B64E953-2865-47C2-A5C6-8E2E5A403A64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -427,6 +399,142 @@ Global
 		{FAB33897-FF3B-4235-B80D-8E5827039259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAB33897-FF3B-4235-B80D-8E5827039259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAB33897-FF3B-4235-B80D-8E5827039259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57E5BBFE-B890-451B-A414-9B55590C78D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E5BBFE-B890-451B-A414-9B55590C78D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E5BBFE-B890-451B-A414-9B55590C78D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E5BBFE-B890-451B-A414-9B55590C78D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1A686E7-D0F2-418E-926F-F43DB9BE219B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1A686E7-D0F2-418E-926F-F43DB9BE219B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1A686E7-D0F2-418E-926F-F43DB9BE219B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1A686E7-D0F2-418E-926F-F43DB9BE219B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{254BE4D5-7C1B-4137-8F5D-BA1BF495A656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{254BE4D5-7C1B-4137-8F5D-BA1BF495A656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{254BE4D5-7C1B-4137-8F5D-BA1BF495A656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{254BE4D5-7C1B-4137-8F5D-BA1BF495A656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49B809E1-BADE-4937-B274-12874466A21C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B809E1-BADE-4937-B274-12874466A21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B809E1-BADE-4937-B274-12874466A21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B809E1-BADE-4937-B274-12874466A21C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AF133E4-26D0-4D02-98F7-3677B2C01867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AF133E4-26D0-4D02-98F7-3677B2C01867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AF133E4-26D0-4D02-98F7-3677B2C01867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AF133E4-26D0-4D02-98F7-3677B2C01867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CC7A95-983B-4DB0-A090-6C3B77119527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CC7A95-983B-4DB0-A090-6C3B77119527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CC7A95-983B-4DB0-A090-6C3B77119527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CC7A95-983B-4DB0-A090-6C3B77119527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B66E935-A8DF-4A39-B6D5-8B2E71949010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B66E935-A8DF-4A39-B6D5-8B2E71949010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B66E935-A8DF-4A39-B6D5-8B2E71949010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B66E935-A8DF-4A39-B6D5-8B2E71949010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765F2D16-DC68-489A-B411-3998F7290414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765F2D16-DC68-489A-B411-3998F7290414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765F2D16-DC68-489A-B411-3998F7290414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765F2D16-DC68-489A-B411-3998F7290414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57BADDB8-0F16-4B3E-80EC-A3BAC4BAD173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57BADDB8-0F16-4B3E-80EC-A3BAC4BAD173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57BADDB8-0F16-4B3E-80EC-A3BAC4BAD173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57BADDB8-0F16-4B3E-80EC-A3BAC4BAD173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{033F33B3-B556-455E-A77D-F06A2214C924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{033F33B3-B556-455E-A77D-F06A2214C924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{033F33B3-B556-455E-A77D-F06A2214C924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{033F33B3-B556-455E-A77D-F06A2214C924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32EDF341-D8BC-4A75-B0B8-027445F6DC98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32EDF341-D8BC-4A75-B0B8-027445F6DC98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32EDF341-D8BC-4A75-B0B8-027445F6DC98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32EDF341-D8BC-4A75-B0B8-027445F6DC98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12954A9C-CA63-4DA0-A05E-789FD6CB2CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12954A9C-CA63-4DA0-A05E-789FD6CB2CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12954A9C-CA63-4DA0-A05E-789FD6CB2CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12954A9C-CA63-4DA0-A05E-789FD6CB2CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3064D5BC-BF45-420D-8743-E0BD378A2013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3064D5BC-BF45-420D-8743-E0BD378A2013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3064D5BC-BF45-420D-8743-E0BD378A2013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3064D5BC-BF45-420D-8743-E0BD378A2013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1464B10-C400-472D-94AF-B8A8F557FDDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1464B10-C400-472D-94AF-B8A8F557FDDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1464B10-C400-472D-94AF-B8A8F557FDDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1464B10-C400-472D-94AF-B8A8F557FDDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D614BF8-19B9-4BFB-A405-8D07D87094A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D614BF8-19B9-4BFB-A405-8D07D87094A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D614BF8-19B9-4BFB-A405-8D07D87094A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D614BF8-19B9-4BFB-A405-8D07D87094A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA380B87-75B6-4486-BDEB-71DAC08BC47D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA380B87-75B6-4486-BDEB-71DAC08BC47D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA380B87-75B6-4486-BDEB-71DAC08BC47D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA380B87-75B6-4486-BDEB-71DAC08BC47D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6D553AF-A425-4B58-9BB2-E0E3116D6119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6D553AF-A425-4B58-9BB2-E0E3116D6119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6D553AF-A425-4B58-9BB2-E0E3116D6119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6D553AF-A425-4B58-9BB2-E0E3116D6119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B2EFD2F-FF43-4FFD-8BEB-765FDDAC2D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B2EFD2F-FF43-4FFD-8BEB-765FDDAC2D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B2EFD2F-FF43-4FFD-8BEB-765FDDAC2D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B2EFD2F-FF43-4FFD-8BEB-765FDDAC2D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F73CE59-D6D5-4515-993D-05D350351D0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F73CE59-D6D5-4515-993D-05D350351D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F73CE59-D6D5-4515-993D-05D350351D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F73CE59-D6D5-4515-993D-05D350351D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BE74D44-9671-428E-BBFB-B67659397188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BE74D44-9671-428E-BBFB-B67659397188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BE74D44-9671-428E-BBFB-B67659397188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BE74D44-9671-428E-BBFB-B67659397188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FDBB68B-BC2A-4DA7-B213-2406B6992DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDBB68B-BC2A-4DA7-B213-2406B6992DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDBB68B-BC2A-4DA7-B213-2406B6992DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDBB68B-BC2A-4DA7-B213-2406B6992DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77EFA985-A2C4-40BB-99A8-4810E3FDB841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77EFA985-A2C4-40BB-99A8-4810E3FDB841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77EFA985-A2C4-40BB-99A8-4810E3FDB841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77EFA985-A2C4-40BB-99A8-4810E3FDB841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2DF3E59-901B-40F6-9213-D600F56DFE2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2DF3E59-901B-40F6-9213-D600F56DFE2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2DF3E59-901B-40F6-9213-D600F56DFE2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2DF3E59-901B-40F6-9213-D600F56DFE2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F09F18DD-C753-4A19-B293-E1F834C03FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F09F18DD-C753-4A19-B293-E1F834C03FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F09F18DD-C753-4A19-B293-E1F834C03FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F09F18DD-C753-4A19-B293-E1F834C03FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71937556-B0B4-4FAD-84F5-7C19D58572A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71937556-B0B4-4FAD-84F5-7C19D58572A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71937556-B0B4-4FAD-84F5-7C19D58572A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71937556-B0B4-4FAD-84F5-7C19D58572A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B318F1-E506-4CBA-ADD3-13646CAD39FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B318F1-E506-4CBA-ADD3-13646CAD39FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B318F1-E506-4CBA-ADD3-13646CAD39FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B318F1-E506-4CBA-ADD3-13646CAD39FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7BF516B-5EBB-4637-B0FE-8F0854AC3066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7BF516B-5EBB-4637-B0FE-8F0854AC3066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7BF516B-5EBB-4637-B0FE-8F0854AC3066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7BF516B-5EBB-4637-B0FE-8F0854AC3066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A34B353-DF3F-4CEE-8556-4F58C07A5055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A34B353-DF3F-4CEE-8556-4F58C07A5055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A34B353-DF3F-4CEE-8556-4F58C07A5055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A34B353-DF3F-4CEE-8556-4F58C07A5055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B9AB14-CAE3-49FE-8487-941DE2AE288A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B9AB14-CAE3-49FE-8487-941DE2AE288A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B9AB14-CAE3-49FE-8487-941DE2AE288A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B9AB14-CAE3-49FE-8487-941DE2AE288A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D01A98-8AEE-400E-847B-9B004611EA30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D01A98-8AEE-400E-847B-9B004611EA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D01A98-8AEE-400E-847B-9B004611EA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D01A98-8AEE-400E-847B-9B004611EA30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F42C3AC-160E-4E2F-9C99-BADD96557D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F42C3AC-160E-4E2F-9C99-BADD96557D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F42C3AC-160E-4E2F-9C99-BADD96557D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F42C3AC-160E-4E2F-9C99-BADD96557D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DD7B00A-ECE8-4881-A7AF-C5AE11F48E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD7B00A-ECE8-4881-A7AF-C5AE11F48E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD7B00A-ECE8-4881-A7AF-C5AE11F48E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD7B00A-ECE8-4881-A7AF-C5AE11F48E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2675EED4-FF94-4C1E-99B7-A38C0480D38D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2675EED4-FF94-4C1E-99B7-A38C0480D38D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2675EED4-FF94-4C1E-99B7-A38C0480D38D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2675EED4-FF94-4C1E-99B7-A38C0480D38D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B26D06CA-CF26-4678-8D7A-20D591111401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B26D06CA-CF26-4678-8D7A-20D591111401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B26D06CA-CF26-4678-8D7A-20D591111401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B26D06CA-CF26-4678-8D7A-20D591111401}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -449,24 +557,6 @@ Global
 		{E512F4D9-9375-480F-A2F6-A46509F9D824} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
 		{EF480016-9127-4916-8735-D2466BDBC582} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
-		{E6467F90-C6A3-4D94-90E9-5D03C71A93DF} = {3457788B-7A02-414D-9F55-BD6680773CB9}
-		{BBF90359-754D-4BDB-8F3B-B01FFC426D88} = {E6467F90-C6A3-4D94-90E9-5D03C71A93DF}
-		{32EE8186-65DF-45D4-849F-6A9CEA866BEB} = {E6467F90-C6A3-4D94-90E9-5D03C71A93DF}
-		{59EE0492-495D-440E-8DD2-825015DCC89F} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{BF5369A3-FF30-4C3A-A2FF-79C6B85478FB} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{73933A62-7E62-4B53-A825-8F6C7F0F0630} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{28721E99-3265-40BB-AC9B-98FC3378164E} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{18B0CE33-389F-4E67-A16D-652CDF8461C1} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{8B352BC6-80C4-4A94-A6DE-009A9943D652} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{C6F9E6F2-62B5-4B15-BF6A-26E2F35D8DCF} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{7A7A9B05-CEFD-41FB-A373-DFA4FE991F94} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{0812E529-E43F-4F5B-8D75-FB202C0BCAF0} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{ADF75C63-1E24-4E07-BAEF-6909F82A7E64} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
-		{62C0599E-1035-40E7-9AFF-724B06507CC9} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
-		{59663EB3-E9A3-4C19-9C42-D180371F45D2} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
-		{7D9C068D-8FF0-4842-91D3-8BAB34706B62} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
-		{386D09A2-6432-4982-86CA-33BCEB074632} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
-		{FBE160B5-E390-421E-AD04-240CB48085B8} = {32EE8186-65DF-45D4-849F-6A9CEA866BEB}
 		{6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6} = {3457788B-7A02-414D-9F55-BD6680773CB9}
 		{F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB} = {6CC06C70-1A1D-4FAF-A12A-A8D3AFF662B6}
 		{EEE6309B-919B-40CA-8CF2-7DB9855B980D} = {F4322739-BB8B-44B1-80E4-9FA3EFBEA8EB}
@@ -488,8 +578,6 @@ Global
 		{23D54D42-4626-43BE-8949-14B1965F24B4} = {32D52B09-3F02-4EA3-A295-977D364FCFC7}
 		{7710B6B3-6908-44C0-A343-1CB78A630C19} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE} = {04DBDB01-70F4-4E06-B468-8F87850B22BE}
-		{0B64E953-2865-47C2-A5C6-8E2E5A403A64} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
-		{AA8349BB-A8A6-4E4F-87CD-008E8D1BD0B8} = {BBF90359-754D-4BDB-8F3B-B01FFC426D88}
 		{FD43231C-8D9F-47BC-B93F-D2B74E740067} = {3457788B-7A02-414D-9F55-BD6680773CB9}
 		{62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6} = {FD43231C-8D9F-47BC-B93F-D2B74E740067}
 		{A4378BA7-854C-4AC3-ACBD-BC37109D15F9} = {62EDD1A8-BE9F-48C4-A5F2-7DBADD22C5D6}
@@ -509,6 +597,46 @@ Global
 		{4E487371-0C0E-4F40-89B1-BF8F072CF089} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
 		{8485A92E-606A-47B2-A3BC-D57B769A58E7} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
 		{FAB33897-FF3B-4235-B80D-8E5827039259} = {12395BF4-C0CE-4206-BFB6-6726785440C0}
+		{200A1FCA-049B-4BE5-8EEA-DC41EBBC1102} = {3457788B-7A02-414D-9F55-BD6680773CB9}
+		{8E46C8BA-3FB2-4A40-8237-E829B7AB93F6} = {200A1FCA-049B-4BE5-8EEA-DC41EBBC1102}
+		{AC2027D3-9179-4ECE-BA2D-E41C7D412132} = {200A1FCA-049B-4BE5-8EEA-DC41EBBC1102}
+		{57E5BBFE-B890-451B-A414-9B55590C78D4} = {AC2027D3-9179-4ECE-BA2D-E41C7D412132}
+		{A1A686E7-D0F2-418E-926F-F43DB9BE219B} = {AC2027D3-9179-4ECE-BA2D-E41C7D412132}
+		{254BE4D5-7C1B-4137-8F5D-BA1BF495A656} = {AC2027D3-9179-4ECE-BA2D-E41C7D412132}
+		{49B809E1-BADE-4937-B274-12874466A21C} = {AC2027D3-9179-4ECE-BA2D-E41C7D412132}
+		{0AF133E4-26D0-4D02-98F7-3677B2C01867} = {AC2027D3-9179-4ECE-BA2D-E41C7D412132}
+		{31CC7A95-983B-4DB0-A090-6C3B77119527} = {AC2027D3-9179-4ECE-BA2D-E41C7D412132}
+		{2B66E935-A8DF-4A39-B6D5-8B2E71949010} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{765F2D16-DC68-489A-B411-3998F7290414} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{57BADDB8-0F16-4B3E-80EC-A3BAC4BAD173} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{033F33B3-B556-455E-A77D-F06A2214C924} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{32EDF341-D8BC-4A75-B0B8-027445F6DC98} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{12954A9C-CA63-4DA0-A05E-789FD6CB2CED} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{3064D5BC-BF45-420D-8743-E0BD378A2013} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{C1464B10-C400-472D-94AF-B8A8F557FDDB} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{7D614BF8-19B9-4BFB-A405-8D07D87094A3} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{DA380B87-75B6-4486-BDEB-71DAC08BC47D} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{C6D553AF-A425-4B58-9BB2-E0E3116D6119} = {8E46C8BA-3FB2-4A40-8237-E829B7AB93F6}
+		{43CDD63E-114E-4D2F-B390-9DD5D84555B4} = {3457788B-7A02-414D-9F55-BD6680773CB9}
+		{49C8C7EB-879F-4A03-821F-BA3717D0DD79} = {43CDD63E-114E-4D2F-B390-9DD5D84555B4}
+		{797ED3C3-20C8-4CD3-9BB7-3E3EA509023C} = {43CDD63E-114E-4D2F-B390-9DD5D84555B4}
+		{9B2EFD2F-FF43-4FFD-8BEB-765FDDAC2D7A} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{2F73CE59-D6D5-4515-993D-05D350351D0D} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{4BE74D44-9671-428E-BBFB-B67659397188} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{9FDBB68B-BC2A-4DA7-B213-2406B6992DDD} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{77EFA985-A2C4-40BB-99A8-4810E3FDB841} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{C2DF3E59-901B-40F6-9213-D600F56DFE2F} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{F09F18DD-C753-4A19-B293-E1F834C03FD7} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{71937556-B0B4-4FAD-84F5-7C19D58572A4} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{90B318F1-E506-4CBA-ADD3-13646CAD39FA} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{D7BF516B-5EBB-4637-B0FE-8F0854AC3066} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{2A34B353-DF3F-4CEE-8556-4F58C07A5055} = {49C8C7EB-879F-4A03-821F-BA3717D0DD79}
+		{94B9AB14-CAE3-49FE-8487-941DE2AE288A} = {797ED3C3-20C8-4CD3-9BB7-3E3EA509023C}
+		{71D01A98-8AEE-400E-847B-9B004611EA30} = {797ED3C3-20C8-4CD3-9BB7-3E3EA509023C}
+		{9F42C3AC-160E-4E2F-9C99-BADD96557D6A} = {797ED3C3-20C8-4CD3-9BB7-3E3EA509023C}
+		{1DD7B00A-ECE8-4881-A7AF-C5AE11F48E91} = {797ED3C3-20C8-4CD3-9BB7-3E3EA509023C}
+		{2675EED4-FF94-4C1E-99B7-A38C0480D38D} = {797ED3C3-20C8-4CD3-9BB7-3E3EA509023C}
+		{B26D06CA-CF26-4678-8D7A-20D591111401} = {797ED3C3-20C8-4CD3-9BB7-3E3EA509023C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

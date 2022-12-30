@@ -1,0 +1,53 @@
+@page
+@using EasyAbp.WeChatManagement.Officials.Permissions
+@using EasyAbp.WeChatManagement.Officials.Web.Pages.WeChatManagement.Officials.UserInfos.UserInfo
+@using EasyAbp.WeChatManagement.Officials.Localization
+@using EasyAbp.WeChatManagement.Officials.Web.Menus
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<OfficialsResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["UserInfo"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:UserInfo"].Value);
+    PageLayout.Content.MenuItemName = OfficialsMenus.UserInfo;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/WeChatManagement/Officials/UserInfos/UserInfo/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/WeChatManagement/Officials/UserInfos/UserInfo/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["UserInfo"]</abp-card-title>
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="UserInfoTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["UserInfoUserId"]</th>
+                <th>@L["UserInfoNickName"]</th>
+                <th>@L["UserInfoGender"]</th>
+                <th>@L["UserInfoLanguage"]</th>
+                <th>@L["UserInfoCity"]</th>
+                <th>@L["UserInfoProvince"]</th>
+                <th>@L["UserInfoCountry"]</th>
+                <th>@L["UserInfoAvatarUrl"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

@@ -10,7 +10,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\modules\ThirdPartyPlatforms\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client\EasyAbp.WeChatManagement.ThirdPartyPlatforms.HttpApi.Client.csproj" />
     <ProjectReference Include="..\WeChatManagementSample.Application.Contracts\WeChatManagementSample.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\..\modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client\EasyAbp.WeChatManagement.MiniPrograms.HttpApi.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>

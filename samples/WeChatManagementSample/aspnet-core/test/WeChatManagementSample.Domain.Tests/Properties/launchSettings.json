@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WeChatManagementSample.Domain.Tests": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:49339;http://localhost:49343"
+    }
+  }
+}
