@@ -4,7 +4,6 @@ using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
 using EasyAbp.WeChatManagement.Officials.Login.Dtos;
-using EasyAbp.WeChatManagement.Officials.Settings;
 using EasyAbp.WeChatManagement.Officials.UserInfos;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
@@ -16,7 +15,6 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Volo.Abp;
-using Volo.Abp.Caching;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Identity;
@@ -45,7 +43,8 @@ namespace EasyAbp.WeChatManagement.Officials.Login
         private readonly IAbpWeChatServiceFactory _abpWeChatServiceFactory;
         private readonly IOfficialLoginNewUserCreator _OfficialLoginNewUserCreator;
         private readonly IOfficialLoginProviderProvider _OfficialLoginProviderProvider;
-        private readonly IDistributedCache<OfficialPcLoginAuthorizationCacheItem> _pcLoginAuthorizationCache;
+        private readonly IOptions<IdentityOptions> _identityOptions;
+        private readonly IdentityUserManager _identityUserManager;
 
         public LoginAppService(
             AbpSignInManager signInManager,
@@ -59,7 +58,8 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             IAbpWeChatServiceFactory abpWeChatServiceFactory,
             IOfficialLoginNewUserCreator OfficialLoginNewUserCreator,
             IOfficialLoginProviderProvider OfficialLoginProviderProvider,
-            IDistributedCache<OfficialPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache)
+            IOptions<IdentityOptions> identityOptions,
+            IdentityUserManager identityUserManager)
         {
             _signInManager = signInManager;
             _dataFilter = dataFilter;
@@ -72,7 +72,6 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             _abpWeChatServiceFactory = abpWeChatServiceFactory;
             _OfficialLoginNewUserCreator = OfficialLoginNewUserCreator;
             _OfficialLoginProviderProvider = OfficialLoginProviderProvider;
-            _pcLoginAuthorizationCache = pcLoginAuthorizationCache;
         }
 
         [Authorize]
@@ -83,6 +82,21 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             var loginResult = await GetLoginResultAsync(input);
 
             using var tenantChange = CurrentTenant.Change(loginResult.Official.TenantId);
+            await _identityOptions.SetAsync();
+            if (await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) != null)
+            {
+                throw new WeChatAccountHasBeenBoundException();
+            }
+            var identityUser = await _identityUserManager.GetByIdAsync(CurrentUser.GetId());
+
+            (await _identityUserManager.AddLoginAsync(identityUser,
+                new UserLoginInfo(loginResult.LoginProvider, loginResult.ProviderKey,
+                    WeChatManagementCommonConsts.WeChatUserLoginInfoDisplayName))).CheckErrors();
+
+            await UpdateWeChatAppUserAsync(identityUser, loginResult.Official, loginResult.UnionId,
+                loginResult.Code2AccessTokenResponse.OpenId, null);
+
+            await TryCreateUserInfoAsync(identityUser, await GenerateFakeUserInfoAsync());
         }
 
         [Authorize]
@@ -93,6 +107,23 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             var loginResult = await GetLoginResultAsync(input);
 
             using var tenantChange = CurrentTenant.Change(loginResult.Official.TenantId);
+            await _identityOptions.SetAsync();
+
+            if (await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) == null)
+            {
+                throw new WeChatAccountHasNotBeenBoundException();
+            }
+            var identityUser = await _identityUserManager.GetByIdAsync(CurrentUser.GetId());
+
+            (await _identityUserManager.RemoveLoginAsync(identityUser, loginResult.LoginProvider, loginResult.ProviderKey)).CheckErrors();
+
+            await RemoveWeChatAppUserAsync(identityUser, loginResult.Official);
+
+            if (!await _weChatAppUserRepository.AnyInWeChatAppTypeAsync(WeChatAppType.Official,
+                x => x.UserId == identityUser.Id))
+            {
+                await TryRemoveUserInfoAsync(identityUser);
+            }
         }
 
         [UnitOfWork(IsDisabled = true)]
@@ -357,5 +388,5 @@ namespace EasyAbp.WeChatManagement.Officials.Login
             return "__tenant";
         }
 
-}
+    }
 }

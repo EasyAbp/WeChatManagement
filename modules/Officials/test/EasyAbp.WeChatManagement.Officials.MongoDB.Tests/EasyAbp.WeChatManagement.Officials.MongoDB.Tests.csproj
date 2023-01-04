@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>EasyAbp.WeChatManagement.Officials</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>EasyAbp.WeChatManagement.Officials</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-    <PackageReference Include="Mongo2Go" Version="3.1.3" />
-    <ProjectReference Include="..\EasyAbp.WeChatManagement.Officials.TestBase\EasyAbp.WeChatManagement.Officials.TestBase.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+		<PackageReference Include="Mongo2Go" Version="3.1.3" />
+		<ProjectReference Include="..\..\src\EasyAbp.WeChatManagement.Officials.MongoDB\EasyAbp.WeChatManagement.Officials.MongoDB.csproj" />
+		<ProjectReference Include="..\EasyAbp.WeChatManagement.Officials.TestBase\EasyAbp.WeChatManagement.Officials.TestBase.csproj" />
+	</ItemGroup>
 
 </Project>

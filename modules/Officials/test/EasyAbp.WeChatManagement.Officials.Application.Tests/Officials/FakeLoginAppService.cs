@@ -28,12 +28,10 @@ public class FakeLoginAppService : LoginAppService
         IWeChatAppUserRepository weChatAppUserRepository, IAbpWeChatServiceFactory abpWeChatServiceFactory,
         IOfficialLoginNewUserCreator OfficialLoginNewUserCreator,
         IOfficialLoginProviderProvider OfficialLoginProviderProvider,
-        IDistributedCache<OfficialPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
-        IDistributedCache<OfficialPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
         IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager) : base(signInManager,
         dataFilter, configuration, httpClientFactory, userInfoRepository, weChatAppRepository, stringEncryptionService,
         weChatAppUserRepository, abpWeChatServiceFactory, OfficialLoginNewUserCreator,
-        OfficialLoginProviderProvider, pcLoginAuthorizationCache, pcLoginUserLimitCache, identityOptions,
+        OfficialLoginProviderProvider, identityOptions,
         identityUserManager)
     {
     }

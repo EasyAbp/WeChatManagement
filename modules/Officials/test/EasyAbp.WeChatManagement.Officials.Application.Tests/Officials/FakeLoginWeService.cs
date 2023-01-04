@@ -3,6 +3,7 @@ using EasyAbp.Abp.WeChat.Official.Options;
 using EasyAbp.Abp.WeChat.Official.Services.Login;
 using EasyAbp.WeChatManagement.Officials.Login;
 using Volo.Abp.DependencyInjection;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace EasyAbp.WeChatManagement.Officials.Officials;
 
@@ -15,28 +16,32 @@ public class FakeLoginWeService : LoginWeService
     {
     }
 
-    public override Task<Code2SessionResponse> Code2SessionAsync(string appId, string appSecret, string jsCode,
+    public override Task<Code2AccessTokenResponse> Code2AccessTokenAsync(string appId, string appSecret, string jsCode,
         string grantType = "authorization_code")
     {
-        return Task.FromResult(new Code2SessionResponse
+        return Task.FromResult(new Code2AccessTokenResponse
         {
             ErrorMessage = null,
             ErrorCode = 0,
             OpenId = "MyOpenId",
-            SessionKey = "MySessionKey",
-            UnionId = "MyUnionId"
+            AccessToken= "MyAccessToken",
+            Scope=null,
+            ExpiresIn=1,
+            RefreshToken=null
         });
     }
 
-    public override Task<Code2SessionResponse> Code2SessionAsync(string jsCode, string grantType = "authorization_code")
+    public override Task<Code2AccessTokenResponse> Code2AccessTokenAsync(string jsCode, string grantType = "authorization_code")
     {
-        return Task.FromResult(new Code2SessionResponse
+        return Task.FromResult(new Code2AccessTokenResponse
         {
             ErrorMessage = null,
             ErrorCode = 0,
             OpenId = "MyOpenId",
-            SessionKey = "MySessionKey",
-            UnionId = "MyUnionId"
+            AccessToken = "MyAccessToken",
+            Scope = null,
+            ExpiresIn = 1,
+            RefreshToken = null
         });
     }
 }

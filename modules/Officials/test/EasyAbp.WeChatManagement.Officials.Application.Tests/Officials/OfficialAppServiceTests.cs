@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
 using EasyAbp.Abp.WeChat.Official.Options;
 using EasyAbp.Abp.WeChat.Official.Services.Login;
@@ -8,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using NSubstitute;
 using Shouldly;
-using Volo.Abp.DependencyInjection;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace EasyAbp.WeChatManagement.Officials.Officials

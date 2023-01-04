@@ -1,4 +1,4 @@
-﻿namespace EasyAbp.WeChatManagement.MiniPrograms.MultiTenancy
+﻿namespace EasyAbp.WeChatManagement.Officials.MultiTenancy
 {
     public static class MultiTenancyConsts
     {
