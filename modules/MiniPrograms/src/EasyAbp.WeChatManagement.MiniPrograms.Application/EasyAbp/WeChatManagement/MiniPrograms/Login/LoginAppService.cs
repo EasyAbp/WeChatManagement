@@ -334,7 +334,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             if (userInfo == null)
             {
                 userInfo = new UserInfo(GuidGenerator.Create(), CurrentTenant.Id, identityUser.Id, userInfoModel);
-
+                (await _identityUserManager.AddDefaultRolesAsync(identityUser)).CheckErrors();
                 await _userInfoRepository.InsertAsync(userInfo, true);
             }
             else
