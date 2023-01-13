@@ -15,12 +15,12 @@ public class AuthorizerRefreshTokenStore : IAuthorizerRefreshTokenStore, ITransi
 {
     private readonly IStringEncryptionService _stringEncryptionService;
     private readonly IAuthorizerSecretRepository _authorizerSecretRepository;
-    private readonly IDistributedCache<string> _cache;
+    private readonly CacheAuthorizerRefreshTokenStore _cache;
 
     public AuthorizerRefreshTokenStore(
         IStringEncryptionService stringEncryptionService,
         IAuthorizerSecretRepository authorizerSecretRepository,
-        IDistributedCache<string> cache)
+        CacheAuthorizerRefreshTokenStore cache)
     {
         _stringEncryptionService = stringEncryptionService;
         _authorizerSecretRepository = authorizerSecretRepository;
@@ -29,30 +29,26 @@ public class AuthorizerRefreshTokenStore : IAuthorizerRefreshTokenStore, ITransi
 
     public virtual async Task<string> GetOrNullAsync(string componentAppId, string authorizerAppId)
     {
-        var cacheKey = await GetCacheKeyAsync(componentAppId, authorizerAppId);
-        var cache = await _cache.GetAsync(cacheKey);
+        var cachedValue = await _cache.GetOrNullAsync(componentAppId, authorizerAppId);
 
-        if (cache != null)
+        if (cachedValue != null)
         {
-            return cache;
+            return cachedValue;
         }
 
         var authorizerSecret = await _authorizerSecretRepository.FindAsync(x =>
             x.ComponentAppId == componentAppId && x.AuthorizerAppId == authorizerAppId);
 
-        cache = authorizerSecret?.GetRefreshToken(_stringEncryptionService);
+        cachedValue = authorizerSecret?.GetRefreshToken(_stringEncryptionService);
 
-        await _cache.SetAsync(cacheKey, cache);
+        await _cache.SetAsync(componentAppId, authorizerAppId, cachedValue);
 
-        return cache;
+        return cachedValue;
     }
 
     public virtual async Task SetAsync(string componentAppId, string authorizerAppId, string authorizerRefreshToken)
     {
         // Set only the cache value.
-        await _cache.SetAsync(await GetCacheKeyAsync(componentAppId, authorizerAppId), authorizerRefreshToken);
+        await _cache.SetAsync(componentAppId, authorizerAppId, authorizerRefreshToken);
     }
-
-    protected virtual async Task<string> GetCacheKeyAsync(string componentAppId, string authorizerAppId) =>
-        $"WeChatAuthorizerRefreshToken:{componentAppId}:{authorizerAppId}";
 }
