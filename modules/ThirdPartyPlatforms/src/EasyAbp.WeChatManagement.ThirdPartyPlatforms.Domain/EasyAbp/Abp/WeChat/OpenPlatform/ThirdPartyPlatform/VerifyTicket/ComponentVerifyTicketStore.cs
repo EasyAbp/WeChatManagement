@@ -1,8 +1,5 @@
-using System;
 using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
-using Microsoft.Extensions.Caching.Distributed;
-using Volo.Abp.Caching;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Uow;
@@ -17,13 +14,13 @@ public class ComponentVerifyTicketStore : IComponentVerifyTicketStore, ITransien
     private readonly IUnitOfWorkManager _unitOfWorkManager;
     private readonly IStringEncryptionService _stringEncryptionService;
     private readonly IWeChatAppRepository _weChatAppRepository;
-    private readonly IDistributedCache<string> _cache;
+    private readonly CacheComponentVerifyTicketStore _cache;
 
     public ComponentVerifyTicketStore(
         IUnitOfWorkManager unitOfWorkManager,
         IStringEncryptionService stringEncryptionService,
         IWeChatAppRepository weChatAppRepository,
-        IDistributedCache<string> cache)
+        CacheComponentVerifyTicketStore cache)
     {
         _unitOfWorkManager = unitOfWorkManager;
         _stringEncryptionService = stringEncryptionService;
@@ -34,21 +31,20 @@ public class ComponentVerifyTicketStore : IComponentVerifyTicketStore, ITransien
     [UnitOfWork]
     public virtual async Task<string> GetOrNullAsync(string componentAppId)
     {
-        var cacheKey = await GetCacheKeyAsync(componentAppId);
-        var cache = await _cache.GetAsync(cacheKey);
+        var cachedValue = await _cache.GetOrNullAsync(componentAppId);
 
-        if (cache != null)
+        if (cachedValue != null)
         {
-            return cache;
+            return cachedValue;
         }
 
         var weChatApp = await _weChatAppRepository.FindThirdPartyPlatformAppByAppIdAsync(componentAppId);
 
-        cache = weChatApp?.GetVerifyTicketOrNullAsync(_stringEncryptionService);
+        cachedValue = weChatApp?.GetVerifyTicketOrNullAsync(_stringEncryptionService);
 
-        await _cache.SetAsync(cacheKey, cache);
+        await _cache.SetAsync(componentAppId, cachedValue);
 
-        return cache;
+        return cachedValue;
     }
 
     public virtual async Task SetAsync(string componentAppId, string componentVerifyTicket)
@@ -63,13 +59,6 @@ public class ComponentVerifyTicketStore : IComponentVerifyTicketStore, ITransien
 
         await uow.CompleteAsync();
 
-        await _cache.SetAsync(await GetCacheKeyAsync(componentAppId), componentVerifyTicket,
-            new DistributedCacheEntryOptions
-            {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(715)
-            });
+        await _cache.SetAsync(componentAppId, componentVerifyTicket);
     }
-
-    protected virtual async Task<string> GetCacheKeyAsync(string componentAppId) =>
-        $"WeChatComponentVerifyTicket:{componentAppId}";
 }
