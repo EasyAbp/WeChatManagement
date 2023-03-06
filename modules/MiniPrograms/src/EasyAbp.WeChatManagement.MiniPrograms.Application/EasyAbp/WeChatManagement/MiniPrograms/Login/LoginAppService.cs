@@ -170,9 +170,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             var response = await RequestAuthServerLoginAsync(input.AppId, loginResult.UnionId,
                 loginResult.Code2SessionResponse.OpenId, input.Scope);
 
-            if (response.IsError)
+            if (response.IsError && response.Exception != null)
             {
-                throw response.Exception ?? new AbpException(response.Raw);
+                throw response.Exception;
             }
 
             return new LoginOutput
@@ -505,7 +505,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             var response = await RequestAuthServerLoginAsync(cacheItem.AppId, cacheItem.UnionId,
                 cacheItem.OpenId, input.Scope);
 
-            if (response.IsError)
+            if (response.IsError && response.Exception != null)
             {
                 throw response.Exception;
             }
