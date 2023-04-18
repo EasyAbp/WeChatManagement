@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Volo.Abp;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 {
     public class BindingAuthorizeTooFrequentlyException : UserFriendlyException
     {
-        public BindingAuthorizeTooFrequentlyException() : base("绑定授权过于频繁，请稍后再试。", "BindingAuthorizeTooFrequently")
-        {
-
-        }
+        public BindingAuthorizeTooFrequentlyException(
+            string message = "BindingAuthorizeTooFrequently",
+            string code = "BindingAuthorizeTooFrequently",
+            string details = null,
+            Exception innerException = null,
+            LogLevel logLevel = LogLevel.Warning) : base(message, code, details, innerException, logLevel) { }
     }
 }
