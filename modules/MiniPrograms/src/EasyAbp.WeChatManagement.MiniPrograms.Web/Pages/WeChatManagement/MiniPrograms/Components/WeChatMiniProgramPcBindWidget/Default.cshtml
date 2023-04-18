@@ -1,0 +1,33 @@
+﻿@using EasyAbp.WeChatManagement.MiniPrograms.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model EasyAbp.WeChatManagement.MiniPrograms.Web.Pages.WeChatManagement.MiniPrograms.Components.WeChatMiniProgramPcBindWidget.WeChatMiniProgramPcBindViewModel
+@inject IHtmlLocalizer<MiniProgramsResource> L
+<script>
+    var token = "@Model.Token";
+</script>
+<div class="weChat-miniProgram-pcBind-area" data-miniProgram-name="@Model.MiniProgramName">
+    <div class="weChat-miniProgram-pcBind-aCode">
+        @if (!Model.ACode.IsNullOrEmpty())
+        {
+            <img id="bindCode" src="data:image/png;base64,@Convert.ToBase64String(Model.ACode)" alt="ACode" />
+
+            <div id="ready" class="hidden">
+                <img id="avatar" src="" class="avatar-img" alt="avatar" />
+                <h5 id="nickname" style="padding:10px"></h5>
+                <p id="code">@L["Verification"]：</p>
+                <button type="button" id="btn_destroy" class="btn_destroy btn btn-default">@L["Cancel"]</button>
+                <button type="button" id="btn_bind" class=" btn_bind btn btn-default">@L["Binding"]</button>
+            </div>
+        }
+        else if (Model.HasBound)
+        {
+            <h2>@L["HasBound"]</h2>
+            <img src="@Model.AvatarUrl" class="avatar-img" alt="avatar" />
+            <h5 style="padding:10px">@Model.NickName</h5>
+        }
+        else
+        {
+            <h2>@L["ACodeGenerationFailed"]</h2>
+        }
+    </div>
+</div>

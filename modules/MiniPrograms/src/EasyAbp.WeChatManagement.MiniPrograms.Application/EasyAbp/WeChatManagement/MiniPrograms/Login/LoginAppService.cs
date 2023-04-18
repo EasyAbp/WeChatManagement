@@ -47,6 +47,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         private readonly IMiniProgramLoginNewUserCreator _miniProgramLoginNewUserCreator;
         private readonly IMiniProgramLoginProviderProvider _miniProgramLoginProviderProvider;
         private readonly IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> _pcLoginAuthorizationCache;
+        private readonly IDistributedCache<MiniProgramPcBindingAuthorizationInfoCacheItem> _pcBindingAuthorizationInfoCache;
         private readonly IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> _pcLoginUserLimitCache;
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
@@ -65,6 +66,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
             IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
             IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
+            IDistributedCache<MiniProgramPcBindingAuthorizationInfoCacheItem> pcBindingAuthorizationInfoCache,
             IOptions<IdentityOptions> identityOptions,
             IdentityUserManager identityUserManager)
         {
@@ -80,6 +82,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             _miniProgramLoginNewUserCreator = miniProgramLoginNewUserCreator;
             _miniProgramLoginProviderProvider = miniProgramLoginProviderProvider;
             _pcLoginAuthorizationCache = pcLoginAuthorizationCache;
+            _pcBindingAuthorizationInfoCache = pcBindingAuthorizationInfoCache;
             _pcLoginUserLimitCache = pcLoginUserLimitCache;
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
@@ -514,6 +517,80 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             {
                 IsSuccess = true,
                 RawData = response.Raw
+            };
+        }
+
+
+        [Authorize]
+        public virtual async Task<GetPcBindACodeOutput> GetPcBindACodeAsync(string miniProgramName,
+            string handlePage = null)
+        {
+            var miniProgram = await _weChatAppRepository.GetMiniProgramAppByNameAsync(miniProgramName);
+
+            var hasBound = await _weChatAppUserRepository.AnyAsync(x => x.UserId == CurrentUser.GetId() && x.WeChatAppId == miniProgram.Id);
+
+            if (hasBound)
+            {
+                var userinfo = await _userInfoRepository.GetAsync(x => x.UserId == CurrentUser.GetId());
+                return new GetPcBindACodeOutput
+                {
+                    HasBound = true,
+                    NickName = userinfo.NickName,
+                    AvatarUrl = userinfo.AvatarUrl,
+                };
+            }
+
+            var acode = await GetPcLoginACodeAsync(miniProgramName, handlePage);
+
+            var bindACode = new GetPcBindACodeOutput
+            {
+                ACode = acode.ACode,
+                Token = acode.Token,
+                HandlePage = acode.HandlePage
+            };
+
+            return bindACode;
+        }
+
+        public virtual async Task AuthorizePcBindingAsync(BindPreAuthorizeInput input)
+        {
+            if (await _pcBindingAuthorizationInfoCache.GetAsync(input.Token) != null)
+            {
+                throw new BindingAuthorizeTooFrequentlyException();
+            }
+
+            await _pcBindingAuthorizationInfoCache.SetAsync(input.Token,
+                    new MiniProgramPcBindingAuthorizationInfoCacheItem()
+                    {
+                        AppId = input.AppId,
+                        Code = input.Code,
+                        AvatarUrl = input.AvatarUrl,
+                        NickName = input.NickName,
+                    },
+                    new DistributedCacheEntryOptions
+                    {
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(30)
+                    });
+        }
+
+        [Authorize]
+        public virtual async Task<PcBindingAuthorizationInfoOutput> GetPcBindingAuthorizationInfoAsync(BindPreAuthorizeInfoInput input)
+        {
+            if (await _pcBindingAuthorizationInfoCache.GetAsync(input.Token) == null)
+            {
+                return new PcBindingAuthorizationInfoOutput() { };
+            }
+
+            var preAuthorizeInfo = await _pcBindingAuthorizationInfoCache.GetAsync(input.Token);
+
+            await _pcBindingAuthorizationInfoCache.RemoveAsync(input.Token);
+
+            return new PcBindingAuthorizationInfoOutput
+            {
+                AppId = preAuthorizeInfo.AppId,
+                Code = preAuthorizeInfo.Code,
+                NickName = preAuthorizeInfo.NickName,
+                AvatarUrl = preAuthorizeInfo.AvatarUrl,
             };
         }
     }
