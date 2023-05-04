@@ -7,6 +7,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Modularity;
+using Volo.Abp.Uow;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
 {
@@ -19,6 +20,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.EntityFrameworkCore
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            context.Services.AddAlwaysDisableUnitOfWorkTransaction();
             var sqliteConnection = CreateDatabaseAndGetConnection();
 
             Configure<AbpDbContextOptions>(options =>

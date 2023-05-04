@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Modularity;
+using Volo.Abp.Uow;
 
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore;
 
@@ -19,6 +20,7 @@ public class ThirdPartyPlatformsEntityFrameworkCoreTestModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
+        context.Services.AddAlwaysDisableUnitOfWorkTransaction();
         var sqliteConnection = CreateDatabaseAndGetConnection();
 
         Configure<AbpDbContextOptions>(options =>
