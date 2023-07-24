@@ -1,5 +1,6 @@
 ﻿using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.Common.Localization;
+using Volo.Abp.Domain;
 using Volo.Abp.Modularity;
 using Volo.Abp.Localization;
 using EasyAbp.WeChatManagement.MiniPrograms.Localization;
@@ -12,6 +13,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
 {
     [DependsOn(
         typeof(AbpValidationModule),
+        typeof(AbpDddDomainSharedModule),
         typeof(WeChatManagementCommonDomainSharedModule)
     )]
     public class WeChatManagementMiniProgramsDomainSharedModule : AbpModule

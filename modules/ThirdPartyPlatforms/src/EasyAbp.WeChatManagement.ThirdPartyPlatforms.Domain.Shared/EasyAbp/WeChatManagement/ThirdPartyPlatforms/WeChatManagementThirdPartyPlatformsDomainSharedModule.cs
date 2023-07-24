@@ -1,4 +1,5 @@
 ﻿using EasyAbp.WeChatManagement.Common;
+using Volo.Abp.Domain;
 using Volo.Abp.Modularity;
 using Volo.Abp.Localization;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Localization;
@@ -11,7 +12,8 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms;
 
 [DependsOn(
     typeof(WeChatManagementCommonDomainSharedModule),
-    typeof(AbpValidationModule)
+    typeof(AbpValidationModule),
+    typeof(AbpDddDomainSharedModule)
 )]
 public class WeChatManagementThirdPartyPlatformsDomainSharedModule : AbpModule
 {
