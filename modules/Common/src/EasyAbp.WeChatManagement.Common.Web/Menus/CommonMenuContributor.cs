@@ -20,8 +20,8 @@ namespace EasyAbp.WeChatManagement.Common.Web.Menus
         {
             var l = context.GetLocalizer<CommonResource>(); //Add main menu items.
 
-            var weChatManagementMenuItem = context.Menu.Items.GetOrAdd(i => i.Name == CommonMenus.Prefix,
-                () => new ApplicationMenuItem(CommonMenus.Prefix, l["Menu:EasyAbpWeChatManagement"]));
+            var weChatManagementMenuItem = context.Menu.GetAdministration().Items.GetOrAdd(i => i.Name == CommonMenus.Prefix,
+                () => new ApplicationMenuItem(CommonMenus.Prefix, l["Menu:EasyAbpWeChatManagement"], icon: "fa fa-weixin"));
 
             if (await context.IsGrantedAsync(CommonPermissions.WeChatApp.Default))
             {

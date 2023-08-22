@@ -32,8 +32,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Web.Menus
             
             if (!miniProgramManagementMenuItem.Items.IsNullOrEmpty())
             {
-                var weChatManagementMenuItem = context.Menu.Items.GetOrAdd(i => i.Name == CommonMenus.Prefix,
-                    () => new ApplicationMenuItem("EasyAbpWeChatManagement", l["Menu:EasyAbpWeChatManagement"]));
+                var weChatManagementMenuItem = context.Menu.GetAdministration().Items.GetOrAdd(i => i.Name == CommonMenus.Prefix,
+                    () => new ApplicationMenuItem("EasyAbpWeChatManagement", l["Menu:EasyAbpWeChatManagement"], icon: "fa fa-weixin"));
                 
                 weChatManagementMenuItem.Items.Add(miniProgramManagementMenuItem);
             }
