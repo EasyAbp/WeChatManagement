@@ -12,9 +12,10 @@ using Volo.Abp.Uow;
 namespace EasyAbp.Abp.WeChat.OpenPlatform.ThirdPartyPlatform.EventNotification;
 
 public class UnauthorizedWeChatThirdPartyPlatformAuthEventHandler :
-    IWeChatThirdPartyPlatformAuthEventHandler, ITransientDependency
+    WeChatThirdPartyPlatformAuthEventHandlerBase<UnauthorizedWeChatThirdPartyPlatformAuthEventHandler>,
+    ITransientDependency
 {
-    public string InfoType => WeChatThirdPartyPlatformAuthEventInfoTypes.Unauthorized;
+    public override string InfoType => WeChatThirdPartyPlatformAuthEventInfoTypes.Unauthorized;
 
     private readonly IUnitOfWorkManager _unitOfWorkManager;
     private readonly IAuthorizerAccessTokenCache _authorizerAccessTokenCache;
@@ -33,7 +34,7 @@ public class UnauthorizedWeChatThirdPartyPlatformAuthEventHandler :
         _authorizerSecretRepository = authorizerSecretRepository;
     }
 
-    public virtual async Task<WeChatRequestHandlingResult> HandleAsync(AuthEventModel model)
+    public override async Task<WeChatRequestHandlingResult> HandleAsync(AuthEventModel model)
     {
         using var uow = _unitOfWorkManager.Begin(true);
 
