@@ -1,9 +1,9 @@
 <Project>
   <PropertyGroup>
 
-    <AbpVersion>7.3.0</AbpVersion>
-    <EasyAbpAbpTagHelperPlusModuleVersion>1.6.0</EasyAbpAbpTagHelperPlusModuleVersion>
-    <EasyAbpAbpWeChatModuleVersion>3.0.0-preview.7</EasyAbpAbpWeChatModuleVersion>
+    <AbpVersion>7.4.0</AbpVersion>
+    <EasyAbpAbpTagHelperPlusModuleVersion>1.7.0</EasyAbpAbpTagHelperPlusModuleVersion>
+    <EasyAbpAbpWeChatModuleVersion>3.0.0-preview.8</EasyAbpAbpWeChatModuleVersion>
 
   </PropertyGroup>
 </Project>
