@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Account.Web;
 using Volo.Abp.Account.Web.Pages.Account;
+using Volo.Abp.Identity;
 
 namespace WeChatManagementSample.Web.Ids4.Pages.Account
 {
@@ -13,27 +14,28 @@ namespace WeChatManagementSample.Web.Ids4.Pages.Account
     {
         public const string PasswordMethodName = "Password";
         public const string WeChatMiniProgramMethodName = "WeChatMiniProgram";
-        
+
         [HiddenInput]
         [BindProperty(SupportsGet = true)]
         public string Method { get; set; } = WeChatMiniProgramMethodName;
-        
+
         [BindProperty(SupportsGet = true)]
         public string MiniProgramName { get; set; }
-        
+
 
         public CustomLoginModel(
             IAuthenticationSchemeProvider schemeProvider,
             IOptions<AbpAccountOptions> accountOptions,
-            IOptions<IdentityOptions> identityOptions)
-            : base(schemeProvider, accountOptions, identityOptions)
+            IOptions<IdentityOptions> identityOptions,
+            IdentityDynamicClaimsPrincipalContributorCache cache)
+            : base(schemeProvider, accountOptions, identityOptions, cache)
         {
         }
 
         public override async Task<IActionResult> OnGetAsync()
         {
             MiniProgramName ??= await SettingProvider.GetOrNullAsync(MiniProgramsSettings.PcLogin.DefaultProgramName);
-            
+
             return await base.OnGetAsync();
         }
     }
