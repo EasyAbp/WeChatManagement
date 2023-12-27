@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>EasyAbp.WeChatManagement.ThirdPartyPlatforms</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Application.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests\EasyAbp.WeChatManagement.ThirdPartyPlatforms.Domain.Tests.csproj" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
   </ItemGroup>
 
 </Project>
