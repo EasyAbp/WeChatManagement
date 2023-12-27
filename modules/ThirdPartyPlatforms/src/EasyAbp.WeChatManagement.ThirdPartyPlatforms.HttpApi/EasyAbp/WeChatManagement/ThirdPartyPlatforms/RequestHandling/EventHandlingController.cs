@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.Common.RequestHandling;
+using EasyAbp.Abp.WeChat.Common.RequestHandling.Dtos;
 using EasyAbp.Abp.WeChat.OpenPlatform.RequestHandling.Dtos;
 using EasyAbp.WeChatManagement.Common;
 using Microsoft.AspNetCore.Mvc;

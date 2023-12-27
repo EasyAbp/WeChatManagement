@@ -3,7 +3,7 @@
 
     <AbpVersion>8.0.0</AbpVersion>
     <EasyAbpAbpTagHelperPlusModuleVersion>1.8.0</EasyAbpAbpTagHelperPlusModuleVersion>
-    <EasyAbpAbpWeChatModuleVersion>2.9.0</EasyAbpAbpWeChatModuleVersion>
+    <EasyAbpAbpWeChatModuleVersion>3.0.0-preview.9</EasyAbpAbpWeChatModuleVersion>
 
   </PropertyGroup>
 </Project>

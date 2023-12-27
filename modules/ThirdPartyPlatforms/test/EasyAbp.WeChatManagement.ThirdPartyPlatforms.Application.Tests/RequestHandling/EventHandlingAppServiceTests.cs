@@ -85,7 +85,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
                 Timestamp = TimeStamp,
-                Notice = Nonce
+                Nonce = Nonce
             }
         })).Success.ShouldBeTrue();
 
@@ -137,7 +137,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
                 Timestamp = TimeStamp,
-                Notice = Nonce
+                Nonce = Nonce
             }
         })).Success.ShouldBeTrue();
 
@@ -187,7 +187,7 @@ public class EventHandlingAppServiceTests : ThirdPartyPlatformsApplicationTestBa
                 PostData = encryptedMsg,
                 MsgSignature = xml.Element("xml")!.Element("MsgSignature")!.Value,
                 Timestamp = TimeStamp,
-                Notice = Nonce
+                Nonce = Nonce
             }
         })).Success.ShouldBeTrue();
 
