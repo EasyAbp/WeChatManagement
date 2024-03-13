@@ -30,10 +30,11 @@ public class FakeLoginAppService : LoginAppService
         IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
         IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
         IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
+        IDistributedCache<MiniProgramPcBindingAuthorizationInfoCacheItem> pcBindingAuthorizationInfoCache,
         IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager) : base(signInManager,
         dataFilter, configuration, httpClientFactory, userInfoRepository, weChatAppRepository, stringEncryptionService,
         weChatAppUserRepository, abpWeChatServiceFactory, miniProgramLoginNewUserCreator,
-        miniProgramLoginProviderProvider, pcLoginAuthorizationCache, pcLoginUserLimitCache, identityOptions,
+        miniProgramLoginProviderProvider, pcLoginAuthorizationCache, pcLoginUserLimitCache, pcBindingAuthorizationInfoCache, identityOptions,
         identityUserManager)
     {
     }
