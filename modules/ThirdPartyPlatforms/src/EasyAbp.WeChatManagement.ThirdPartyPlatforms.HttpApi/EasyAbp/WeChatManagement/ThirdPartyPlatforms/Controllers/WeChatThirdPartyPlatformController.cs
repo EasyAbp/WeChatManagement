@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Asp.Versioning;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.ActionResultProviders;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization.Dtos;

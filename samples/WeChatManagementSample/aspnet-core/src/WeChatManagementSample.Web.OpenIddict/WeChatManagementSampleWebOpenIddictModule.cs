@@ -224,7 +224,7 @@ namespace WeChatManagementSample.Web.Ids4
 
         private void ConfigureAutoApiControllers()
         {
-            Configure<AbpAspNetCoreMvcOptions>(options =>
+            PreConfigure<AbpAspNetCoreMvcOptions>(options =>
             {
                 options.ConventionalControllers.Create(typeof(WeChatManagementSampleApplicationModule).Assembly);
             });
