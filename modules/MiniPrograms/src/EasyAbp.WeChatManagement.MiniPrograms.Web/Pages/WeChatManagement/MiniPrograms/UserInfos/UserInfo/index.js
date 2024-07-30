@@ -33,7 +33,15 @@ $(function () {
             { data: "city" },
             { data: "province" },
             { data: "country" },
-            { data: "avatarUrl" },
+            {
+                data: "avatarUrl",
+                render: function (data, m, r) {
+                    if (data) {
+                        return '<img class="avatar" src="' + data + '" alt="avatar" />';
+                    }
+                    return '';
+                }
+            },
         ]
     }));
 });
