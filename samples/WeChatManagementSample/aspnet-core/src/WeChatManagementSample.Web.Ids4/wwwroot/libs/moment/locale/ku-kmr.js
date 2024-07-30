@@ -1,4 +1,4 @@
-﻿//! moment.js locale configuration
+//! moment.js locale configuration
 //! locale : Northern Kurdish [ku-kmr]
 //! authors : Mazlum Özdogan : https://github.com/mergehez
 
