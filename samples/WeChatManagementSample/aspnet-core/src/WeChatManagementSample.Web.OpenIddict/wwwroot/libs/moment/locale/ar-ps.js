@@ -1,4 +1,4 @@
-﻿//! moment.js locale configuration
+//! moment.js locale configuration
 //! locale : Arabic (Palestine) [ar-ps]
 //! author : Majd Al-Shihabi : https://github.com/majdal
 
