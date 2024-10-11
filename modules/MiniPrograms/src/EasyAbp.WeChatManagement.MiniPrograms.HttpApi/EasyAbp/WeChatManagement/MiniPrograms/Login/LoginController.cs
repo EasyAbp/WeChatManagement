@@ -38,6 +38,27 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             return _service.GetPcLoginACodeAsync(miniProgramName, handlePage);
         }
 
+        [HttpGet]
+        [Route("pc-bind-acode/{miniProgramName}")]
+        public Task<GetPcBindACodeOutput> GetPcBindACodeAsync(string miniProgramName, string handlePage = null)
+        {
+            return _service.GetPcBindACodeAsync(miniProgramName, handlePage);
+        }
+
+        [HttpPost]
+        [Route("authorize-pc-binding")]
+        public Task AuthorizePcBindingAsync(BindPreAuthorizeInput input)
+        {
+            return _service.AuthorizePcBindingAsync(input);
+        }
+
+        [HttpPost]
+        [Route("pc-bind-authorization-info")]
+        public Task<PcBindingAuthorizationInfoOutput> GetPcBindingAuthorizationInfoAsync(BindPreAuthorizeInfoInput input)
+        {
+            return _service.GetPcBindingAuthorizationInfoAsync(input);
+        }
+
         [HttpPost]
         [Route("authorize-pc")]
         public Task AuthorizePcAsync(AuthorizePcInput input)
