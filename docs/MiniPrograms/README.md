@@ -69,9 +69,9 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
     ```
 1. 在 OpenIddictDataSeedContributor 中找到
     ```CSharp
-    if (grantType == OpenIddictConstants.GrantTypes.ClientCredentials)
+    if (!buildInGrantTypes.Contains(grantType))
     {
-        application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.ClientCredentials);
+        application.Permissions.Add(OpenIddictConstants.Permissions.Prefixes.GrantType + grantType);
     }
     ```
     在下面增加
@@ -79,7 +79,6 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
     if (grantType == WeChatMiniProgramConsts.GrantType)
     {
         application.Permissions.Add(OpenIddictConstants.Permissions.Endpoints.Token);
-        application.Permissions.Add($"gt:{WeChatMiniProgramConsts.GrantType}");
     }
     ```
 
