@@ -7,7 +7,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
     public class WeChatAccountHasBeenBoundException : BusinessException
     {
         public WeChatAccountHasBeenBoundException(
-            string message = null,
+            string message = "WeChatAccountHasBeenBound",
             string code = "WeChatAccountHasBeenBound",
             string details = null,
             Exception innerException = null,
