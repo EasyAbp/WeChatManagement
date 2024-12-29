@@ -3,7 +3,7 @@
   "texts": {
     "Permission:MiniPrograms": "MiniProgramManagement",
     "Menu:MiniProgramManagement": "MiniProgramManagement",
-    "ACodeGenerationFailed": "ACodeGenerationFailed",
+    "ACodeGenerationFailed": "Binding Code Generation Failed",
     "Permission:UserInfo": "UserInfo",
     "Menu:UserInfo": "MenuUserInfo",
     "UserInfo": "UserInfo",
@@ -17,7 +17,11 @@
     "UserInfoAvatarUrl": "UserInfoAvatarUrl",
     "Setting:PcLoginHandlePage": "Setting:PcLoginHandlePage",
     "Setting:DefaultPcLoginWeChatAppName": "Setting:DefaultPcLoginWeChatAppName",
+    "Setting:BindCodeExpiredTime": "Setting:BindCodeExpiredTime",
+    "HasBound": "HasBound",
     "WeChatAccountHasBeenBound": "WeChatAccountHasBeenBound",
-    "WeChatAccountHasNotBeenBound": "WeChatAccountHasNotBeenBound"
+    "WeChatAccountHasNotBeenBound": "WeChatAccountHasNotBeenBound",
+    "Verification": "Verification",
+    "Succeed": "Succeed"
   }
 }
