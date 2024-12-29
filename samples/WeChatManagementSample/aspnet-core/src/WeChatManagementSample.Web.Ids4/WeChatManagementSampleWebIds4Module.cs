@@ -219,7 +219,7 @@ namespace WeChatManagementSample.Web.Ids4
             }
 
             app.UseCorrelationId();
-            app.UseStaticFiles();
+            app.MapAbpStaticAssets();
             app.UseRouting();
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();

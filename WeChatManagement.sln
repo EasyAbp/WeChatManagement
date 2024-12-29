@@ -117,7 +117,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatManagementSample.Web.Ids4", "samples\WeChatManagementSample\aspnet-core\src\WeChatManagementSample.Web.Ids4\WeChatManagementSample.Web.Ids4.csproj", "{7710B6B3-6908-44C0-A343-1CB78A630C19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatManagementSample.Web.OpenIddict.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Web.OpenIddict.Tests - 副本\WeChatManagementSample.Web.OpenIddict.Tests.csproj", "{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeChatManagementSample.Web.OpenIddict.Tests", "samples\WeChatManagementSample\aspnet-core\test\WeChatManagementSample.Web.OpenIddict.Tests\WeChatManagementSample.Web.OpenIddict.Tests.csproj", "{A9F6AEDE-4F11-492B-87C0-20AEA340C5CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict", "modules\MiniPrograms\src\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict\EasyAbp.WeChatManagement.MiniPrograms.Domain.OpenIddict.csproj", "{0B64E953-2865-47C2-A5C6-8E2E5A403A64}"
 EndProject
