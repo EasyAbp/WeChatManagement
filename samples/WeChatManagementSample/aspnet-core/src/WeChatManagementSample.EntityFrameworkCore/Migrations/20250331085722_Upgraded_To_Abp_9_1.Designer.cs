@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 using WeChatManagementSample.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using WeChatManagementSample.EntityFrameworkCore;
 namespace WeChatManagementSample.Migrations
 {
     [DbContext(typeof(WeChatManagementSampleDbContext))]
-    partial class WeChatManagementSampleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250331085722_Upgraded_To_Abp_9_1")]
+    partial class Upgraded_To_Abp_9_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
