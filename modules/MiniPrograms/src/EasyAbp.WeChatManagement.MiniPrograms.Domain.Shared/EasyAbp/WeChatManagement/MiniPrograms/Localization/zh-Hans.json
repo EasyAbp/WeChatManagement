@@ -17,7 +17,13 @@
     "UserInfoAvatarUrl": "头像图片",
     "Setting:PcLoginHandlePage": "PC 登录处理页面",
     "Setting:DefaultPcLoginWeChatAppName": "PC 登录默认微信应用名",
+    "Setting:BindCodeExpiredTime": "绑定码过期时间（秒）",
+    "HasBound": "已绑定",
     "WeChatAccountHasBeenBound": "您的微信已被其他用户绑定",
-    "WeChatAccountHasNotBeenBound": "您的微信尚未绑定"
+    "WeChatAccountHasNotBeenBound": "您的微信尚未绑定",
+    "Verification": "检验码",
+    "Cancel": "取消",
+    "Binding": "绑定",
+    "Succeed": "绑定成功"
   }
 }

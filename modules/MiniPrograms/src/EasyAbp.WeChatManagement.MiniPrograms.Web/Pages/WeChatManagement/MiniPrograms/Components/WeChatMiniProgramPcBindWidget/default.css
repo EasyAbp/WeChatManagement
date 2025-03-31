@@ -1,0 +1,17 @@
+﻿.weChat-miniProgram-pcBind-aCode {
+    max-width: 350px;
+    margin: 30px auto 0;
+}
+
+.weChat-miniProgram-pcBind-aCode img {
+    width: 100%;
+}
+
+.hidden{
+    display:none;
+}
+
+.avatar-img {
+    border-radius: 50%;
+    max-width: 120px;
+}
