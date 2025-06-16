@@ -11,5 +11,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         Task<string> GetAppLoginProviderAsync(WeChatApp miniProgram);
         
         Task<string> GetOpenLoginProviderAsync(WeChatApp miniProgram);
+
+        Task<string> GetPhoneNumberLoginProviderAsync(WeChatApp miniProgram);
     }
 }

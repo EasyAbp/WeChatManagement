@@ -42,7 +42,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             var appId = context.Request.GetParameter("appid").ToString();
             var openId = context.Request.GetParameter("openid").ToString();
             var unionId = context.Request.GetParameter("unionid").ToString();
-
+            var phoneNumber = context.Request.GetParameter("phone_number").ToString();
 
             if (string.IsNullOrWhiteSpace(appId))
             {
@@ -58,34 +58,42 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
                     }!));
             }
 
-            if (string.IsNullOrWhiteSpace(openId))
-            {
-                return new ForbidResult(
-                    new[] { OpenIddictServerAspNetCoreDefaults.AuthenticationScheme },
-                    properties: new AuthenticationProperties(new Dictionary<string, string>
-                    {
-                        [OpenIddictServerAspNetCoreConstants.Properties.Error] =
-                            OpenIddictConstants.Errors.InvalidRequest,
-
-                        [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] =
-                            "微信服务器没有提供有效的 openid"
-                    }!));
-            }
-
             var miniProgram = await weChatAppRepository.GetMiniProgramAppByAppIdAsync(appId);
 
             string loginProvider;
             string providerKey;
 
-            if (unionId.IsNullOrWhiteSpace())
+            if (string.IsNullOrEmpty(phoneNumber))
             {
-                loginProvider = await miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
-                providerKey = openId;
+                if (string.IsNullOrWhiteSpace(openId))
+                {
+                    return new ForbidResult(
+                        new[] { OpenIddictServerAspNetCoreDefaults.AuthenticationScheme },
+                        properties: new AuthenticationProperties(new Dictionary<string, string>
+                        {
+                            [OpenIddictServerAspNetCoreConstants.Properties.Error] =
+                                OpenIddictConstants.Errors.InvalidRequest,
+
+                            [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] =
+                                "微信服务器没有提供有效的 openid"
+                        }!));
+                }
+
+                if (unionId.IsNullOrWhiteSpace())
+                {
+                    loginProvider = await miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
+                    providerKey = openId;
+                }
+                else
+                {
+                    loginProvider = await miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
+                    providerKey = unionId;
+                }
             }
             else
             {
-                loginProvider = await miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
-                providerKey = unionId;
+                loginProvider = await miniProgramLoginProviderProvider.GetPhoneNumberLoginProviderAsync(miniProgram);
+                providerKey = phoneNumber;
             }
 
             var identityUser = await identityUserManager.FindByLoginAsync(loginProvider, providerKey);

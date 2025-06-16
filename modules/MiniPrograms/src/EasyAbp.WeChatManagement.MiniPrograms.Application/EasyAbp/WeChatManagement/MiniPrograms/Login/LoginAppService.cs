@@ -1,6 +1,11 @@
+using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.ACode;
 using EasyAbp.Abp.WeChat.MiniProgram.Services.Login;
+using EasyAbp.Abp.WeChat.MiniProgram.Services.PhoneNumber;
 using EasyAbp.WeChatManagement.Common;
+using EasyAbp.WeChatManagement.Common.WeChatApps;
+using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
+using EasyAbp.WeChatManagement.MiniPrograms.Identity;
 using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
 using EasyAbp.WeChatManagement.MiniPrograms.Settings;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
@@ -11,11 +16,10 @@ using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
+using System.Linq;
+using System.Linq.Dynamic.Core.Tokenizer;
 using System.Net.Http;
 using System.Threading.Tasks;
-using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
-using EasyAbp.WeChatManagement.Common.WeChatApps;
-using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
 using Volo.Abp;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
@@ -50,6 +54,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         private readonly IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> _pcLoginUserLimitCache;
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
+        private readonly IUniquePhoneNumberIdentityUserRepository _uniquePhoneNumberIdentityUserRepository;
 
         public LoginAppService(
             AbpSignInManager signInManager,
@@ -66,7 +71,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
             IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
             IOptions<IdentityOptions> identityOptions,
-            IdentityUserManager identityUserManager)
+            IdentityUserManager identityUserManager,
+            IUniquePhoneNumberIdentityUserRepository uniquePhoneNumberIdentityUserRepository)
         {
             _signInManager = signInManager;
             _dataFilter = dataFilter;
@@ -83,6 +89,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             _pcLoginUserLimitCache = pcLoginUserLimitCache;
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
+            _uniquePhoneNumberIdentityUserRepository = uniquePhoneNumberIdentityUserRepository;
         }
 
         [Authorize]
@@ -168,7 +175,56 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             }
 
             var response = await RequestAuthServerLoginAsync(input.AppId, loginResult.UnionId,
-                loginResult.Code2SessionResponse.OpenId, input.Scope);
+                loginResult.Code2SessionResponse.OpenId, null, input.Scope);
+
+            if (response.IsError && response.Exception != null)
+            {
+                throw response.Exception;
+            }
+
+            return new LoginOutput
+            {
+                TenantId = loginResult.MiniProgram.TenantId,
+                RawData = response.Raw
+            };
+        }
+
+        [UnitOfWork(IsDisabled = true)]
+        public virtual async Task<LoginOutput> LoginByPhoneAsync(LoginInput input)
+        {
+            var loginResult = await GetLoginByPhoneResultAsync(input);
+
+            using var tenantChange = CurrentTenant.Change(loginResult.MiniProgram.TenantId);
+
+            await _identityOptions.SetAsync();
+
+            using (var uow = UnitOfWorkManager.Begin(new AbpUnitOfWorkOptions(true), true))
+            {
+                var identityUser = await _uniquePhoneNumberIdentityUserRepository.FindByConfirmedPhoneNumberAsync(loginResult.PhoneNumber);
+
+                if (identityUser == null)
+                {
+                    await _miniProgramLoginNewUserCreator.CreateAsync(loginResult.LoginProvider,
+                        loginResult.ProviderKey, loginResult.PhoneNumber);
+
+                }
+                else
+                {
+                    if (await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) == null)
+                    {
+                        await _identityUserManager.AddLoginAsync(identityUser,
+                            new UserLoginInfo(loginResult.LoginProvider, loginResult.ProviderKey,
+                                WeChatManagementCommonConsts.WeChatUserLoginInfoDisplayName));
+                    }
+                }
+
+                await TryCreateUserInfoAsync(identityUser, await GenerateFakeUserInfoAsync());
+
+                await uow.CompleteAsync();
+            }
+
+            var response = await RequestAuthServerLoginAsync(input.AppId, null,
+                null, loginResult.PhoneNumber, input.Scope);
 
             if (response.IsError && response.Exception != null)
             {
@@ -290,6 +346,41 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             };
         }
 
+        protected virtual async Task<LoginByPhoneResultInfoModel> GetLoginByPhoneResultAsync(LoginInput input)
+        {
+            var tenantId = CurrentTenant.Id;
+
+            WeChatApp miniProgram;
+
+            miniProgram = await _weChatAppRepository.GetMiniProgramAppByAppIdAsync(input.AppId);
+
+            PhoneNumberWeService phoneNumberWeService = await _abpWeChatServiceFactory.CreateAsync<PhoneNumberWeService>(miniProgram.AppId);
+
+            var response = await phoneNumberWeService.GetPhoneNumberAsync(input.Code);
+
+            if (response.ErrorCode != 0)
+            {
+                throw new BusinessException(message: $"WeChat error: [{response.ErrorCode}]: {response.ErrorMessage}");
+            }
+
+            var phoneNumber = response.PhoneInfo.PhoneNumber;
+
+            string loginProvider;
+            string providerKey;
+
+            loginProvider = await _miniProgramLoginProviderProvider.GetPhoneNumberLoginProviderAsync(miniProgram);
+            providerKey = phoneNumber;
+
+            return new LoginByPhoneResultInfoModel
+            {
+                MiniProgram = miniProgram,
+                LoginProvider = loginProvider,
+                ProviderKey = providerKey,
+                PhoneNumber = phoneNumber,
+                GetPhoneNumberResponse = response
+            };
+        }
+
         public virtual async Task<string> RefreshAsync(RefreshInput input)
         {
             return (await RequestAuthServerRefreshAsync(input.RefreshToken))?.Raw;
@@ -356,7 +447,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         }
 
         protected virtual async Task<TokenResponse> RequestAuthServerLoginAsync(string appId, string unionId,
-            string openId, string scope)
+            string openId, string phoneNumber, string scope)
         {
             var client = _httpClientFactory.CreateClient(WeChatMiniProgramConsts.AuthServerHttpClientName);
 
@@ -373,6 +464,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                     { "appid", appId },
                     { "unionid", unionId },
                     { "openid", openId },
+                    { "phone_number", phoneNumber },
                     { "scope", scope },
                 }
             };
@@ -503,7 +595,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             await _pcLoginAuthorizationCache.RemoveAsync(input.Token);
 
             var response = await RequestAuthServerLoginAsync(cacheItem.AppId, cacheItem.UnionId,
-                cacheItem.OpenId, input.Scope);
+                cacheItem.OpenId, null, input.Scope);
 
             if (response.IsError && response.Exception != null)
             {

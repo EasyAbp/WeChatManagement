@@ -34,7 +34,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
         }
-        
+
         public virtual async Task ValidateAsync(ExtensionGrantValidationContext context)
         {
             await _identityOptions.SetAsync();
@@ -42,22 +42,13 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             var appId = context.Request.Raw.Get("appid");
             var openId = context.Request.Raw.Get("openid");
             var unionId = context.Request.Raw.Get("unionid");
-            
+            var phoneNumber = context.Request.Raw.Get("phone_number");
+
             if (string.IsNullOrWhiteSpace(appId))
             {
                 context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant)
                 {
                     ErrorDescription = "请提供有效的 appid"
-                };
-
-                return;
-            }
-            
-            if (string.IsNullOrWhiteSpace(openId))
-            {
-                context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant)
-                {
-                    ErrorDescription = "微信服务器没有提供有效的 openid"
                 };
 
                 return;
@@ -68,15 +59,33 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             string loginProvider;
             string providerKey;
 
-            if (unionId.IsNullOrWhiteSpace())
+            if (string.IsNullOrEmpty(phoneNumber))
             {
-                loginProvider = await _miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
-                providerKey = openId;
+                if (string.IsNullOrWhiteSpace(openId))
+                {
+                    context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant)
+                    {
+                        ErrorDescription = "微信服务器没有提供有效的 openid"
+                    };
+
+                    return;
+                }
+
+                if (unionId.IsNullOrWhiteSpace())
+                {
+                    loginProvider = await _miniProgramLoginProviderProvider.GetAppLoginProviderAsync(miniProgram);
+                    providerKey = openId;
+                }
+                else
+                {
+                    loginProvider = await _miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
+                    providerKey = unionId;
+                }
             }
             else
             {
-                loginProvider = await _miniProgramLoginProviderProvider.GetOpenLoginProviderAsync(miniProgram);
-                providerKey = unionId;
+                loginProvider = await _miniProgramLoginProviderProvider.GetPhoneNumberLoginProviderAsync(miniProgram);
+                providerKey = phoneNumber;
             }
 
             var identityUser = await _identityUserManager.FindByLoginAsync(loginProvider, providerKey);

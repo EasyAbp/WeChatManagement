@@ -9,7 +9,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
     {
         public virtual string WeChatAppLoginProviderPrefix { get; } = "WeChatApp:";
         public virtual string WeChatOpenLoginProviderPrefix { get; } = "WeChatOpen:";
-        
+
+        public virtual string WeChatPhoneNumberLoginProviderPrefix { get; } = "WeChatPhoneNumber:";
+
         public virtual Task<string> GetAppLoginProviderAsync(WeChatApp miniProgram)
         {
             Check.NotNullOrWhiteSpace(miniProgram.AppId, nameof(miniProgram.AppId));
@@ -22,6 +24,13 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             Check.NotNullOrWhiteSpace(miniProgram.OpenAppIdOrName, nameof(miniProgram.OpenAppIdOrName));
             
             return Task.FromResult(WeChatOpenLoginProviderPrefix + miniProgram.OpenAppIdOrName);
+        }
+
+        public virtual Task<string> GetPhoneNumberLoginProviderAsync(WeChatApp miniProgram)
+        {
+            Check.NotNullOrWhiteSpace(miniProgram.AppId, nameof(miniProgram.AppId));
+
+            return Task.FromResult(WeChatPhoneNumberLoginProviderPrefix + miniProgram.AppId);  
         }
     }
 }
