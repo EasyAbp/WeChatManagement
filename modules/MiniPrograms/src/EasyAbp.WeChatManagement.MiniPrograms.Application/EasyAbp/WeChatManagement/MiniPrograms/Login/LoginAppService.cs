@@ -204,7 +204,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
 
                 if (identityUser == null)
                 {
-                    await _miniProgramLoginNewUserCreator.CreateAsync(loginResult.LoginProvider,
+                    identityUser = await _miniProgramLoginNewUserCreator.CreateAsync(loginResult.LoginProvider,
                         loginResult.ProviderKey, loginResult.PhoneNumber);
 
                 }
