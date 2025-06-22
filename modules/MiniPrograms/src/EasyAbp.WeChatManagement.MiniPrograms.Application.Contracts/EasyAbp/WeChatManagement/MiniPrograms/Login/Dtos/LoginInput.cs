@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
+﻿using JetBrains.Annotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
 {
@@ -18,6 +18,14 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos
         /// </summary>
         [Required]
         public string Code { get; set; }
+
+        /// <summary>
+        /// 通过微信开放能力 getRealtimePhoneNumber 获取的动态令牌，用于换取用户手机号
+        /// 可用于查找已有用户绑定，避免重复创建用户
+        /// https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getRealtimePhoneNumber.html
+        /// </summary>
+        [CanBeNull]
+        public string PhoneNumberCode { get; set; }
 
         /// <summary>
         /// 查找并使用最近一次登录的租户登录（忽略当前租户环境）
