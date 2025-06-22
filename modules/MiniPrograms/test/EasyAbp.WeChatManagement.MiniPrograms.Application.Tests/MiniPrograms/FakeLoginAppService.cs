@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
+using EasyAbp.WeChatManagement.MiniPrograms.Identity;
 using EasyAbp.WeChatManagement.MiniPrograms.Login;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
 using IdentityModel.Client;
@@ -30,11 +31,12 @@ public class FakeLoginAppService : LoginAppService
         IMiniProgramLoginProviderProvider miniProgramLoginProviderProvider,
         IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
         IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
-        IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager) : base(signInManager,
+        IOptions<IdentityOptions> identityOptions, IdentityUserManager identityUserManager,
+        IUniquePhoneNumberIdentityUserRepository uniquePhoneNumberIdentityUserRepository) : base(signInManager,
         dataFilter, configuration, httpClientFactory, userInfoRepository, weChatAppRepository, stringEncryptionService,
         weChatAppUserRepository, abpWeChatServiceFactory, miniProgramLoginNewUserCreator,
         miniProgramLoginProviderProvider, pcLoginAuthorizationCache, pcLoginUserLimitCache, identityOptions,
-        identityUserManager)
+        identityUserManager, uniquePhoneNumberIdentityUserRepository)
     {
     }
 
