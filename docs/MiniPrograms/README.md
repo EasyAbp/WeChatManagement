@@ -103,6 +103,7 @@ Abp 小程序管理模块，提供小程序登录、用户个人信息记录、�
 ### 小程序登录
 
 1. 使用 `/api/wechat-management/mini-programs/login/login` (POST) 接口进行微信登录，留意 [LoginInput](https://github.com/EasyAbp/WeChatManagement/blob/master/modules/MiniPrograms/src/EasyAbp.WeChatManagement.MiniPrograms.Application.Contracts/EasyAbp/WeChatManagement/MiniPrograms/Login/Dtos/LoginInput.cs) 的注释说明。
+   - 通过 `PhoneNumberCode` 参数支持手机号码查找用户：当通过 openId/unionId 找不到用户时，如果提供了此参数，系统将尝试使用手机号查找匹配用户。
     
 2. 使用 `/api/wechat-management/mini-programs/login/refresh` (POST) 接口对 AccessToken 续期。
 

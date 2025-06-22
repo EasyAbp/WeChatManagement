@@ -14,8 +14,10 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using EasyAbp.Abp.WeChat.Common.Infrastructure.Services;
+using EasyAbp.Abp.WeChat.MiniProgram.Services.PhoneNumber;
 using EasyAbp.WeChatManagement.Common.WeChatApps;
 using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
+using EasyAbp.WeChatManagement.MiniPrograms.Identity;
 using Volo.Abp;
 using Volo.Abp.Caching;
 using Volo.Abp.Data;
@@ -50,6 +52,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
         private readonly IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> _pcLoginUserLimitCache;
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IdentityUserManager _identityUserManager;
+        private readonly IUniquePhoneNumberIdentityUserRepository _uniquePhoneNumberIdentityUserRepository;
 
         public LoginAppService(
             AbpSignInManager signInManager,
@@ -66,7 +69,8 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             IDistributedCache<MiniProgramPcLoginAuthorizationCacheItem> pcLoginAuthorizationCache,
             IDistributedCache<MiniProgramPcLoginUserLimitCacheItem> pcLoginUserLimitCache,
             IOptions<IdentityOptions> identityOptions,
-            IdentityUserManager identityUserManager)
+            IdentityUserManager identityUserManager,
+            IUniquePhoneNumberIdentityUserRepository uniquePhoneNumberIdentityUserRepository)
         {
             _signInManager = signInManager;
             _dataFilter = dataFilter;
@@ -83,6 +87,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             _pcLoginUserLimitCache = pcLoginUserLimitCache;
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
+            _uniquePhoneNumberIdentityUserRepository = uniquePhoneNumberIdentityUserRepository;
         }
 
         [Authorize]
@@ -155,9 +160,30 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
             using (var uow = UnitOfWorkManager.Begin(new AbpUnitOfWorkOptions(true), true))
             {
                 var identityUser =
-                    await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey) ??
-                    await _miniProgramLoginNewUserCreator.CreateAsync(loginResult.LoginProvider,
-                        loginResult.ProviderKey);
+                    await _identityUserManager.FindByLoginAsync(loginResult.LoginProvider, loginResult.ProviderKey);
+
+                string phoneNumber = null;
+
+                if (identityUser == null && !input.PhoneNumberCode.IsNullOrEmpty())
+                {
+                    // Try to find user by phone number if PhoneNumberCode is provided
+                    var phoneNumberWeService = await _abpWeChatServiceFactory.CreateAsync<PhoneNumberWeService>(loginResult.MiniProgram.AppId);
+                    var phoneNumberResponse = await phoneNumberWeService.GetPhoneNumberAsync(input.PhoneNumberCode);
+                    
+                    if (phoneNumberResponse.ErrorCode == 0 && !phoneNumberResponse.PhoneInfo.PhoneNumber.IsNullOrEmpty())
+                    {
+                        phoneNumber = phoneNumberResponse.PhoneInfo.PhoneNumber;
+                        // If successfully got the phone number, try to find user by it
+                        identityUser = await _uniquePhoneNumberIdentityUserRepository.FindByConfirmedPhoneNumberAsync(phoneNumber);
+                    }
+                }
+
+                // If still not found, create a new user
+                if (identityUser == null)
+                {
+                    identityUser = await _miniProgramLoginNewUserCreator.CreateAsync(loginResult.LoginProvider,
+                        loginResult.ProviderKey, phoneNumber);
+                }
 
                 await UpdateWeChatAppUserAsync(identityUser, loginResult.MiniProgram, loginResult.UnionId,
                     loginResult.Code2SessionResponse.OpenId, loginResult.Code2SessionResponse.SessionKey);

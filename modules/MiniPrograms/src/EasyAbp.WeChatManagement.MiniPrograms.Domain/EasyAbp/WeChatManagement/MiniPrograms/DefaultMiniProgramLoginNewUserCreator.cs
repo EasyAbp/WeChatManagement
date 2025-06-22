@@ -30,14 +30,19 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
         }
-        
-        public virtual async Task<IdentityUser> CreateAsync(string loginProvider, string providerKey)
+
+        public virtual async Task<IdentityUser> CreateAsync(string loginProvider, string providerKey, string phoneNumber = null)
         {
             await _identityOptions.SetAsync();
 
             var identityUser = new IdentityUser(_guidGenerator.Create(), await GenerateUserNameAsync(),
                 await GenerateEmailAsync(), _currentTenant.Id);
-            
+
+            if (!phoneNumber.IsNullOrEmpty())
+            {
+                identityUser.SetPhoneNumber(phoneNumber, true);
+            }
+
             (await _identityUserManager.CreateAsync(identityUser)).CheckErrors();
 
             (await _identityUserManager.AddDefaultRolesAsync(identityUser)).CheckErrors();
@@ -45,7 +50,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
             (await _identityUserManager.AddLoginAsync(identityUser,
                 new UserLoginInfo(loginProvider, providerKey,
                     WeChatManagementCommonConsts.WeChatUserLoginInfoDisplayName))).CheckErrors();
-            
+
             return identityUser;
         }
 
@@ -53,7 +58,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         {
             return Task.FromResult("WeChat_" + Guid.NewGuid());
         }
-        
+
         protected virtual Task<string> GenerateEmailAsync()
         {
             return Task.FromResult(Guid.NewGuid() + "@fake-email.com");
