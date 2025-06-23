@@ -175,6 +175,11 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.Login
                         phoneNumber = phoneNumberResponse.PhoneInfo.PhoneNumber;
                         // If successfully got the phone number, try to find user by it
                         identityUser = await _uniquePhoneNumberIdentityUserRepository.FindByConfirmedPhoneNumberAsync(phoneNumber);
+
+                        if (identityUser != null)
+                        {
+                            (await _identityUserManager.AddLoginAsync(identityUser, new UserLoginInfo(loginResult.LoginProvider, loginResult.ProviderKey, WeChatManagementCommonConsts.WeChatUserLoginInfoDisplayName))).CheckErrors();
+                        }
                     }
                 }
 
