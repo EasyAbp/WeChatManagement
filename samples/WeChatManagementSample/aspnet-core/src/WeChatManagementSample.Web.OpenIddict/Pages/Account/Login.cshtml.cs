@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using EasyAbp.WeChatManagement.MiniPrograms.Settings;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -19,16 +20,13 @@ namespace WeChatManagementSample.Web.Ids4.Pages.Account
         [BindProperty(SupportsGet = true)]
         public string Method { get; set; } = WeChatMiniProgramMethodName;
 
-        [BindProperty(SupportsGet = true)]
-        public string MiniProgramName { get; set; }
+        [BindProperty(SupportsGet = true)] public string MiniProgramName { get; set; }
 
-
-        public CustomLoginModel(
-            IAuthenticationSchemeProvider schemeProvider,
-            IOptions<AbpAccountOptions> accountOptions,
-            IOptions<IdentityOptions> identityOptions,
-            IdentityDynamicClaimsPrincipalContributorCache cache)
-            : base(schemeProvider, accountOptions, identityOptions, cache)
+        public CustomLoginModel(IAuthenticationSchemeProvider schemeProvider,
+            IOptions<AbpAccountOptions> accountOptions, IOptions<IdentityOptions> identityOptions,
+            IdentityDynamicClaimsPrincipalContributorCache identityDynamicClaimsPrincipalContributorCache,
+            IWebHostEnvironment webHostEnvironment) : base(schemeProvider, accountOptions, identityOptions,
+            identityDynamicClaimsPrincipalContributorCache, webHostEnvironment)
         {
         }
 
