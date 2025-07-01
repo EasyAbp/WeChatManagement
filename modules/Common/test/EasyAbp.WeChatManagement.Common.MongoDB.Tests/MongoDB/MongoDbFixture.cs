@@ -1,5 +1,5 @@
 using System;
-using EphemeralMongo;
+using MongoSandbox;
 
 namespace EasyAbp.WeChatManagement.Common.MongoDB
 {

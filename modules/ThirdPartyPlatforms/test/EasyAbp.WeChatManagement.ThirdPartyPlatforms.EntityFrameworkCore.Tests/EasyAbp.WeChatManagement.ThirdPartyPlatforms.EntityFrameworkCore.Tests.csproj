@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.4" />
     <ProjectReference Include="..\..\src\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore\EasyAbp.WeChatManagement.ThirdPartyPlatforms.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase\EasyAbp.WeChatManagement.ThirdPartyPlatforms.TestBase.csproj" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="$(AbpVersion)" />

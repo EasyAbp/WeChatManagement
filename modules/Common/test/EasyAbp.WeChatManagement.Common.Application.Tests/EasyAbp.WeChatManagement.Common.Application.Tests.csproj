@@ -8,7 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\EasyAbp.WeChatManagement.Common.Application\EasyAbp.WeChatManagement.Common.Application.csproj" />
     <ProjectReference Include="..\EasyAbp.WeChatManagement.Common.Domain.Tests\EasyAbp.WeChatManagement.Common.Domain.Tests.csproj" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
   </ItemGroup>
 
 </Project>
