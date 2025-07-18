@@ -11,8 +11,9 @@
 @inject IHtmlLocalizer<MiniProgramsResource> L
 @inject IAuthorizationService Authorization
 @{
-    PageLayout.Content.Title = L["UserInfo"].Value;
-    PageLayout.Content.BreadCrumb.Add(L["Menu:UserInfo"].Value);
+    PageLayout.Content.Title = L["Menu:UserInfo"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:MiniProgramManagement"].Value);
+    PageLayout.Content.BreadCrumb.Add(L["Menu:EasyAbpWeChatManagement"].Value);
     PageLayout.Content.MenuItemName = MiniProgramsMenus.UserInfo;
 }
 
@@ -26,13 +27,6 @@
 }
 
 <abp-card>
-    <abp-card-header>
-        <abp-row>
-            <abp-column size-md="_6">
-                <abp-card-title>@L["UserInfo"]</abp-card-title>
-            </abp-column>
-        </abp-row>
-    </abp-card-header>
     <abp-card-body>
         <abp-table striped-rows="true" id="UserInfoTable" class="nowrap">
             <thead>

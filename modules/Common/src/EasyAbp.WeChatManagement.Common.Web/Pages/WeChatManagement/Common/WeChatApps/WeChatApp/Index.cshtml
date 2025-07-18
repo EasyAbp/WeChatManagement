@@ -11,8 +11,8 @@
 @inject IHtmlLocalizer<CommonResource> L
 @inject IAuthorizationService Authorization
 @{
-    PageLayout.Content.Title = L["WeChatApp"].Value;
-    PageLayout.Content.BreadCrumb.Add(L["Menu:WeChatApp"].Value);
+    PageLayout.Content.Title = L["Menu:WeChatApp"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:EasyAbpWeChatManagement"].Value);
     PageLayout.Content.MenuItemName = CommonMenus.WeChatApp;
 }
 
@@ -24,24 +24,19 @@
 {
     <abp-style src="/Pages/WeChatManagement/Common/WeChatApps/WeChatApp/index.css"/>
 }
+@section content_toolbar
+{
+    @if (await Authorization.IsGrantedAsync(CommonPermissions.WeChatApp.Create))
+    { 
+        <abp-button id="NewWeChatAppButton"
+                    text="@L["CreateWeChatApp"].Value"
+                    icon="plus"
+                    size="Small"
+                    button-type="Primary" />
+    }
+}
 
 <abp-card>
-    <abp-card-header>
-        <abp-row>
-            <abp-column size-md="_6">
-                <abp-card-title>@L["WeChatApp"]</abp-card-title>
-            </abp-column>
-            <abp-column size-md="_6" class="text-end">
-			    @if (await Authorization.IsGrantedAsync(CommonPermissions.WeChatApp.Create))
-                { 
-                <abp-button id="NewWeChatAppButton"
-                            text="@L["CreateWeChatApp"].Value"
-                            icon="plus"
-                            button-type="Primary" />
-                }
-            </abp-column>
-        </abp-row>
-    </abp-card-header>
     <abp-card-body>
         <abp-table striped-rows="true" id="WeChatAppTable" class="nowrap">
             <thead>

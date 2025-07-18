@@ -11,8 +11,9 @@
 @inject IPageLayout PageLayout
 @inject IHtmlLocalizer<ThirdPartyPlatformsResource> L
 @{
-    PageLayout.Content.Title = L["Authorization"].Value;
-    PageLayout.Content.BreadCrumb.Add(L["Menu:Authorization"].Value);
+    PageLayout.Content.Title = L["Menu:Authorization"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:ThirdPartyPlatformManagement"].Value);
+    PageLayout.Content.BreadCrumb.Add(L["Menu:EasyAbpWeChatManagement"].Value);
     PageLayout.Content.MenuItemName = "Authorization";
 }
 

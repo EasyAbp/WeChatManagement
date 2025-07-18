@@ -11,8 +11,8 @@
 @inject IHtmlLocalizer<CommonResource> L
 @inject IAuthorizationService Authorization
 @{
-    PageLayout.Content.Title = L["WeChatAppUser"].Value;
-    PageLayout.Content.BreadCrumb.Add(L["Menu:WeChatAppUser"].Value);
+    PageLayout.Content.Title = L["Menu:WeChatAppUser"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:EasyAbpWeChatManagement"].Value);
     PageLayout.Content.MenuItemName = CommonMenus.WeChatAppUser;
 }
 
@@ -26,13 +26,6 @@
 }
 
 <abp-card>
-    <abp-card-header>
-        <abp-row>
-            <abp-column size-md="_6">
-                <abp-card-title>@L["WeChatAppUser"]</abp-card-title>
-            </abp-column>
-        </abp-row>
-    </abp-card-header>
     <abp-card-body>
         <abp-table striped-rows="true" id="WeChatAppUserTable" class="nowrap">
             <thead>
