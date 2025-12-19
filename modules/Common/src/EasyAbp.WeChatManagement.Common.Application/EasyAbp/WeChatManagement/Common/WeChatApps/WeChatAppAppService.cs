@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using EasyAbp.WeChatManagement.Common.Localization;
 using EasyAbp.WeChatManagement.Common.Permissions;
 using EasyAbp.WeChatManagement.Common.WeChatApps.Dtos;
 using Volo.Abp.Application.Services;
@@ -26,6 +27,9 @@ public class WeChatAppAppService : CrudAppService<WeChatApp, WeChatAppDto, Guid,
     {
         _stringEncryptionService = stringEncryptionService;
         _repository = repository;
+
+        LocalizationResource = typeof(CommonResource);
+        ObjectMapperContext = typeof(WeChatManagementCommonApplicationModule);
     }
 
     protected override async Task<IQueryable<WeChatApp>> CreateFilteredQueryAsync(WeChatAppGetListInput input)

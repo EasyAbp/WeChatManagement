@@ -28,7 +28,7 @@ using Volo.Abp.Security.Encryption;
 
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Authorization;
 
-public class AuthorizationAppService : ApplicationService, IAuthorizationAppService
+public class AuthorizationAppService : ThirdPartyPlatformsAppService, IAuthorizationAppService
 {
     private readonly IDistributedEventBus _distributedEventBus;
     private readonly IAbpWeChatServiceFactory _abpWeChatServiceFactory;

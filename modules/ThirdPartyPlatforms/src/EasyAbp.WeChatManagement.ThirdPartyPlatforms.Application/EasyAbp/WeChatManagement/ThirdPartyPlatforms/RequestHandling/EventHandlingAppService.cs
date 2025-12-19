@@ -9,7 +9,7 @@ using Volo.Abp.Uow;
 namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.RequestHandling;
 
 [UnitOfWork(IsDisabled = true)]
-public class EventHandlingAppService : ApplicationService, IEventHandlingAppService
+public class EventHandlingAppService : ThirdPartyPlatformsAppService, IEventHandlingAppService
 {
     private readonly WeChatThirdPartyPlatformEventRequestHandlingService _handlingService;
 

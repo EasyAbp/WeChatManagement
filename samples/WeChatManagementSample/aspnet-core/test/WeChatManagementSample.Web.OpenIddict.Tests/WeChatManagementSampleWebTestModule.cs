@@ -94,8 +94,8 @@ namespace WeChatManagementSample
                 }
             });
 
-            app.MapAbpStaticAssets();
             app.UseRouting();
+            app.MapAbpStaticAssets();
             app.UseAuthentication();
             app.UseAbpRequestLocalization();
             app.UseAuthorization();

@@ -6,7 +6,7 @@ using EasyAbp.WeChatManagement.Common.WeChatAppUsers;
 using EasyAbp.WeChatManagement.MiniPrograms.Identity;
 using EasyAbp.WeChatManagement.MiniPrograms.Login;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
-using IdentityModel.Client;
+using Duende.IdentityModel.Client;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;

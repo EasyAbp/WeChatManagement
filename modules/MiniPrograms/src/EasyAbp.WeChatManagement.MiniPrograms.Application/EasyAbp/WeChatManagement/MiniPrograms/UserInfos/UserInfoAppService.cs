@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using EasyAbp.WeChatManagement.MiniPrograms.Localization;
 using EasyAbp.WeChatManagement.MiniPrograms.Permissions;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos.Dtos;
 using Microsoft.AspNetCore.Authorization;
@@ -21,6 +22,9 @@ namespace EasyAbp.WeChatManagement.MiniPrograms.UserInfos
         public UserInfoAppService(IUserInfoRepository repository) : base(repository)
         {
             _repository = repository;
+
+            LocalizationResource = typeof(MiniProgramsResource);
+            ObjectMapperContext = typeof(WeChatManagementMiniProgramsApplicationModule);
         }
 
         [Authorize]

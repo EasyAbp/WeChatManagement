@@ -4,7 +4,7 @@ using EasyAbp.WeChatManagement.Common;
 using EasyAbp.WeChatManagement.MiniPrograms.Login.Dtos;
 using EasyAbp.WeChatManagement.MiniPrograms.Settings;
 using EasyAbp.WeChatManagement.MiniPrograms.UserInfos;
-using IdentityModel.Client;
+using Duende.IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Distributed;
