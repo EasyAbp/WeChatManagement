@@ -15,7 +15,7 @@ using Microsoft.Extensions.Hosting;
 using WeChatManagementSample.EntityFrameworkCore;
 using WeChatManagementSample.Localization;
 using WeChatManagementSample.MultiTenancy;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.Swagger;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
