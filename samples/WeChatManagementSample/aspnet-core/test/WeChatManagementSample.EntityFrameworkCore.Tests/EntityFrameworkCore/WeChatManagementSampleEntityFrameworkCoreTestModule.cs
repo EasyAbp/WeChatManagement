@@ -20,6 +20,11 @@ namespace WeChatManagementSample.EntityFrameworkCore
     {
         private SqliteConnection _sqliteConnection;
 
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            PreConfigure<AbpSqliteOptions>(options => { options.BusyTimeout = null; });
+        }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             ConfigureInMemorySqlite(context.Services);
