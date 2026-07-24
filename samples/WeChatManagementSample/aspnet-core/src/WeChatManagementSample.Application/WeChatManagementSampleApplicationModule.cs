@@ -1,7 +1,6 @@
 ﻿using EasyAbp.WeChatManagement.MiniPrograms;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms;
 using Volo.Abp.Account;
-using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
@@ -25,12 +24,5 @@ namespace WeChatManagementSample
     )]
     public class WeChatManagementSampleApplicationModule : AbpModule
     {
-        public override void ConfigureServices(ServiceConfigurationContext context)
-        {
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<WeChatManagementSampleApplicationModule>();
-            });
-        }
     }
 }

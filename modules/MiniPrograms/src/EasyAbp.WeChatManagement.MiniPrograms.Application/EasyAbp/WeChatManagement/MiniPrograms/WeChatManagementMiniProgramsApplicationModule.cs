@@ -1,7 +1,7 @@
 ﻿using System;
 using EasyAbp.WeChatManagement.Common;
 using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
 using Volo.Abp.Identity.AspNetCore;
@@ -12,7 +12,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
         typeof(WeChatManagementMiniProgramsDomainModule),
         typeof(WeChatManagementMiniProgramsApplicationContractsModule),
         typeof(AbpDddApplicationModule),
-        typeof(AbpAutoMapperModule),
+        typeof(AbpMapperlyModule),
         typeof(AbpIdentityAspNetCoreModule),
         typeof(WeChatManagementCommonApplicationModule)
     )]
@@ -20,11 +20,7 @@ namespace EasyAbp.WeChatManagement.MiniPrograms
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<WeChatManagementMiniProgramsApplicationModule>();
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<WeChatManagementMiniProgramsApplicationModule>(validate: true);
-            });
+            context.Services.AddMapperlyObjectMapper<WeChatManagementMiniProgramsApplicationModule>();
 
             context.Services.AddHttpClient(WeChatMiniProgramConsts.AuthServerHttpClientName,
                 c => { c.Timeout = TimeSpan.FromMilliseconds(5000); });

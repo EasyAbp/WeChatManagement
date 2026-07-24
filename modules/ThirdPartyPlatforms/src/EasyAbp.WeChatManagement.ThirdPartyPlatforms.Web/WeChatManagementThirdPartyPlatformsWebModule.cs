@@ -5,7 +5,7 @@ using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Localization;
 using EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web.Menus;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
@@ -16,7 +16,7 @@ namespace EasyAbp.WeChatManagement.ThirdPartyPlatforms.Web;
     typeof(WeChatManagementCommonWebModule),
     typeof(WeChatManagementThirdPartyPlatformsApplicationContractsModule),
     typeof(AbpAspNetCoreMvcUiThemeSharedModule),
-    typeof(AbpAutoMapperModule)
+    typeof(AbpMapperlyModule)
 )]
 public class WeChatManagementThirdPartyPlatformsWebModule : AbpModule
 {
@@ -46,11 +46,7 @@ public class WeChatManagementThirdPartyPlatformsWebModule : AbpModule
             options.FileSets.AddEmbedded<WeChatManagementThirdPartyPlatformsWebModule>();
         });
 
-        context.Services.AddAutoMapperObjectMapper<WeChatManagementThirdPartyPlatformsWebModule>();
-        Configure<AbpAutoMapperOptions>(options =>
-        {
-            options.AddMaps<WeChatManagementThirdPartyPlatformsWebModule>(validate: true);
-        });
+        context.Services.AddMapperlyObjectMapper<WeChatManagementThirdPartyPlatformsWebModule>();
 
         Configure<RazorPagesOptions>(options =>
         {

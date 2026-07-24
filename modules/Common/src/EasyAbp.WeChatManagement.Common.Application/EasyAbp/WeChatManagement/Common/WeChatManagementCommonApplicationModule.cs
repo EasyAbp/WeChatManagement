@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
 
@@ -9,17 +9,13 @@ namespace EasyAbp.WeChatManagement.Common
         typeof(WeChatManagementCommonDomainModule),
         typeof(WeChatManagementCommonApplicationContractsModule),
         typeof(AbpDddApplicationModule),
-        typeof(AbpAutoMapperModule)
+        typeof(AbpMapperlyModule)
         )]
     public class WeChatManagementCommonApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<WeChatManagementCommonApplicationModule>();
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<WeChatManagementCommonApplicationModule>(validate: true);
-            });
+            context.Services.AddMapperlyObjectMapper<WeChatManagementCommonApplicationModule>();
         }
     }
 }

@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="EasyAbp.Abp.TagHelperPlus" Version="$(EasyAbpAbpTagHelperPlusModuleVersion)" />
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Mapperly" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="$(AbpVersion)" />
   </ItemGroup>
 
