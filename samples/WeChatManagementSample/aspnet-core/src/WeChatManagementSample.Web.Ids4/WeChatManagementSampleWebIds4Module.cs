@@ -29,7 +29,6 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
-using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity.Web;
 using Volo.Abp.IdentityServer;
@@ -89,7 +88,6 @@ namespace WeChatManagementSample.Web.Ids4
 
             ConfigureUrls(configuration);
             ConfigureAuthentication(context, configuration);
-            ConfigureAutoMapper();
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
             ConfigureNavigationServices();
@@ -114,15 +112,6 @@ namespace WeChatManagementSample.Web.Ids4
                     options.RequireHttpsMetadata = false;
                     options.Audience = "WeChatManagementSample";
                 });
-        }
-
-        private void ConfigureAutoMapper()
-        {
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<WeChatManagementSampleWebIds4Module>();
-
-            });
         }
 
         private void ConfigureVirtualFileSystem(IWebHostEnvironment hostingEnvironment)
